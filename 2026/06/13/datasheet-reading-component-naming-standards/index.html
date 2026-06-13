@@ -93,8 +93,8 @@
 <meta property="og:description" content="WenZhenJian&#39;s Tech Blog - 电力电子与硬件开发">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
-<meta property="article:published_time" content="2026-06-13T05:12:21.000Z">
-<meta property="article:modified_time" content="2026-06-13T05:13:04.300Z">
+<meta property="article:published_time" content="2026-06-13T05:18:28.000Z">
+<meta property="article:modified_time" content="2026-06-13T05:18:59.753Z">
 <meta property="article:author" content="WenZhenJian-EE">
 <meta property="article:tag" content="数据手册">
 <meta property="article:tag" content="物料选型">
@@ -558,15 +558,15 @@ mjx-container[display="true"] + br {
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2026-06-13 13:12:21</span>
-        <span class="mobile">2026-06-13 13:12:21</span>
+        <span class="desktop">2026-06-13 13:18:28</span>
+        <span class="mobile">2026-06-13 13:18:28</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-06-13 13:13:04</span>
-            <span class="mobile">2026-06-13 13:13:04</span>
+            <span class="desktop">2026-06-13 13:18:59</span>
+            <span class="mobile">2026-06-13 13:18:59</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -632,9 +632,9 @@ mjx-container[display="true"] + br {
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<hr>
-<h1 id="00"><a href="#00" class="headerlink" title="00"></a>00</h1><p><strong>数据手册物料前缀识别、封装命名规范</strong><br><strong>A-1-RLCD数据手册阅读</strong><br><strong>B-1-开关与驱动数据手册阅读</strong><br><strong>C-1-信号处理与采集数据手册阅读</strong><br><strong>D-1-隔离数据手册阅读</strong><br><strong>E-1-保护数据手册阅读</strong><br><strong>F-1-MCU相关数据手册阅读</strong><br><strong>G-1-电源数据手册阅读</strong><br><strong>H-1-通信数据手册阅读</strong><br><strong>I-1-机电、结构数据手册阅读</strong><br><strong>J-1-模拟控制数据手册阅读</strong><br><strong>K-1-EMC数据手册阅读</strong><br><strong>L-1-开关管、栅极驱动数据手册阅读</strong></p>
+			<h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>本章讲解了硬件工程师的核心职业技能——如何高效且精确地阅读芯片规格书 (Datasheet)。内容涵盖各大半导体厂商物料前缀的识别、标准封装的命名规范，并扩展了板卡生产装配（SMT/PCBA）、外壳机械安装的配合要点，帮助建立从理论图纸到物理量产的工程闭环。</p>
 <hr>
+<h1 id="00"><a href="#00" class="headerlink" title="00"></a>00</h1><p><strong>数据手册物料前缀识别、封装命名规范</strong><br><strong>A-1-RLCD数据手册阅读</strong><br><strong>B-1-开关与驱动数据手册阅读</strong><br><strong>C-1-信号处理与采集数据手册阅读</strong><br><strong>D-1-隔离数据手册阅读</strong><br><strong>E-1-保护数据手册阅读</strong><br><strong>F-1-MCU相关数据手册阅读</strong><br><strong>G-1-电源数据手册阅读</strong><br><strong>H-1-通信数据手册阅读</strong><br><strong>I-1-机电、结构数据手册阅读</strong><br><strong>J-1-模拟控制数据手册阅读</strong><br><strong>K-1-EMC数据手册阅读</strong><br><strong>L-1-开关管、栅极驱动数据手册阅读</strong></p>
 <h1 id="数据手册基础概念"><a href="#数据手册基础概念" class="headerlink" title="数据手册基础概念"></a>数据手册基础概念</h1><p>芯片手册中的核心术语</p>
 <ul>
 <li>误差放大器：用于采样模拟信号，并将其作为反馈输入至控制芯片，以调节输出。</li>
@@ -649,7 +649,6 @@ mjx-container[display="true"] + br {
 <li>电容：实际的电容可等效为理想电容、等效串联电阻（ESR）和等效串联电感（ESL）的串联模型。</li>
 <li>电阻与电感：实际的电阻和电感则通常等效为理想元件（R或L）与寄生电感串联，再与寄生电容并联的模型。</li>
 </ul>
-<hr>
 <h1 id="半导体器件漏电流的物理本质与测试标定"><a href="#半导体器件漏电流的物理本质与测试标定" class="headerlink" title="半导体器件漏电流的物理本质与测试标定"></a>半导体器件漏电流的物理本质与测试标定</h1><p>半导体器件漏电流的物理本质与测试标定</p>
 <p>漏电流的工程学定义为在施加了电压的情况下，电流穿透了元器件内部本该是绝缘或者完全关断的路径。它代表着元器件在努力装作绝缘体时表现出的不完美，绝不能将其简单等效为理想的恒流源。在实际电路中，漏电流主要表现为以下三种形态：</p>
 <ul>
@@ -670,10 +669,8 @@ mjx-container[display="true"] + br {
 <li>漏电流对温度极其敏感：作为半导体漏电的催化剂，硅二极管结温每升高 10 摄氏度，反向漏电流几乎翻倍。在实际设备的高热环境中，标称 1μA 的室温漏电流在 125 摄氏度时可能会飙升至数百微安甚至毫安级。</li>
 <li>数据手册提供最差保证值：厂家基于良率保障划定的最大值为出厂极限边界，实际采购元器件在常温下的漏电表现通常远优于该数据。</li>
 </ul>
-<hr>
 <h1 id="数据手册的底层逻辑与原厂测试机制"><a href="#数据手册的底层逻辑与原厂测试机制" class="headerlink" title="数据手册的底层逻辑与原厂测试机制"></a>数据手册的底层逻辑与原厂测试机制</h1><p>半导体原厂在流片前严重依赖 TCAD 等多物理场仿真软件，通过模拟掺杂浓度、晶格缺陷、载流子迁移率等高度非线性物理过程来确定器件的理论参数。进入试产环节后，由于光刻误差、离子注入不均匀以及银烧结空洞率等现实工艺偏差，生产出的器件真实参数呈现为一条正态分布曲线。</p>
 <p>数据手册正是基于这一筛选与妥协过程诞生的参考文件，而非绝对的物理真理。其中典型值代表正态分布中出现概率最高的测试值；最大或最小值是厂家为保证良率划定的出厂及格线；而 SOA 安全工作区内的雪崩耐量 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.381ex;" xmlns="http://www.w3.org/2000/svg" width="4.089ex" height="1.919ex" role="img" focusable="false" viewBox="0 -680 1807.4 848.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D438" d="M492 213Q472 213 472 226Q472 230 477 250T482 285Q482 316 461 323T364 330H312Q311 328 277 192T243 52Q243 48 254 48T334 46Q428 46 458 48T518 61Q567 77 599 117T670 248Q680 270 683 272Q690 274 698 274Q718 274 718 261Q613 7 608 2Q605 0 322 0H133Q31 0 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H757Q764 676 764 669Q764 664 751 557T737 447Q735 440 717 440H705Q698 445 698 453L701 476Q704 500 704 528Q704 558 697 578T678 609T643 625T596 632T532 634H485Q397 633 392 631Q388 629 386 622Q385 619 355 499T324 377Q347 376 372 376H398Q464 376 489 391T534 472Q538 488 540 490T557 493Q562 493 565 493T570 492T572 491T574 487T577 483L544 351Q511 218 508 216Q505 213 492 213Z"></path></g><g data-mml-node="TeXAtom" transform="translate(771,-152.7) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g><g data-mml-node="mi" transform="translate(750,0)"><path data-c="1D446" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path></g></g></g></g></g></svg></mjx-container>、短路耐受时间 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="2.448ex" height="1.773ex" role="img" focusable="false" viewBox="0 -626 1081.8 783.8"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g><g data-mml-node="TeXAtom" transform="translate(394,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path></g><g data-mml-node="mi" transform="translate(469,0)"><path data-c="1D450" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path></g></g></g></g></g></svg></mjx-container> 等极限参数，则是通过大规模真实的破坏性测试划定的物理生存边界。数据手册本质上是在理想且脱离实际业务场景的受控条件下测出的各项极限指标，硬件工程师在应用时，必须在此基础上建立温度降额、散热降额和寄生参数降额的工程思维。</p>
-<hr>
 <p>核心元器件关键参数陷阱与工程避坑指南</p>
 <p>数据手册中显眼的标称参数往往掩盖了元器件在极端或真实工况下的物理表现，如果脱离测试条件直接套用稳态工作点，极易引发严重的系统级故障。以下整理了电力电子领域常见元器件的参数陷阱与应对策略。</p>
 <table>
@@ -728,30 +725,20 @@ mjx-container[display="true"] + br {
 <td>严格区分并单独核查饱和与温升两项指标。引入高温下的磁衰减折算，并结合系统自身 PCB 覆铜与空间散热能力预留充足的安全设计裕度。</td>
 </tr>
 </tbody></table>
-<hr>
 <h1 id="TI-官网参考设计"><a href="#TI-官网参考设计" class="headerlink" title="TI 官网参考设计"></a>TI 官网参考设计</h1><p>TI参考设计的层级结构解析<br>我们可以把TI的参考设计理解为一个“解决方案”或一个“食谱”，而不是一个单一的产品。它由多个层级构成：</p>
 <p>第一层（顶层）：系统级参考设计 (TIDM / TIDA)<br>这是什么？ 这是您通过搜索找到的 TIDM-02006。它代表一个完整的应用方案或系统概念。<br>TIDM (TI Designs - Microcontroller) 通常侧重于微控制器应用。<br>TIDA (TI Designs - Analog) 通常侧重于模拟和电源应用。<br>它的作用？ 它的目的是向工程师展示：“用我们的芯片，可以搭建出这样一个解决某某问题的系统，性能可以达到XX指标。”<br>它包含什么？<br>设计指南 (Design Guide)：这是核心文档，详细说明了方案的设计原理、系统架构、搭建方法、软件流程和性能测试数据。您在TIDM-02006页面上看到的那个损坏的链接，本应是包含所有设计文件的总包。<br>系统级物料清单 (BOM)：列出了搭建整个系统需要的所有元器件，包括了所有用到的评估板。<br>测试报告：证明该方案性能的详细数据和图表。<br>为什么在这里找不到独立的PCB文件？ 因为TIDM-02006这个“系统”本身不是一块独立的、可以制造的电路板。它是一个由多个现成的、标准的硬件模块组合而成的“集合体”。<br>第二层（中间层）：硬件评估模块 (EVM / LaunchPad / BoosterPack)<br>这是什么？ 这是构成顶层系统方案的实体硬件积木。它们是可以在TI官网上独立购买的电路板。<br>在您的例子中，TIDM-02006这个系统方案就是由以下这些“积木”搭建起来的：<br>主控板: LAUNCHXL-F280049C (一个C2000 LaunchPad)<br>驱动板: BOOSTXL-3PHGANINV (一个电机驱动BoosterPack)<br>接口/适配板: TMDSFSIADAPEVM (一个FSI接口适配器评估板)<br>它的作用？ 为工程师提供一个经过验证的、开箱即用的硬件平台，用于快速评估TI芯片的性能和开发软件。<br>它包含什么？ 这才是您要找的宝藏所在地！在每一个具体硬件模块的产品页面下，通常会提供：<br>✅ 设计文件 (Design Files)：一个.zip压缩包，里面包含了Altium, Cadence等格式的原理图和PCB源文件。<br>用户指南 (User’s Guide)：详细说明这块板子本身的功能、跳线设置、接口定义等。<br>Gerber文件：用于直接生产PCB的文件。</p>
-<hr>
-<hr>
 <h1 id="嘉立创"><a href="#嘉立创" class="headerlink" title="嘉立创"></a>嘉立创</h1><p>嘉立创工艺：<br>间距大于等于6mil<br>线宽大于等于6mil<br>过孔内径大于等于12mil<br>太极限嘉立创会加钱</p>
 <p>SMT<br>选完后，一定要核对右边的3d图<br>![Pasted image 20241016114649.png](/img/Pasted image 20241016114649.png)</p>
 <p>部分小的贴片器件，会丢片<br>![Pasted image 20241118094336.png](/img/Pasted image 20241118094336.png)</p>
-<hr>
 <h1 id="嘉立创3D打印"><a href="#嘉立创3D打印" class="headerlink" title="嘉立创3D打印"></a>嘉立创3D打印</h1><p>![Pasted image 20250102101951.png](/img/Pasted image 20250102101951.png)</p>
-<hr>
 <h1 id="供应商"><a href="#供应商" class="headerlink" title="供应商"></a>供应商</h1><p>PCB光板-捷多邦<br>贴片厂，丰崇，众惠腾<br>线束，卡斯迪尔<br>接插件，上海盛天，菲尼克斯<br>排线，戴欧德<br>风扇，超翔，永立<br>灌封电感，英大科特<br>全碳化硅MOS，夕迪<br>IGBT模块，阿基米德<br>继电器，宏发，三友，中汇瑞德<br>电解电容，新三能<br>变压器，可立克，斯比特</p>
 <p>运放：圣邦微<br>隔离运放，隔离驱动：纳芯微<br>隔离电源：金升阳<br>电解电容：艾华<br>小的RLC:国巨，厚声，风华<br>接插件：兴飞</p>
-<hr>
 <h1 id="器件图"><a href="#器件图" class="headerlink" title="器件图"></a>器件图</h1><p>接插件，端子ACTB273-Cu-T2<br>![Pasted image 20250724103914.png](/img/Pasted image 20250724103914.png)</p>
-<hr>
 <h1 id="常用物料清单"><a href="#常用物料清单" class="headerlink" title="常用物料清单"></a>常用物料清单</h1><p>与门逻辑芯片：74HCT08</p>
 <p>7905与7805：这是一对常用的线性稳压器，7805用于产生正电压输出（如+5V），7905用于产生负电压输出（如-5V），二者常组合使用以提供对称的正负双电源。<br>运算放大器牺牲了信号跳变的速度，换来了稳定性和线性度，是模拟信号处理的基石。<br>比较器牺牲了线性度，换来了极致的速度和决策能力，是连接模拟世界和数字世界的桥梁。</p>
-<hr>
 <h1 id="价格成本"><a href="#价格成本" class="headerlink" title="价格成本"></a>价格成本</h1><p>NSI6601MC-DSPR  8</p>
-<hr>
 <p>建立电力电子硬件成本直觉与控制体系</p>
 <p>核心理念：成本直觉与二八法则<br>在电力电子硬件设计领域，建立一套成熟的成本直觉与相对价格锚点，远比记忆单个元器件的绝对价格更为重要。元器件价格会随采购量、市场周期、品牌和交期波动，但其相对成本结构通常保持稳定。<br>设计核心应遵循二八法则：在物料清单（BOM）中，通常20%的关键元器件占据了80%的总成本。设计者应将精力集中在核心高价值器件上，对于阻容感等通用小料则无需过度纠结单价差异。</p>
-<hr>
 <p>成本构成：电力电子四大金刚<br>掌握以下四类关键器件的行情，即可掌控整体成本的80%至90%。</p>
 <ul>
 <li>功率半导体<ul>
@@ -771,7 +758,6 @@ mjx-container[display="true"] + br {
 </ul>
 </li>
 </ul>
-<hr>
 <p>价格锚点：分级记忆体系<br>为建立快速的估算能力，建议将元器件按价格数量级进行分类，以建立心理坐标系。</p>
 <table>
 <thead>
@@ -807,7 +793,6 @@ mjx-container[display="true"] + br {
 <td>核心管控项，必须对单价和选型依据了然于胸。</td>
 </tr>
 </tbody></table>
-<hr>
 <p>成本底层逻辑：参数决定价格<br>通过物理定律和制造工艺判断价格趋势，而非单纯记忆数字。</p>
 <ul>
 <li>功率器件<ul>
@@ -837,7 +822,6 @@ mjx-container[display="true"] + br {
 </ul>
 </li>
 </ul>
-<hr>
 <p>估算工具与参考系<br>使用正确的渠道验证成本直觉。</p>
 <ul>
 <li>批量参考价<ul>
@@ -854,7 +838,6 @@ mjx-container[display="true"] + br {
 </ul>
 </li>
 </ul>
-<hr>
 <p>沟通策略与专业素养<br>在面对成本控制质询时，应采用专业的话术逻辑。</p>
 <ul>
 <li>谈比例与结构<ul>
@@ -875,7 +858,6 @@ mjx-container[display="true"] + br {
 </ul>
 </li>
 </ul>
-<hr>
 <p>You said</p>
 <p>电力电子中，一个产品是成本是怎么估算的，比如说外壳，我看他们是算外壳用的金属，然后根据重量，估算价格，比如现在的行情，这个金属多少钱1kg，那么电子料之类的呢，还有其他的</p>
 <p>在电力电子行业，成本估算确实是一门艺术。你提到的“称重估价法”在结构件（外壳、散热器）中确实很常见，因为它们属于<strong>大宗商品属性</strong>较强的部件。</p>
@@ -1053,11 +1035,11 @@ mjx-container[display="true"] + br {
         <li><strong>标题:</strong> 芯片数据手册 (Datasheet) 高效阅读与物料选型命名规范</li>
         <li><strong>作者:</strong> WenZhenJian-EE</li>
         <li><strong>创建于
-                :</strong> 2026-06-13 13:12:21</li>
+                :</strong> 2026-06-13 13:18:28</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-06-13 13:13:04
+                    :</strong> 2026-06-13 13:18:59
             </li>
         
         <li>
@@ -1132,7 +1114,7 @@ mjx-container[display="true"] + br {
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
 		<div class="page-title">芯片数据手册 (Datasheet) 高效阅读与物料选型命名规范</div>
-		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#00"><span class="nav-text">00</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="nav-text">数据手册基础概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%8A%E5%AF%BC%E4%BD%93%E5%99%A8%E4%BB%B6%E6%BC%8F%E7%94%B5%E6%B5%81%E7%9A%84%E7%89%A9%E7%90%86%E6%9C%AC%E8%B4%A8%E4%B8%8E%E6%B5%8B%E8%AF%95%E6%A0%87%E5%AE%9A"><span class="nav-text">半导体器件漏电流的物理本质与测试标定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C%E7%9A%84%E5%BA%95%E5%B1%82%E9%80%BB%E8%BE%91%E4%B8%8E%E5%8E%9F%E5%8E%82%E6%B5%8B%E8%AF%95%E6%9C%BA%E5%88%B6"><span class="nav-text">数据手册的底层逻辑与原厂测试机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TI-%E5%AE%98%E7%BD%91%E5%8F%82%E8%80%83%E8%AE%BE%E8%AE%A1"><span class="nav-text">TI 官网参考设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%98%89%E7%AB%8B%E5%88%9B"><span class="nav-text">嘉立创</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%98%89%E7%AB%8B%E5%88%9B3D%E6%89%93%E5%8D%B0"><span class="nav-text">嘉立创3D打印</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%9B%E5%BA%94%E5%95%86"><span class="nav-text">供应商</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%99%A8%E4%BB%B6%E5%9B%BE"><span class="nav-text">器件图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%89%A9%E6%96%99%E6%B8%85%E5%8D%95"><span class="nav-text">常用物料清单</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%B7%E6%A0%BC%E6%88%90%E6%9C%AC"><span class="nav-text">价格成本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%94%B5%E5%AD%90%E6%96%99%EF%BC%88Electronic-BOM%EF%BC%89%E7%9A%84%E4%BC%B0%E7%AE%97%E9%80%BB%E8%BE%91"><span class="nav-text">1. 电子料（Electronic BOM）的估算逻辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-PCBA-%E5%8A%A0%E5%B7%A5%E6%88%90%E6%9C%AC"><span class="nav-text">2. PCBA 加工成本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%BB%93%E6%9E%84%E4%BB%B6%E4%B8%8E%E6%95%A3%E7%83%AD%EF%BC%88%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E9%87%8D%E9%87%8F%EF%BC%89"><span class="nav-text">3. 结构件与散热（不仅仅是重量）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%BB%95%E4%B8%8D%E5%BC%80%E7%9A%84%E2%80%9C%E9%9A%90%E5%BD%A2%E6%88%90%E6%9C%AC%E2%80%9D"><span class="nav-text">4. 绕不开的“隐形成本”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E4%BC%B0%E7%AE%97%E5%85%AC%E5%BC%8F%EF%BC%9A"><span class="nav-text">总结一个简单的估算公式：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%8A%9F%E7%8E%87%E5%8D%8A%E5%AF%BC%E4%BD%93%EF%BC%88%E4%BC%B0%E7%AE%97%E6%A0%B8%E5%BF%83%EF%BC%9A%E5%86%85%E9%98%BB-%E6%88%96-%E7%94%B5%E6%B5%81%E7%AD%89%E7%BA%A7%EF%BC%89"><span class="nav-text">1. 功率半导体（估算核心：内阻 或 电流等级）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%94%B5%E8%A7%A3%E7%94%B5%E5%AE%B9%EF%BC%88%E4%BC%B0%E7%AE%97%E6%A0%B8%E5%BF%83%EF%BC%9A%E8%80%90%E5%8E%8B-%E5%AE%B9%E9%87%8F%EF%BC%8C%E5%8F%8A%E5%AF%BF%E5%91%BD%EF%BC%89"><span class="nav-text">2. 电解电容（估算核心：耐压 容量，及寿命）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%A3%81%E6%80%A7%E5%85%83%E4%BB%B6%EF%BC%9A%E5%8F%98%E5%8E%8B%E5%99%A8%E4%B8%8E%E7%94%B5%E6%84%9F%EF%BC%88%E4%BC%B0%E7%AE%97%E6%A0%B8%E5%BF%83%EF%BC%9A%E6%9D%90%E6%96%99%E6%8B%86%E8%A7%A3-%E4%BA%BA%E5%B7%A5%EF%BC%89"><span class="nav-text">3. 磁性元件：变压器与电感（估算核心：材料拆解 + 人工）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-PCB-%E8%A3%B8%E6%9D%BF%E4%B8%8E-PCBA-%E5%8A%A0%E5%B7%A5%E8%B4%B9"><span class="nav-text">4. PCB 裸板与 PCBA 加工费</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%85%B6%E4%BB%96%E5%85%B3%E9%94%AE%E7%89%A9%E6%96%99%E2%80%9C%E4%B8%80%E5%8F%A3%E4%BB%B7%E2%80%9D%E5%8F%82%E8%80%83"><span class="nav-text">5. 其他关键物料“一口价”参考</span></a></li></ol></li></ol></li></ol>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E8%A8%80"><span class="nav-text">导言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#00"><span class="nav-text">00</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="nav-text">数据手册基础概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%8A%E5%AF%BC%E4%BD%93%E5%99%A8%E4%BB%B6%E6%BC%8F%E7%94%B5%E6%B5%81%E7%9A%84%E7%89%A9%E7%90%86%E6%9C%AC%E8%B4%A8%E4%B8%8E%E6%B5%8B%E8%AF%95%E6%A0%87%E5%AE%9A"><span class="nav-text">半导体器件漏电流的物理本质与测试标定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C%E7%9A%84%E5%BA%95%E5%B1%82%E9%80%BB%E8%BE%91%E4%B8%8E%E5%8E%9F%E5%8E%82%E6%B5%8B%E8%AF%95%E6%9C%BA%E5%88%B6"><span class="nav-text">数据手册的底层逻辑与原厂测试机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TI-%E5%AE%98%E7%BD%91%E5%8F%82%E8%80%83%E8%AE%BE%E8%AE%A1"><span class="nav-text">TI 官网参考设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%98%89%E7%AB%8B%E5%88%9B"><span class="nav-text">嘉立创</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%98%89%E7%AB%8B%E5%88%9B3D%E6%89%93%E5%8D%B0"><span class="nav-text">嘉立创3D打印</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%9B%E5%BA%94%E5%95%86"><span class="nav-text">供应商</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%99%A8%E4%BB%B6%E5%9B%BE"><span class="nav-text">器件图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%89%A9%E6%96%99%E6%B8%85%E5%8D%95"><span class="nav-text">常用物料清单</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%B7%E6%A0%BC%E6%88%90%E6%9C%AC"><span class="nav-text">价格成本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%94%B5%E5%AD%90%E6%96%99%EF%BC%88Electronic-BOM%EF%BC%89%E7%9A%84%E4%BC%B0%E7%AE%97%E9%80%BB%E8%BE%91"><span class="nav-text">1. 电子料（Electronic BOM）的估算逻辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-PCBA-%E5%8A%A0%E5%B7%A5%E6%88%90%E6%9C%AC"><span class="nav-text">2. PCBA 加工成本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%BB%93%E6%9E%84%E4%BB%B6%E4%B8%8E%E6%95%A3%E7%83%AD%EF%BC%88%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E9%87%8D%E9%87%8F%EF%BC%89"><span class="nav-text">3. 结构件与散热（不仅仅是重量）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%BB%95%E4%B8%8D%E5%BC%80%E7%9A%84%E2%80%9C%E9%9A%90%E5%BD%A2%E6%88%90%E6%9C%AC%E2%80%9D"><span class="nav-text">4. 绕不开的“隐形成本”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E4%BC%B0%E7%AE%97%E5%85%AC%E5%BC%8F%EF%BC%9A"><span class="nav-text">总结一个简单的估算公式：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%8A%9F%E7%8E%87%E5%8D%8A%E5%AF%BC%E4%BD%93%EF%BC%88%E4%BC%B0%E7%AE%97%E6%A0%B8%E5%BF%83%EF%BC%9A%E5%86%85%E9%98%BB-%E6%88%96-%E7%94%B5%E6%B5%81%E7%AD%89%E7%BA%A7%EF%BC%89"><span class="nav-text">1. 功率半导体（估算核心：内阻 或 电流等级）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%94%B5%E8%A7%A3%E7%94%B5%E5%AE%B9%EF%BC%88%E4%BC%B0%E7%AE%97%E6%A0%B8%E5%BF%83%EF%BC%9A%E8%80%90%E5%8E%8B-%E5%AE%B9%E9%87%8F%EF%BC%8C%E5%8F%8A%E5%AF%BF%E5%91%BD%EF%BC%89"><span class="nav-text">2. 电解电容（估算核心：耐压 容量，及寿命）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%A3%81%E6%80%A7%E5%85%83%E4%BB%B6%EF%BC%9A%E5%8F%98%E5%8E%8B%E5%99%A8%E4%B8%8E%E7%94%B5%E6%84%9F%EF%BC%88%E4%BC%B0%E7%AE%97%E6%A0%B8%E5%BF%83%EF%BC%9A%E6%9D%90%E6%96%99%E6%8B%86%E8%A7%A3-%E4%BA%BA%E5%B7%A5%EF%BC%89"><span class="nav-text">3. 磁性元件：变压器与电感（估算核心：材料拆解 + 人工）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-PCB-%E8%A3%B8%E6%9D%BF%E4%B8%8E-PCBA-%E5%8A%A0%E5%B7%A5%E8%B4%B9"><span class="nav-text">4. PCB 裸板与 PCBA 加工费</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%85%B6%E4%BB%96%E5%85%B3%E9%94%AE%E7%89%A9%E6%96%99%E2%80%9C%E4%B8%80%E5%8F%A3%E4%BB%B7%E2%80%9D%E5%8F%82%E8%80%83"><span class="nav-text">5. 其他关键物料“一口价”参考</span></a></li></ol></li></ol>
 
 	</div>
 </div>
