@@ -538,15 +538,15 @@ mjx-container[display="true"] + br {
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">50</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">46</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">29</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">28</div>
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">120</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">109</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -613,15 +613,15 @@ mjx-container[display="true"] + br {
 </div>
                 <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">50</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">46</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">29</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">28</div>
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">120</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">109</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -646,26 +646,26 @@ mjx-container[display="true"] + br {
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/resistor-design-cases/">
-                            电阻设计案例
+                        <a href="/switch-driver-design-cases/">
+                            开关与驱动设计案例
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            电阻基本属性、参数电阻基本属性与材质
-电阻在电路中主要起到分压、分流、限流和阻抗匹配的作用。其制造材质直接决定了电气特性和适用场景。
-
-厚膜电阻：价格低廉，工艺成熟，但温度系数（TCR）较大，精度一般。适用于对精度要求不高的通用数字逻辑、上下拉电阻、LED限流等常规电路。
-薄膜电阻：具有极高的初始精度（可达0.1%或更高）和极低的温度系数。适用于精密模拟电路，如运算放大器的差分放大网络、AD...
+                            
+模拟开关
+高侧开关基本概念与工作机制高侧开关基本概念与工作机制
+高侧开关的命名源于其在电路拓扑中的物理位置。开关放置在电源正极与负载之间，电流路径为电源流经开关，再经过负载，最终流向地。由于开关处于整个回路的高电位一侧，因此被称为高侧开关。
+高侧开关芯片内部通常使用 NMOS 作为功率开关管。为了使高侧 NMOS 导通，其栅极电压必须高于源极电压。由于导通时源极电压接近电源电压，芯片内部集...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sat Jun 13 2026 13:29:11 GMT+0800">
+            <span class="home-article-date" data-date="Sat Jun 13 2026 13:36:37 GMT+0800">
                 
                     2026-06-13
                 
@@ -713,7 +713,7 @@ mjx-container[display="true"] + br {
         
     </div>
 
-    <a href="/resistor-design-cases/">阅读全文<span class="seo-reader-text">电阻设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/switch-driver-design-cases/">阅读全文<span class="seo-reader-text">开关与驱动设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -728,8 +728,8 @@ mjx-container[display="true"] + br {
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/s-n-u-b-b-e-r-design-cases/">
-                            snubber设计案例
+                        <a href="/switch-supplier/">
+                            开关管供应商
                         </a>
                     </h3>
 
@@ -737,110 +737,14 @@ mjx-container[display="true"] + br {
                         
                             
                             
-RC吸收电路RC吸收电路主要用于抑制功率回路中的震荡，特别是针对Buck电路中SW节点或二极管反向恢复引起的震荡。
-震荡源头与电路位置
-
-震荡源头：高频震荡通常产生于上管开启瞬间。此时输入电压加载在下管两端，回路寄生电感  与下管输出寄生电容  发生剧烈谐振。
-安装位置：吸收电路应紧靠下管（SW节点与GND之间）并联安装。虽然从交流小信号角度看电源与地短路，但在工程实践中，必须在震荡源头（...
+硅与碳化硅半导体材料的演进逻辑在电力电子工程界，传统 MOSFET 默认指代硅基器件。半导体理论上可采用多种材料，但硅凭借其独特的自然属性与成本优势统治了该领域。硅器件的核心杀手锏在于二氧化硅。通过高温氧化，硅表面能自然生成极度致密、绝缘性能极佳的二氧化硅层，使栅极漏电流低至皮安级别。此外，硅的原材料为自然界广泛存在的石英砂，经过极其成熟的直拉法提纯拉晶，制造成本被极大地摊薄。然而，随着现...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sat Jun 13 2026 13:29:11 GMT+0800">
-                
-                    2026-06-13
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/">电路开发</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">电路设计案例</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">设计案例</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/s-n-u-b-b-e-r-design-cases/">阅读全文<span class="seo-reader-text">snubber设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/supplier-2/">
-                            连接器供应商
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            
-物理底座：基材选型与表面冶金一、 物理底座：基材选型与表面冶金
-金属导电率基准与氧化特性排名在工程界，通常将退火纯铜的导电率设定为 100% IACS，以此作为基准来衡量其他金属。金属的导电率与表面氧化特性共同决定了其在接插件领域的应用潜力。
-
-
-
-金属
-导电率
-氧化特性与工程表现
-
-
-
-银
-约 105% IACS
-常温下不易被氧气氧化，极易与空气中的硫化物反应生成黑色硫化银。硫化银质地软...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sat Jun 13 2026 13:29:11 GMT+0800">
+            <span class="home-article-date" data-date="Sat Jun 13 2026 13:36:37 GMT+0800">
                 
                     2026-06-13
                 
@@ -893,7 +797,7 @@ RC吸收电路RC吸收电路主要用于抑制功率回路中的震荡，特别�
         
     </div>
 
-    <a href="/supplier-2/">阅读全文<span class="seo-reader-text">连接器供应商</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/switch-supplier/">阅读全文<span class="seo-reader-text">开关管供应商</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -908,23 +812,210 @@ RC吸收电路RC吸收电路主要用于抑制功率回路中的震荡，特别�
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/supplier/">
-                            供应商沟通记录
+                        <a href="/system/">
+                            硬件系统级地线哲学
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            可立克1 一般他们接的样品，中柱都是不开洞的 2 骨架如果是定制，都是3d打印，磁芯定制，可以雕刻。后期批量都是开模3 中柱面积通常都是等于两倍边柱等于铁轭的面积，如果三者不相等，Ae值通常是取三者平均值 4 加了骨架之后，原来40kw充电模块的变压器离高度离最近的元器件是3mm，dcdc的需要调整
-加了骨架更利于保证品质，磁芯与骨架之间的距离也有保障，做成网状骨架，也有利于线包散热骨架如果...
+                            一、 静电放电与系统电荷交互物理学人体电容模型与能量守恒静电放电是导致硬件系统损坏的常见瞬态干扰源。在干燥环境中，人体由于摩擦积累的静电电压可达 3kV 至 15kV。当人体接触弱电电路板时，并非板子本身的低压导致触电，而是人体作为高压源向板子放电。人体可以等效为一个具备一定电容特性的高压源。根据人体模型，人体的等效电容  通常在 100pF 至 150pF 之间。当人体携带高压静电时，其储...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sat Jun 13 2026 13:29:11 GMT+0800">
+            <span class="home-article-date" data-date="Sat Jun 13 2026 13:36:37 GMT+0800">
+                
+                    2026-06-13
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/">电力电子</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/%E9%9A%94%E7%A6%BB%E4%B8%8E%E6%8E%A5%E5%9C%B0/">隔离与接地</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E9%9A%94%E7%A6%BB/">隔离</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%8E%A5%E5%9C%B0/">接地</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/system/">阅读全文<span class="seo-reader-text">硬件系统级地线哲学</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/thermal-fundamentals/">
+                            热学基础
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            热设计基本概念与关键物理量热设计的基础建立在热路与电路的类比关系之上。在电路中，电流流过电阻产生电压差；在热路中，功率损耗流过热阻产生温差。这构成了热设计的基础核心公式：
+为了系统性地分析热传导过程，工程上将热学参量与电路物理量进行了等效映射：
+
+
+
+电路物理量
+热学物理量
+物理本质对应关系
+
+
+
+电流
+热功率或损耗 ()
+发热源：MOSFET上的开关与导通损耗等同于源源不断注入的热电流
+
+...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Sat Jun 13 2026 13:36:37 GMT+0800">
+                
+                    2026-06-13
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/">电力电子</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/%E7%83%AD%E8%AE%BE%E8%AE%A1/">热设计</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E7%83%AD%E8%AE%BE%E8%AE%A1/">热设计</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%95%A3%E7%83%AD/">散热</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/thermal-fundamentals/">阅读全文<span class="seo-reader-text">热学基础</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/transformer-inductor-design-topology-magnetics-design/">
+                            变压器、电感设计、拓扑磁设计
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            
+变压器与耦合电感设计
+模型对比功能模型的划分：能量传递与能量存储在开关电源中，磁性元件根据其核心功能分为两类：能量传递型（功率变压器）和能量存储型（耦合电感）。尽管两者在外观上可能相似，但其工作原理、物理结构和设计方法截然不同。理解这种功能上的划分是进行正确设计和分析的基础。
+
+能量传递模型 (功率变压器)
+
+适用拓扑：正激、推挽、半桥、全桥等。
+工作原理：这类拓扑将磁芯作为能量的传输媒介...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Sat Jun 13 2026 13:36:37 GMT+0800">
                 
                     2026-06-13
                 
@@ -977,7 +1068,178 @@ RC吸收电路RC吸收电路主要用于抑制功率回路中的震荡，特别�
         
     </div>
 
-    <a href="/supplier/">阅读全文<span class="seo-reader-text">供应商沟通记录</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/transformer-inductor-design-topology-magnetics-design/">阅读全文<span class="seo-reader-text">变压器、电感设计、拓扑磁设计</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/transformer-magnetics-material-supplier/">
+                            变压器、磁性材料供应商
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            一、 磁性材料全局认知与拓扑映射在电力电子行业中，半导体器件的电气特性通常在规格书中有明确界定，而磁性元器件的性能则高度依赖于材料学、粉末冶金和烧结工艺。在设计高压大功率变换器时，磁芯选型直接决定了系统的体积、温升以及最终的可靠性。为了建立清晰的选型逻辑，首先需要从物理本质上对磁性材料进行分类，并将其与具体的电路拓扑建立绝对的映射关系。三大磁性材料家族的物理本质分类根据制造工艺和材料成分，电...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Sat Jun 13 2026 13:36:37 GMT+0800">
+                
+                    2026-06-13
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/">电路开发</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E4%BE%9B%E5%BA%94%E5%95%86%E5%90%8D%E5%BD%95/">供应商名录</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E4%BE%9B%E5%BA%94%E5%95%86/">供应商</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E9%87%87%E8%B4%AD/">采购</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/transformer-magnetics-material-supplier/">阅读全文<span class="seo-reader-text">变压器、磁性材料供应商</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/wireless-charging/">
+                            无线充电
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            
+无线充电系统的核心组件由发射线圈和接收线圈构成。从物理本质上看，无线充电系统属于“松耦合变压器”。虽然其基本原理仍基于电磁感应定律，但在工程实现与特性上与传统的普通变压器（紧耦合变压器）存在显著差异。
+主要差异在于磁路结构与耦合程度：
+
+普通变压器（紧耦合）：绕组缠绕在闭合的高磁导率磁芯（如铁氧体或硅钢片）上。磁通几乎全部限制在磁芯内部循环，磁阻极小，表现为“紧耦合”。
+无线充电（松耦合）...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Sat Jun 13 2026 13:36:37 GMT+0800">
+                
+                    2026-06-13
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E6%8B%93%E6%89%91/">电路拓扑</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E6%8B%93%E6%89%91/%E6%8B%93%E6%89%91%E5%89%96%E6%9E%90/">拓扑剖析</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E7%94%B5%E8%B7%AF%E6%8B%93%E6%89%91/">电路拓扑</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%8B%93%E6%89%91/">拓扑</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/wireless-charging/">阅读全文<span class="seo-reader-text">无线充电</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1011,7 +1273,7 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sat Jun 13 2026 13:29:11 GMT+0800">
+            <span class="home-article-date" data-date="Sat Jun 13 2026 13:36:37 GMT+0800">
                 
                     2026-06-13
                 
@@ -1079,176 +1341,6 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/switch-driver-circuit-2/">
-                            开关管、栅极驱动相关电路
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            
-
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sat Jun 13 2026 13:29:11 GMT+0800">
-                
-                    2026-06-13
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/">电路开发</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E5%85%83%E5%99%A8%E4%BB%B6%E4%B8%8E%E7%BB%93%E6%9E%84%E6%A1%88%E4%BE%8B/">元器件与结构案例</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%85%83%E5%99%A8%E4%BB%B6/">元器件</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E7%BB%93%E6%9E%84%E6%A1%88%E4%BE%8B/">结构案例</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/switch-driver-circuit-2/">阅读全文<span class="seo-reader-text">开关管、栅极驱动相关电路</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/switch-driver-circuit/">
-                            开关与驱动相关电路
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            
-达林顿晶体管电路![Pasted image 20241023233102.png](/img/Pasted image 20241023233102.png)可以实现放到，最后一级放大倍数为β1×β2，输入阻抗高，输出阻抗低基极和发射极之间并联一个电阻，可以加快BE之间的结电容放电且通过设计电阻可以钳位Q2 BE间电压，防止因Q1漏电流而导致Q2导通
-
-
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sat Jun 13 2026 13:29:11 GMT+0800">
-                
-                    2026-06-13
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/">电路开发</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E5%85%83%E5%99%A8%E4%BB%B6%E4%B8%8E%E7%BB%93%E6%9E%84%E6%A1%88%E4%BE%8B/">元器件与结构案例</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%85%83%E5%99%A8%E4%BB%B6/">元器件</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E7%BB%93%E6%9E%84%E6%A1%88%E4%BE%8B/">结构案例</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/switch-driver-circuit/">阅读全文<span class="seo-reader-text">开关与驱动相关电路</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
                         <a href="/switch-driver-datasheet-reading-2/">
                             开关管、栅极驱动数据手册阅读
                         </a>
@@ -1259,16 +1351,19 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
                             
                             
 MOSFET通用数据手册阈值电压：当栅源电压达到或超过阈值电压时，开关管开始导通。
-![Pasted image 20240914164956.png](/img/Pasted image 20240914164956.png)
 此参数为栅源间的最大允许电压，此例中为±20V。
-![Pasted image 20240914165048.png](/img/Pasted image 202...
+该参数表明：当栅源电压达到2V时，开关管开始导通；为确保其完全导通，栅源电压应达到4V。在实际应用中，驱动电压通常选择远大于4V，但必须小于其最大额定栅源电压（此例中为20V）
+
+低边驱动栅极驱动器-UCC2752xUCC2752x系列
+核心参数深度解读
+对...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sat Jun 13 2026 13:29:11 GMT+0800">
+            <span class="home-article-date" data-date="Sat Jun 13 2026 13:36:37 GMT+0800">
                 
                     2026-06-13
                 
@@ -1327,187 +1422,11 @@ MOSFET通用数据手册阈值电压：当栅源电压达到或超过阈值电�
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/maxwell-transformer-circuit-analysis/">
-                            麦克斯韦、变压器电路分析
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            
-
-麦克斯韦方程组的核心内容麦克斯韦方程组是描述电场、磁场与电荷密度、电流密度之间关系的偏微分方程组，是电磁学的根本定律。而变压器、电感等磁性元件的设计公式，是在特定工程场景下，对麦克斯韦方程组进行简化和推导后得出的应用版本。在绝大多数设计工作中，直接使用这些工程公式是高效且准确的。
-将理论物理与工程应用类比：
-
-麦克斯韦方程组 ≈ 牛顿运动定律 ()
-变压器设计公式 ≈ 汽车工程师使用的发...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sat Jun 13 2026 13:29:11 GMT+0800">
-                
-                    2026-06-13
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/">电力电子</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/%E7%A3%81%E8%AE%BE%E8%AE%A1/">磁设计</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E7%A3%81%E8%AE%BE%E8%AE%A1/">磁设计</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E7%A3%81%E5%AD%A6/">磁学</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/maxwell-transformer-circuit-analysis/">阅读全文<span class="seo-reader-text">麦克斯韦、变压器电路分析</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/sampling/">
-                            采样
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            母线电压采样*4
-母线全压1700V，按2000V电压采样设计，则上半母线按1000V，下半母线1000V设计。1000V对应ADC 3V
-电阻比例定义：
-
-反馈电阻选择18K，0603封装差分电阻，选择6个 1206封装电阻差分电阻参数校验：每个电阻承受的实际电压为常规 1206 贴片电阻的额定工作电压通常为 200V，166.67V 运行在安全范166围内，留有 16.67% 的裕量每个...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sat Jun 13 2026 13:29:11 GMT+0800">
-                
-                    2026-06-13
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/">电路开发</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/">设计规范</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E4%B9%A6/">设计书</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E6%A8%A1%E6%9D%BF/">模板</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/sampling/">阅读全文<span class="seo-reader-text">采样</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
         <div class="paginator">
-	<a class="extend prev" rel="prev" href="/page/10/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/12/"><i class="fa-regular fa-angle-right"></i></a>
+	<a class="extend prev" rel="prev" href="/page/10/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span>
 </div>
   
     </div>
@@ -1533,7 +1452,7 @@ MOSFET通用数据手册阈值电压：当栅源电压达到或超过阈值电�
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 120 篇文章
+                        共撰写了 109 篇文章
                     </span>
                     
                 </p>

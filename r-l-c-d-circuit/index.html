@@ -93,8 +93,8 @@
 <meta property="og:description" content="WenZhenJian&#39;s Tech Blog - 电力电子与硬件开发">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
-<meta property="article:published_time" content="2026-06-13T05:29:11.000Z">
-<meta property="article:modified_time" content="2026-06-13T05:30:07.506Z">
+<meta property="article:published_time" content="2026-06-13T05:36:37.000Z">
+<meta property="article:modified_time" content="2026-06-13T05:37:17.564Z">
 <meta property="article:author" content="WenZhenJian-EE">
 <meta property="article:tag" content="元器件">
 <meta property="article:tag" content="结构案例">
@@ -506,15 +506,15 @@ mjx-container[display="true"] + br {
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">50</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">46</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">29</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">28</div>
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">120</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">109</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -556,15 +556,15 @@ mjx-container[display="true"] + br {
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2026-06-13 13:29:11</span>
-        <span class="mobile">2026-06-13 13:29:11</span>
+        <span class="desktop">2026-06-13 13:36:37</span>
+        <span class="mobile">2026-06-13 13:36:37</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-06-13 13:30:07</span>
-            <span class="mobile">2026-06-13 13:30:07</span>
+            <span class="desktop">2026-06-13 13:37:17</span>
+            <span class="mobile">2026-06-13 13:37:17</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -824,7 +824,6 @@ mjx-container[display="true"] + br {
 </ul>
 <hr>
 <h2 id="自举电容充电"><a href="#自举电容充电" class="headerlink" title="自举电容充电"></a>自举电容充电</h2><p>下管开通，电流回路VDD-DBOOT-CBOOT-VS-下管-GND，给CBOOT充电<br>下管关断，此时CBOOT和上管Cgs供浮动地<br>上管准备开通，电流回路CBOOT-VB-HO-Cgs-VS，给Cgs充电<br>上管开通完成，此时VS电位变成Vin，CBOOT压差仍然是VDD-GND，但是因为VS变成Vin，此时VB电位是Vin+（VDD-GND），即真正的对地电位</p>
-<p>![Pasted image 20250409160707.png](/img/Pasted image 20250409160707.png)<br>![Pasted image 20240914143756.png](/img/Pasted image 20240914143756.png)</p>
 <hr>
 <h2 id="泄放电阻与平衡电阻"><a href="#泄放电阻与平衡电阻" class="headerlink" title="泄放电阻与平衡电阻"></a>泄放电阻与平衡电阻</h2><p>在电力电子设备中，直流母线电容两端并联的高阻值电阻，根据其在电路中的主要设计目的，可被称为泄放电阻或平衡电阻。它有两个核心功能：为设备断电后残留的电荷提供泄放路径以保障人员安全，以及在电容串联使用时平衡各个电容上的电压。在仅使用单个或多个并联电容的电路中，其功能是安全泄放；而在需要多个电容串联以提高耐压的电路中，其首要功能则是电压平衡，安全泄放则成为其附带功能。</p>
 <hr>
@@ -1044,8 +1043,7 @@ mjx-container[display="true"] + br {
 </li>
 </ol>
 <hr>
-<h2 id="次级侧无损电压钳位与能量回收电路"><a href="#次级侧无损电压钳位与能量回收电路" class="headerlink" title="次级侧无损电压钳位与能量回收电路"></a>次级侧无损电压钳位与能量回收电路</h2><p><img lazyload="" src="/images/loading.svg" data-src="/img/Snipaste_2026-02-05_20-52-01.png" alt="Snipaste_2026-02-05_20-52-01.png"></p>
-<p>电路概述与应用背景<br>本电路是一种应用于LLC拓扑开关电源次级整流侧的无损电压钳位与能量回收电路，旨在解决高频开关过程中产生的电压尖峰与振铃问题。在LLC拓扑中，尽管属于软开关，但次级整流二极管在关断反向恢复时，或受变压器漏感影响，其两端仍会产生高压尖峰。同时，变压器漏感与二极管结电容形成的寄生参数会引发高频振荡，这不仅增加了二极管的电压应力，有击穿风险，还会产生严重的EMI电磁干扰。传统的RC吸收电路通过电阻消耗尖峰能量，会降低电源效率并在大功率应用中带来散热问题，而本电路则通过能量回收的方式克服了这些局限性。</p>
+<h2 id="次级侧无损电压钳位与能量回收电路"><a href="#次级侧无损电压钳位与能量回收电路" class="headerlink" title="次级侧无损电压钳位与能量回收电路"></a>次级侧无损电压钳位与能量回收电路</h2><p>电路概述与应用背景<br>本电路是一种应用于LLC拓扑开关电源次级整流侧的无损电压钳位与能量回收电路，旨在解决高频开关过程中产生的电压尖峰与振铃问题。在LLC拓扑中，尽管属于软开关，但次级整流二极管在关断反向恢复时，或受变压器漏感影响，其两端仍会产生高压尖峰。同时，变压器漏感与二极管结电容形成的寄生参数会引发高频振荡，这不仅增加了二极管的电压应力，有击穿风险，还会产生严重的EMI电磁干扰。传统的RC吸收电路通过电阻消耗尖峰能量，会降低电源效率并在大功率应用中带来散热问题，而本电路则通过能量回收的方式克服了这些局限性。</p>
 <hr>
 <p>电路构成与关键元器件<br>该无损吸收电路由变压器辅助绕组、隔直电容、整形电感以及钳位二极管构成，通过将尖峰能量导出并回收至输出端，实现对整流二极管的有效保护。</p>
 <table>
@@ -1103,11 +1101,11 @@ mjx-container[display="true"] + br {
         <li><strong>标题:</strong> RLCD相关电路</li>
         <li><strong>作者:</strong> WenZhenJian-EE</li>
         <li><strong>创建于
-                :</strong> 2026-06-13 13:29:11</li>
+                :</strong> 2026-06-13 13:36:37</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-06-13 13:30:07
+                    :</strong> 2026-06-13 13:37:17
             </li>
         
         <li>
@@ -1149,12 +1147,12 @@ mjx-container[display="true"] + br {
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
 			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/poles-zeros-analysis/">
+				<a class="prev" rel="prev" href="/protection-circuit/">
 					<span class="left arrow-icon flex justify-center items-center">
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">零极点分析</span>
+						<span class="post-nav-title-item truncate max-w-48">保护相关电路</span>
 						<span class="post-nav-item">上一篇</span>
 					</span>
 				</a>
@@ -1162,9 +1160,9 @@ mjx-container[display="true"] + br {
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/r-l-c-d-datasheet-reading/">
+				<a class="next" rel="next" href="/power-design-cases/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">RLCD数据手册阅读</span>
+						<span class="post-nav-title-item truncate max-w-48">电源设计案例</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -1214,7 +1212,7 @@ mjx-container[display="true"] + br {
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 120 篇文章
+                        共撰写了 109 篇文章
                     </span>
                     
                 </p>

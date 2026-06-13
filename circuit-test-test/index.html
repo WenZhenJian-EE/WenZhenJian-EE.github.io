@@ -93,8 +93,8 @@
 <meta property="og:description" content="WenZhenJian&#39;s Tech Blog - 电力电子与硬件开发">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
-<meta property="article:published_time" content="2026-06-13T05:29:11.000Z">
-<meta property="article:modified_time" content="2026-06-13T05:30:07.493Z">
+<meta property="article:published_time" content="2026-06-13T05:36:37.000Z">
+<meta property="article:modified_time" content="2026-06-13T05:37:17.549Z">
 <meta property="article:author" content="WenZhenJian-EE">
 <meta property="article:tag" content="测试">
 <meta property="article:tag" content="工程应用">
@@ -506,15 +506,15 @@ mjx-container[display="true"] + br {
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">50</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">46</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">29</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">28</div>
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">120</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">109</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -556,15 +556,15 @@ mjx-container[display="true"] + br {
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2026-06-13 13:29:11</span>
-        <span class="mobile">2026-06-13 13:29:11</span>
+        <span class="desktop">2026-06-13 13:36:37</span>
+        <span class="mobile">2026-06-13 13:36:37</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-06-13 13:30:07</span>
-            <span class="mobile">2026-06-13 13:30:07</span>
+            <span class="desktop">2026-06-13 13:37:17</span>
+            <span class="mobile">2026-06-13 13:37:17</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -967,8 +967,7 @@ mjx-container[display="true"] + br {
 </ul>
 <hr>
 <h2 id="测试仪器相关"><a href="#测试仪器相关" class="headerlink" title="测试仪器相关"></a>测试仪器相关</h2><hr>
-<h3 id="示波器"><a href="#示波器" class="headerlink" title="示波器"></a>示波器</h3><p>![Pasted image 20241021224511.png](/img/Pasted image 20241021224511.png)</p>
-<p>示波器零点基准光标会在屏幕上显示<br>不同通道的波形有不同颜色，且纵轴有刻度线，比如图中CH2为500mA一格，CH3为2V一格<br>横轴为刻度线，图中一格代表100us<br>探头设置为放大倍数，通常示波器实际探头会将信号衰减进入示波器，内部显示的时候再放大，<br>图中的意思为将10A等价为1V进入示波器，探头也选择10A/V即可</p>
+<h3 id="示波器"><a href="#示波器" class="headerlink" title="示波器"></a>示波器</h3><p>示波器零点基准光标会在屏幕上显示<br>不同通道的波形有不同颜色，且纵轴有刻度线，比如图中CH2为500mA一格，CH3为2V一格<br>横轴为刻度线，图中一格代表100us<br>探头设置为放大倍数，通常示波器实际探头会将信号衰减进入示波器，内部显示的时候再放大，<br>图中的意思为将10A等价为1V进入示波器，探头也选择10A/V即可</p>
 <p>直流耦合会显示信号的直流成分和交流成分，交流耦合只显示交流成分</p>
 <p>测量正弦波形的时候，用方均根，即有效值衡量其做功能力<br>完整一个周期正弦波形的平均值为0，（面积相加等于0）<br>峰值即为波形最大值或最小值<br>示波器测到的都是瞬时值（每个时间刻度上对应的值），万用表测到的都是平均值，<br>比如拿示波器测量220VAC，实际上最大值显示的是311</p>
 <p>测量相关:<br>最大值，信号的最大值<br>最小值，信号的最小值<br>峰峰值，等于最大值 - 最小值，<br>平均值，对于周期性信号，平均值可以反映信号的直流分量<br>均方根值，能反映交流信号的有效电压，用来恒流做功能力<br>过冲，最大值比上稳定值（通常指的就是高电平or低电平）的百分比</p>
@@ -1088,7 +1087,6 @@ mjx-container[display="true"] + br {
 </tbody></table>
 <hr>
 <h3 id="逻辑分析仪"><a href="#逻辑分析仪" class="headerlink" title="逻辑分析仪"></a>逻辑分析仪</h3><p>使用连线</p>
-<p>![Pasted image 20250210004903.png](/img/Pasted image 20250210004903.png)</p>
 <hr>
 <h3 id="万用表"><a href="#万用表" class="headerlink" title="万用表"></a>万用表</h3><p>万用表测量档位的工作原理与开路电压特性</p>
 <p>万用表测量电阻或测试PN结的基本原理是内部电池主动输出一个测试电压或测试电流到表笔上。只要存在电压差，就会对被测对象的电容产生充电效应。各档位的开路电压差异直接决定了其在硬件排查中的应用场景与测试表现。</p>
@@ -1169,8 +1167,7 @@ mjx-container[display="true"] + br {
 </li>
 </ul>
 <hr>
-<h3 id="焊接"><a href="#焊接" class="headerlink" title="焊接"></a>焊接</h3><p>![Pasted image 20241021225446.png](/img/Pasted image 20241021225446.png)![Pasted image 20241021225519.png](/img/Pasted image 20241021225519.png)</p>
-<p>焊接的时候，一定记住，加热焊盘才是第一要义，不然把加热的目标是引脚，一定是加热焊盘！！！<br>吸焊锡的时候，尽量将刀头烙铁斜着，靠近刀头中心热源，才能吸上去。<br>斜着，从引脚头部往引脚慢慢“滑动”，让焊锡粘附在烙铁头上</p>
+<h3 id="焊接"><a href="#焊接" class="headerlink" title="焊接"></a>焊接</h3><p>焊接的时候，一定记住，加热焊盘才是第一要义，不然把加热的目标是引脚，一定是加热焊盘！！！<br>吸焊锡的时候，尽量将刀头烙铁斜着，靠近刀头中心热源，才能吸上去。<br>斜着，从引脚头部往引脚慢慢“滑动”，让焊锡粘附在烙铁头上</p>
 <hr>
 <h3 id="热电偶"><a href="#热电偶" class="headerlink" title="热电偶"></a>热电偶</h3><p>热电偶是一种基于塞贝克效应工作的有源传感器，由两种不同成分的材质导体组成闭合回路。当其两端存在温度梯度时，回路中会产生微伏至毫伏级的直流电压信号，即温差电动势。</p>
 <ul>
@@ -1204,11 +1201,11 @@ mjx-container[display="true"] + br {
         <li><strong>标题:</strong> 电路测试与测试仪器</li>
         <li><strong>作者:</strong> WenZhenJian-EE</li>
         <li><strong>创建于
-                :</strong> 2026-06-13 13:29:11</li>
+                :</strong> 2026-06-13 13:36:37</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-06-13 13:30:07
+                    :</strong> 2026-06-13 13:37:17
             </li>
         
         <li>
@@ -1250,12 +1247,12 @@ mjx-container[display="true"] + br {
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
 			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/circuit-test-analysis/">
+				<a class="prev" rel="prev" href="/circuit-fundamentals/">
 					<span class="left arrow-icon flex justify-center items-center">
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">电路测试波形分析留存</span>
+						<span class="post-nav-title-item truncate max-w-48">电路基础底层原理</span>
 						<span class="post-nav-item">上一篇</span>
 					</span>
 				</a>
@@ -1263,9 +1260,9 @@ mjx-container[display="true"] + br {
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/circuit-topology-1/">
+				<a class="next" rel="next" href="/chat/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">电路拓扑1</span>
+						<span class="post-nav-title-item truncate max-w-48">chat</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -1315,7 +1312,7 @@ mjx-container[display="true"] + br {
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 120 篇文章
+                        共撰写了 109 篇文章
                     </span>
                     
                 </p>
