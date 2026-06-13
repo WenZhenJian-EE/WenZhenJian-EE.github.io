@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="电源设计, 硬件工程师, PCS, SiC, Hexo">
+    
+    
+    <meta name="author" content="WenZhenJian-EE">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes ASAP (before DOMContentLoaded)
+            (function() {
+                const addBodyClass = () => {
+                    const b = document.body;
+                    if (!b) return false;
+                    b.classList.add(theme + "-mode");
+                    return true;
+                };
+
+                // Try immediately
+                if (addBodyClass()) return;
+
+                // Observe until body exists
+                const mo = new MutationObserver(() => {
+                    if (addBodyClass()) mo.disconnect();
+                });
+                mo.observe(document.documentElement, { childList: true, subtree: true });
+            })();
+        })();
+    </script>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://WenZhenJian-EE.github.io/g-p-s-design/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+        
+        <meta name="description" content="WenZhenJian&#39;s Tech Blog - 电力电子与硬件开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GPS设计">
+<meta property="og:url" content="https://wenzhenjian-ee.github.io/g-p-s-design/index.html">
+<meta property="og:site_name" content="WenZhenJian&#39;s Tech Blog">
+<meta property="og:description" content="WenZhenJian&#39;s Tech Blog - 电力电子与硬件开发">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
+<meta property="article:published_time" content="2026-06-13T05:29:11.000Z">
+<meta property="article:modified_time" content="2026-06-13T05:30:07.499Z">
+<meta property="article:author" content="WenZhenJian-EE">
+<meta property="article:tag" content="最小系统">
+<meta property="article:tag" content="系统设计">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            GPS设计 | WenZhenJian&#39;s Tech Blog
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"wenzhenjian-ee.github.io","root":"/","language":"zh-CN","path":"search.json"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.6,"image_border_radius":"12px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#2563eb","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"WenZhenJian's Tech Blog - 电力电子与硬件开发"},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"WenZhenJian's Tech Blog","subtitle":{"text":["电力电子与电源设计","硬件工程师的日常研发实录"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":[{"icon":"fa-brands fa-github","url":"https://github.com/WenZhenJian-EE"},{"icon":"fa-solid fa-at","url":"wenzhenjian-ee@outlook.com"},{"icon":"fa-solid fa-at","url":"you@example.com"},{"icon":"fa-brands fa-telegram","url":null},{"icon":"/images/custom-icon.svg","url":null}],"qrs":[{"icon":"fa-brands fa-weixin","qr":null},{"icon":"/images/custom-icon.svg","qr":null}]}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":true,"version":"11.4.1","theme":{"light":"default","dark":"dark"}}},"version":"2.9.0","navbar":{"auto_hide":false,"color":{"left":"#2563eb","right":"#3b82f6","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur","masonry":{"batch_size":12,"initial_batch_size":24}},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"}}},"article_date_format":"YYYY-MM-DD","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footer":{"runtime":true,"icon":"<i class=\"fa-solid fa-heart fa-beat\" style=\"--fa-animation-duration: 0.5s; color: #f54545\"></i>","start":"2026/05/10 18:15:00","statistics":true,"customize":null,"icp":{"enable":false,"number":null,"url":null}},"footerStart":"2026/05/10 18:15:00","mermaid":{"style":{"light":"default","dark":"dark"}}};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.i18n = {"search":"站内搜索您需要的内容...","toc":"目录","prev":"上一页","next":"下一页","prev_posts":"上一篇","next_posts":"下一篇","page":"第 %d 页","recent_posts":"最新文章","share":"分享","powered_by":"由 %s 驱动","theme":"主题","rss_feed":"RSS Feed","category":"分类","categories":"分类","tag":"标签","tags":"标签","post":"文章","posts":"文章","tagcloud":"标签云","comment":"评论","comments":"评论","top":"置顶","sticky":"置顶","go-back-home":"回到首页","masonry_loading":"照片加载中...","image_viewer":"图片查看器","close":"关闭","exif":{"title":"EXIF","cards":{"camera":"相机","lens":"镜头","exposure":"曝光","other":"其他"},"fields":{"make":"品牌","model":"机型","date_taken":"拍摄时间","lens_model":"镜头","focal_length":"焦距","focus_mode":"对焦模式","shutter":"快门","aperture":"光圈","iso":"感光度","exposure_program":"曝光程序","exposure_compensation":"曝光补偿","metering_mode":"测光模式","flash":"闪光灯","white_balance":"白平衡","latitude":"纬度","longitude":"经度","altitude":"海拔"},"status":{"loading":"加载中...","no_exif":"无 EXIF 信息","library_missing":"EXIF 库未加载","image_source_missing":"图片地址不可用","unavailable":"EXIF 不可用（可能被 CORS 阻止或缺少元数据）","flag_unavailable":"EXIF 不可用"}},"home":"首页","archive":"归档","archives":"归档","about":"关于","links":"链接","link":"链接","friends":"友情链接","friend":"友情链接","timeline":"时间轴","shuoshuo":"说说","bookmarks":"书签","site_uv":"访问人数","site_pv":"总访问量","read_more":"阅读全文","wordcount":"字","min2read":"分钟","changelog":"更新日志","status":"状态","runtime":"博客已运行","days":"天","hours":"小时","minutes":"分钟","seconds":"秒","optimized_by":"并由 Evan 进行优化","rights":"版权所有","site_posts":"共撰写了 %s 篇文章","site_wordcount":"共 %s 字","copyright":{"title":"标题","author":"作者","link":"链接","create_time":"创建于","update_time":"更新于","license_title":"版权声明","license_content":"本文章采用 %s 进行许可。","all_rights_reserved":"版权所有 &#169 %s，禁止转载。","public_domain":"本文为公有领域作品，可自由转载、引用。"},"ago":{"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"},"create_time":"创建","update_time":"更新","expired":"这篇文章最后更新于 %s 天前，内容可能已经过时。"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+	<div class="progress-bar-container">
+	
+	<span class="scroll-progress-bar"></span>
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                WenZhenJian&#39;s Tech Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories"
+                                        >
+                                    <i class="fa-regular fa-folder fa-fw"></i>
+                                    分类
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags"
+                                        >
+                                    <i class="fa-regular fa-tags fa-fw"></i>
+                                    标签
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories"
+                        >
+                            <span>
+                                分类
+                            </span>
+                            
+                                <i class="fa-regular fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags"
+                        >
+                            <span>
+                                标签
+                            </span>
+                            
+                                <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">50</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">29</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">120</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">GPS设计</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] shrink-0 rounded-medium border border-border-color p-px">
+				<img src="/images/redefine-avatar.svg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">WenZhenJian-EE</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2026-06-13 13:29:11</span>
+        <span class="mobile">2026-06-13 13:29:11</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2026-06-13 13:30:07</span>
+            <span class="mobile">2026-06-13 13:30:07</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E6%95%B0%E5%AD%97%E6%8E%A7%E5%88%B6/">数字控制</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E6%95%B0%E5%AD%97%E6%8E%A7%E5%88%B6/%E5%BE%AE%E6%8E%A7%E5%88%B6%E5%99%A8%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">微控制器系统设计</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F/">最小系统</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">系统设计</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<hr>
+<h2 id="核心理论：GPS与GNSS射频基础"><a href="#核心理论：GPS与GNSS射频基础" class="headerlink" title="核心理论：GPS与GNSS射频基础"></a>核心理论：GPS与GNSS射频基础</h2><p>系统工作频段与信号特性</p>
+<ul>
+<li>GPS L1频段中心频率为1575.42MHz</li>
+<li>北斗 B1频段中心频率为1561.098MHz</li>
+<li>系统整体工作频段约为1560MHz至1580MHz</li>
+<li>信号衰减特性：卫星信号属于微波频段，到达地面时极其微弱，接收功率通常在-130dBm以下，对空间噪声、传输衰减和外部电磁干扰极为敏感</li>
+</ul>
+<hr>
+<p>高频元件特性：射频扼流圈与自谐振频率<br>在常规阻抗匹配网络中，电感的工作频率必须远低于其自谐振频率，因为一旦超过自谐振频率，电感会表现出容性。但在有源天线直流馈电电路中，电感的作用是射频扼流圈，核心任务是允许3.3V直流电无阻碍通过，同时阻挡1.57GHz的高频射频信号倒灌进电源地。</p>
+<ul>
+<li>47nH电感的自谐振频率通常在800MHz至1000MHz左右</li>
+<li>超频工作原理：虽然1.57GHz超过了47nH电感的自谐振频率使其呈现容性，但此时的寄生电容极小，其整体绝对阻抗<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.564ex;" xmlns="http://www.w3.org/2000/svg" width="2.894ex" height="2.26ex" role="img" focusable="false" viewBox="0 -749.5 1279 999"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo" transform="translate(0 -0.5)"><path data-c="7C" d="M139 -249H137Q125 -249 119 -235V251L120 737Q130 750 139 750Q152 750 159 735V-235Q151 -249 141 -249H139Z"></path></g><g data-mml-node="mi" transform="translate(278,0)"><path data-c="1D44D" d="M58 8Q58 23 64 35Q64 36 329 334T596 635L586 637Q575 637 512 637H500H476Q442 637 420 635T365 624T311 598T266 548T228 469Q227 466 226 463T224 458T223 453T222 450L221 448Q218 443 202 443Q185 443 182 453L214 561Q228 606 241 651Q249 679 253 681Q256 683 487 683H718Q723 678 723 675Q723 673 717 649Q189 54 188 52L185 49H274Q369 50 377 51Q452 60 500 100T579 247Q587 272 590 277T603 282H607Q628 282 628 271Q547 5 541 2Q538 0 300 0H124Q58 0 58 8Z"></path></g><g data-mml-node="mo" transform="translate(1001,0) translate(0 -0.5)"><path data-c="7C" d="M139 -249H137Q125 -249 119 -235V251L120 737Q130 750 139 750Q152 750 159 735V-235Q151 -249 141 -249H139Z"></path></g></g></g></svg></mjx-container>依然高达几百甚至上千欧姆。相对于50欧姆的射频走线，几百欧姆的高阻抗足以完美隔离高频微波信号</li>
+<li>参数选择工程经验：理论上27nH或33nH电感的自谐振频率恰好在1.5GHz附近，阻抗尖峰最大。官方推荐使用47nH是因为芯片内部供电引脚可能带有低频噪声，47nH在较低频段的隔离效果优于27nH，是兼顾宽带滤波和高频隔离的折中参数，且经过大批量流片和电磁兼容测试验证最为稳定。封装建议选择0402，因为射频走线较细，0402焊盘寄生电容更小</li>
+</ul>
+<hr>
+<p>高频元件特性：去耦电容与直流偏置效应<br>陶瓷电容在直流供电下存在直流偏置效应。在3.3V直流偏置下，常规10uF电容的实际有效容量可能会大幅衰减到5uF甚至更低。</p>
+<ul>
+<li>应对策略：提高额定耐压值，并选择温度特性更好的介质材料</li>
+<li>参数选择工程经验：主电源滤波去耦电容建议耐压选10V或以上。在车载户外宽温环境下，必须选用X7R材质以抵抗直流偏置效应和温度变化带来的容量衰减。在10uF大电容基础上，建议并联一个0.1uF的高频去耦电容以滤除高频噪声</li>
+</ul>
+<hr>
+<p>核心射频元器件工程选型推荐</p>
+<table>
+<thead>
+<tr>
+<th>元器件类型</th>
+<th>核心参数要求</th>
+<th>推荐型号参考</th>
+<th>封装规格</th>
+<th>应用说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>射频电感</td>
+<td>47nH，误差5%，额定电流300mA</td>
+<td>顺络SDCL1005C47NJTDF，村田LQG15HS47NJ02D</td>
+<td>L0402</td>
+<td>用于天线直流馈电，必须为高频叠层电感，严禁使用普通功率电感</td>
+</tr>
+<tr>
+<td>主滤波电容</td>
+<td>10uF，耐压10V，误差10%，X7R材质</td>
+<td>村田GRM188R71A106KA73D</td>
+<td>C0603</td>
+<td>用于芯片主电源引脚的低频储能与去耦</td>
+</tr>
+<tr>
+<td>高频去耦电容</td>
+<td>0.1uF，耐压50V，误差10%，X7R材质</td>
+<td>常规高频陶瓷电容</td>
+<td>C0603</td>
+<td>紧靠主电源引脚放置，配合10uF电容滤除高频干扰</td>
+</tr>
+</tbody></table>
+<h2 id="射频前端架构：有源与无源"><a href="#射频前端架构：有源与无源" class="headerlink" title="射频前端架构：有源与无源"></a>射频前端架构：有源与无源</h2><p>有源天线架构与极简馈电网络<br>有源天线内部集成了LNA，接收并放大微弱的卫星信号，需要外部提供直流供电以驱动内部放大器。</p>
+<ul>
+<li>电路拓扑：芯片的VCC_RF引脚输出3.3V直流电源，通过串联一颗47nH高频射频电感，叠加连接到RF_IN引脚的50欧姆走线上。直流电顺着同轴线缆输送给天线内部的LNA，放大的射频信号再沿同轴线反向传回RF_IN引脚</li>
+<li>隔离原理：47nH电感在此处作为射频扼流圈，允许3.3V直流电顺利通过，同时利用其在高频下的高阻抗特性，阻挡1.57GHz的微波信号倒灌进电源地</li>
+<li>保护机制：芯片内部已具备天线短路保护功能，短路时最大电流限制在50mA，正常工作电流约为15mA</li>
+<li>避坑指南：严禁在射频线路上并联低容值TVS管。因为射频线上带有3.3V直流电压，工作电压低于3.3V的TVS管会瞬间导通，导致电源对地短路。此外，TVS管的寄生电容会严重破坏50欧姆阻抗匹配，导致信号衰减</li>
+<li>避坑指南：不需要预留或添加PI型匹配网络。模块针对有源天线已有完善的内部处理，走线需保持极简纯净，仅需控制好走线的50欧姆单端阻抗即可</li>
+</ul>
+<hr>
+<p>无源天线架构与外部放大器设计<br>无源天线内部仅有纯金属振子，没有放大电路。卫星微波信号到达地面时通常在-130dBm以下，极其微弱，且经过外接馈线会产生额外衰减，到达PCB时信号已经很难被芯片内部放大器直接处理，因此必须在主芯片外增加一级外部LNA。</p>
+<ul>
+<li>核心改动点：必须彻底拆除有源方案中的47nH直流馈电电感，断开VCC_RF与RF_IN之间的直接连接。无源天线是纯金属导线，若保留此电感会导致3.3V直流电直接对地短路</li>
+<li>射频前端匹配与隔直：在天线接口进来的信号走线上，先串联一个隔直电容470pF，耐压50V，误差5%，封装C0402；接着串联一个输入阻抗匹配电感6.8nH，额定电流300mA，误差5%，高频叠层电感，封装L0402</li>
+<li>外部放大器连接：阻抗匹配电感的另一端连接至外部LNA的RFIN引脚。外部LNA的RFOUT引脚直接连接至主控芯片的RF_IN引脚</li>
+<li>供电与动态休眠控制：芯片的VCC_RF引脚连接至外部LNA的电源引脚VCC和使能引脚SHDN。当模块进入休眠状态时，会自动关断外部LNA以节省功耗</li>
+<li>滤波与接地要求：在紧靠外部LNA的VCC引脚处，对地并联一个去耦电容0.1uF，耐压50V，误差10%，X7R材质，封装C0402。外部LNA的GND引脚必须就近连接到系统GND，并打多个过孔下地以保证射频回流</li>
+</ul>
+<hr>
+<p>外部放大器参考选型与参数配套</p>
+<table>
+<thead>
+<tr>
+<th>器件描述</th>
+<th>参考型号</th>
+<th>核心参数与封装规格</th>
+<th>应用说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>外部LNA芯片</td>
+<td>AT2659 或 BGA715L7</td>
+<td>GPS专用LNA</td>
+<td>用于无源天线架构下补偿微弱射频信号</td>
+</tr>
+<tr>
+<td>隔直电容</td>
+<td>常规高频陶瓷电容</td>
+<td>470pF / 50V / 5% / C0402</td>
+<td>阻断直流电，允许交流微波信号通过</td>
+</tr>
+<tr>
+<td>输入匹配电感</td>
+<td>常规高频叠层电感</td>
+<td>6.8nH / 300mA / 5% / L0402</td>
+<td>调整输入端射频阻抗匹配</td>
+</tr>
+<tr>
+<td>供电去耦电容</td>
+<td>常规陶瓷电容</td>
+<td>0.1uF / 50V / 10% / X7R / C0402</td>
+<td>滤除LNA电源端高频噪声干扰</td>
+</tr>
+</tbody></table>
+<h2 id="硬件接口与连接器选型体系"><a href="#硬件接口与连接器选型体系" class="headerlink" title="硬件接口与连接器选型体系"></a>硬件接口与连接器选型体系</h2><p>射频连接器特性大观</p>
+<ul>
+<li>IPEX 1代接口：微型贴片座子，尺寸极小（约3mm × 3mm），无螺纹，采用按扣式连接。适合板内走线空间受限的场景，必须配合软转接线使用。由于连接为软线过渡，抗震性极好，外部应力不会直接传导至PCB焊盘。</li>
+<li>SMA接口：体积较大（宽度近10mm），带有粗壮的螺纹结构，连接牢固。适合作为设备机壳的外部天线接口，可穿透金属机壳并通过螺母进行固定。</li>
+</ul>
+<hr>
+<p>金属外壳设备的法拉第笼效应与破局方案<br>金属外壳会形成法拉第笼，彻底屏蔽GPS卫星的微波信号。因此，任何放置在金属壳内部的天线（包括陶瓷贴片天线）均无法接收到卫星信号。必须采用将天线引出机壳外的方案。</p>
+<ul>
+<li>错误方案（硬连接）：直接在PCB板端焊接SMA直插座子。此方案对整机结构装配公差要求极高，PCB边缘必须与机壳开孔严丝合缝。且在强震动环境下，外部长天线受到的杠杆力会直接传导至PCB，极易撕裂焊盘或损坏板边。</li>
+<li>标准破局方案（三步走软连接）：<ol>
+<li>板端座子：在PCB表层焊接微型IPEX 1代贴片射频座。</li>
+<li>过壳桥梁：使用IPEX 1代转SMA母头（外螺内孔）射频软转接线（长度根据结构定，通常为6cm至15cm）。IPEX端扣合在PCB上，SMA端穿透金属机壳，并在外部用自带螺母锁紧防水。</li>
+<li>外部天线：在机壳外部露出的SMA接口上，直接拧上成品GPS/北斗双模有源天线（SMA公头，内螺内针）。</li>
+</ol>
+</li>
+</ul>
+<hr>
+<p>多频段天线选型：互斥与共存<br>虽然天线在外观上可能相同（如黑色的胶棒天线或蘑菇头天线），但由于工作频段差异，绝对不能混用。</p>
+<ul>
+<li>频率匹配与驻波比：天线严重依赖物理尺寸来产生特定频率的谐振。GPS/北斗天线的谐振点在1.57GHz和1.56GHz附近；而4G天线的谐振点通常在800MHz至900MHz和1.8GHz至2.6GHz。若将4G无源天线连接至GPS接口，频率严重不匹配会导致极高的驻波比，信号产生巨大反射，芯片将无法搜星。</li>
+<li>架构归一化建议：为了精简BOM种类并提升整机抗震可靠性，强烈建议4G模块侧也采用与GPS侧完全相同的机械结构方案。即：板端统一使用IPEX 1代座子（BOM数量为2），机壳穿孔统一使用IPEX转SMA母头软转接线（BOM数量为2），仅在机壳外部拧上各自对应频段的外部天线（一根4G天线，一根GPS天线）。</li>
+<li>空间隔离规范：4G模块在发射信号时，峰值功率可达2W（约33dBm）左右，而GPS模块接收的卫星信号极其微弱。在车顶安装这两个独立的外置天线时，其物理直线距离必须保持在至少20cm以上。若距离过近，4G发射的强功率微波会直接阻塞甚至击穿GPS天线内部的低噪声放大器。严禁在未经高规格射频隔离的情况下，让4G与GPS直接物理共用同一根天线或同一条射频走线。</li>
+</ul>
+<h2 id="ATGM336H芯片外围控制与电源域"><a href="#ATGM336H芯片外围控制与电源域" class="headerlink" title="ATGM336H芯片外围控制与电源域"></a>ATGM336H芯片外围控制与电源域</h2><p>主供电网络系统设计</p>
+<ul>
+<li>芯片主供电由VCC引脚接入，额定直流输入为3.3V，允许误差10%，极限耐压范围为-0.3V至3.6V</li>
+<li>模块连续运行典型功耗小于26mA，包含射频天线在内的峰值电流最大约为100mA</li>
+<li>去耦滤波网络配置：在靠近VCC引脚的位置，必须放置旁路去耦电容以滤除高频噪声并保证瞬态电流响应。工程经验参数推荐并联一个10uF主滤波电容（耐压10V，误差10%，X7R材质，C0603封装）和一个0.1uF高频去耦电容（耐压50V，误差10%，X7R材质，C0603封装），电容的另一端就近连接至系统GND网络</li>
+</ul>
+<hr>
+<p>备份电源系统设计</p>
+<ul>
+<li>芯片后备电源由VBAT引脚接入，主要为内部RTC和SRAM模块供电，典型消耗电流极低，仅为8uA。工作电压范围为1.5V至3.6V，极限耐压为-0.3V至3.6V</li>
+<li>热启动模式设计：若系统要求开机实现秒级热启动定位，需接入3V不可充电纽扣型锂电池（推荐选型CR1220或CR2032，配合标准纽扣电池座）。电池正极接VBAT引脚，负极接GND。因该引脚功耗极微，单颗不可充电电池即可维持数年使用寿命</li>
+<li>充放电安全警告：常规硬件设计默认使用不可充电电池，绝对禁止向其馈入充电电流以防发生漏液膨胀灾难。若需从3.3V主电源引出线路为后备电源充电，必须改用可充电电池或法拉电容，并在充电回路上增加串联二极管与限流电阻</li>
+<li>冷启动模式设计：若系统允许每次开机均执行冷启动寻星（耗时约30秒），且硬件结构不安装纽扣电池，必须将VBAT引脚直接连接至3.3V主电源网络</li>
+<li>悬空隐患与致命错误：绝对禁止将VBAT引脚作悬空处理。悬浮的内部电源域引脚极易引入空间电磁噪声，导致内部逻辑状态不确定，并可能增加无法控制的额外漏电流</li>
+</ul>
+<hr>
+<p>串行通信与动态控制接口设计</p>
+<ul>
+<li>UART通信链路：TXD引脚和RXD引脚用于导航数据输出与指令输入，数字引脚极限耐压为-0.3V至VCC电压加0.2V。设计时需与主控MCU的UART接口进行RX与TX的交叉连接</li>
+<li>信号完整性与限流保护：强烈建议在TXD和RXD两根信号线上分别串联阻抗匹配电阻，工程参数推荐使用33欧姆或100欧姆的贴片电阻（精度1%，R0603封装）。该匹配电阻可有效抑制走线较长或阻抗不匹配时产生的信号过冲与振铃反射，同时提供一定的限流保护以防止MCU与GPS芯片IO口损毁</li>
+<li>模块休眠控制：ON/OFF引脚为低电平有效逻辑。若需主控MCU控制模块进行动态休眠，可在该引脚外部连接一个2.2K欧姆（精度1%，R0603封装）的上拉电阻至3.3V电源网络。若系统无需动态休眠控制，直接将该引脚悬空即可，模块内部已集成上拉网络</li>
+<li>系统硬件复位：nRESET引脚为低电平有效逻辑。在常规车载与定位应用中无需外部硬件复位干预，严格遵照数据手册规范作悬空处理即可</li>
+</ul>
+<hr>
+<p>高精度秒脉冲输出设计</p>
+<ul>
+<li>1PPS引脚可输出极高精度的秒脉冲信号，其脉冲上升沿与UTC时间的整秒时刻实现绝对对齐，时间同步精度可达到纳秒级别</li>
+<li>典型应用场景：广泛应用于分布式系统（如多基站通讯、多车辆协同）中本地RTC时钟的高精度同步校准，或结合UART接口输出的NMEA报文，为瞬态传感器数据打上高精度时间戳</li>
+<li>悬空处理规范：对于仅需获取基础经纬度坐标进行定位的常规设备，由于不涉及纳秒级系统时钟同步需求，将1PPS引脚直接悬空是最标准且安全的设计方式</li>
+</ul>
+<hr>
+<p>非功能性与预留引脚处理规范</p>
+<table>
+<thead>
+<tr>
+<th>引脚名称</th>
+<th>引脚编号</th>
+<th>功能描述</th>
+<th>处理规范与连接状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GND</td>
+<td>1, 10, 12</td>
+<td>模块系统接地端</td>
+<td>必须全部就近打多个过孔，稳固连接至系统底层的主地平面</td>
+</tr>
+<tr>
+<td>NC</td>
+<td>7, 13</td>
+<td>内部未连接空管脚</td>
+<td>必须全部悬空，严禁连接任何外部走线或网络</td>
+</tr>
+<tr>
+<td>Reserved</td>
+<td>15, 18</td>
+<td>系统内部保留管脚</td>
+<td>必须全部悬空，严禁连接任何外部走线或网络</td>
+</tr>
+<tr>
+<td>SDA, SCL</td>
+<td>16, 17</td>
+<td>I2C总线数据与时钟接口</td>
+<td>在仅使用UART通信接口的系统中，必须全部悬空</td>
+</tr>
+</tbody></table>
+<h2 id="PCB-Layout-核心准则"><a href="#PCB-Layout-核心准则" class="headerlink" title="PCB Layout 核心准则"></a>PCB Layout 核心准则</h2><p>射频阻抗控制与走线规范<br>射频走线（从模块的RF_IN引脚到IPEX天线座子的连接线）承载着1.57GHz的高频微波信号，是整个Layout设计中最核心的部分，直接决定了最终的收星效果。</p>
+<ul>
+<li>50欧姆单端阻抗控制：该段射频走线必须严格进行50欧姆单端阻抗匹配。在设计时，需结合PCB的板材厚度、介电常数以及铜厚，计算出合适的线宽和距地间距。由于GPS信号频率固定，只要走线阻抗控制在50欧姆，就不需要添加额外的匹配网络补偿。</li>
+<li>表层走线原则：射频走线应尽可能在PCB表层完成（通常只有几毫米长），尽量避免打孔换层。因为过孔会引入额外的寄生电感和电容，破坏阻抗连续性。</li>
+<li>连接器接地处理：IPEX贴片射频座子的三个外壳屏蔽引脚（引脚1、2、3）必须全部就近连接到系统的GND网络。若悬空，天线的同轴线屏蔽层将处于悬浮状态，导致射频链路崩溃，模块将完全无法收到信号。</li>
+</ul>
+<hr>
+<p>地平面完整性与屏蔽隔离<br>高频射频信号的传输不仅依赖信号线本身，更依赖完整的接地回流路径。良好的接地设计能有效控制阻抗并屏蔽外部干扰。</p>
+<ul>
+<li>表层共面波导包地（CPWG）：射频走线的两侧必须被完整的GND铜皮包围。这种共面波导结构有助于收束电磁场，减少信号向外辐射和受外界干扰。</li>
+<li>屏蔽地孔（过孔）阵列：在包裹射频走线的表层地铜皮上，必须沿走线方向每隔约2mm放置一个屏蔽地孔（GND Via）。这些地孔能将表层地与内层/底层的主地平面紧密缝合，形成类似同轴电缆的立体屏蔽墙，防止微波信号泄露。</li>
+<li>参考地平面的连续性：射频走线的正下方（即相邻的第二层）必须是完整、连续的实体地平面，严禁有任何其他信号线跨越切割该区域，以保证信号回流路径的最短和阻抗的稳定。</li>
+</ul>
+<hr>
+<p>强电与强电磁干扰规避<br>在车载协控制器等复杂的强电磁环境中，GPS射频链路这种极度敏感的微信号极易被强干扰淹没。</p>
+<ul>
+<li>物理空间隔离：GPS模块及其射频前端走线、天线接口必须在PCB布局上尽量远离系统中的强干扰源。</li>
+<li>重点规避对象：包括但不限于DC-DC电源模块的电感与开关节点、电机驱动模块的大电流回路与相线接口、高频翻转的CAN总线收发器以及主控MCU的外部晶振电路。这些节点产生的谐波噪声或高频大电流开关噪声一旦耦合进射频链路，将严重降低信噪比。</li>
+<li>独立铺铜区域：在条件允许的情况下，可以为GPS模块区域划分一块相对独立的铺铜地平面，仅通过单点或窄带与系统主地相连，以减少系统级地弹噪声的串扰。</li>
+</ul>
+<hr>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> GPS设计</li>
+        <li><strong>作者:</strong> WenZhenJian-EE</li>
+        <li><strong>创建于
+                :</strong> 2026-06-13 13:29:11</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2026-06-13 13:30:07
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://wenzhenjian-ee.github.io/g-p-s-design/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F/">#最小系统</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">#系统设计</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/fundamentals-circuit-analysis/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">基础电路分析</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/grounding-isolation/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">接地、隔离杂项</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">GPS设计</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E7%90%86%E8%AE%BA%EF%BC%9AGPS%E4%B8%8EGNSS%E5%B0%84%E9%A2%91%E5%9F%BA%E7%A1%80"><span class="nav-text">核心理论：GPS与GNSS射频基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%84%E9%A2%91%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%EF%BC%9A%E6%9C%89%E6%BA%90%E4%B8%8E%E6%97%A0%E6%BA%90"><span class="nav-text">射频前端架构：有源与无源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E6%8E%A5%E5%8F%A3%E4%B8%8E%E8%BF%9E%E6%8E%A5%E5%99%A8%E9%80%89%E5%9E%8B%E4%BD%93%E7%B3%BB"><span class="nav-text">硬件接口与连接器选型体系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ATGM336H%E8%8A%AF%E7%89%87%E5%A4%96%E5%9B%B4%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%94%B5%E6%BA%90%E5%9F%9F"><span class="nav-text">ATGM336H芯片外围控制与电源域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PCB-Layout-%E6%A0%B8%E5%BF%83%E5%87%86%E5%88%99"><span class="nav-text">PCB Layout 核心准则</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2026</span>
+              -
+            
+            2026&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">WenZhenJian-EE</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 120 篇文章
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.9.0</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container" role="dialog" aria-modal="true" aria-label="图片查看器">
+	<button class="image-viewer-close" type="button" aria-label="关闭">
+		<i class="fa-solid fa-xmark"></i>
+	</button>
+	<button class="image-viewer-prev" type="button" aria-label="上一页">
+		<i class="fa-solid fa-chevron-left"></i>
+	</button>
+	<div class="image-viewer-frame">
+		<img src="" alt="">
+	</div>
+	<div class="image-viewer-exif-panel hidden absolute left-1/2 bottom-20 -translate-x-1/2 w-[min(92vw,420px)] max-h-[60vh] overflow-hidden rounded-2xl bg-background-color-transparent-80 p-4 text-left shadow-redefine-flat backdrop-blur-md" role="dialog" aria-label="EXIF" aria-hidden="true">
+		<div class="flex items-center justify-between mb-3">
+			<span class="text-sm font-semibold text-first-text-color">EXIF</span>
+			<button class="image-viewer-exif-close flex h-8 w-8 items-center justify-center rounded-full bg-background-color-transparent-80 text-first-text-color transition hover:bg-background-color-transparent-40" type="button" aria-label="关闭">
+				<i class="fa-solid fa-xmark text-[0.65rem]"></i>
+			</button>
+		</div>
+		<div class="image-viewer-exif-cards grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto pr-1 scrollbar-hide"></div>
+		<template class="image-viewer-exif-card-template">
+			<div class="rounded-lg bg-background-color-transparent-40 px-3 py-2">
+				<div class="image-viewer-exif-card-header flex items-center gap-2 mb-1">
+					<i class="image-viewer-exif-card-icon fa-solid fa-circle-info text-xs text-third-text-color"></i>
+					<div class="image-viewer-exif-card-title text-xs font-semibold text-first-text-color"></div>
+				</div>
+				<div class="image-viewer-exif-card-items flex flex-col gap-1"></div>
+			</div>
+		</template>
+	</div>
+	<button class="image-viewer-exif-toggle flex items-center gap-2 hidden absolute left-1/2 bottom-6 -translate-x-1/2 rounded-full border border-border-color bg-background-color-transparent-80 px-4 py-2 text-first-text-color backdrop-blur-md transition hover:bg-background-color-transparent-40" type="button" aria-label="EXIF" aria-expanded="false">
+		<i class="fa-solid fa-circle-info text-xs"></i>
+		<span class="text-xs font-semibold uppercase tracking-wider">EXIF</span>
+	</button>
+	<button class="image-viewer-next" type="button" aria-label="下一页">
+		<i class="fa-solid fa-chevron-right"></i>
+	</button>
+</div>
+
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    window.swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+
+    window.dispatchEvent(
+        new CustomEvent("redefine:swup:ready", {
+            detail: {
+                swup: window.swup,
+            },
+        }),
+    );
+</script>
+
+
+
+
+	
+<script src="/js/build/main.js" type="module"></script>
+
+
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+
+
+
+    
+        
+<script src="/js/build/libs/mermaid.min.js"></script>
+
+    
+
+
+
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+
+	
+</body>
+
+</html>

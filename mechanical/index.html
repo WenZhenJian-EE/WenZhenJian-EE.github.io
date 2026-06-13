@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="电源设计, 硬件工程师, PCS, SiC, Hexo">
+    
+    
+    <meta name="author" content="WenZhenJian-EE">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes ASAP (before DOMContentLoaded)
+            (function() {
+                const addBodyClass = () => {
+                    const b = document.body;
+                    if (!b) return false;
+                    b.classList.add(theme + "-mode");
+                    return true;
+                };
+
+                // Try immediately
+                if (addBodyClass()) return;
+
+                // Observe until body exists
+                const mo = new MutationObserver(() => {
+                    if (addBodyClass()) mo.disconnect();
+                });
+                mo.observe(document.documentElement, { childList: true, subtree: true });
+            })();
+        })();
+    </script>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://WenZhenJian-EE.github.io/mechanical/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+        
+        <meta name="description" content="WenZhenJian&#39;s Tech Blog - 电力电子与硬件开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机械知识">
+<meta property="og:url" content="https://wenzhenjian-ee.github.io/mechanical/index.html">
+<meta property="og:site_name" content="WenZhenJian&#39;s Tech Blog">
+<meta property="og:description" content="WenZhenJian&#39;s Tech Blog - 电力电子与硬件开发">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
+<meta property="article:published_time" content="2026-06-13T05:29:11.000Z">
+<meta property="article:modified_time" content="2026-06-13T05:30:07.503Z">
+<meta property="article:author" content="WenZhenJian-EE">
+<meta property="article:tag" content="测试">
+<meta property="article:tag" content="工程应用">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            机械知识 | WenZhenJian&#39;s Tech Blog
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"wenzhenjian-ee.github.io","root":"/","language":"zh-CN","path":"search.json"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.6,"image_border_radius":"12px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#2563eb","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"WenZhenJian's Tech Blog - 电力电子与硬件开发"},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"WenZhenJian's Tech Blog","subtitle":{"text":["电力电子与电源设计","硬件工程师的日常研发实录"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":[{"icon":"fa-brands fa-github","url":"https://github.com/WenZhenJian-EE"},{"icon":"fa-solid fa-at","url":"wenzhenjian-ee@outlook.com"},{"icon":"fa-solid fa-at","url":"you@example.com"},{"icon":"fa-brands fa-telegram","url":null},{"icon":"/images/custom-icon.svg","url":null}],"qrs":[{"icon":"fa-brands fa-weixin","qr":null},{"icon":"/images/custom-icon.svg","qr":null}]}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":true,"version":"11.4.1","theme":{"light":"default","dark":"dark"}}},"version":"2.9.0","navbar":{"auto_hide":false,"color":{"left":"#2563eb","right":"#3b82f6","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur","masonry":{"batch_size":12,"initial_batch_size":24}},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"}}},"article_date_format":"YYYY-MM-DD","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footer":{"runtime":true,"icon":"<i class=\"fa-solid fa-heart fa-beat\" style=\"--fa-animation-duration: 0.5s; color: #f54545\"></i>","start":"2026/05/10 18:15:00","statistics":true,"customize":null,"icp":{"enable":false,"number":null,"url":null}},"footerStart":"2026/05/10 18:15:00","mermaid":{"style":{"light":"default","dark":"dark"}}};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.i18n = {"search":"站内搜索您需要的内容...","toc":"目录","prev":"上一页","next":"下一页","prev_posts":"上一篇","next_posts":"下一篇","page":"第 %d 页","recent_posts":"最新文章","share":"分享","powered_by":"由 %s 驱动","theme":"主题","rss_feed":"RSS Feed","category":"分类","categories":"分类","tag":"标签","tags":"标签","post":"文章","posts":"文章","tagcloud":"标签云","comment":"评论","comments":"评论","top":"置顶","sticky":"置顶","go-back-home":"回到首页","masonry_loading":"照片加载中...","image_viewer":"图片查看器","close":"关闭","exif":{"title":"EXIF","cards":{"camera":"相机","lens":"镜头","exposure":"曝光","other":"其他"},"fields":{"make":"品牌","model":"机型","date_taken":"拍摄时间","lens_model":"镜头","focal_length":"焦距","focus_mode":"对焦模式","shutter":"快门","aperture":"光圈","iso":"感光度","exposure_program":"曝光程序","exposure_compensation":"曝光补偿","metering_mode":"测光模式","flash":"闪光灯","white_balance":"白平衡","latitude":"纬度","longitude":"经度","altitude":"海拔"},"status":{"loading":"加载中...","no_exif":"无 EXIF 信息","library_missing":"EXIF 库未加载","image_source_missing":"图片地址不可用","unavailable":"EXIF 不可用（可能被 CORS 阻止或缺少元数据）","flag_unavailable":"EXIF 不可用"}},"home":"首页","archive":"归档","archives":"归档","about":"关于","links":"链接","link":"链接","friends":"友情链接","friend":"友情链接","timeline":"时间轴","shuoshuo":"说说","bookmarks":"书签","site_uv":"访问人数","site_pv":"总访问量","read_more":"阅读全文","wordcount":"字","min2read":"分钟","changelog":"更新日志","status":"状态","runtime":"博客已运行","days":"天","hours":"小时","minutes":"分钟","seconds":"秒","optimized_by":"并由 Evan 进行优化","rights":"版权所有","site_posts":"共撰写了 %s 篇文章","site_wordcount":"共 %s 字","copyright":{"title":"标题","author":"作者","link":"链接","create_time":"创建于","update_time":"更新于","license_title":"版权声明","license_content":"本文章采用 %s 进行许可。","all_rights_reserved":"版权所有 &#169 %s，禁止转载。","public_domain":"本文为公有领域作品，可自由转载、引用。"},"ago":{"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"},"create_time":"创建","update_time":"更新","expired":"这篇文章最后更新于 %s 天前，内容可能已经过时。"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+	<div class="progress-bar-container">
+	
+	<span class="scroll-progress-bar"></span>
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                WenZhenJian&#39;s Tech Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories"
+                                        >
+                                    <i class="fa-regular fa-folder fa-fw"></i>
+                                    分类
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags"
+                                        >
+                                    <i class="fa-regular fa-tags fa-fw"></i>
+                                    标签
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories"
+                        >
+                            <span>
+                                分类
+                            </span>
+                            
+                                <i class="fa-regular fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags"
+                        >
+                            <span>
+                                标签
+                            </span>
+                            
+                                <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">50</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">29</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">120</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">机械知识</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] shrink-0 rounded-medium border border-border-color p-px">
+				<img src="/images/redefine-avatar.svg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">WenZhenJian-EE</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2026-06-13 13:29:11</span>
+        <span class="mobile">2026-06-13 13:29:11</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2026-06-13 13:30:07</span>
+            <span class="mobile">2026-06-13 13:30:07</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/">电路开发</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B7%A5%E7%A8%8B%E5%BA%94%E7%94%A8/">测试与工程应用</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%B5%8B%E8%AF%95/">测试</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%B7%A5%E7%A8%8B%E5%BA%94%E7%94%A8/">工程应用</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h2 id="机械相关"><a href="#机械相关" class="headerlink" title="机械相关"></a>机械相关</h2><hr>
+<h3 id="机械制图与沟通基础"><a href="#机械制图与沟通基础" class="headerlink" title="机械制图与沟通基础"></a>机械制图与沟通基础</h3><p>制图基本标注<br>在机械制图中，孔的数量、直径和位置是基础信息。</p>
+<ul>
+<li><p>数量：通常在特征标注的最前方使用 N- 或 NX 的格式，其中 N 代表数量。例如，4-Ø3.2 或 4X Ø3.2 均表示有4个直径为3.2毫米的孔。</p>
+</li>
+<li><p>直径：使用符号 Ø 表示。例如，Ø1.10 表示孔的直径为1.10毫米。</p>
+</li>
+<li><p>组合示例：2-Ø1.10 的完整含义是：图纸上有2个相同的孔，每个孔的直径都是1.10毫米。</p>
+</li>
+<li><p>定位尺寸：如图纸标注中的 10.2，它表示孔的中心到某一基准边缘或另一条中心线的距离，用于确定孔的位置，而非其大小。<br>孔的特殊类型与特征<br>除了基本的通孔，为了满足不同的装配需求，还存在多种特殊的孔特征。</p>
+</li>
+<li><p>沉孔：用于容纳螺钉头部，使其不凸出于零件表面，通常用于内六角螺钉。符号为 ⌴。格式为 小孔径 ⌴ 大孔径 DEEP 深度。示例 Ø3.2 ⌴ Ø6.0 DEEP 3.5 表示一个直径为3.2毫米的通孔，在其开口处加工一个直径为6.0毫米、深度为3.5毫米的沉孔。</p>
+</li>
+<li><p>锥孔或沉头孔：用于配合沉头螺钉，使其头部与零件表面齐平。符号为 ⌵。格式为 孔径 ⌵ 角度 或 孔径 ⌵ 大端直径。示例 Ø3.2 ⌵ 90° 表示一个直径为3.2毫米的通孔，开口处加工一个90°的锥角。</p>
+</li>
+<li><p>盲孔与深度：指未被钻穿的孔。其深度需要明确标注。符号为 ↧ 或使用文字 DEEP。示例 Ø2.0 ↧ 5.0 或 Ø2.0 DEEP 5.0 表示一个直径为2.0毫米的盲孔，其深度为5.0毫米。</p>
+</li>
+<li><p>螺纹孔：用于螺纹连接的孔。符号 M 代表公制螺纹。格式为 M公称直径 x 螺距。当螺距为标准粗牙时，通常省略螺距的标注。示例 M3x0.5 表示公称直径为3毫米、螺距为0.5毫米的公制螺纹。若为标准粗牙螺纹，则直接标注为 M3。组合示例 4-M3 ↧ 6 表示4个M3螺纹盲孔，螺纹部分的有效深度为6毫米。<br>其他常见几何标注</p>
+</li>
+<li><p>半径：用于标注圆角。符号为 R。示例 R2 表示一个半径为2毫米的圆角。</p>
+</li>
+<li><p>球面半径或球面直径：用于标注球面的尺寸。符号 SR 表示球面半径，SØ 表示球面直径。</p>
+</li>
+<li><p>倒角：用于标注直边的倒角。符号为 C。示例 C2 表示一个45°的倒角，其直角边长度为2毫米。对于非45°的倒角，会明确标注角度和边长，如 2x30°。<br>尺寸公差与配合<br>公差表示尺寸允许的变化范围，是保证零件互换性和装配精度的关键。在设计硬件与机械的交界面时，理解不同加工工艺的公差能力至关重要。</p>
+</li>
+<li><p>符号：±</p>
+</li>
+<li><p>示例：10.2 ±0.1 表示该尺寸的允许范围为10.1毫米至10.3毫米。</p>
+</li>
+<li><p>工艺公差差异：CNC加工的精度极高，公差通常可以轻松控制在 ±0.02 毫米以内；而钣金折弯工艺由于材料回弹等因素，公差通常在 ±0.1 毫米至 ±0.5 毫米之间。</p>
+</li>
+<li><p>硬件设计考量：在设计PCB安装孔、连接器开窗以及重型功率模块的安装孔位时，必须为钣金件留出足够的公差裕量。如果按照CNC的精度去要求钣金件，会导致极高的不良率或根本无法装配。<br>硬件工程师的视角：机械图纸与PCB设计的关联<br>作为硬件工程师，理解机械图纸的标注至关重要，尤其是在进行产品结构设计和评审时。例如，设计的PCB图纸上可能标注了一个 Ø3.2 NPTH 的安装孔。在与之配合的机箱结构图纸上，对应的位置可能会标注为 M3 的螺纹孔，用于直接拧入螺丝固定PCB；或者标注为 Ø3.2 ⌴ Ø6.0 DEEP 3.5 的沉孔，用于从机箱另一面穿入M3螺钉来固定PCB。通过理解这些标注，可以快速判断安装孔、连接器开口、散热器固定点等结构设计是否与PCB设计相匹配，从而在早期阶段发现并避免潜在的装配问题。<br>常用标注速查表</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">符号或格式</th>
+<th align="left">名称</th>
+<th align="left">含义与说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Ø1.10</td>
+<td align="left">直径</td>
+<td align="left">直径为1.10毫米</td>
+</tr>
+<tr>
+<td align="left">2- 或 2X</td>
+<td align="left">数量</td>
+<td align="left">2个相同的特征</td>
+</tr>
+<tr>
+<td align="left">R5</td>
+<td align="left">半径</td>
+<td align="left">半径为5毫米的圆角</td>
+</tr>
+<tr>
+<td align="left">⌴</td>
+<td align="left">沉孔</td>
+<td align="left">用于容纳螺丝头，使表面平整</td>
+</tr>
+<tr>
+<td align="left">⌵</td>
+<td align="left">锥孔</td>
+<td align="left">用于沉头螺钉</td>
+</tr>
+<tr>
+<td align="left">↧ 或 DEEP</td>
+<td align="left">深度</td>
+<td align="left">用于盲孔</td>
+</tr>
+<tr>
+<td align="left">M3</td>
+<td align="left">螺纹</td>
+<td align="left">M3的公制螺纹孔</td>
+</tr>
+<tr>
+<td align="left">C2</td>
+<td align="left">倒角</td>
+<td align="left">45°，直角边长为2毫米的倒角</td>
+</tr>
+<tr>
+<td align="left">±0.05</td>
+<td align="left">公差</td>
+<td align="left">尺寸允许有±0.05毫米的误差</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="常用材料及其特性"><a href="#常用材料及其特性" class="headerlink" title="常用材料及其特性"></a>常用材料及其特性</h3><p>铝合金<br>铝合金是电子产品的常用材料，主要在性能、成本、重量、加工性之间做权衡。在纯铝中加入铜、镁、硅、锌等元素形成的合金。</p>
+<ul>
+<li><p>核心优势：</p>
+<ul>
+<li>轻量化：密度约为钢的三分之一，能显著降低产品重量。</li>
+<li>散热性极佳：导热系数远高于钢，是制作散热器和高散热要求外壳的首选。</li>
+<li>易于加工：相对柔软，无论是CNC加工、挤压成型还是压铸都非常方便。</li>
+<li>天然耐腐蚀：表面会迅速形成一层致密的氧化膜，能抵抗大多数环境腐蚀。</li>
+<li>无磁性：不会干扰内部的电磁场。</li>
+</ul>
+</li>
+<li><p>常用牌号与用途界定：</p>
+<ul>
+<li>5052：防锈铝，塑性极好。这是钣金折弯件的绝对主力材料。由于其良好的成型性，非常适合用于需要冲压和折弯的机箱壳体。</li>
+<li>6061-T6：最常见的结构铝材。强度高，焊接性好，耐腐蚀性好。常用于需要CNC加工的实心结构件、面板、支架。T6是一种热处理状态，表示经过固溶处理和人工时效，硬度很高，因此极易在折弯时开裂，严禁用于钣金折弯件。</li>
+<li>6063-T5：最常见的型材铝材。强度比6061稍低，但表面光洁度极好，非常适合挤压成型。大功率变流器的框架和大体积散热器主体通常采用此材料。</li>
+<li>ADC12：一种压铸铝合金。流动性好，容易填充模具的复杂细节，成本相对较低。是压铸外壳和复杂结构散热器的常用材料。</li>
+</ul>
+</li>
+<li><p>硬件工程师需关注：</p>
+<ul>
+<li>散热性能：它是散热方案的物理基础。</li>
+<li>导电性：铝是良导体，整个机箱可以作为很好的接地和EMI屏蔽体。需与机械工程师确认哪些面需要保持导电用于接地或EMI垫片接触，哪些面需要绝缘。<br>钢或钢板<br>铁碳合金。在现代工业中，结构件和外壳几乎不使用纯铁，因为其质地软、强度低且极易生锈。通常所说的铁在工业语境下指的是钢。</li>
+</ul>
+</li>
+<li><p>核心优势：</p>
+<ul>
+<li>高强度、高刚性：在同等厚度下，比铝坚固得多。适合做承重支架、安装底板。</li>
+<li>成本低廉：原材料价格远低于铝合金。</li>
+</ul>
+</li>
+<li><p>常用牌号：</p>
+<ul>
+<li>SPCC：冷轧钢板。表面质量好，光滑，适合喷涂等表面处理。常用于机箱内部的支架、盖板。缺点是极易生锈，必须做表面处理。</li>
+<li>SGCC：热浸镀锌钢板。钢板表面预先镀了一层锌，有不错的防锈能力，成本比不锈钢低。可以直接使用或再进行喷涂。</li>
+<li>SECC：电解镀锌钢板。镀锌层更均匀、美观，耐腐蚀性比SGCC稍差，但喷涂附着力更好。</li>
+</ul>
+</li>
+<li><p>硬件工程师需关注：</p>
+<ul>
+<li>重量：钢很重，会显著增加产品总重。</li>
+<li>磁性：大多数钢材具有磁性，可能会对某些敏感电路如霍尔传感器产生影响，但同时也可以用作低频磁屏蔽材料。</li>
+<li>防锈：必须有可靠的表面处理，否则在高防护要求的潮湿环境下会很快锈蚀。<br>不锈钢<br>在钢中加入铬、镍等元素，使其不易生锈。</li>
+</ul>
+</li>
+<li><p>核心优势：极佳的耐腐蚀性，能抵抗水、酸、盐雾的侵蚀。</p>
+</li>
+<li><p>常用牌号：</p>
+<ul>
+<li>SUS304：最常见的不锈钢，能应对大多数日常和工业环境。</li>
+<li>SUS316：船用级不锈钢。加入了钼元素，耐氯化物腐蚀的能力远超304。若设备用于海边或需耐化学腐蚀，外壳或紧固件会首选此材料。</li>
+</ul>
+</li>
+<li><p>硬件工程师需关注：</p>
+<ul>
+<li>成本：非常昂贵。</li>
+<li>加工难度：比普通钢和铝都难加工，这也会增加制造成本。</li>
+<li>导热性差：导热系数很低，不适合做散热部件。<br>工程塑料<br>性能优于普通塑料，可作为结构材料使用。</li>
+</ul>
+</li>
+<li><p>核心优势：</p>
+<ul>
+<li>绝缘性：天然的电绝缘体，用于隔离高低压部件。</li>
+<li>设计自由度高：通过注塑工艺可以制造出任意复杂的形状。</li>
+<li>轻量化：密度比铝还低。</li>
+</ul>
+</li>
+<li><p>常用牌号：</p>
+<ul>
+<li>PC：聚碳酸酯。强度高，耐冲击，透明性好。常用于设备面板、指示灯的透光罩。</li>
+<li>ABS：综合性能好，成本低，易于电镀和喷涂。是各种外壳、面板的常用材料。</li>
+<li>PA+GF：玻璃纤维增强尼龙。在尼龙中加入玻璃纤维，强度、刚性和耐热性大幅提升。常用于风扇叶片、高强度结构件。</li>
+</ul>
+</li>
+<li><p>硬件工程师需关注：</p>
+<ul>
+<li>工作温度：塑料有明确的长期使用温度上限，超过后会软化变形。</li>
+<li>防火等级：安规认证的核心要求。UL94 V-0等级表示离火自熄，是电子产品内部塑料件的常见要求。</li>
+<li>EMI与EMC：塑料不导电，不具备电磁屏蔽能力。如果用塑料外壳，需要考虑内部的屏蔽措施。<br>绝缘支撑板材<br>在150kW级别的大功率变流器或30kW直流模块内部，常规的塑料件往往无法满足极高的机械强度和耐温要求，此时需要使用专业的绝缘支撑板材。</li>
+</ul>
+</li>
+<li><p>核心用途：用于隔离高压母排、支撑重型磁性器件以及作为强电区域的物理隔板。</p>
+</li>
+<li><p>常用材料：</p>
+<ul>
+<li>FR4：环氧树脂玻璃纤维板。它不仅是PCB的基材，也常作为纯粹的机械结构件使用。具有极高的机械强度、优异的绝缘性能和阻燃性。</li>
+<li>电木板或环氧板：常用于大功率设备内部的绝缘隔板，成本相对FR4较低，但同样能提供良好的物理支撑和电气隔离。<br>金属外壳选型对比<br>在金属外壳的制造中，铝合金与钢是应用最广泛的两种材料，其选择逻辑通常基于产品的核心需求。</li>
+</ul>
+</li>
+<li><p>选择钢：当首要考虑是成本和结构强度时，如工业机柜、服务器机箱等。</p>
+</li>
+<li><p>选择铝合金：当首要考虑是重量、散热和外观质感时，如便携式设备、需要机壳散热的功率模块等。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>铝合金</th>
+<th>钢</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>成本</td>
+<td>高</td>
+<td>低</td>
+</tr>
+<tr>
+<td>重量</td>
+<td>轻</td>
+<td>重</td>
+</tr>
+<tr>
+<td>强度与硬度</td>
+<td>相对较低</td>
+<td>高</td>
+</tr>
+<tr>
+<td>导热与散热</td>
+<td>极好</td>
+<td>差</td>
+</tr>
+<tr>
+<td>导电性</td>
+<td>好</td>
+<td>差</td>
+</tr>
+<tr>
+<td>加工性</td>
+<td>容易</td>
+<td>相对困难</td>
+</tr>
+<tr>
+<td>耐腐蚀性</td>
+<td>好</td>
+<td>差</td>
+</tr>
+<tr>
+<td>金属的氧化与生锈本质区别</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>钢是一种人造的铁碳合金。在元素周期表中只有铁元素，通过在铁中加入碳及其他合金元素，可以制造出性能各异的钢材。氧化是指物质与氧气发生的广泛化学反应，而生锈是特指铁及其合金在有水和氧气同时存在的环境下发生的特定氧化反应。生锈是氧化的一种，但并非所有金属的氧化都称为生锈。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>铁和铝都会发生氧化，但铁的氧化产物是破坏性的，会持续腐蚀；而铝的氧化产物是保护性的，会阻止进一步腐蚀。这个根本差异解释了为何铝合金可以作为具有良好耐腐蚀性的材料直接使用，而普通钢则必须通过镀层、涂层等方式进行严密的防锈处理。</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>铝的氧化</th>
+<th>铁的生锈</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>氧化物名称</td>
+<td>氧化铝 (Al2​O3​)</td>
+<td>水合氧化铁 (Fe2​O3​⋅nH2​O)</td>
+</tr>
+<tr>
+<td>物理特性</td>
+<td>致密、坚硬、与本体结合力强</td>
+<td>疏松、多孔、与本体结合力弱</td>
+</tr>
+<tr>
+<td>最终效果</td>
+<td>保护性：形成的致密氧化膜会阻止内部金属继续接触空气和水，起到天然的防腐蚀保护层作用。</td>
+<td>破坏性：疏松的铁锈无法保护内部金属，会不断剥落，使新的金属表面暴露并继续腐蚀，直至材料完全损坏。</td>
+</tr>
+</tbody></table>
+<h3 id="核心制造工艺与表面处理"><a href="#核心制造工艺与表面处理" class="headerlink" title="核心制造工艺与表面处理"></a>核心制造工艺与表面处理</h3><p>工艺与工件的称谓<br>钣金、压铸、型材本身指的是制造工艺的名称，描述了将原材料变成所需形状的方法。钣金件、压铸件、型材件则指通过这些工艺制造出来的工件或零件。型材既可以指挤压成型这个工艺，也常常被直接用来指代挤压出来的产品，尤其是那些长条状、有固定截面的铝型材。</p>
+<hr>
+<p>核心成型工艺<br>钣金<br>将金属板材通过剪、冲、折来构建三维结构，是非大批量产品最灵活、成本效益最高的机箱制造方式。</p>
+<ul>
+<li><p>工艺流程：</p>
+<ul>
+<li>下料：用激光切割或数控冲床在一整块金属板上切出展开的二维形状。激光切割灵活，适合任意形状；数控冲压速度快，适合有大量标准孔的板材。</li>
+<li>折弯：用折弯机将二维板材沿着预定线折成三维形状。</li>
+<li>连接：通过焊接、拉铆、螺钉连接等方式将不同的钣金件组合成最终产品。</li>
+</ul>
+</li>
+<li><p>常用术语：</p>
+<ul>
+<li>展开图：零件折叠前的二维图纸。</li>
+<li>折弯半径：金属在折弯处不是完美的直角，而是一个圆角。这个圆角有最小半径限制，太小会导致材料开裂，会影响PCB在角落的布局空间。</li>
+<li>抽芽或翻边：在薄板上冲出一个孔，并把孔边的材料向上拉伸，形成一个短的烟囱。这个烟囱可以攻丝形成螺纹，比直接在薄板上攻丝要坚固得多。</li>
+<li>压铆：用压力将压铆螺母、压铆螺柱永久地固定在钣金上。这是在薄板上实现可靠螺纹连接的最常用方法，PCB通常拧在这些压铆螺柱上。</li>
+</ul>
+</li>
+<li><p>硬件工程师需关注：</p>
+<ul>
+<li>接地和屏蔽：钣金机箱是天然的法拉第笼，屏蔽效果好。需与机械工程师明确整个机箱的接地策略，确保所有金属件都可靠导通。</li>
+<li>安装孔位：PCB上的安装孔必须和机箱底板上的压铆螺柱位置精确对应，公差配合是关键。</li>
+<li>空间限制：折弯半径会占用角落的空间，元器件布局时要留出余量。</li>
+</ul>
+</li>
+<li><p>冲压成型对比：冲压成型是钣金工艺的一种，特点是使用专用模具，通过压力机对金属板材快速成型。打样或小批量生产侧板时，多采用激光切割加折弯；大规模量产时，则开具冲压模具一次性完成外形、散热孔、加强筋等成型。常规钣金无需模具或模具成本低，适合小批量，形状受限；冲压单件成本极低，速度极快，适合大批量和复杂的立体特征。<br>压铸<br>适合大批量、形状复杂的金属零件。将熔融的金属在高压下注入精密的钢制模具中，冷却后开模取出零件。单件成本低，能一体成型散热鳍片和安装柱，尺寸精度高。</p>
+</li>
+<li><p>常用术语：</p>
+<ul>
+<li>模具或开模：制造压铸件的钢制工具，设计和制造成本非常高昂。开模是项目中的一个重大节点。</li>
+<li>拔模斜度：为了让零件能顺利地从模具中取出，所有平行于开模方向的面都必须有一个微小斜度，通常为1至3度，零件不是完美的垂直侧壁。</li>
+<li>分型面：模具两半合模的地方，会在零件上留下一条细微的线。</li>
+<li>顶针印：开模后，用顶杆将零件从模具中顶出，会在零件表面留下小圆印。</li>
+</ul>
+</li>
+<li><p>硬件工程师需关注：</p>
+<ul>
+<li>设计冻结：模具一旦开出，设计修改将面临高昂费用或重新开模。开模前硬件接口位置和安装点必须完全冻结。</li>
+<li>一体化散热：压铸外壳可直接将散热鳍片设计在上面。需提供热源位置和功耗数据，以便优化鳍片设计。</li>
+<li>安装特征：PCB螺丝柱和连接器限位结构可直接在压铸件上成型，精度高。<br>型材<br>将加热的铝棒通过特定形状的模具挤压出来，形成连续的、等截面的长条。常用于散热器、机箱框架和部分外壳。模具成本相对较低，散热效率高，截面形状固定但长度可任意切割。</li>
+</ul>
+</li>
+<li><p>常用术语：</p>
+<ul>
+<li>截面：型材的二维形状，是设计的核心。</li>
+<li>齿高、齿距、齿厚：描述散热器鳍片几何形状的关键参数，直接决定散热面积和风阻。</li>
+<li>T型槽：型材上常见的特征，方便放入螺母实现灵活安装。</li>
+</ul>
+</li>
+<li><p>硬件工程师需关注：</p>
+<ul>
+<li>散热器选型：需提供功耗和温升要求，以确认型材散热器性能是否满足功率器件散热需求。</li>
+<li>安装接口：安装面的平整度、螺丝孔位置对于功率模块的贴合至关重要。</li>
+<li>空间布局：型材散热器体积较大，会影响内部PCB布局和走线。<br>CNC加工<br>使用由计算机控制的自动化机床进行减材制造，将实心原材料精确切削出所需形状。</li>
+</ul>
+</li>
+<li><p>应用场景：用于产品原型打样验证、小批量生产、高精度零件精加工以及高端外观件加工。</p>
+</li>
+<li><p>硬件工程师需关注：</p>
+<ul>
+<li>成本与周期：打样速度快，但单件量产成本远高于模具件。</li>
+<li>设计自由度：可实现复杂设计，接口位置和安装孔位要求灵活。但需注意部分CNC设计可能无法直接转换为未来的压铸量产工艺。</li>
+<li>外观特征：零件表面通常会留下一排排细密平行的刀纹。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>钣金思维与 CNC 思维对比<br>CNC加工如同雕塑家，从实心材料上不断去除部分得到一体成型实体；钣金如同折纸盒师傅，将平面材料剪裁折叠连接得到中空壳体。</p>
+<ul>
+<li>钣金思维：从二维平面出发，思考如何将三维物体展开，在何处折弯和拼接。设计受限于可由平板展开的原则。</li>
+<li>CNC思维：从三维实体出发，思考需要去除哪些部分。设计自由度极高，可加工复杂曲面、厚薄变化。<br>在硬件设计迭代中，原型阶段可能用CNC做一体外壳快速验证；量产阶段为降本改为钣金拆分拼接。此时硬件工程师必须关注因拼接缝隙对EMC屏蔽性能的影响，以及各部件间接地连续性。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>CNC加工</th>
+<th>钣金</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原材料</td>
+<td>块料或棒料等实心材料</td>
+<td>有固定厚度的金属薄板</td>
+</tr>
+<tr>
+<td>核心工艺</td>
+<td>减材制造，如铣削、车削、钻孔</td>
+<td>成型与连接，如冲孔、折弯、铆接</td>
+</tr>
+<tr>
+<td>产品形态</td>
+<td>实心或厚壁，壁厚可不均匀</td>
+<td>中空薄壁，壁厚基本等于原材料板厚</td>
+</tr>
+<tr>
+<td>单件成本</td>
+<td>高</td>
+<td>相对较低</td>
+</tr>
+<tr>
+<td>生产速度</td>
+<td>慢</td>
+<td>快</td>
+</tr>
+<tr>
+<td>典型应用</td>
+<td>产品原型、高精度零件、小批量复杂结构件</td>
+<td>机箱、机柜、内部支架、面板</td>
+</tr>
+</tbody></table>
+<hr>
+<p>表面处理工艺<br>金属外壳的表面处理不仅影响外观和耐用性，还直接决定接地和电磁屏蔽等电气特性。<br>喷粉与喷塑<br>将粉末状涂料通过静电吸附附着在工件表面，经高温烘烤熔融固化形成坚硬保护涂层。涂层厚实，耐磨损和耐腐蚀性能好。</p>
+<ul>
+<li><p>硬件工程师需关注：</p>
+<ul>
+<li>绝缘性与接地遮蔽：喷粉涂层是优良的绝缘体。在量产工艺中，绝不能采用后期打磨破漆的非规范手段来实现接地，这极易导致生锈和接触不良。正规做法是在机械图纸上明确要求此处需遮蔽。喷粉厂在喷涂前会贴上耐高温专用胶带保护接地连接点或EMC接触面，烘烤后撕掉直接暴露光洁金属基材，从而保证接地和屏蔽的绝对可靠。</li>
+<li>涂层厚度：喷粉层厚度通常在0.08毫米至0.12毫米之间，结构设计配合间隙必须考虑此厚度。<br>阳极氧化<br>铝及铝合金专属工艺，通过电化学方法在表面生成致密坚硬的三氧化二铝保护膜。极大增强表面硬度、耐磨性和耐腐蚀性，黑色阳极氧化层具有较高的热辐射率，能有效提升散热器的辐射散热效率。</li>
+</ul>
+</li>
+<li><p>常用术语：本色阳极保留铝金属质感；硬质阳极生成更厚硬的膜，适用于严苛工业环境。</p>
+</li>
+<li><p>硬件工程师需关注：</p>
+<ul>
+<li>导电性：阳极氧化膜是绝缘的。若需接地，必须采取额外措施，如通过激光雕刻去除局部氧化膜暴露铝基材，或改用导电氧化处理。<br>电镀<br>利用电解原理在工件表面沉积一层金属膜。镀锌成本低廉用于钢件防锈；镀镍耐磨耐腐蚀且外观亮丽。</li>
+</ul>
+</li>
+<li><p>硬件工程师需关注：电镀层通常是导电的，是确保机箱各部件电气导通的有效方法。<br>导电氧化<br>在铝及铝合金表面形成薄而导电的化学转化膜，在提供防腐蚀保护的同时保持表面导电性。</p>
+</li>
+<li><p>常用术语：Alodine 或 Iridite 为商业品牌名；黄铬或彩铬防腐极佳但有毒；无铬或三价铬钝化为环保工艺。</p>
+</li>
+<li><p>硬件工程师需关注：这是EMC设计的关键工艺。当铝制机箱内部需要同时满足防氧化和表面低阻抗导电时，导电氧化是最佳选择。</p>
+</li>
+</ul>
+<hr>
+<p>表面研磨原理与应用<br>研磨的核心原则是根据任务目标选择不同粗糙度的磨头，主要分为粗磨和精磨。</p>
+<ul>
+<li>粗磨去除材料：使用大颗粒、低目数磨料，具有强大切削力和较大容屑空间。主要用于高效去除表面的大量材料，如清除焊缝余高、铁锈或金属毛刺。在规范的量产制造中，不建议使用粗磨来强行刮除外壳绝缘漆用作接地节点，应优先选用工艺遮蔽。</li>
+<li>精磨平滑表面：使用微小颗粒、高目数磨料，切削力弱，主要用于逐步刮平粗磨留下的划痕，改善表面光洁度直至镜面效果。</li>
+</ul>
+<hr>
+<h3 id="紧固件与连接设计"><a href="#紧固件与连接设计" class="headerlink" title="紧固件与连接设计"></a>紧固件与连接设计</h3><p>螺纹紧固件基础<br>螺纹紧固件是通过施加扭矩拉伸螺钉，产生强大轴向预紧力或称夹紧力来固定组件的基础元件。</p>
+<ul>
+<li>基本定义：<ul>
+<li>螺钉：自带外螺纹，直接拧入工件内螺纹孔中固定，通常不需要螺母，常被称为螺丝。</li>
+<li>螺栓：穿过工件的通孔，需要与螺母配合使用。</li>
+<li>螺母：与螺栓或螺柱配合使用的带内螺纹零件。</li>
+<li>外螺纹：加工在圆柱体外表面的螺纹；内螺纹：加工在内孔表面的螺纹。</li>
+</ul>
+</li>
+<li>常见类型与特征：<ul>
+<li>规格：M开头表示公制螺纹，数字代表外径毫米数。M3 是PCB安装最常用的规格。</li>
+<li>头部形状：盘头最常用；沉头用于需要表面平整场合；杯头或内六角用于需要较大锁紧力场合。</li>
+<li>驱动槽型：十字、内六角、星形或 Torx。内六角和星形受力更均匀，能承受更大扭矩且不易滑丝。</li>
+<li>螺母类型：六角螺母最基本；法兰螺母自带法兰面增大接触面积。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>压铆螺柱<br>一种通过压力永久固定在薄金属板上的紧固件，行业内常以品牌名 PEM 称呼。利用压力将螺柱挤入预开孔，底部的齿防旋转，板材金属塑性变形流入凹槽防拔出，在薄板上创造坚固的螺纹连接点。</p>
+<ul>
+<li>类型：压铆螺母柱带有内螺纹孔，常用于固定PCB；压铆螺柱带有外螺纹杆，配合螺母固定零件。</li>
+<li>硬件工程师需关注：<ul>
+<li>PCB安装基石：螺母柱高度决定PCB与机箱底板间距。</li>
+<li>接地路径：压铆螺柱为导电金属，拧紧后通过PCB螺丝孔周边的接地区，形成可靠的机箱电气接地路径。</li>
+<li>硬性接口：PCB安装孔位置必须与图纸定义的压铆螺柱位置完全一致。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>紧固与防松机制<br>在振动或热循环环境下，紧固件极易松脱，必须采取对应的防松和缓冲措施。</p>
+<ul>
+<li>垫片的作用：<ul>
+<li>平垫片：增大接触面积，将紧固压力均匀分布，防止损伤工件，并为弹簧垫片提供平整面。</li>
+<li>弹簧垫片：依靠弹性形变的回弹力，持续对螺母施加压力维持摩擦力，防止振动松脱。</li>
+<li>碟形弹圈：在大功率电力电子设备中，如几十千瓦的变流器或大电流母排连接处，铜排会经历剧烈的热胀冷缩。普通弹簧垫片在高温下容易退火失效导致严重松动。碟形弹圈是高功率母排连接防松的标配，能提供极大的弹力补偿。</li>
+<li>标准安装顺序：螺栓头、弹簧垫片或碟形弹圈、平垫片、工件。</li>
+</ul>
+</li>
+<li>其他防松措施：<ul>
+<li>防松胶：涂在螺纹上的液体，固化后锁死螺纹，分不同强度等级，如蓝色可拆卸、红色永久。</li>
+<li>尼龙防松螺母：内嵌尼龙环，通过增加螺纹摩擦力防松脱。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>扭矩规范<br>扭矩是拧紧时施加的旋转力，单位是 N·m。夹紧力是螺钉拉伸产生的轴向固定力，单位是 N。</p>
+<ul>
+<li>扭矩规范确定原则：能承受的最大扭矩取决于连接系统中最薄弱环节。<ul>
+<li>通用扭矩标准：针对螺丝本身的理论安全扭矩，前提是螺纹孔强度足够。</li>
+<li>特定应用规范：针对端子或塑料件等实际强度的安全扭矩，由厂家测试得出，严禁超标以免滑牙或断裂。实际装配永远以特定规格书为准。</li>
+</ul>
+</li>
+<li>扭矩标记：在扭矩扳手打完扭矩后，量产工艺要求在螺丝和工件结合处点上扭矩防拆漆。这是一眼看出螺丝是否松动以及是否规范作业的唯一品控方法。<br>盘头螺钉几何尺寸参考</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">螺丝规格</th>
+<th align="left">公称直径</th>
+<th align="left">头部直径约</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">M2</td>
+<td align="left">2.0 mm</td>
+<td align="left">4.0 mm</td>
+</tr>
+<tr>
+<td align="left">M2.5</td>
+<td align="left">2.5 mm</td>
+<td align="left">5.0 mm</td>
+</tr>
+<tr>
+<td align="left">M3</td>
+<td align="left">3.0 mm</td>
+<td align="left">6.0 mm</td>
+</tr>
+<tr>
+<td align="left">M4</td>
+<td align="left">4.0 mm</td>
+<td align="left">8.0 mm</td>
+</tr>
+<tr>
+<td align="left">M5</td>
+<td align="left">5.0 mm</td>
+<td align="left">10.0 mm</td>
+</tr>
+<tr>
+<td align="left">钢制螺丝通用安全推荐扭矩</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">螺丝规格</th>
+<th align="left">性能等级</th>
+<th align="left">安全推荐扭矩 N·m</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">M3</td>
+<td align="left">8.8</td>
+<td align="left">1.0</td>
+</tr>
+<tr>
+<td align="left">M3</td>
+<td align="left">12.9</td>
+<td align="left">1.5</td>
+</tr>
+<tr>
+<td align="left">M4</td>
+<td align="left">8.8</td>
+<td align="left">2.3</td>
+</tr>
+<tr>
+<td align="left">M4</td>
+<td align="left">12.9</td>
+<td align="left">3.9</td>
+</tr>
+<tr>
+<td align="left">M5</td>
+<td align="left">8.8</td>
+<td align="left">4.5</td>
+</tr>
+<tr>
+<td align="left">M5</td>
+<td align="left">12.9</td>
+<td align="left">7.7</td>
+</tr>
+</tbody></table>
+<h3 id="防护、热管理与线束辅料"><a href="#防护、热管理与线束辅料" class="headerlink" title="防护、热管理与线束辅料"></a>防护、热管理与线束辅料</h3><p>密封防护组件</p>
+<ul>
+<li>防水密封圈：核心工作原理是通过弹性压缩，在配合面之间产生持续的、大于外界流体压力的密封力，并填充所有微观泄露通道，从而实现防水密封。</li>
+<li>防水透气阀：核心部件为一张微孔薄膜，其孔径大于水蒸气分子而远小于液态水滴。这种结构使得阀体只允许空气分子自由进出，以平衡设备内外气压，同时能有效阻挡液态水和灰尘进入设备内部。</li>
+<li>格兰头：一种用于将电缆引入设备机壳的密封连接件。它在保证电缆固定的同时，能有效防止水和灰尘沿电缆进入设备内部。选用时需注意其防护等级和适用的电缆外径范围。此外，还有具备电磁屏蔽功能的格兰头，可将电缆的屏蔽层与设备机壳进行电气连接。</li>
+</ul>
+<hr>
+<p>热管理材料<br>大功率器件的散热不仅依靠散热器，热源与散热器之间的热界面材料至关重要。空气是热的不良导体，必须使用合适的材料填充微观界面的缝隙。</p>
+<ul>
+<li>导热硅脂：具有极低的热阻，能极大提升导热效率。缺点是涂抹厚度难以精确控制，且长期高温下存在硅油挥发变干的风险。适用于对极低热阻有苛刻要求且表面平整度极高的接触面。</li>
+<li>导热硅胶片：具有优良的导热性和电气绝缘性，且具备一定的弹性，可以通过压缩来填补较大的结构缝隙和制造公差。常用于功率模块与散热器之间，或者发热元器件与机壳之间。</li>
+<li>绝缘导热垫：一种内置玻璃纤维网的增强型导热绝缘材料，提供极高的抗刺穿强度和可靠的物理绝缘性能，同时兼顾导热。常用于高压功率器件与接地散热器之间的电气隔离。</li>
+<li>灌封胶：在电力电子产品中，常用于模块级别的整体灌封。固化后不仅能提供优异的高压绝缘和防潮防尘防护，还能将内部元器件产生的热量均匀传导至外壳进行整体散热。</li>
+</ul>
+<hr>
+<p>线束与电磁屏蔽管理</p>
+<ul>
+<li>线束胶带：用于线束管理、减震降噪和耐磨防护，关系到产品的长期可靠性和电磁兼容性。禁止使用普通的电工胶带替代，普通胶带耐温性和耐磨性差，长时间使用后会渗出残胶且低温下容易变脆。<ul>
+<li>捆扎与分离：使用布基胶带将各类线缆分别捆扎成束，保证功率部分与信号部分的安全距离，降低电磁干扰风险。</li>
+<li>防绝缘层磨损：在线束可能与机壳、散热器等尖锐或粗糙表面发生摩擦的关键位置，缠绕耐磨的布基胶带作为牺牲层，防止线缆绝缘层被磨破。</li>
+<li>减震降噪：使用表面带绒的绒布胶带捆扎线束，利用柔软的绒布层起到缓冲作用，消除高频振动带来的异响。</li>
+<li>选型考量：靠近发热源的线束必须选用125℃或150℃耐温等级的胶带，远离热源的信号线束可选用105℃等级。此外，还需确认阻燃等级和绝缘性能满足安规认证要求，并选用压敏丙烯酸或橡胶基胶水的胶带。</li>
+</ul>
+</li>
+<li>导电橡胶密封圈：解决电磁兼容性和环境密封等级矛盾的关键元器件。<ul>
+<li>核心作用：在机箱的盖板与主体接触面上安装，被压缩后在整个接触面上形成连续的低阻抗导电通路，使金属机箱构成完整的法拉第笼，有效抑制电磁辐射与骚扰。也可用于两个有绝缘涂层的结构件之间，提供面接触的可靠低阻抗接地路径。</li>
+<li>选型考量：需根据测试标准选择在关键频段具有足够屏蔽效能的产品。结构设计必须保证密封圈在全长上被均匀压缩到推荐的压缩比范围内，例如10%至30%。压缩不足则功能失效，过度压缩则会导致永久损坏。此外，必须选择与机箱材料电偶电位差小的导电填料，避免在潮湿环境中产生电化学腐蚀。</li>
+<li>常见误区：不能仅将其当作普通防水密封条使用。若设计中未考虑压缩力、表面接触处理和电化学兼容性，导电橡胶圈将无法发挥屏蔽作用。</li>
+</ul>
+</li>
+<li>接地编织铜带：在大功率机柜或设备中，机箱门板与主体之间需要进行柔性高频接地。由于高频电流的趋肤效应，表面积庞大的接地编织铜带的高频阻抗远小于普通圆柱形导线，是保障大机箱整体电磁屏蔽连续性的核心辅料。</li>
+</ul>
+<hr>
+<p>支撑与缓冲辅料</p>
+<ul>
+<li>聚氨酯发泡胶：在电力电子产品中主要扮演结构填充、减震固定和局部密封的角色。<ul>
+<li>减震与结构加固：在电路板上立式安装的大电解电容、功率电感等重型元器件底部或侧面局部注入。固化后提供有效的机械支撑和振动缓冲，将应力分散，极大提升抗振动冲击能力。</li>
+<li>填充与密封：用于机壳拼缝或不规则的电缆出口处填充密封。</li>
+<li>选型与使用考量：发泡胶是优良的热绝缘体，绝对禁止覆盖任何需要散热的元器件。发泡过程会产生巨大的膨胀压力，必须预留膨胀空间或选择低膨胀型号以防挤压变形。使用前需确认其阻燃等级、绝缘电阻和介电强度等电气性能，并注意其在密封腔体内可能因缺乏湿气而固化不完全。</li>
+</ul>
+</li>
+<li>橡胶垫：也称减震柱，主要安装在设备底部，能将外部传来的振动或冲击机械能通过弹性形变转化为热能耗散，从而保护内部精密元器件。</li>
+</ul>
+<hr>
+<h3 id="生产组装与工具"><a href="#生产组装与工具" class="headerlink" title="生产组装与工具"></a>生产组装与工具</h3><p>工装与夹具<br>工装是工艺装备的简称，泛指在制造业和工程领域中，为提高生产效率、保证产品质量、降低劳动强度而设计制造的各类辅助工具、夹具、模具、检具的总称。它并非产品本身或通用工具，而是针对某个特定加工、装配或测试环节专门设计的辅助设备。</p>
+<ul>
+<li>常见分类：<ul>
+<li>装配工装：即夹具，在装配过程中用于精确定位和固定多个零件以确保装配精度，例如带有特定凹槽和定位销的治具。</li>
+<li>焊接工装：在焊接操作中用于固定电路板或其他工件，防止移动并确保元器件保持特定角度。</li>
+<li>测试工装：即检具，用于产品的功能测试。例如带有探针阵列的针床工装，可一次性接触电路板所有测试点实现自动化快速检测。</li>
+<li>模具：用于批量成型零部件的专用设备，也属于广义的工装范畴。</li>
+</ul>
+</li>
+<li>语境释义：在日常沟通和生产制程中，工装最常见的含义是指用于定位和夹持工件的夹具。当提及某个工装需要固定时，意思是该夹具必须牢固地安装在工作台或设备台面上，以防止操作中发生偏移导致装配或加工失败。</li>
+</ul>
+<hr>
+<p>扭矩工具<br>扭矩扳手也称扭力扳手，是施加特定扭矩的专用工具，用于确保紧固连接件达到设计要求的精准夹紧力。</p>
+<ul>
+<li>工作原理：使用者可以在扳手上预设扭矩值。拧紧螺丝时，一旦施加的扭矩达到预设值，扳手内部机械结构会发出清脆的咔哒声或通过数字显示屏提示，表示扭矩已到位，此时必须立即停止用力。</li>
+<li>选型建议：对于M2至M5规格的小尺寸螺丝，应选择量程较小的精密扭矩扳手，例如量程为 1 N·m 至 10 N·m 的型号。大范围量程的扭矩扳手在低扭矩段的误差通常难以接受，无法保证小螺丝的紧固精度。</li>
+</ul>
+<hr>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 机械知识</li>
+        <li><strong>作者:</strong> WenZhenJian-EE</li>
+        <li><strong>创建于
+                :</strong> 2026-06-13 13:29:11</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2026-06-13 13:30:07
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://wenzhenjian-ee.github.io/mechanical/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E6%B5%8B%E8%AF%95/">#测试</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E5%B7%A5%E7%A8%8B%E5%BA%94%E7%94%A8/">#工程应用</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/opamp-math-logic-circuit/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">运放、数学逻辑电路收集</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/pcb-layout/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">PCB Layout</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">机械知识</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%BA%E6%A2%B0%E7%9B%B8%E5%85%B3"><span class="nav-text">机械相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E6%A2%B0%E5%88%B6%E5%9B%BE%E4%B8%8E%E6%B2%9F%E9%80%9A%E5%9F%BA%E7%A1%80"><span class="nav-text">机械制图与沟通基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%9D%90%E6%96%99%E5%8F%8A%E5%85%B6%E7%89%B9%E6%80%A7"><span class="nav-text">常用材料及其特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%88%B6%E9%80%A0%E5%B7%A5%E8%89%BA%E4%B8%8E%E8%A1%A8%E9%9D%A2%E5%A4%84%E7%90%86"><span class="nav-text">核心制造工艺与表面处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A7%E5%9B%BA%E4%BB%B6%E4%B8%8E%E8%BF%9E%E6%8E%A5%E8%AE%BE%E8%AE%A1"><span class="nav-text">紧固件与连接设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B2%E6%8A%A4%E3%80%81%E7%83%AD%E7%AE%A1%E7%90%86%E4%B8%8E%E7%BA%BF%E6%9D%9F%E8%BE%85%E6%96%99"><span class="nav-text">防护、热管理与线束辅料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E4%BA%A7%E7%BB%84%E8%A3%85%E4%B8%8E%E5%B7%A5%E5%85%B7"><span class="nav-text">生产组装与工具</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2026</span>
+              -
+            
+            2026&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">WenZhenJian-EE</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 120 篇文章
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.9.0</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container" role="dialog" aria-modal="true" aria-label="图片查看器">
+	<button class="image-viewer-close" type="button" aria-label="关闭">
+		<i class="fa-solid fa-xmark"></i>
+	</button>
+	<button class="image-viewer-prev" type="button" aria-label="上一页">
+		<i class="fa-solid fa-chevron-left"></i>
+	</button>
+	<div class="image-viewer-frame">
+		<img src="" alt="">
+	</div>
+	<div class="image-viewer-exif-panel hidden absolute left-1/2 bottom-20 -translate-x-1/2 w-[min(92vw,420px)] max-h-[60vh] overflow-hidden rounded-2xl bg-background-color-transparent-80 p-4 text-left shadow-redefine-flat backdrop-blur-md" role="dialog" aria-label="EXIF" aria-hidden="true">
+		<div class="flex items-center justify-between mb-3">
+			<span class="text-sm font-semibold text-first-text-color">EXIF</span>
+			<button class="image-viewer-exif-close flex h-8 w-8 items-center justify-center rounded-full bg-background-color-transparent-80 text-first-text-color transition hover:bg-background-color-transparent-40" type="button" aria-label="关闭">
+				<i class="fa-solid fa-xmark text-[0.65rem]"></i>
+			</button>
+		</div>
+		<div class="image-viewer-exif-cards grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto pr-1 scrollbar-hide"></div>
+		<template class="image-viewer-exif-card-template">
+			<div class="rounded-lg bg-background-color-transparent-40 px-3 py-2">
+				<div class="image-viewer-exif-card-header flex items-center gap-2 mb-1">
+					<i class="image-viewer-exif-card-icon fa-solid fa-circle-info text-xs text-third-text-color"></i>
+					<div class="image-viewer-exif-card-title text-xs font-semibold text-first-text-color"></div>
+				</div>
+				<div class="image-viewer-exif-card-items flex flex-col gap-1"></div>
+			</div>
+		</template>
+	</div>
+	<button class="image-viewer-exif-toggle flex items-center gap-2 hidden absolute left-1/2 bottom-6 -translate-x-1/2 rounded-full border border-border-color bg-background-color-transparent-80 px-4 py-2 text-first-text-color backdrop-blur-md transition hover:bg-background-color-transparent-40" type="button" aria-label="EXIF" aria-expanded="false">
+		<i class="fa-solid fa-circle-info text-xs"></i>
+		<span class="text-xs font-semibold uppercase tracking-wider">EXIF</span>
+	</button>
+	<button class="image-viewer-next" type="button" aria-label="下一页">
+		<i class="fa-solid fa-chevron-right"></i>
+	</button>
+</div>
+
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    window.swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+
+    window.dispatchEvent(
+        new CustomEvent("redefine:swup:ready", {
+            detail: {
+                swup: window.swup,
+            },
+        }),
+    );
+</script>
+
+
+
+
+	
+<script src="/js/build/main.js" type="module"></script>
+
+
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+
+
+
+    
+        
+<script src="/js/build/libs/mermaid.min.js"></script>
+
+    
+
+
+
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+
+	
+</body>
+
+</html>
