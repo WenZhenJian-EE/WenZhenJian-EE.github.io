@@ -93,8 +93,8 @@
 <meta property="og:description" content="WenZhenJian&#39;s Tech Blog - 电力电子与硬件开发">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
-<meta property="article:published_time" content="2026-06-14T10:33:33.000Z">
-<meta property="article:modified_time" content="2026-06-14T13:00:52.068Z">
+<meta property="article:published_time" content="2026-06-14T13:16:28.000Z">
+<meta property="article:modified_time" content="2026-06-14T13:18:39.106Z">
 <meta property="article:author" content="WenZhenJian-EE">
 <meta property="article:tag" content="最小系统">
 <meta property="article:tag" content="系统设计">
@@ -544,15 +544,15 @@ mjx-container[display="true"] + br {
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">47</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">49</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">28</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">29</div>
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">110</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">109</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -594,15 +594,15 @@ mjx-container[display="true"] + br {
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2026-06-14 18:33:33</span>
-        <span class="mobile">2026-06-14 18:33:33</span>
+        <span class="desktop">2026-06-14 21:16:28</span>
+        <span class="mobile">2026-06-14 21:16:28</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-06-14 21:52</span>
-            <span class="mobile">2026-06-14 21:52</span>
+            <span class="desktop">2026-06-14 21:18:39</span>
+            <span class="mobile">2026-06-14 21:18:39</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -1669,19 +1669,19 @@ mjx-container[display="true"] + br {
 <li>学习周期：对于实现基础的保护逻辑（如与或非门、计数器等），从建立开发环境到最终实现功能，学习周期通常较短。</li>
 </ul>
 <hr>
-<p>AI辅助CPLD开发工作流<br>利用AI工具可以显著提升硬件工程师编写Verilog代码的效率。一个典型的工作流程如下：</p>
-<p>需求描述（Prompt构建）<br>以自然语言清晰地描述逻辑功能、输入输出信号，无需自行编写具体代码。</p>
+<p>CPLD与Verilog开发工作流<br>在硬件设计中，使用CPLD（如EPM240等）实现基本的逻辑控制和硬件级互锁是常见做法。典型的Verilog开发流与逻辑设计要求如下：</p>
+<p>设计输入与规范<br>根据系统控制逻辑，明确I/O信号并编写相应的模块代码。</p>
 <ul>
-<li>输入信号示例：PWM_In（1路PWM输入），Clk（50MHz时钟），Rst_n（复位信号）。</li>
-<li>输出信号示例：Gate_H，Gate_L（一对互补输出）。</li>
-<li>功能要求：根据输入的PWM_In生成一对互补的PWM波形Gate_H和Gate_L；在互补波形之间加入2微秒的死区时间以防止直通；如果输入信号PWM_In的高电平持续时间超过1毫秒，则强制关断所有输出。</li>
+<li>输入信号：PWM_In（1路PWM输入），Clk（50MHz时钟），Rst_n（复位信号）。</li>
+<li>输出信号：Gate_H，Gate_L（双通道互补驱动输出）。</li>
+<li>核心要求：根据输入的PWM_In生成一对互补的PWM波形Gate_H和Gate_L；在互补波形之间加入2微秒的死区时间以防止直通；如果输入信号PWM_In的高电平持续时间超过1毫秒，则通过状态机或计数器强制关断所有输出。</li>
 </ul>
-<p>代码生成与验证<br>AI工具会根据需求描述生成相应的Verilog module代码，其中通常会包含实现死区和超时保护所需的计数器等逻辑。工程师需要阅读生成的代码，重点核对输入输出信号的定义是否与需求一致。</p>
+<p>仿真与验证<br>编写对应的Verilog Testbench，在ModelSim或相关仿真工具中进行功能仿真与时序分析。重点核对死区延时计数器的溢出逻辑、各路使能信号极性是否一致，以及保护逻辑的触发条件。</p>
 <p>工程实施</p>
 <ul>
-<li>软件操作：在Quartus II或ISE/Vivado中新建一个工程，并将AI生成的.v文件导入。</li>
-<li>引脚分配（Pin Planner）：这是必须由工程师人工完成的关键步骤。需要依据PCB原理图，将Verilog代码中的信号名称（如gate_h）准确地映射到CPLD芯片的具体物理引脚（如Pin_XX）。</li>
-<li>编译与下载：完成引脚分配后，执行Compile与Program操作，即可完成固件的烧写。</li>
+<li>软件操作：在Quartus II或ISE/Vivado中新建一个工程，新建或导入编写好的.v源文件。</li>
+<li>引脚分配（Pin Planner）：这是硬件工程师主导的关键步骤。需要依据PCB原理图，将Verilog代码中的端口信号名称（如gate_h）准确地映射到CPLD芯片的具体物理引脚上（如Pin_XX）。</li>
+<li>编译与下载：完成引脚分配后，设置正确的时序约束，执行全编译（Compile），并通过JTAG下载器（Program）将生成的配置文件烧写至CPLD芯片中。</li>
 </ul>
 <hr>
 <h2 id="STM32小封装系列"><a href="#STM32小封装系列" class="headerlink" title="STM32小封装系列"></a>STM32小封装系列</h2><p>STM32微控制器小封装系列与市场定位</p>
@@ -2257,11 +2257,11 @@ mjx-container[display="true"] + br {
         <li><strong>标题:</strong> MCU对比、资源</li>
         <li><strong>作者:</strong> WenZhenJian-EE</li>
         <li><strong>创建于
-                :</strong> 2026-06-14 18:33:33</li>
+                :</strong> 2026-06-14 21:16:28</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-06-14 21:00:52
+                    :</strong> 2026-06-14 21:18:39
             </li>
         
         <li>
@@ -2303,12 +2303,12 @@ mjx-container[display="true"] + br {
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
 			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/loss-structure-material-winding-test/">
+				<a class="prev" rel="prev" href="/magnetics-fundamentals/">
 					<span class="left arrow-icon flex justify-center items-center">
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">损耗、结构材料、绕制测试</span>
+						<span class="post-nav-title-item truncate max-w-48">磁学基础</span>
 						<span class="post-nav-item">上一篇</span>
 					</span>
 				</a>
@@ -2316,9 +2316,9 @@ mjx-container[display="true"] + br {
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/m-c-u-datasheet-reading/">
+				<a class="next" rel="next" href="/magnetic-reluctance/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">MCU相关数据手册阅读</span>
+						<span class="post-nav-title-item truncate max-w-48">磁阻网络解析法</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -2368,7 +2368,7 @@ mjx-container[display="true"] + br {
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 110 篇文章
+                        共撰写了 109 篇文章
                     </span>
                     
                 </p>
