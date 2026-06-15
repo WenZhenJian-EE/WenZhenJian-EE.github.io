@@ -697,8 +697,8 @@ mjx-container[display="true"] + br {
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/driver-design-cases/">
-                            驱动设计案例
+                        <a href="/driver-problems-analysis/">
+                            驱动问题分析
                         </a>
                     </h3>
 
@@ -706,22 +706,19 @@ mjx-container[display="true"] + br {
                         
                             
                             
+MOSFET驱动波形过冲与下冲的核心机制MOSFET驱动波形过冲与下冲的核心机制
+无论是在PWM波形的上升沿还是下降沿，驱动波形产生尖峰的物理本质是完全对称的。其核心原因在于驱动环路中的寄生电感对电流突变产生了阻碍作用，这是电磁学中楞次定律的具体体现。感应电动势总是企图阻碍引起它的磁通量的变化，电感作为一个具有电流惯性的元件，在充放电过程中会不断产生反向电动势来阻碍电流的激增或衰减。
 
-高边驱动方案高边驱动方案
-驱动单个高边N沟道MOSFET的核心挑战在于，需要创建一个参考于其源极的浮动驱动电源，该电源的电压需比源极高出10V至15V。实现这一目标的方案选择，主要取决于应用对占空比的要求。
-
-自举电路方案
-自举电路是性价比最高且最常用的高边驱动方法，但其应用受限于特定的工作条件。
-工作原理即使电路中没有低边开关，只要负载能够提供到地的通路，并且高边开关会周期性关断，就可...
+寄...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun Jun 14 2026 21:16:28 GMT+0800">
+            <span class="home-article-date" data-date="Mon Jun 15 2026 21:06:03 GMT+0800">
                 
-                    2026-06-14
+                    2026-06-15
                 
             </span>
         </span>
@@ -772,7 +769,7 @@ mjx-container[display="true"] + br {
         
     </div>
 
-    <a href="/driver-design-cases/">阅读全文<span class="seo-reader-text">驱动设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/driver-problems-analysis/">阅读全文<span class="seo-reader-text">驱动问题分析</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -803,9 +800,9 @@ mjx-container[display="true"] + br {
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun Jun 14 2026 21:16:28 GMT+0800">
+            <span class="home-article-date" data-date="Mon Jun 15 2026 21:06:03 GMT+0800">
                 
-                    2026-06-14
+                    2026-06-15
                 
             </span>
         </span>
@@ -884,9 +881,9 @@ mjx-container[display="true"] + br {
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun Jun 14 2026 21:16:28 GMT+0800">
+            <span class="home-article-date" data-date="Mon Jun 15 2026 21:06:03 GMT+0800">
                 
-                    2026-06-14
+                    2026-06-15
                 
             </span>
         </span>
@@ -952,6 +949,89 @@ mjx-container[display="true"] + br {
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
+                        <a href="/emc-design-cases-2/">
+                            EMC设计案例
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            输入电压84V系统EMI设计系统的EMI滤波电路设计
+针对输入电压可能达到 84V、整机电流预估在 2A 左右的系统，推荐采用 TVS 结合 Pi 型滤波架构。此设计利用共模电感自身的漏感充当差模电感，无需额外增加差模电感器件。
+电路连接顺序与拓扑：从双电源二极管汇集点至后级输入端，各元件依序连接如下：
+
+输入防浪涌节点：在前端母线与地之间并联 TVS 管。
+第一级滤波：在前端母线与地之间依...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Jun 15 2026 21:06:03 GMT+0800">
+                
+                    2026-06-15
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/">电路开发</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">电路设计案例</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">设计案例</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/emc-design-cases-2/">阅读全文<span class="seo-reader-text">EMC设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
                         <a href="/emc-design-cases/">
                             EMC设计案例、理解
                         </a>
@@ -974,9 +1054,9 @@ H桥驱动与差模干扰的产生机理H桥驱动感性负载（如电机）是
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun Jun 14 2026 21:16:28 GMT+0800">
+            <span class="home-article-date" data-date="Mon Jun 15 2026 21:06:03 GMT+0800">
                 
-                    2026-06-14
+                    2026-06-15
                 
             </span>
         </span>
@@ -1042,29 +1122,31 @@ H桥驱动与差模干扰的产生机理H桥驱动感性负载（如电机）是
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/emc-design-cases-2/">
-                            EMC设计案例
+                        <a href="/emc-fundamentals/">
+                            EMC基础
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            输入电压84V系统EMI设计系统的EMI滤波电路设计
-针对输入电压可能达到 84V、整机电流预估在 2A 左右的系统，推荐采用 TVS 结合 Pi 型滤波架构。此设计利用共模电感自身的漏感充当差模电感，无需额外增加差模电感器件。
-电路连接顺序与拓扑：从双电源二极管汇集点至后级输入端，各元件依序连接如下：
+                            
+电磁兼容性基础 (EMC)电磁兼容性（EMC）是电子设备在电磁环境中正常工作且不对该环境中任何事物构成不能承受的电磁骚扰的能力。它包含两个核心方面：
 
-输入防浪涌节点：在前端母线与地之间并联 TVS 管。
-第一级滤波：在前端母线与地之间依...
+电磁骚扰 (EMI): 指设备自身产生的电磁能量对外界环境及其他设备造成干扰的程度。
+电磁抗扰度 (EMS): 指设备自身抵抗外部电磁干扰并保持正常工作的能力。
+
+EMC物理基础与频域理论EMI干扰源的物理本质
+在硬开关电力电子拓扑中，EM...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun Jun 14 2026 21:16:28 GMT+0800">
+            <span class="home-article-date" data-date="Mon Jun 15 2026 21:06:03 GMT+0800">
                 
-                    2026-06-14
+                    2026-06-15
                 
             </span>
         </span>
@@ -1077,7 +1159,7 @@ H桥驱动与差模干扰的产生机理H桥驱动感性负载（如电机）是
                     
                         
                         <li>
-                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/">电路开发</a>&nbsp;
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/">电力电子</a>&nbsp;
                         </li>
                     
                     
@@ -1087,7 +1169,7 @@ H桥驱动与差模干扰的产生机理H桥驱动感性负载（如电机）是
                             <li>></li>
                         
                         <li>
-                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">电路设计案例</a>&nbsp;
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/EMC-EMI/">EMC/EMI</a>&nbsp;
                         </li>
                     
                     
@@ -1102,7 +1184,12 @@ H桥驱动与差模干扰的产生机理H桥驱动感性负载（如电机）是
                     
                         <li>
                             
-                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">设计案例</a>&nbsp;
+                            <a href="/tags/EMC/">EMC</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/EMI/">EMI</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1110,7 +1197,7 @@ H桥驱动与差模干扰的产生机理H桥驱动感性负载（如电机）是
         
     </div>
 
-    <a href="/emc-design-cases-2/">阅读全文<span class="seo-reader-text">EMC设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/emc-fundamentals/">阅读全文<span class="seo-reader-text">EMC基础</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1144,9 +1231,9 @@ EMS：衡量设备...
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun Jun 14 2026 21:16:28 GMT+0800">
+            <span class="home-article-date" data-date="Mon Jun 15 2026 21:06:03 GMT+0800">
                 
-                    2026-06-14
+                    2026-06-15
                 
             </span>
         </span>
@@ -1235,9 +1322,9 @@ EMS：衡量设备...
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun Jun 14 2026 21:16:28 GMT+0800">
+            <span class="home-article-date" data-date="Mon Jun 15 2026 21:06:03 GMT+0800">
                 
-                    2026-06-14
+                    2026-06-15
                 
             </span>
         </span>
@@ -1303,96 +1390,6 @@ EMS：衡量设备...
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/emc-fundamentals/">
-                            EMC基础
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            
-电磁兼容性基础 (EMC)电磁兼容性（EMC）是电子设备在电磁环境中正常工作且不对该环境中任何事物构成不能承受的电磁骚扰的能力。它包含两个核心方面：
-
-电磁骚扰 (EMI): 指设备自身产生的电磁能量对外界环境及其他设备造成干扰的程度。
-电磁抗扰度 (EMS): 指设备自身抵抗外部电磁干扰并保持正常工作的能力。
-
-EMC物理基础与频域理论EMI干扰源的物理本质
-在硬开关电力电子拓扑中，EM...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun Jun 14 2026 21:16:28 GMT+0800">
-                
-                    2026-06-14
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/">电力电子</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/EMC-EMI/">EMC/EMI</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/EMC/">EMC</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/EMI/">EMI</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/emc-fundamentals/">阅读全文<span class="seo-reader-text">EMC基础</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
                         <a href="/essence/">
                             源的本质定义理解
                         </a>
@@ -1433,9 +1430,9 @@ EMC物理基础与频域理论EMI干扰源的物理本质
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun Jun 14 2026 21:16:28 GMT+0800">
+            <span class="home-article-date" data-date="Mon Jun 15 2026 21:06:03 GMT+0800">
                 
-                    2026-06-14
+                    2026-06-15
                 
             </span>
         </span>
@@ -1501,26 +1498,30 @@ EMC物理基础与频域理论EMI干扰源的物理本质
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/failure-analysis/">
-                            失效分析
+                        <a href="/f-i-l-t-e-r-design-cases/">
+                            filter设计案例
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            SPOF 基础概念与系统级危害评估
-在电力电子系统中，SPOF 指的是系统中存在的某一个组件、节点或环节，一旦发生物理损坏、逻辑错误或失去功能，就会导致整个系统立刻陷入瘫痪、停机，甚至引发灾难性的硬件损坏，且系统没有任何后备、冗余或容错机制来接管其工作。即牵一发而动全身。
-与低功耗数字系统不同，电力电子设备处理高电压和强电流。在此类设备中发生 SPOF 不仅意味着停止工作，更意味着能量失去控...
+                            
+功率被动元器件（LC）设计与选型指南一、 功率电容设计与选型
+
+电容的等效模型与物理特性实际的功率电容并非理想元件，其高频等效模型包含理想电容 C、等效串联电阻 ESR 和等效串联电感 ESL。
+
+
+频率特性：功率电容的自谐振频率 SRF 通常在 5MHz 到 10MHz 之间。在常规数百 kHz 的开关频率下，ESL 的影响通常可忽略，但在进行高频 EMI 滤波或 LLC 谐振分析时必须...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun Jun 14 2026 21:16:28 GMT+0800">
+            <span class="home-article-date" data-date="Mon Jun 15 2026 21:06:03 GMT+0800">
                 
-                    2026-06-14
+                    2026-06-15
                 
             </span>
         </span>
@@ -1533,7 +1534,7 @@ EMC物理基础与频域理论EMI干扰源的物理本质
                     
                         
                         <li>
-                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/">电力电子</a>&nbsp;
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/">电路开发</a>&nbsp;
                         </li>
                     
                     
@@ -1543,7 +1544,7 @@ EMC物理基础与频域理论EMI干扰源的物理本质
                             <li>></li>
                         
                         <li>
-                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/%E5%AE%89%E8%A7%84/">安规</a>&nbsp;
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">电路设计案例</a>&nbsp;
                         </li>
                     
                     
@@ -1558,12 +1559,7 @@ EMC物理基础与频域理论EMI干扰源的物理本质
                     
                         <li>
                             
-                            <a href="/tags/%E5%AE%89%E8%A7%84/">安规</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%AE%89%E5%85%A8%E8%A7%84%E8%8C%83/">安全规范</a>&nbsp;
+                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">设计案例</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1571,7 +1567,7 @@ EMC物理基础与频域理论EMI干扰源的物理本质
         
     </div>
 
-    <a href="/failure-analysis/">阅读全文<span class="seo-reader-text">失效分析</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/f-i-l-t-e-r-design-cases/">阅读全文<span class="seo-reader-text">filter设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
