@@ -853,6 +853,237 @@
 
 
 	
+
+<!-- MOSFET Easter Egg -->
+<div id="mosfet-egg-container" class="no-print" title="TO-247 MOSFET (点击进行过载测试)">
+  <div id="mosfet-floating-label"></div>
+  <svg viewBox="0 0 100 100" class="mosfet-svg">
+    <!-- Metal Tab -->
+    <rect class="mosfet-tab" x="35" y="10" width="30" height="20" rx="3" fill="#999" />
+    <circle cx="50" cy="18" r="4" fill="#eaeaea" />
+    <!-- Plastic Body -->
+    <rect class="mosfet-body" x="25" y="25" width="50" height="45" rx="4" fill="#222" stroke="#444" stroke-width="2" />
+    <!-- Gate/Drain/Source Pins -->
+    <rect class="mosfet-pin" x="33" y="70" width="4" height="25" fill="#bbb" />
+    <rect class="mosfet-pin" x="48" y="70" width="4" height="25" fill="#bbb" />
+    <rect class="mosfet-pin" x="63" y="70" width="4" height="25" fill="#bbb" />
+    <!-- Text markings -->
+    <text class="mosfet-text" x="50" y="42" font-size="8" fill="#fff" text-anchor="middle" font-family="monospace">SiC-2026</text>
+    <text class="mosfet-text sub" x="50" y="52" font-size="7" fill="#888" text-anchor="middle" font-family="monospace">800V 50A</text>
+  </svg>
+  <div class="spark-flash"></div>
+</div>
+
+<style>
+#mosfet-egg-container {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  width: 50px;
+  height: 50px;
+  z-index: 9999;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  user-select: none;
+}
+#mosfet-egg-container:hover {
+  transform: scale(1.1);
+}
+.mosfet-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+  transition: filter 0.5s ease;
+}
+/* Shaking animation on click */
+@keyframes mosfet-shake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(-3px, 1px) rotate(-3deg); }
+  40% { transform: translate(2px, -1px) rotate(3deg); }
+  60% { transform: translate(-2px, -2px) rotate(-1deg); }
+  80% { transform: translate(3px, 2px) rotate(2deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+.mosfet-shaking {
+  animation: mosfet-shake 0.3s ease-in-out;
+}
+/* Sparks */
+.spark-flash {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, rgba(255,240,150,1) 0%, rgba(255,100,0,0.8) 50%, rgba(255,0,0,0) 70%);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.5);
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+.spark-active {
+  opacity: 1;
+  transform: scale(1.5);
+}
+/* Floating text labels */
+#mosfet-floating-label {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: bold;
+  color: #ef4444;
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(0,0,0,0.85);
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #ff4500;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+@keyframes label-float-up {
+  0% { opacity: 0; transform: translate(-50%, 0); }
+  15% { opacity: 1; transform: translate(-50%, -10px); }
+  80% { opacity: 1; transform: translate(-50%, -20px); }
+  100% { opacity: 0; transform: translate(-50%, -35px); }
+}
+.label-active {
+  animation: label-float-up 2s forwards ease-out;
+}
+/* Smoke particle */
+.smoke-particle {
+  position: absolute;
+  background: rgba(220, 220, 220, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(3px);
+  z-index: 9998;
+}
+@keyframes smoke-float {
+  0% { transform: translateY(0) scale(0.8); opacity: 0.5; }
+  50% { opacity: 0.7; }
+  100% { transform: translateY(-100px) scale(2.8); opacity: 0; }
+}
+
+/* Print override */
+@media print {
+  #mosfet-egg-container {
+    display: none !important;
+  }
+}
+</style>
+
+<script>
+(function() {
+  let clickCount = 0;
+  let eggContainer = null;
+  
+  function initMosfetEgg() {
+    const container = document.getElementById('mosfet-egg-container');
+    if (!container) return;
+    eggContainer = container;
+    
+    const label = document.getElementById('mosfet-floating-label');
+    const spark = container.querySelector('.spark-flash');
+    const svg = container.querySelector('.mosfet-svg');
+    const body = container.querySelector('.mosfet-body');
+    const tab = container.querySelector('.mosfet-tab');
+    
+    const failureModes = [
+      { text: "Vgs 过压! (>20V)", color: "#facc15", charred: false, smokeRate: 6 },
+      { text: "Drain 过流! (>50A)", color: "#f97316", charred: "partial", smokeRate: 18 },
+      { text: "雪崩热失控! (>150°C)", color: "#ef4444", charred: "heavy", smokeRate: 40 },
+      { text: "直通短路炸管! (0Ω)", color: "#b91c1c", charred: "destroyed", smokeRate: 85 }
+    ];
+
+    container.addEventListener('click', () => {
+      // Shake SVG
+      svg.classList.remove('mosfet-shaking');
+      void svg.offsetWidth; // Trigger reflow
+      svg.classList.add('mosfet-shaking');
+
+      // Trigger spark flash
+      spark.classList.add('spark-active');
+      setTimeout(() => spark.classList.remove('spark-active'), 120);
+
+      const mode = failureModes[Math.min(clickCount, failureModes.length - 1)];
+      clickCount++;
+
+      // Floating text label
+      label.innerText = mode.text;
+      label.style.borderColor = mode.color;
+      label.style.color = mode.color;
+      label.classList.remove('label-active');
+      void label.offsetWidth; // Trigger reflow
+      label.classList.add('label-active');
+
+      // Charring progression
+      if (mode.charred === "partial") {
+        body.setAttribute('fill', '#111');
+        tab.setAttribute('fill', '#666');
+      } else if (mode.charred === "heavy") {
+        body.setAttribute('fill', '#080808');
+        tab.setAttribute('fill', '#333');
+        svg.style.filter = "grayscale(80%) sepia(20%) drop-shadow(0 4px 6px rgba(0,0,0,0.3))";
+      } else if (mode.charred === "destroyed") {
+        body.setAttribute('fill', '#000');
+        tab.setAttribute('fill', '#111');
+        svg.style.filter = "grayscale(100%) brightness(40%) drop-shadow(0 4px 6px rgba(0,0,0,0.5))";
+      }
+
+      // Release smoke particles
+      createSmoke(mode.smokeRate);
+      
+      // Console output for fellow developers
+      console.warn(`[MOSFET OVERLOAD] Mode: ${mode.text}. Junction temp rising.`);
+    });
+  }
+
+  function createSmoke(rate) {
+    if (!eggContainer) return;
+    const containerRect = eggContainer.getBoundingClientRect();
+    const startX = containerRect.left + containerRect.width / 2;
+    const startY = containerRect.top + window.scrollY + 15; // Account for scroll offset
+
+    for (let i = 0; i < rate; i++) {
+      setTimeout(() => {
+        const p = document.createElement('div');
+        p.className = 'smoke-particle';
+        
+        const size = Math.random() * 8 + 6;
+        const offsetX = (Math.random() - 0.5) * 16;
+        const duration = Math.random() * 1.5 + 1.0;
+        
+        p.style.width = `${size}px`;
+        p.style.height = `${size}px`;
+        p.style.left = `${startX + offsetX}px`;
+        p.style.top = `${startY}px`;
+        p.style.animation = `smoke-float ${duration}s forwards ease-out`;
+        
+        document.body.appendChild(p);
+        
+        setTimeout(() => p.remove(), duration * 1000);
+      }, i * 35);
+    }
+  }
+
+  // Load handler
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMosfetEgg);
+  } else {
+    initMosfetEgg();
+  }
+
+  // PJAX support (re-init listener for Swup if needed, though container is in body outside swup)
+  document.addEventListener('swup:contentReplaced', () => {
+    // Re-verify DOM links just in case
+    initMosfetEgg();
+  });
+})();
+</script>
 </body>
 
 </html>
