@@ -540,8 +540,8 @@
                          <!-- Close the previous LI if not the first item -->
                         <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='06-19'>
                     
-                    <a href="/switch-driver-datasheet-reading-2/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">开关管、栅极驱动数据手册阅读</span>
+                    <a href="/switch-driver-datasheet-reading/" class="block w-fit">
+                        <span class="article-title my-0.5 text-2xl">开关与驱动数据手册阅读</span>
                     </a>
                     
                 
@@ -858,14 +858,19 @@
 <style>
 #mosfet-egg-container {
   position: fixed;
-  bottom: 25px;
-  left: 25px;
+  bottom: 5%;
+  right: 85px;
   width: 50px;
   height: 50px;
   z-index: 9999;
   cursor: pointer;
   transition: transform 0.2s ease;
   user-select: none;
+}
+@media (max-width: 768px) {
+  #mosfet-egg-container {
+    right: 65px;
+  }
 }
 #mosfet-egg-container:hover {
   transform: scale(1.1);

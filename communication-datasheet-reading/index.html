@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
 <meta property="article:published_time" content="2026-06-18T21:37:13.000Z">
-<meta property="article:modified_time" content="2026-06-18T22:18:28.391Z">
+<meta property="article:modified_time" content="2026-06-18T23:00:30.289Z">
 <meta property="article:author" content="WenZhenJian-EE">
 <meta property="article:tag" content="数据手册">
 <meta property="article:tag" content="阅读指南">
@@ -663,8 +663,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-06-19 06:18:28</span>
-            <span class="mobile">2026-06-19 06:18:28</span>
+            <span class="desktop">2026-06-19 07:30</span>
+            <span class="mobile">2026-06-19 07:30</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -1536,7 +1536,7 @@ mjx-container[display="true"] + br {
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-06-19 06:18:28
+                    :</strong> 2026-06-19 07:00:30
             </li>
         
         <li>
@@ -1930,14 +1930,19 @@ mjx-container[display="true"] + br {
 <style>
 #mosfet-egg-container {
   position: fixed;
-  bottom: 25px;
-  left: 25px;
+  bottom: 5%;
+  right: 85px;
   width: 50px;
   height: 50px;
   z-index: 9999;
   cursor: pointer;
   transition: transform 0.2s ease;
   user-select: none;
+}
+@media (max-width: 768px) {
+  #mosfet-egg-container {
+    right: 65px;
+  }
 }
 #mosfet-egg-container:hover {
   transform: scale(1.1);

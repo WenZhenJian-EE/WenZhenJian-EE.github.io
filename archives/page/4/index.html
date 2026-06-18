@@ -1590,14 +1590,19 @@
 <style>
 #mosfet-egg-container {
   position: fixed;
-  bottom: 25px;
-  left: 25px;
+  bottom: 5%;
+  right: 85px;
   width: 50px;
   height: 50px;
   z-index: 9999;
   cursor: pointer;
   transition: transform 0.2s ease;
   user-select: none;
+}
+@media (max-width: 768px) {
+  #mosfet-egg-container {
+    right: 65px;
+  }
 }
 #mosfet-egg-container:hover {
   transform: scale(1.1);
