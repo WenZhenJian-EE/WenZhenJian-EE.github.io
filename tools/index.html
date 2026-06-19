@@ -1,0 +1,2005 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="电源设计, 硬件工程师, PCS, SiC, Hexo">
+    
+    
+    <meta name="author" content="WenZhenJian-EE">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes ASAP (before DOMContentLoaded)
+            (function() {
+                const addBodyClass = () => {
+                    const b = document.body;
+                    if (!b) return false;
+                    b.classList.add(theme + "-mode");
+                    return true;
+                };
+
+                // Try immediately
+                if (addBodyClass()) return;
+
+                // Observe until body exists
+                const mo = new MutationObserver(() => {
+                    if (addBodyClass()) mo.disconnect();
+                });
+                mo.observe(document.documentElement, { childList: true, subtree: true });
+            })();
+        })();
+    </script>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://WenZhenJian-EE.github.io/tools/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+        
+        <meta name="description" content="WenZhenJian&#39;s Tech Blog - 电力电子与硬件开发">
+<meta property="og:type" content="website">
+<meta property="og:title" content="在线工程计算工具箱">
+<meta property="og:url" content="https://wenzhenjian-ee.github.io/tools/index.html">
+<meta property="og:site_name" content="WenZhenJian&#39;s Tech Blog">
+<meta property="og:description" content="WenZhenJian&#39;s Tech Blog - 电力电子与硬件开发">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
+<meta property="article:published_time" content="2026-06-19T06:45:00.000Z">
+<meta property="article:modified_time" content="2026-06-19T07:24:06.093Z">
+<meta property="article:author" content="WenZhenJian-EE">
+<meta property="article:tag" content="电源设计, 硬件工程师, PCS, SiC, Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            在线工程计算工具箱 | WenZhenJian&#39;s Tech Blog
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+        
+            
+    
+            
+    
+            
+                
+                    <link rel="stylesheet" href="/css/custom-print.css" media="print">
+                
+    
+            
+                
+                    <link rel="manifest" href="/manifest.json">
+                
+    
+            
+                
+                    <meta name="theme-color" content="#2563eb">
+                
+    
+            
+                
+                    <script data-swup-reload-script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("/sw.js");});}</script>
+                
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"wenzhenjian-ee.github.io","root":"/","language":"zh-CN","path":"search.json"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.6,"image_border_radius":"12px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#2563eb","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"WenZhenJian's Tech Blog - 电力电子与硬件开发"},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"WenZhenJian's Tech Blog","subtitle":{"text":["电力电子与电源设计","硬件工程师的日常研发实录"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":[{"icon":"fa-brands fa-github","url":"https://github.com/WenZhenJian-EE"},{"icon":"fa-solid fa-at","url":"wenzhenjian-ee@outlook.com"},{"icon":"fa-brands fa-rss","url":"/atom.xml"},{"icon":"fa-brands fa-telegram","url":null},{"icon":"/images/custom-icon.svg","url":null}],"qrs":[{"icon":"fa-brands fa-weixin","qr":null},{"icon":"/images/custom-icon.svg","qr":null}]}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":true,"version":"11.4.1","theme":{"light":"default","dark":"dark"}}},"version":"2.9.0","navbar":{"auto_hide":false,"color":{"left":"#2563eb","right":"#3b82f6","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"首页":{"path":"/","icon":"fa-regular fa-house"},"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"分类":{"path":"/categories","icon":"fa-regular fa-folder"},"标签":{"path":"/tags","icon":"fa-regular fa-tags"},"项目":{"path":"/projects/","icon":"fa-regular fa-code"},"工具":{"path":"/tools/","icon":"fa-regular fa-calculator"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur","masonry":{"batch_size":12,"initial_batch_size":24}},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":"📢 个人独立开发的<b>硬件工程计算助手 Pro</b>与<b>串口-CAN调试上位机 V2</b>已在 GitHub 全面开源并提供独立 EXE 程序下载，欢迎点击上方导航栏 <b>项目</b> 栏目查看！","show_on_mobile":true,"links":{"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"分类":{"path":"/categories","icon":"fa-regular fa-folder"},"标签":{"path":"/tags","icon":"fa-regular fa-tags"},"项目":{"path":"/projects/","icon":"fa-regular fa-code"}}},"article_date_format":"YYYY-MM-DD","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footer":{"runtime":true,"icon":"<i class=\"fa-solid fa-heart fa-beat\" style=\"--fa-animation-duration: 0.5s; color: #f54545\"></i>","start":"2026/05/10 18:15:00","statistics":true,"customize":null,"icp":{"enable":false,"number":null,"url":null}},"footerStart":"2026/05/10 18:15:00","mermaid":{"style":{"light":"default","dark":"dark"}}};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.i18n = {"search":"站内搜索您需要的内容...","toc":"目录","prev":"上一页","next":"下一页","prev_posts":"上一篇","next_posts":"下一篇","page":"第 %d 页","recent_posts":"最新文章","share":"分享","powered_by":"由 %s 驱动","theme":"主题","rss_feed":"RSS Feed","category":"分类","categories":"分类","tag":"标签","tags":"标签","post":"文章","posts":"文章","tagcloud":"标签云","comment":"评论","comments":"评论","top":"置顶","sticky":"置顶","go-back-home":"回到首页","masonry_loading":"照片加载中...","image_viewer":"图片查看器","close":"关闭","exif":{"title":"EXIF","cards":{"camera":"相机","lens":"镜头","exposure":"曝光","other":"其他"},"fields":{"make":"品牌","model":"机型","date_taken":"拍摄时间","lens_model":"镜头","focal_length":"焦距","focus_mode":"对焦模式","shutter":"快门","aperture":"光圈","iso":"感光度","exposure_program":"曝光程序","exposure_compensation":"曝光补偿","metering_mode":"测光模式","flash":"闪光灯","white_balance":"白平衡","latitude":"纬度","longitude":"经度","altitude":"海拔"},"status":{"loading":"加载中...","no_exif":"无 EXIF 信息","library_missing":"EXIF 库未加载","image_source_missing":"图片地址不可用","unavailable":"EXIF 不可用（可能被 CORS 阻止或缺少元数据）","flag_unavailable":"EXIF 不可用"}},"home":"首页","archive":"归档","archives":"归档","about":"关于","links":"链接","link":"链接","friends":"友情链接","friend":"友情链接","timeline":"时间轴","shuoshuo":"说说","bookmarks":"书签","site_uv":"访问人数","site_pv":"总访问量","read_more":"阅读全文","wordcount":"字","min2read":"分钟","changelog":"更新日志","status":"状态","runtime":"博客已运行","days":"天","hours":"小时","minutes":"分钟","seconds":"秒","optimized_by":"并由 Evan 进行优化","rights":"版权所有","site_posts":"共撰写了 %s 篇文章","site_wordcount":"共 %s 字","copyright":{"title":"标题","author":"作者","link":"链接","create_time":"创建于","update_time":"更新于","license_title":"版权声明","license_content":"本文章采用 %s 进行许可。","all_rights_reserved":"版权所有 &#169 %s，禁止转载。","public_domain":"本文为公有领域作品，可自由转载、引用。"},"ago":{"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"},"create_time":"创建","update_time":"更新","expired":"这篇文章最后更新于 %s 天前，内容可能已经过时。"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="WenZhenJian's Tech Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+	<div class="progress-bar-container">
+	
+	<span class="scroll-progress-bar"></span>
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                WenZhenJian&#39;s Tech Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories"
+                                        >
+                                    <i class="fa-regular fa-folder fa-fw"></i>
+                                    分类
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags"
+                                        >
+                                    <i class="fa-regular fa-tags fa-fw"></i>
+                                    标签
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/projects/"
+                                        >
+                                    <i class="fa-regular fa-code fa-fw"></i>
+                                    项目
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="active"
+                                   href="/tools/"
+                                        >
+                                    <i class="fa-regular fa-calculator fa-fw"></i>
+                                    工具
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories"
+                        >
+                            <span>
+                                分类
+                            </span>
+                            
+                                <i class="fa-regular fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags"
+                        >
+                            <span>
+                                标签
+                            </span>
+                            
+                                <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/projects/"
+                        >
+                            <span>
+                                项目
+                            </span>
+                            
+                                <i class="fa-regular fa-code fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tools/"
+                        >
+                            <span>
+                                工具
+                            </span>
+                            
+                                <i class="fa-regular fa-calculator fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+                    
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">49</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">29</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">109</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="page-template-container">
+	
+
+	
+
+	<div class="page-template-content markdown-body">
+		
+		<h1>在线工程计算工具箱</h1>
+		
+
+		<div class="tools-wrapper">
+  <p class="tools-intro">面向电力电子与硬件开发工程师的在线计算工具箱。所有计算均在本地浏览器实时进行，无需联网，即时输出，并自适应日间与暗黑模式。</p>
+
+  <!-- Tabs Navigation -->
+  <div class="tools-tabs">
+    <button class="tab-btn active" onclick="switchTab('pcb')">
+      <i class="fa-solid fa-bolt"></i> PCB 线宽承载
+    </button>
+    <button class="tab-btn" onclick="switchTab('lc')">
+      <i class="fa-solid fa-wave-square"></i> LC 谐振计算
+    </button>
+    <button class="tab-btn" onclick="switchTab('divider')">
+      <i class="fa-solid fa-network-wired"></i> 分压电阻标称匹配
+    </button>
+  </div>
+
+  <!-- Tab Contents -->
+  <!-- 1. PCB Trace Width Calculator -->
+  <div class="tab-content active" id="tab-pcb">
+    <div class="calculator-grid">
+      <!-- Input Panel -->
+      <div class="panel input-panel">
+        <h3 class="panel-title"><i class="fa-solid fa-sliders"></i> 输入参数</h3>
+        
+<pre><code>    &lt;div class=&quot;form-group&quot;&gt;
+      &lt;label for=&quot;pcb-current&quot;&gt;设计电流 (Current)&lt;/label&gt;
+      &lt;div class=&quot;input-with-unit&quot;&gt;
+        &lt;input type=&quot;number&quot; id=&quot;pcb-current&quot; value=&quot;5.0&quot; step=&quot;0.1&quot; min=&quot;0.1&quot; oninput=&quot;calculatePCB()&quot;&gt;
+        &lt;span class=&quot;unit&quot;&gt;A&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;form-group&quot;&gt;
+      &lt;label for=&quot;pcb-temp-rise&quot;&gt;允许温升 (Temperature Rise)&lt;/label&gt;
+      &lt;div class=&quot;input-with-unit&quot;&gt;
+        &lt;input type=&quot;number&quot; id=&quot;pcb-temp-rise&quot; value=&quot;10&quot; step=&quot;1&quot; min=&quot;1&quot; oninput=&quot;calculatePCB()&quot;&gt;
+        &lt;span class=&quot;unit&quot;&gt;°C&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;form-group&quot;&gt;
+      &lt;label for=&quot;pcb-thickness&quot;&gt;铜箔厚度 (Copper Thickness)&lt;/label&gt;
+      &lt;div class=&quot;input-with-unit&quot;&gt;
+        &lt;input type=&quot;number&quot; id=&quot;pcb-thickness&quot; value=&quot;1.0&quot; step=&quot;0.1&quot; min=&quot;0.1&quot; oninput=&quot;calculatePCB()&quot;&gt;
+        &lt;select id=&quot;pcb-thickness-unit&quot; onchange=&quot;calculatePCB()&quot;&gt;
+          &lt;option value=&quot;oz&quot;&gt;oz (盎司)&lt;/option&gt;
+          &lt;option value=&quot;um&quot;&gt;μm (微米)&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;form-group&quot;&gt;
+      &lt;label&gt;导线所处层 (Trace Location)&lt;/label&gt;
+      &lt;div class=&quot;radio-group&quot;&gt;
+        &lt;label class=&quot;radio-label&quot;&gt;
+          &lt;input type=&quot;radio&quot; name=&quot;pcb-layer&quot; value=&quot;external&quot; checked onchange=&quot;calculatePCB()&quot;&gt; 外层 (External)
+        &lt;/label&gt;
+        &lt;label class=&quot;radio-label&quot;&gt;
+          &lt;input type=&quot;radio&quot; name=&quot;pcb-layer&quot; value=&quot;internal&quot; onchange=&quot;calculatePCB()&quot;&gt; 内层 (Internal)
+        &lt;/label&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Output Panel --&gt;
+  &lt;div class=&quot;panel output-panel&quot;&gt;
+    &lt;h3 class=&quot;panel-title&quot;&gt;&lt;i class=&quot;fa-solid fa-chart-simple&quot;&gt;&lt;/i&gt; 计算结果 (IPC-2221)&lt;/h3&gt;
+    
+    &lt;div class=&quot;result-box highlighted&quot;&gt;
+      &lt;div class=&quot;result-label&quot;&gt;推荐最小线宽 (Required Width)&lt;/div&gt;
+      &lt;div class=&quot;result-value-group&quot;&gt;
+        &lt;div class=&quot;result-main&quot;&gt;
+          &lt;span id=&quot;pcb-width-mm&quot;&gt;1.94&lt;/span&gt; &lt;span class=&quot;result-unit&quot;&gt;mm&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;result-sub&quot;&gt;
+          &lt;span id=&quot;pcb-width-mil&quot;&gt;76.3&lt;/span&gt; mil
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;result-detail-grid&quot;&gt;
+      &lt;div class=&quot;detail-item&quot;&gt;
+        &lt;span class=&quot;detail-label&quot;&gt;横截面积 (Cross-Section Area)&lt;/span&gt;
+        &lt;span class=&quot;detail-value&quot;&gt;&lt;span id=&quot;pcb-area-mil&quot;&gt;94.8&lt;/span&gt; mil²&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;detail-item&quot;&gt;
+        &lt;span class=&quot;detail-label&quot;&gt;等效厚度 (Equivalent Thickness)&lt;/span&gt;
+        &lt;span class=&quot;detail-value&quot;&gt;&lt;span id=&quot;pcb-thick-mil&quot;&gt;1.38&lt;/span&gt; mil (&lt;span id=&quot;pcb-thick-um&quot;&gt;35.0&lt;/span&gt; μm)&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;info-alert&quot;&gt;
+      &lt;i class=&quot;fa-solid fa-circle-info&quot;&gt;&lt;/i&gt;
+      &lt;span&gt;基于 IPC-2221 标准公式计算。大电流设计建议预留 20% 以上的线宽安全裕量，并注意大面积铺铜散热。&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+  </div>
+
+  <!-- 2. LC Resonance Calculator -->
+  <div class="tab-content" id="tab-lc">
+    <div class="calculator-grid">
+      <!-- Input Panel -->
+      <div class="panel input-panel">
+        <h3 class="panel-title"><i class="fa-solid fa-sliders"></i> 参数输入 (选择任意两个计算第三个)</h3>
+        
+<pre><code>    &lt;div class=&quot;form-group&quot;&gt;
+      &lt;div class=&quot;flex-label&quot;&gt;
+        &lt;label for=&quot;lc-inductance&quot;&gt;电感量 L (Inductance)&lt;/label&gt;
+        &lt;input type=&quot;checkbox&quot; id=&quot;lc-calc-l&quot; onchange=&quot;toggleLock(&#39;l&#39;)&quot;&gt; &lt;span class=&quot;lock-label&quot;&gt;计算此项&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;input-with-unit&quot;&gt;
+        &lt;input type=&quot;number&quot; id=&quot;lc-inductance&quot; value=&quot;10&quot; step=&quot;0.1&quot; min=&quot;0.001&quot; oninput=&quot;calculateLC()&quot;&gt;
+        &lt;select id=&quot;lc-l-unit&quot; onchange=&quot;calculateLC()&quot;&gt;
+          &lt;option value=&quot;uH&quot; selected&gt;μH&lt;/option&gt;
+          &lt;option value=&quot;mH&quot;&gt;mH&lt;/option&gt;
+          &lt;option value=&quot;nH&quot;&gt;nH&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;form-group&quot;&gt;
+      &lt;div class=&quot;flex-label&quot;&gt;
+        &lt;label for=&quot;lc-capacitance&quot;&gt;电容量 C (Capacitance)&lt;/label&gt;
+        &lt;input type=&quot;checkbox&quot; id=&quot;lc-calc-c&quot; onchange=&quot;toggleLock(&#39;c&#39;)&quot;&gt; &lt;span class=&quot;lock-label&quot;&gt;计算此项&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;input-with-unit&quot;&gt;
+        &lt;input type=&quot;number&quot; id=&quot;lc-capacitance&quot; value=&quot;100&quot; step=&quot;1&quot; min=&quot;0.001&quot; oninput=&quot;calculateLC()&quot;&gt;
+        &lt;select id=&quot;lc-c-unit&quot; onchange=&quot;calculateLC()&quot;&gt;
+          &lt;option value=&quot;nF&quot; selected&gt;nF&lt;/option&gt;
+          &lt;option value=&quot;uF&quot;&gt;μF&lt;/option&gt;
+          &lt;option value=&quot;pF&quot;&gt;pF&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;form-group&quot;&gt;
+      &lt;div class=&quot;flex-label&quot;&gt;
+        &lt;label for=&quot;lc-frequency&quot;&gt;谐振频率 f (Resonant Frequency)&lt;/label&gt;
+        &lt;input type=&quot;checkbox&quot; id=&quot;lc-calc-f&quot; checked onchange=&quot;toggleLock(&#39;f&#39;)&quot;&gt; &lt;span class=&quot;lock-label&quot;&gt;计算此项&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;input-with-unit&quot;&gt;
+        &lt;input type=&quot;number&quot; id=&quot;lc-frequency&quot; value=&quot;159.15&quot; step=&quot;0.01&quot; min=&quot;0.001&quot; disabled oninput=&quot;calculateLC()&quot;&gt;
+        &lt;select id=&quot;lc-f-unit&quot; onchange=&quot;calculateLC()&quot;&gt;
+          &lt;option value=&quot;kHz&quot; selected&gt;kHz&lt;/option&gt;
+          &lt;option value=&quot;MHz&quot;&gt;MHz&lt;/option&gt;
+          &lt;option value=&quot;Hz&quot;&gt;Hz&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Output Panel --&gt;
+  &lt;div class=&quot;panel output-panel&quot;&gt;
+    &lt;h3 class=&quot;panel-title&quot;&gt;&lt;i class=&quot;fa-solid fa-chart-simple&quot;&gt;&lt;/i&gt; 计算结果&lt;/h3&gt;
+    
+    &lt;div class=&quot;result-box highlighted&quot;&gt;
+      &lt;div class=&quot;result-label&quot;&gt;计算出的参量值 (Calculated Value)&lt;/div&gt;
+      &lt;div class=&quot;result-value-group&quot;&gt;
+        &lt;div class=&quot;result-main&quot;&gt;
+          &lt;span id=&quot;lc-calc-val&quot;&gt;159.15&lt;/span&gt; &lt;span class=&quot;result-unit&quot; id=&quot;lc-calc-unit&quot;&gt;kHz&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;result-detail-grid&quot;&gt;
+      &lt;div class=&quot;detail-item&quot;&gt;
+        &lt;span class=&quot;detail-label&quot;&gt;波形特征阻抗 Z₀ (Characteristic Impedance)&lt;/span&gt;
+        &lt;span class=&quot;detail-value&quot;&gt;&lt;span id=&quot;lc-z0&quot;&gt;10.00&lt;/span&gt; Ω&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;detail-item&quot;&gt;
+        &lt;span class=&quot;detail-label&quot;&gt;角频率 ω (Angular Frequency)&lt;/span&gt;
+        &lt;span class=&quot;detail-value&quot;&gt;&lt;span id=&quot;lc-omega&quot;&gt;1.00M&lt;/span&gt; rad/s&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;info-alert&quot;&gt;
+      &lt;i class=&quot;fa-solid fa-circle-info&quot;&gt;&lt;/i&gt;
+      &lt;span&gt;谐振阻抗 $Z_0 = \sqrt&#123;L/C&#125;$ 决定了谐振腔的能量承载与品质因数设计，在大功率 LLC / LCC 拓扑参数设计中是核心参考量。&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+  </div>
+
+  <!-- 3. Voltage Divider & Resistor Matcher -->
+  <div class="tab-content" id="tab-divider">
+    <div class="calculator-grid">
+      <!-- Input Panel -->
+      <div class="panel input-panel">
+        <h3 class="panel-title"><i class="fa-solid fa-sliders"></i> 分压要求</h3>
+        
+<pre><code>    &lt;div class=&quot;form-group&quot;&gt;
+      &lt;label for=&quot;div-vin&quot;&gt;输入电压 Vin (Input Voltage)&lt;/label&gt;
+      &lt;div class=&quot;input-with-unit&quot;&gt;
+        &lt;input type=&quot;number&quot; id=&quot;div-vin&quot; value=&quot;12&quot; step=&quot;0.1&quot; min=&quot;0.1&quot; oninput=&quot;calculateDivider()&quot;&gt;
+        &lt;span class=&quot;unit&quot;&gt;V&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;form-group&quot;&gt;
+      &lt;label for=&quot;div-vout&quot;&gt;目标输出电压 Vout (Target Output)&lt;/label&gt;
+      &lt;div class=&quot;input-with-unit&quot;&gt;
+        &lt;input type=&quot;number&quot; id=&quot;div-vout&quot; value=&quot;3.3&quot; step=&quot;0.1&quot; min=&quot;0.01&quot; oninput=&quot;calculateDivider()&quot;&gt;
+        &lt;span class=&quot;unit&quot;&gt;V&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;form-group&quot;&gt;
+      &lt;label for=&quot;div-resistance-range&quot;&gt;阻值量级选择 (Resistance Range)&lt;/label&gt;
+      &lt;select id=&quot;div-resistance-range&quot; onchange=&quot;calculateDivider()&quot;&gt;
+        &lt;option value=&quot;10k&quot; selected&gt;中等功耗 (1kΩ - 100kΩ，推荐)&lt;/option&gt;
+        &lt;option value=&quot;100k&quot;&gt;微功耗 (10kΩ - 1MΩ，适合电池)&lt;/option&gt;
+        &lt;option value=&quot;1k&quot;&gt;高频/高速 (100Ω - 10kΩ，抗干扰强)&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Output Panel --&gt;
+  &lt;div class=&quot;panel output-panel&quot;&gt;
+    &lt;h3 class=&quot;panel-title&quot;&gt;&lt;i class=&quot;fa-solid fa-list-check&quot;&gt;&lt;/i&gt; E96 (1%) / E24 (5%) 最优标称电阻组合&lt;/h3&gt;
+    
+    &lt;div class=&quot;results-table-container&quot;&gt;
+      &lt;table class=&quot;resistor-results-table&quot;&gt;
+        &lt;thead&gt;
+          &lt;tr&gt;
+            &lt;th&gt;标准&lt;/th&gt;
+            &lt;th&gt;R1 (上拉)&lt;/th&gt;
+            &lt;th&gt;R2 (下拉)&lt;/th&gt;
+            &lt;th&gt;实际 Vout&lt;/th&gt;
+            &lt;th&gt;误差&lt;/th&gt;
+          &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody id=&quot;divider-results-tbody&quot;&gt;
+          &lt;!-- Dynamically populated --&gt;
+        &lt;/tbody&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;info-alert&quot;&gt;
+      &lt;i class=&quot;fa-solid fa-circle-info&quot;&gt;&lt;/i&gt;
+      &lt;span&gt;算法自动搜索数万种 E24/E96 电阻阻值组合，推荐误差最小的前 3 组方案，帮助在实际贴片打样时快速选料。&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+  </div>
+</div>
+
+<style>
+/* Common layout wrapper */
+.tools-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px 5px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.tools-intro {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--second-text-color, #4b5563);
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+/* Tabs styles */
+.tools-tabs {
+  display: flex;
+  gap: 10px;
+  border-bottom: 2px solid var(--border-color, rgba(0, 0, 0, 0.06));
+  padding-bottom: 1px;
+  margin-bottom: 30px;
+}
+.tab-btn {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--second-text-color, #4b5563);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  margin-bottom: -2px;
+}
+.tab-btn:hover {
+  color: #2563eb;
+  border-bottom-color: rgba(37, 99, 235, 0.3);
+}
+.tab-btn.active {
+  color: #2563eb;
+  border-bottom-color: #2563eb;
+}
+
+/* Calculator Grid */
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+  animation: fadeIn 0.35s ease-out;
+}
+.calculator-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 30px;
+}
+@media (max-width: 768px) {
+  .calculator-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* Panels */
+.panel {
+  background: var(--background-color, #ffffff);
+  border: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015);
+}
+.panel-title {
+  margin: 0 0 20px 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--first-text-color, #1f2937);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px dashed var(--border-color, rgba(0, 0, 0, 0.06));
+  padding-bottom: 12px;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--first-text-color, #374151);
+  margin-bottom: 8px;
+}
+.flex-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.flex-label label {
+  margin-bottom: 0;
+}
+.lock-label {
+  font-size: 0.75rem;
+  color: var(--second-text-color, #6b7280);
+}
+.input-with-unit {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-color, #d1d5db);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--background-color, #fff);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.input-with-unit:focus-within {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+.input-with-unit input {
+  flex: 1;
+  border: none;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  background: transparent;
+  color: var(--first-text-color, #1f2937);
+  outline: none;
+}
+.input-with-unit .unit {
+  padding: 0 14px;
+  font-size: 0.85rem;
+  color: var(--second-text-color, #6b7280);
+  background: var(--third-background-color, #f3f4f6);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid var(--border-color, #e5e7eb);
+  align-self: stretch;
+}
+.input-with-unit select {
+  border: none;
+  background: var(--third-background-color, #f3f4f6);
+  color: var(--first-text-color, #374151);
+  padding: 0 10px;
+  font-size: 0.85rem;
+  outline: none;
+  height: 100%;
+  border-left: 1px solid var(--border-color, #e5e7eb);
+  align-self: stretch;
+  cursor: pointer;
+}
+
+/* Radio groups */
+.radio-group {
+  display: flex;
+  gap: 20px;
+  padding: 5px 0;
+}
+.radio-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  cursor: pointer;
+  color: var(--second-text-color, #4b5563);
+}
+.radio-label input {
+  cursor: pointer;
+}
+
+/* Outputs & Results */
+.result-box {
+  background: rgba(37, 99, 235, 0.03);
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.result-box.highlighted {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(59, 130, 246, 0.01) 100%);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+}
+.result-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #2563eb;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.result-main {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--first-text-color, #111827);
+  line-height: 1.1;
+}
+.result-unit {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--second-text-color, #4b5563);
+  margin-left: 4px;
+}
+.result-sub {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--second-text-color, #6b7280);
+}
+
+.result-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: var(--third-background-color, #f9fafb);
+  border: 1px solid var(--border-color, rgba(0, 0, 0, 0.03));
+  border-radius: 8px;
+}
+.detail-label {
+  font-size: 0.82rem;
+  color: var(--second-text-color, #6b7280);
+}
+.detail-value {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--first-text-color, #111827);
+}
+
+.info-alert {
+  background: var(--third-background-color, #f3f4f6);
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  gap: 10px;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--second-text-color, #4b5563);
+}
+.info-alert i {
+  color: #2563eb;
+  margin-top: 2px;
+  font-size: 0.9rem;
+}
+
+/* Resistor divider results table */
+.results-table-container {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+.resistor-results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  text-align: left;
+}
+.resistor-results-table th, .resistor-results-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.06));
+}
+.resistor-results-table th {
+  font-weight: 700;
+  color: var(--first-text-color);
+  background: var(--third-background-color, #f9fafb);
+}
+.resistor-results-table tbody tr:hover {
+  background: rgba(37, 99, 235, 0.02);
+}
+.resistor-results-table td {
+  color: var(--second-text-color);
+}
+.resistor-results-table td strong {
+  color: var(--first-text-color);
+}
+.badge-e96 {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.75rem;
+}
+.badge-e24 {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.75rem;
+}
+.error-positive {
+  color: #ef4444 !important;
+}
+.error-negative {
+  color: #ef4444 !important;
+}
+.error-perfect {
+  color: #10b981 !important;
+  font-weight: bold;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Dark mode overrides */
+.dark-mode .panel, .dark .panel {
+  background: var(--second-background-color, #1e1e1e);
+  border-color: var(--border-color, rgba(255, 255, 255, 0.08));
+}
+.dark-mode .input-with-unit, .dark .input-with-unit {
+  background: var(--background-color, #242424);
+  border-color: var(--border-color, rgba(255, 255, 255, 0.15));
+}
+.dark-mode .input-with-unit input, .dark .input-with-unit input {
+  color: var(--first-text-color, #e5e7eb);
+}
+.dark-mode .input-with-unit select, .dark-mode .input-with-unit .unit,
+.dark .input-with-unit select, .dark .input-with-unit .unit {
+  background: var(--third-background-color, #2d2d2d);
+  border-left-color: var(--border-color, rgba(255, 255, 255, 0.15));
+  color: var(--second-text-color, #9ca3af);
+}
+.dark-mode .detail-item, .dark .detail-item {
+  background: var(--third-background-color, #252525);
+  border-color: var(--border-color, rgba(255, 255, 255, 0.04));
+}
+.dark-mode .info-alert, .dark .info-alert {
+  background: var(--third-background-color, #242424);
+  color: var(--second-text-color, #9ca3af);
+}
+.dark-mode .detail-value, .dark-mode .result-main, .dark .detail-value, .dark .result-main {
+  color: var(--first-text-color, #e5e7eb);
+}
+.dark-mode .resistor-results-table th, .dark .resistor-results-table th {
+  background: var(--third-background-color, #252525);
+  color: var(--first-text-color);
+}
+</style>
+
+<script>
+// Tab switcher
+function switchTab(tabId) {
+  const contents = document.querySelectorAll('.tab-content');
+  const buttons = document.querySelectorAll('.tab-btn');
+  
+  contents.forEach(content => content.classList.remove('active'));
+  buttons.forEach(btn => btn.classList.remove('active'));
+  
+  document.getElementById('tab-' + tabId).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// Global active locks for LC resonance
+let lcActiveLock = 'f'; // default calculation target
+
+function toggleLock(param) {
+  // Check checkboxes logic
+  const locks = {
+    l: document.getElementById('lc-calc-l'),
+    c: document.getElementById('lc-calc-c'),
+    f: document.getElementById('lc-calc-f')
+  };
+  
+  const inputs = {
+    l: document.getElementById('lc-inductance'),
+    c: document.getElementById('lc-capacitance'),
+    f: document.getElementById('lc-frequency')
+  };
+
+  // Toggle active lock
+  lcActiveLock = param;
+  
+  // Update disabled states
+  Object.keys(locks).forEach(k => {
+    locks[k].checked = (k === param);
+    inputs[k].disabled = (k === param);
+  });
+  
+  calculateLC();
+}
+
+// 1. PCB Calculator
+function calculatePCB() {
+  const current = parseFloat(document.getElementById('pcb-current').value);
+  const tempRise = parseFloat(document.getElementById('pcb-temp-rise').value);
+  let thickness = parseFloat(document.getElementById('pcb-thickness').value);
+  const thicknessUnit = document.getElementById('pcb-thickness-unit').value;
+  const isExternal = document.querySelector('input[name="pcb-layer"]:checked').value === 'external';
+
+  if (isNaN(current) || isNaN(tempRise) || isNaN(thickness) || current <= 0 || tempRise <= 0 || thickness <= 0) {
+    return;
+  }
+
+  // Convert thickness to oz
+  let thicknessOz = thickness;
+  if (thicknessUnit === 'um') {
+    thicknessOz = thickness / 35.0; // 1oz = 35um
+  } else {
+    thickness = thicknessOz * 35.0; // keep thickness updated in um
+  }
+
+  // Constants based on IPC-2221
+  const k = isExternal ? 0.048 : 0.024;
+  
+  // Formula: Area = (I / (k * (dT^0.44)))^(1/0.725)  in mils^2
+  const area = Math.pow((current / (k * Math.pow(tempRise, 0.44))), 1.0 / 0.725);
+  
+  // Equivalent thickness in mils
+  const thickMils = thicknessOz * 1.378; // 1oz copper = 1.378 mils
+  
+  // Required width = Area / Thickness  in mils
+  const widthMils = area / thickMils;
+  const widthMm = widthMils * 0.0254; // 1 mil = 0.0254 mm
+
+  // Update DOM
+  document.getElementById('pcb-width-mm').innerText = widthMm.toFixed(3);
+  document.getElementById('pcb-width-mil').innerText = widthMils.toFixed(1);
+  document.getElementById('pcb-area-mil').innerText = area.toFixed(1);
+  document.getElementById('pcb-thick-mil').innerText = thickMils.toFixed(2);
+  document.getElementById('pcb-thick-um').innerText = thickness.toFixed(1);
+}
+
+// 2. LC Resonance Calculator
+function calculateLC() {
+  const lVal = parseFloat(document.getElementById('lc-inductance').value);
+  const cVal = parseFloat(document.getElementById('lc-capacitance').value);
+  const fVal = parseFloat(document.getElementById('lc-frequency').value);
+
+  const lUnit = document.getElementById('lc-l-unit').value;
+  const cUnit = document.getElementById('lc-c-unit').value;
+  const fUnit = document.getElementById('lc-f-unit').value;
+
+  // Convert to base units (H, F, Hz)
+  let l = lVal;
+  if (lUnit === 'uH') l = lVal * 1e-6;
+  else if (lUnit === 'mH') l = lVal * 1e-3;
+  else if (lUnit === 'nH') l = lVal * 1e-9;
+
+  let c = cVal;
+  if (cUnit === 'nF') c = cVal * 1e-9;
+  else if (cUnit === 'uF') c = cVal * 1e-6;
+  else if (cUnit === 'pF') c = cVal * 1e-12;
+
+  let f = fVal;
+  if (fUnit === 'kHz') f = fVal * 1e3;
+  else if (fUnit === 'MHz') f = fVal * 1e6;
+  else if (fUnit === 'Hz') f = fVal;
+
+  let calculatedVal = 0;
+  let targetInput = null;
+
+  if (lcActiveLock === 'f') {
+    if (isNaN(lVal) || isNaN(cVal) || lVal <= 0 || cVal <= 0) return;
+    // f = 1 / (2 * pi * sqrt(L * C))
+    f = 1.0 / (2.0 * Math.PI * Math.sqrt(l * c));
+    calculatedVal = f;
+    
+    // Convert back to frequency UI unit
+    if (fUnit === 'kHz') calculatedVal = f / 1e3;
+    else if (fUnit === 'MHz') calculatedVal = f / 1e6;
+    else calculatedVal = f;
+    
+    document.getElementById('lc-frequency').value = calculatedVal.toFixed(3);
+    document.getElementById('lc-calc-val').innerText = calculatedVal.toFixed(2);
+    document.getElementById('lc-calc-unit').innerText = fUnit;
+  } 
+  else if (lcActiveLock === 'l') {
+    if (isNaN(fVal) || isNaN(cVal) || fVal <= 0 || cVal <= 0) return;
+    // L = 1 / ((2 * pi * f)^2 * C)
+    l = 1.0 / (Math.pow(2.0 * Math.PI * f, 2) * c);
+    calculatedVal = l;
+
+    // Convert back to inductance UI unit
+    if (lUnit === 'uH') calculatedVal = l / 1e-6;
+    else if (lUnit === 'mH') calculatedVal = l / 1e-3;
+    else if (lUnit === 'nH') calculatedVal = l / 1e-9;
+
+    document.getElementById('lc-inductance').value = calculatedVal.toFixed(4);
+    document.getElementById('lc-calc-val').innerText = calculatedVal.toFixed(3);
+    document.getElementById('lc-calc-unit').innerText = lUnit;
+  }
+  else if (lcActiveLock === 'c') {
+    if (isNaN(fVal) || isNaN(lVal) || fVal <= 0 || lVal <= 0) return;
+    // C = 1 / ((2 * pi * f)^2 * L)
+    c = 1.0 / (Math.pow(2.0 * Math.PI * f, 2) * l);
+    calculatedVal = c;
+
+    // Convert back to capacitance UI unit
+    if (cUnit === 'nF') calculatedVal = c / 1e-9;
+    else if (cUnit === 'uF') calculatedVal = c / 1e-6;
+    else if (cUnit === 'pF') calculatedVal = c / 1e-12;
+
+    document.getElementById('lc-capacitance').value = calculatedVal.toFixed(3);
+    document.getElementById('lc-calc-val').innerText = calculatedVal.toFixed(2);
+    document.getElementById('lc-calc-unit').innerText = cUnit;
+  }
+
+  // Calculate extra outputs (Z0 and Omega)
+  if (l > 0 && c > 0) {
+    const z0 = Math.sqrt(l / c);
+    const omega = 2 * Math.PI * f;
+
+    document.getElementById('lc-z0').innerText = z0.toFixed(2);
+    
+    if (omega >= 1e6) {
+      document.getElementById('lc-omega').innerText = (omega / 1e6).toFixed(2) + ' M';
+    } else if (omega >= 1e3) {
+      document.getElementById('lc-omega').innerText = (omega / 1e3).toFixed(2) + ' k';
+    } else {
+      document.getElementById('lc-omega').innerText = omega.toFixed(1);
+    }
+  }
+}
+
+// 3. Voltage Divider Matcher
+const E24 = [1.0, 1.1, 1.2, 1.3, 1.5, 1.6, 1.8, 2.0, 2.2, 2.4, 2.7, 3.0, 3.3, 3.6, 3.9, 4.3, 4.7, 5.1, 5.6, 6.2, 6.8, 7.5, 8.2, 9.1];
+const E96 = [1.00, 1.02, 1.05, 1.07, 1.10, 1.13, 1.15, 1.18, 1.21, 1.24, 1.27, 1.30, 1.33, 1.37, 1.40, 1.43, 1.47, 1.50, 1.54, 1.58, 1.62, 1.65, 1.69, 1.74, 1.78, 1.82, 1.87, 1.91, 1.96, 2.00, 2.05, 2.10, 2.15, 2.21, 2.26, 2.32, 2.37, 2.43, 2.49, 2.55, 2.61, 2.67, 2.74, 2.80, 2.87, 2.94, 3.01, 3.09, 3.16, 3.24, 3.32, 3.40, 3.48, 3.57, 3.65, 3.74, 3.83, 3.92, 4.02, 4.12, 4.22, 4.32, 4.42, 4.53, 4.64, 4.75, 4.87, 4.99, 5.11, 5.23, 5.36, 5.49, 5.62, 5.76, 5.90, 6.04, 6.19, 6.34, 6.49, 6.65, 6.81, 6.98, 7.15, 7.32, 7.50, 7.68, 7.87, 8.06, 8.25, 8.45, 8.66, 8.87, 9.09, 9.31, 9.53, 9.76];
+
+function formatResistor(ohms) {
+  if (ohms >= 1e6) return (ohms / 1e6).toFixed(2).replace(/\.00$/, '') + ' MΩ';
+  if (ohms >= 1e3) return (ohms / 1e3).toFixed(2).replace(/\.00$/, '') + ' kΩ';
+  return ohms.toFixed(1).replace(/\.0$/, '') + ' Ω';
+}
+
+function calculateDivider() {
+  const vin = parseFloat(document.getElementById('div-vin').value);
+  const vout = parseFloat(document.getElementById('div-vout').value);
+  const range = document.getElementById('div-resistance-range').value;
+
+  if (isNaN(vin) || isNaN(vout) || vin <= 0 || vout <= 0 || vout >= vin) {
+    return;
+  }
+
+  let minRes = 1000;
+  let maxRes = 100000;
+  if (range === '100k') {
+    minRes = 10000;
+    maxRes = 1000000;
+  } else if (range === '1k') {
+    minRes = 100;
+    maxRes = 10000;
+  }
+
+  const targetRatio = vout / vin;
+
+  // Search logic for E-series
+  function findBestMatches(series, label) {
+    const matches = [];
+    const decades = [-3, -2, -1, 0, 1, 2, 3];
+
+    for (let r1Base of series) {
+      for (let r2Base of series) {
+        for (let decDiff of decades) {
+          // Calculate absolute resistor values in ohms
+          // We anchor R1 in the middle of our search range
+          const r1BaseScale = minRes * 5; 
+          const r1 = r1Base * r1BaseScale;
+          const r2 = r2Base * r1BaseScale * Math.pow(10, decDiff);
+
+          if (r1 < minRes || r1 > maxRes || r2 < minRes || r2 > maxRes) {
+            continue;
+          }
+
+          const actualRatio = r2 / (r1 + r2);
+          const actualVout = vin * actualRatio;
+          const errorPercent = ((actualVout - vout) / vout) * 100;
+          const absErr = Math.abs(errorPercent);
+
+          matches.push({
+            r1,
+            r2,
+            actualVout,
+            errorPercent,
+            absErr
+          });
+        }
+      }
+    }
+
+    // Sort by absolute error ascending
+    matches.sort((a, b) => a.absErr - b.absErr);
+    
+    // Return top 3 unique results (removing duplicate electrical ratios if present)
+    const unique = [];
+    const seenRatios = new Set();
+    for (let m of matches) {
+      const key = `${m.r1.toFixed(0)}-${m.r2.toFixed(0)}`;
+      if (!seenRatios.has(key)) {
+        seenRatios.add(key);
+        unique.push(m);
+        if (unique.length >= 3) break;
+      }
+    }
+    return unique;
+  }
+
+  const e96Matches = findBestMatches(E96, 'E96');
+  const e24Matches = findBestMatches(E24, 'E24');
+
+  // Populate tbody
+  const tbody = document.getElementById('divider-results-tbody');
+  tbody.innerHTML = '';
+
+  // Interleave or list E96 then E24
+  const allResults = [
+    ...e96Matches.map(m => ({ ...m, type: 'E96' })),
+    ...e24Matches.map(m => ({ ...m, type: 'E24' }))
+  ];
+
+  // Sort them so that the absolute best matches are on top regardless of standard
+  allResults.sort((a, b) => a.absErr - b.absErr);
+
+  // Take top 6 results
+  allResults.slice(0, 6).forEach(res => {
+    const tr = document.createElement('tr');
+    
+    const stdTd = document.createElement('td');
+    stdTd.innerHTML = res.type === 'E96' 
+      ? '<span class="badge-e96">E96 (1%)</span>' 
+      : '<span class="badge-e24">E24 (5%)</span>';
+    
+    const r1Td = document.createElement('td');
+    r1Td.innerHTML = `<strong>${formatResistor(res.r1)}</strong>`;
+
+    const r2Td = document.createElement('td');
+    r2Td.innerHTML = `<strong>${formatResistor(res.r2)}</strong>`;
+
+    const voutTd = document.createElement('td');
+    voutTd.innerText = res.actualVout.toFixed(4) + ' V';
+
+    const errTd = document.createElement('td');
+    const errText = (res.errorPercent >= 0 ? '+' : '') + res.errorPercent.toFixed(2) + '%';
+    if (res.absErr < 0.05) {
+      errTd.innerHTML = `<span class="error-perfect">${errText} (极准)</span>`;
+    } else if (res.errorPercent > 0) {
+      errTd.innerHTML = `<span class="error-positive">${errText}</span>`;
+    } else {
+      errTd.innerHTML = `<span class="error-negative">${errText}</span>`;
+    }
+
+    tr.appendChild(stdTd);
+    tr.appendChild(r1Td);
+    tr.appendChild(r2Td);
+    tr.appendChild(voutTd);
+    tr.appendChild(errTd);
+
+    tbody.appendChild(tr);
+  });
+}
+
+// Initial triggers
+window.addEventListener('DOMContentLoaded', () => {
+  calculatePCB();
+  calculateLC();
+  calculateDivider();
+});
+</script>
+
+	</div>
+
+	<div class="page-template-comments">
+		
+	</div>
+</div>
+
+<div class="paginator">
+	
+</div>
+  
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2026</span>
+              -
+            
+            2026&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">WenZhenJian-EE</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 109 篇文章
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.9.0</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+            
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container" role="dialog" aria-modal="true" aria-label="图片查看器">
+	<button class="image-viewer-close" type="button" aria-label="关闭">
+		<i class="fa-solid fa-xmark"></i>
+	</button>
+	<button class="image-viewer-prev" type="button" aria-label="上一页">
+		<i class="fa-solid fa-chevron-left"></i>
+	</button>
+	<div class="image-viewer-frame">
+		<img src="" alt="">
+	</div>
+	<div class="image-viewer-exif-panel hidden absolute left-1/2 bottom-20 -translate-x-1/2 w-[min(92vw,420px)] max-h-[60vh] overflow-hidden rounded-2xl bg-background-color-transparent-80 p-4 text-left shadow-redefine-flat backdrop-blur-md" role="dialog" aria-label="EXIF" aria-hidden="true">
+		<div class="flex items-center justify-between mb-3">
+			<span class="text-sm font-semibold text-first-text-color">EXIF</span>
+			<button class="image-viewer-exif-close flex h-8 w-8 items-center justify-center rounded-full bg-background-color-transparent-80 text-first-text-color transition hover:bg-background-color-transparent-40" type="button" aria-label="关闭">
+				<i class="fa-solid fa-xmark text-[0.65rem]"></i>
+			</button>
+		</div>
+		<div class="image-viewer-exif-cards grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto pr-1 scrollbar-hide"></div>
+		<template class="image-viewer-exif-card-template">
+			<div class="rounded-lg bg-background-color-transparent-40 px-3 py-2">
+				<div class="image-viewer-exif-card-header flex items-center gap-2 mb-1">
+					<i class="image-viewer-exif-card-icon fa-solid fa-circle-info text-xs text-third-text-color"></i>
+					<div class="image-viewer-exif-card-title text-xs font-semibold text-first-text-color"></div>
+				</div>
+				<div class="image-viewer-exif-card-items flex flex-col gap-1"></div>
+			</div>
+		</template>
+	</div>
+	<button class="image-viewer-exif-toggle flex items-center gap-2 hidden absolute left-1/2 bottom-6 -translate-x-1/2 rounded-full border border-border-color bg-background-color-transparent-80 px-4 py-2 text-first-text-color backdrop-blur-md transition hover:bg-background-color-transparent-40" type="button" aria-label="EXIF" aria-expanded="false">
+		<i class="fa-solid fa-circle-info text-xs"></i>
+		<span class="text-xs font-semibold uppercase tracking-wider">EXIF</span>
+	</button>
+	<button class="image-viewer-next" type="button" aria-label="下一页">
+		<i class="fa-solid fa-chevron-right"></i>
+	</button>
+</div>
+
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    window.swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+
+    window.dispatchEvent(
+        new CustomEvent("redefine:swup:ready", {
+            detail: {
+                swup: window.swup,
+            },
+        }),
+    );
+</script>
+
+
+
+	
+<script src="/js/build/main.js" type="module"></script>
+
+
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+
+
+
+    
+        
+<script src="/js/build/libs/mermaid.min.js"></script>
+
+    
+
+
+
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+
+	
+
+<!-- MOSFET Easter Egg -->
+<div id="mosfet-egg-container" class="no-print" title="TO-247 MOSFET (点击进行过载测试)">
+  <div id="mosfet-floating-label"></div>
+  <svg viewBox="0 0 100 100" class="mosfet-svg">
+    <!-- Metal Tab -->
+    <rect class="mosfet-tab" x="35" y="10" width="30" height="20" rx="3" fill="#999" />
+    <circle cx="50" cy="18" r="4" fill="#eaeaea" />
+    <!-- Plastic Body -->
+    <rect class="mosfet-body" x="25" y="25" width="50" height="45" rx="4" fill="#222" stroke="#444" stroke-width="2" />
+    <!-- Gate/Drain/Source Pins -->
+    <rect class="mosfet-pin" x="33" y="70" width="4" height="25" fill="#bbb" />
+    <rect class="mosfet-pin" x="48" y="70" width="4" height="25" fill="#bbb" />
+    <rect class="mosfet-pin" x="63" y="70" width="4" height="25" fill="#bbb" />
+    <!-- Text markings -->
+    <text class="mosfet-text" x="50" y="42" font-size="8" fill="#fff" text-anchor="middle" font-family="monospace">SiC-2026</text>
+    <text class="mosfet-text sub" x="50" y="52" font-size="7" fill="#888" text-anchor="middle" font-family="monospace">800V 50A</text>
+  </svg>
+  <div class="spark-flash"></div>
+</div>
+
+<style>
+#mosfet-egg-container {
+  position: fixed;
+  bottom: calc(5% + 88px);
+  right: 25px;
+  width: 50px;
+  height: 50px;
+  z-index: 9999;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  user-select: none;
+}
+@media (max-width: 768px) {
+  #mosfet-egg-container {
+    bottom: calc(5% + 88px);
+    right: 7px;
+  }
+}
+#mosfet-egg-container:hover {
+  transform: scale(1.1);
+}
+.mosfet-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+  transition: filter 0.5s ease;
+}
+/* Shaking animation on click */
+@keyframes mosfet-shake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(-3px, 1px) rotate(-3deg); }
+  40% { transform: translate(2px, -1px) rotate(3deg); }
+  60% { transform: translate(-2px, -2px) rotate(-1deg); }
+  80% { transform: translate(3px, 2px) rotate(2deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+.mosfet-shaking {
+  animation: mosfet-shake 0.3s ease-in-out;
+}
+/* Sparks */
+.spark-flash {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, rgba(255,240,150,1) 0%, rgba(255,100,0,0.8) 50%, rgba(255,0,0,0) 70%);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.5);
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+.spark-active {
+  opacity: 1;
+  transform: scale(1.5);
+}
+/* Floating text labels */
+#mosfet-floating-label {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: bold;
+  color: #ef4444;
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(0,0,0,0.85);
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #ff4500;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+@keyframes label-float-up {
+  0% { opacity: 0; transform: translate(-50%, 0); }
+  15% { opacity: 1; transform: translate(-50%, -10px); }
+  80% { opacity: 1; transform: translate(-50%, -20px); }
+  100% { opacity: 0; transform: translate(-50%, -35px); }
+}
+.label-active {
+  animation: label-float-up 2s forwards ease-out;
+}
+/* Smoke particle */
+.smoke-particle {
+  position: absolute;
+  background: rgba(220, 220, 220, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(3px);
+  z-index: 9998;
+}
+@keyframes smoke-float {
+  0% { transform: translateY(0) scale(0.8); opacity: 0.5; }
+  50% { opacity: 0.7; }
+  100% { transform: translateY(-100px) scale(2.8); opacity: 0; }
+}
+
+/* Print override */
+@media print {
+  #mosfet-egg-container {
+    display: none !important;
+  }
+}
+</style>
+
+<script>
+(function() {
+  let clickCount = 0;
+  let eggContainer = null;
+  
+  function initMosfetEgg() {
+    const container = document.getElementById('mosfet-egg-container');
+    if (!container) return;
+    eggContainer = container;
+    
+    const label = document.getElementById('mosfet-floating-label');
+    const spark = container.querySelector('.spark-flash');
+    const svg = container.querySelector('.mosfet-svg');
+    const body = container.querySelector('.mosfet-body');
+    const tab = container.querySelector('.mosfet-tab');
+    
+    const failureModes = [
+      { text: "Vgs 过压! (>20V)", color: "#facc15", charred: false, smokeRate: 6 },
+      { text: "Drain 过流! (>50A)", color: "#f97316", charred: "partial", smokeRate: 18 },
+      { text: "雪崩热失控! (>150°C)", color: "#ef4444", charred: "heavy", smokeRate: 40 },
+      { text: "直通短路炸管! (0Ω)", color: "#b91c1c", charred: "destroyed", smokeRate: 85 }
+    ];
+
+    container.addEventListener('click', () => {
+      // Shake SVG
+      svg.classList.remove('mosfet-shaking');
+      void svg.offsetWidth; // Trigger reflow
+      svg.classList.add('mosfet-shaking');
+
+      // Trigger spark flash
+      spark.classList.add('spark-active');
+      setTimeout(() => spark.classList.remove('spark-active'), 120);
+
+      const mode = failureModes[Math.min(clickCount, failureModes.length - 1)];
+      clickCount++;
+
+      // Floating text label
+      label.innerText = mode.text;
+      label.style.borderColor = mode.color;
+      label.style.color = mode.color;
+      label.classList.remove('label-active');
+      void label.offsetWidth; // Trigger reflow
+      label.classList.add('label-active');
+
+      // Charring progression
+      if (mode.charred === "partial") {
+        body.setAttribute('fill', '#111');
+        tab.setAttribute('fill', '#666');
+      } else if (mode.charred === "heavy") {
+        body.setAttribute('fill', '#080808');
+        tab.setAttribute('fill', '#333');
+        svg.style.filter = "grayscale(80%) sepia(20%) drop-shadow(0 4px 6px rgba(0,0,0,0.3))";
+      } else if (mode.charred === "destroyed") {
+        body.setAttribute('fill', '#000');
+        tab.setAttribute('fill', '#111');
+        svg.style.filter = "grayscale(100%) brightness(40%) drop-shadow(0 4px 6px rgba(0,0,0,0.5))";
+      }
+
+      // Release smoke particles
+      createSmoke(mode.smokeRate);
+      
+      // Console output for fellow developers
+      console.warn(`[MOSFET OVERLOAD] Mode: ${mode.text}. Junction temp rising.`);
+    });
+  }
+
+  function createSmoke(rate) {
+    if (!eggContainer) return;
+    const containerRect = eggContainer.getBoundingClientRect();
+    const startX = containerRect.left + containerRect.width / 2;
+    const startY = containerRect.top + window.scrollY + 15; // Account for scroll offset
+
+    for (let i = 0; i < rate; i++) {
+      setTimeout(() => {
+        const p = document.createElement('div');
+        p.className = 'smoke-particle';
+        
+        const size = Math.random() * 8 + 6;
+        const offsetX = (Math.random() - 0.5) * 16;
+        const duration = Math.random() * 1.5 + 1.0;
+        
+        p.style.width = `${size}px`;
+        p.style.height = `${size}px`;
+        p.style.left = `${startX + offsetX}px`;
+        p.style.top = `${startY}px`;
+        p.style.animation = `smoke-float ${duration}s forwards ease-out`;
+        
+        document.body.appendChild(p);
+        
+        setTimeout(() => p.remove(), duration * 1000);
+      }, i * 35);
+    }
+  }
+
+  // Load handler
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMosfetEgg);
+  } else {
+    initMosfetEgg();
+  }
+
+  // PJAX support (re-init listener for Swup if needed, though container is in body outside swup)
+  document.addEventListener('swup:contentReplaced', () => {
+    // Re-verify DOM links just in case
+    initMosfetEgg();
+  });
+})();
+</script>
+</body>
+
+</html>
