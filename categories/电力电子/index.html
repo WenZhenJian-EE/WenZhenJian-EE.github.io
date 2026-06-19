@@ -140,7 +140,7 @@
     
             
                 
-                    <script data-swup-reload-script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("/sw.js");});}</script>
+                    <script data-swup-reload-script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("/sw.js").then(reg=>{reg.onupdatefound=()=>{const w=reg.installing;w.onstatechange=()=>{if(w.state==="activated")window.location.reload();};};});let r=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(!r){r=true;window.location.reload();}});});}</script>
                 
     
 
@@ -578,13 +578,6 @@
                          <!-- Close the previous LI if not the first item -->
                         <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='06-19'>
                     
-                    <a href="/emc-fundamentals/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">EMC基础</span>
-                    </a>
-                    
-                
-                    
-                    
                     <a href="/emc-design-cases/" class="block w-fit">
                         <span class="article-title my-0.5 text-2xl">EMC设计案例、理解</span>
                     </a>
@@ -620,8 +613,8 @@
                 
                     
                     
-                    <a href="/essence/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">源的本质定义理解</span>
+                    <a href="/grounding/" class="block w-fit">
+                        <span class="article-title my-0.5 text-2xl">接地策略详细概念</span>
                     </a>
                     
                 
@@ -643,6 +636,13 @@
                     
                     <a href="/cooling-heatsink/" class="block w-fit">
                         <span class="article-title my-0.5 text-2xl">风冷散热</span>
+                    </a>
+                    
+                
+                    
+                    
+                    <a href="/high-frequency-circuit/" class="block w-fit">
+                        <span class="article-title my-0.5 text-2xl">高频电路</span>
                     </a>
                     
                 

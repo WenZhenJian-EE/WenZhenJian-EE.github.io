@@ -140,7 +140,7 @@
     
             
                 
-                    <script data-swup-reload-script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("/sw.js");});}</script>
+                    <script data-swup-reload-script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("/sw.js").then(reg=>{reg.onupdatefound=()=>{const w=reg.installing;w.onstatechange=()=>{if(w.state==="activated")window.location.reload();};};});let r=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(!r){r=true;window.location.reload();}});});}</script>
                 
     
 
@@ -592,13 +592,6 @@
                 
                     
                     
-                    <a href="/safety-fundamentals/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">安规基础</span>
-                    </a>
-                    
-                
-                    
-                    
                     <a href="/safety-standard/" class="block w-fit">
                         <span class="article-title my-0.5 text-2xl">安规标准收录、解读</span>
                     </a>
@@ -622,6 +615,13 @@
                     
                     <a href="/thermal-fundamentals/" class="block w-fit">
                         <span class="article-title my-0.5 text-2xl">热学基础</span>
+                    </a>
+                    
+                
+                    
+                    
+                    <a href="/safety-design/" class="block w-fit">
+                        <span class="article-title my-0.5 text-2xl">硬件安规设计核心体系</span>
                     </a>
                     
                 

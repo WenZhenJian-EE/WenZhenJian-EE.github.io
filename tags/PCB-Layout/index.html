@@ -140,7 +140,7 @@
     
             
                 
-                    <script data-swup-reload-script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("/sw.js");});}</script>
+                    <script data-swup-reload-script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("/sw.js").then(reg=>{reg.onupdatefound=()=>{const w=reg.installing;w.onstatechange=()=>{if(w.state==="activated")window.location.reload();};};});let r=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(!r){r=true;window.location.reload();}});});}</script>
                 
     
 

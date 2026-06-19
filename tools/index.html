@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
 <meta property="article:published_time" content="2026-06-19T06:45:00.000Z">
-<meta property="article:modified_time" content="2026-06-19T08:12:50.549Z">
+<meta property="article:modified_time" content="2026-06-19T08:42:54.110Z">
 <meta property="article:author" content="WenZhenJian-EE">
 <meta property="article:tag" content="电源设计, 硬件工程师, PCS, SiC, Hexo">
 <meta name="twitter:card" content="summary">
@@ -142,7 +142,7 @@
     
             
                 
-                    <script data-swup-reload-script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("/sw.js");});}</script>
+                    <script data-swup-reload-script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("/sw.js").then(reg=>{reg.onupdatefound=()=>{const w=reg.installing;w.onstatechange=()=>{if(w.state==="activated")window.location.reload();};};});let r=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(!r){r=true;window.location.reload();}});});}</script>
                 
     
 
@@ -1166,7 +1166,7 @@
 }
 </style>
 
-<script>
+<script data-swup-reload-script>
 (function() {
   // Global variables attached to window or checked for existence
   if (!window.E24) {
@@ -1480,17 +1480,26 @@
     }
   }
 
+  window.runAllCalculations = runAllCalculations;
+
+  // Run calculations immediately
+  runAllCalculations();
+
   // Bind to load events
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', runAllCalculations);
-  } else {
-    runAllCalculations();
   }
 
   // PJAX/Swup Event Handler: Re-initialize calculations when content is replaced
-  document.addEventListener('swup:contentReplaced', runAllCalculations);
-  // Support other common PJAX systems
-  document.addEventListener('pjax:complete', runAllCalculations);
+  if (!window.hasAddedCalculatorListeners) {
+    document.addEventListener('swup:contentReplaced', function() {
+      if (window.runAllCalculations) window.runAllCalculations();
+    });
+    document.addEventListener('pjax:complete', function() {
+      if (window.runAllCalculations) window.runAllCalculations();
+    });
+    window.hasAddedCalculatorListeners = true;
+  }
 })();
 </script>
 

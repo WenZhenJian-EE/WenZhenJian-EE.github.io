@@ -140,7 +140,7 @@
     
             
                 
-                    <script data-swup-reload-script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("/sw.js");});}</script>
+                    <script data-swup-reload-script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("/sw.js").then(reg=>{reg.onupdatefound=()=>{const w=reg.installing;w.onstatechange=()=>{if(w.state==="activated")window.location.reload();};};});let r=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(!r){r=true;window.location.reload();}});});}</script>
                 
     
 
@@ -884,6 +884,92 @@ mjx-container[display="true"] + br {
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
+                        <a href="/d-a-b-c-llc/">
+                            移相全桥,DAB,CLLC
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            
+大功率直流转换拓扑区别拓扑结构与控制策略的本质区别
+在电力电子工程实践中，区分不同拓扑的核心在于辨析电路的硬件物理结构与控制策略之间的关系，而非仅仅依据电路原理图的外观。全桥LLC谐振变换器与同步整流就是一个典型案例。
+大功率、高效率电源（如服务器电源、通信电源、OBC）的主流拓扑之一是原边全桥结合副边整流的结构。其典型配置为原边采用全桥逆变产生方波，中间通过包含谐振电感、励磁电感和谐振电...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Fri Jun 19 2026 05:37:13 GMT+0800">
+                
+                    2026-06-19
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E6%8B%93%E6%89%91/">电路拓扑</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E6%8B%93%E6%89%91/%E6%8B%93%E6%89%91%E5%89%96%E6%9E%90/">拓扑剖析</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E7%94%B5%E8%B7%AF%E6%8B%93%E6%89%91/">电路拓扑</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%8B%93%E6%89%91/">拓扑</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/d-a-b-c-llc/">阅读全文<span class="seo-reader-text">移相全桥,DAB,CLLC</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
                         <a href="/d-i-s-c-r-e-t-e-f-i-l-t-e-f-a-c-t-s/">
                             Discrete Filte、FACTs
                         </a>
@@ -1118,100 +1204,6 @@ LM 系列...
     </div>
 
     <a href="/datasheet-reading-production-mechanical/">阅读全文<span class="seo-reader-text">数据手册阅读、生产、机械</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/datasheet-reading/">
-                            信号处理与采集数据手册阅读
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            
-SN74HC08与门芯片核心参数深度解读
-对于电力电子应用，我们关注的不是逻辑门的功能本身，而是它在强噪声、宽电压、宽温度环境下的电气鲁棒性、时序性能和驱动能力。
-
-电源与电压范围
-
-专业名词与定义
-
-Vcc: 供电电压，芯片正常工作所需的直流电源电压。
-: 高电平输入电压，芯片能可靠识别为逻辑“1”的最低输入电压。
-: 低电平输入电压，芯片能可靠识别为逻辑“0”的最高输入电压。
-在  和...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Jun 19 2026 05:37:13 GMT+0800">
-                
-                    2026-06-19
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/">芯片数据手册</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/%E9%80%9A%E7%94%A8%E9%98%85%E8%AF%BB%E6%8C%87%E5%8D%97/">通用阅读指南</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/">数据手册</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E9%98%85%E8%AF%BB%E6%8C%87%E5%8D%97/">阅读指南</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/datasheet-reading/">阅读全文<span class="seo-reader-text">信号处理与采集数据手册阅读</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>

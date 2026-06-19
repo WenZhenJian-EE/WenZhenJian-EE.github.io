@@ -140,7 +140,7 @@
     
             
                 
-                    <script data-swup-reload-script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("/sw.js");});}</script>
+                    <script data-swup-reload-script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("/sw.js").then(reg=>{reg.onupdatefound=()=>{const w=reg.installing;w.onstatechange=()=>{if(w.state==="activated")window.location.reload();};};});let r=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(!r){r=true;window.location.reload();}});});}</script>
                 
     
 
@@ -606,13 +606,6 @@
                 
                     
                     
-                    <a href="/physics-fundamentals-material/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">物理基础、材料</span>
-                    </a>
-                    
-                
-                    
-                    
                     <a href="/power-circuit/" class="block w-fit">
                         <span class="article-title my-0.5 text-2xl">电源相关电路</span>
                     </a>
@@ -629,6 +622,13 @@
                     
                     <a href="/resistor-design-cases/" class="block w-fit">
                         <span class="article-title my-0.5 text-2xl">电阻设计案例</span>
+                    </a>
+                    
+                
+                    
+                    
+                    <a href="/opamp-sampling-design-cases/" class="block w-fit">
+                        <span class="article-title my-0.5 text-2xl">运放采样设计案例</span>
                     </a>
                     
                 

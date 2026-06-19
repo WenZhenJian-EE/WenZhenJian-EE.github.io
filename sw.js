@@ -3,7 +3,7 @@
  * Offline caching implementation
  */
 
-const CACHE_NAME = 'wzj-blog-cache-v1';
+const CACHE_NAME = 'wzj-blog-cache-v2';
 const ASSETS = [
   '/',
   '/css/style.css',

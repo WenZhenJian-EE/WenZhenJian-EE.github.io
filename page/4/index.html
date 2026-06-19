@@ -140,7 +140,7 @@
     
             
                 
-                    <script data-swup-reload-script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("/sw.js");});}</script>
+                    <script data-swup-reload-script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("/sw.js").then(reg=>{reg.onupdatefound=()=>{const w=reg.installing;w.onstatechange=()=>{if(w.state==="activated")window.location.reload();};};});let r=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(!r){r=true;window.location.reload();}});});}</script>
                 
     
 
@@ -1045,186 +1045,6 @@ mjx-container[display="true"] + br {
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/emc-design-cases/">
-                            EMC设计案例、理解
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            
-H桥驱动与差模干扰的产生机理感性负载的基础特性与干扰
-
-感性负载在电流被切断时，会因磁场能量的释放而产生一个高压反电动势，其关系为 ，试图维持原有电流。这是感性负载最直观的电气特性。
-在电路原理图层面，通常只关注理想的电压和电流路径，容易忽略由实际电路中非理想电流行为引发的差模干扰问题。
-
-
-H桥驱动与差模干扰的产生机理H桥驱动感性负载（如电机）是典型的差模干扰源。其根源在于H桥的开关工作...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Jun 19 2026 05:37:13 GMT+0800">
-                
-                    2026-06-19
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/">电力电子</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/EMC-EMI/">EMC/EMI</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/EMC/">EMC</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/EMI/">EMI</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/emc-design-cases/">阅读全文<span class="seo-reader-text">EMC设计案例、理解</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/emc-fundamentals/">
-                            EMC基础
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            
-电磁兼容性基础 (EMC)电磁兼容性（EMC）是电子设备在电磁环境中正常工作且不对该环境中任何事物构成不能承受的电磁骚扰的能力。它包含两个核心方面：
-
-电磁骚扰 (EMI): 指设备自身产生的电磁能量对外界环境及其他设备造成干扰的程度。
-电磁抗扰度 (EMS): 指设备自身抵抗外部电磁干扰并保持正常工作的能力。
-
-EMC物理基础与频域理论EMI干扰源的物理本质
-在硬开关电力电子拓扑中，EM...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Jun 19 2026 05:37:13 GMT+0800">
-                
-                    2026-06-19
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/">电力电子</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/EMC-EMI/">EMC/EMI</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/EMC/">EMC</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/EMI/">EMI</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/emc-fundamentals/">阅读全文<span class="seo-reader-text">EMC基础</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
                         <a href="/emi-emc-test-supplier/">
                             EMI、EMC测试设备供应商
                         </a>
@@ -1403,8 +1223,8 @@ EMS：衡量设备...
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/essence/">
-                            源的本质定义理解
+                        <a href="/datasheet-reading/">
+                            信号处理与采集数据手册阅读
                         </a>
                     </h3>
 
@@ -1412,31 +1232,17 @@ EMS：衡量设备...
                         
                             
                             
-驱动控制体系：电流型与电压型机制驱动电路的基本工作原理与阻抗特性驱动电路的设计核心在于能量的传递。无论是电压驱动还是电流驱动，其物理本质都涉及电流的流动，但作用机制与负载的阻抗特性密切相关。
+SN74HC08与门芯片核心参数深度解读
+对于电力电子应用，我们关注的不是逻辑门的功能本身，而是它在强噪声、宽电压、宽温度环境下的电气鲁棒性、时序性能和驱动能力。
 
+电源与电压范围
 
+专业名词与定义
 
-驱动类型
-类比模型
-物理本质
-电流的作用
-
-
-
-电流型光耦
-有漏洞的水桶
-阻性负载
-维持状态，以直流分量主导
-
-
-电压型CMOS
-密封的气球
-容性负载
-改变状态，以瞬态分量主导
-
-
-
-电压驱动模...
+Vcc: 供电电压，芯片正常工作所需的直流电源电压。
+: 高电平输入电压，芯片能可靠识别为逻辑“1”的最低输入电压。
+: 低电平输入电压，芯片能可靠识别为逻辑“0”的最高输入电压。
+在  和...
                         
                     </div>
 
@@ -1458,7 +1264,7 @@ EMS：衡量设备...
                     
                         
                         <li>
-                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/">电力电子</a>&nbsp;
+                            <a href="/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/">芯片数据手册</a>&nbsp;
                         </li>
                     
                     
@@ -1468,7 +1274,7 @@ EMS：衡量设备...
                             <li>></li>
                         
                         <li>
-                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/%E7%94%B5%E8%B7%AF%E5%88%86%E6%9E%90/">电路分析</a>&nbsp;
+                            <a href="/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/%E9%80%9A%E7%94%A8%E9%98%85%E8%AF%BB%E6%8C%87%E5%8D%97/">通用阅读指南</a>&nbsp;
                         </li>
                     
                     
@@ -1483,12 +1289,12 @@ EMS：衡量设备...
                     
                         <li>
                             
-                            <a href="/tags/%E7%94%B5%E8%B7%AF%E5%88%86%E6%9E%90/">电路分析</a>&nbsp;
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/">数据手册</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">底层原理</a>&nbsp;
+                            <a href="/tags/%E9%98%85%E8%AF%BB%E6%8C%87%E5%8D%97/">阅读指南</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1496,7 +1302,7 @@ EMS：衡量设备...
         
     </div>
 
-    <a href="/essence/">阅读全文<span class="seo-reader-text">源的本质定义理解</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/datasheet-reading/">阅读全文<span class="seo-reader-text">信号处理与采集数据手册阅读</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1666,6 +1472,191 @@ EMS：衡量设备...
     </div>
 
     <a href="/failure-analysis/">阅读全文<span class="seo-reader-text">失效分析</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/emc-design-cases/">
+                            EMC设计案例、理解
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            
+H桥驱动与差模干扰的产生机理感性负载的基础特性与干扰
+
+感性负载在电流被切断时，会因磁场能量的释放而产生一个高压反电动势，其关系为 ，试图维持原有电流。这是感性负载最直观的电气特性。
+在电路原理图层面，通常只关注理想的电压和电流路径，容易忽略由实际电路中非理想电流行为引发的差模干扰问题。
+
+
+H桥驱动与差模干扰的产生机理H桥驱动感性负载（如电机）是典型的差模干扰源。其根源在于H桥的开关工作...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Fri Jun 19 2026 05:37:13 GMT+0800">
+                
+                    2026-06-19
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/">电力电子</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/EMC-EMI/">EMC/EMI</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/EMC/">EMC</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/EMI/">EMI</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/emc-design-cases/">阅读全文<span class="seo-reader-text">EMC设计案例、理解</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/formulas/">
+                            工程计算公式收集
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            
+拓扑占空比与输出电压关系在电力电子技术中，理解占空比  与输出电压  的关系是电路分析与控制算法设计的核心。输出电压通常与占空比呈正相关或负相关，其核心逻辑建立在伏秒平衡原则之上。
+
+核心理论：理想电压转换比 CCM 模式
+在连续导通模式 CCM 下，忽略开关管压降、电感内阻等损耗，常见拓扑的转换特性如下表所示：
+常用 DC-DC 拓扑对比表
+
+
+
+拓扑类型
+理想电压转换比公式 
+极性
+占...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Fri Jun 19 2026 05:37:13 GMT+0800">
+                
+                    2026-06-19
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/">电力电子</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/%E7%94%B5%E8%B7%AF%E5%88%86%E6%9E%90/">电路分析</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E7%94%B5%E8%B7%AF%E5%88%86%E6%9E%90/">电路分析</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">底层原理</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/formulas/">阅读全文<span class="seo-reader-text">工程计算公式收集</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
