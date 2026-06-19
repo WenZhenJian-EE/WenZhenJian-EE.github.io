@@ -540,6 +540,13 @@
                          <!-- Close the previous LI if not the first item -->
                         <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='06-19'>
                     
+                    <a href="/d-i-s-c-r-e-t-e-f-i-l-t-e-f-a-c-t-s/" class="block w-fit">
+                        <span class="article-title my-0.5 text-2xl">Discrete Filte、FACTs</span>
+                    </a>
+                    
+                
+                    
+                    
                     <a href="/emc-design-cases-2/" class="block w-fit">
                         <span class="article-title my-0.5 text-2xl">EMC设计案例</span>
                     </a>
@@ -563,13 +570,6 @@
                     
                     <a href="/diode-design-cases/" class="block w-fit">
                         <span class="article-title my-0.5 text-2xl">二极管类设计案例</span>
-                    </a>
-                    
-                
-                    
-                    
-                    <a href="/design-cases/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">信号处理与采集设计案例</span>
                     </a>
                     
                 
@@ -922,8 +922,8 @@
 <style>
 #mosfet-egg-container {
   position: fixed;
-  bottom: 5%;
-  right: 85px;
+  bottom: calc(5% + 88px);
+  right: 25px;
   width: 50px;
   height: 50px;
   z-index: 9999;
@@ -933,7 +933,8 @@
 }
 @media (max-width: 768px) {
   #mosfet-egg-container {
-    right: 65px;
+    bottom: calc(5% + 88px);
+    right: 7px;
   }
 }
 #mosfet-egg-container:hover {
