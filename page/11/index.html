@@ -797,8 +797,8 @@ mjx-container[display="true"] + br {
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/switch-capacitor-flying-capacitor-capacitor/">
-                            开关电容、飞跨电容变换器
+                        <a href="/switch-driver-datasheet-reading-2/">
+                            开关管、栅极驱动数据手册阅读
                         </a>
                     </h3>
 
@@ -806,10 +806,13 @@ mjx-container[display="true"] + br {
                         
                             
                             
-飞跨电容多电平逆变器 FC-MLI飞跨电容多电平逆变器 FC-MLI
-FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器拓扑，与中性点钳位 NPC、级联H桥 CHB 属于同类级别的经典架构。
+MOSFET通用数据手册阈值电压：当栅源电压达到或超过阈值电压时，开关管开始导通。
+此参数为栅源间的最大允许电压，此例中为±20V。
+该参数表明：当栅源电压达到2V时，开关管开始导通；为确保其完全导通，栅源电压应达到4V。在实际应用中，驱动电压通常选择远大于4V，但必须小于其最大额定栅源电压（此例中为20V）
 
-核心原理：利用悬浮（飞跨）在开关器件两端的电容进行工作。通过控制不同开关管的开通与关断组合，利用飞跨电容对母线电压进行分压和钳位，在输出端合成出阶梯状的交流电压波形，如三电平或...
+低边驱动栅极驱动器-UCC2752xUCC2752x系列
+核心参数深度解读
+对...
                         
                     </div>
 
@@ -831,7 +834,7 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
                     
                         
                         <li>
-                            <a href="/categories/%E7%94%B5%E8%B7%AF%E6%8B%93%E6%89%91/">电路拓扑</a>&nbsp;
+                            <a href="/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/">芯片数据手册</a>&nbsp;
                         </li>
                     
                     
@@ -841,7 +844,7 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
                             <li>></li>
                         
                         <li>
-                            <a href="/categories/%E7%94%B5%E8%B7%AF%E6%8B%93%E6%89%91/%E6%8B%93%E6%89%91%E5%89%96%E6%9E%90/">拓扑剖析</a>&nbsp;
+                            <a href="/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/%E9%80%9A%E7%94%A8%E9%98%85%E8%AF%BB%E6%8C%87%E5%8D%97/">通用阅读指南</a>&nbsp;
                         </li>
                     
                     
@@ -856,12 +859,12 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
                     
                         <li>
                             
-                            <a href="/tags/%E7%94%B5%E8%B7%AF%E6%8B%93%E6%89%91/">电路拓扑</a>&nbsp;
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/">数据手册</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E6%8B%93%E6%89%91/">拓扑</a>&nbsp;
+                            <a href="/tags/%E9%98%85%E8%AF%BB%E6%8C%87%E5%8D%97/">阅读指南</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -869,7 +872,7 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
         
     </div>
 
-    <a href="/switch-capacitor-flying-capacitor-capacitor/">阅读全文<span class="seo-reader-text">开关电容、飞跨电容变换器</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/switch-driver-datasheet-reading-2/">阅读全文<span class="seo-reader-text">开关管、栅极驱动数据手册阅读</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -884,8 +887,91 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/switch-supplier/">
-                            开关管供应商
+                        <a href="/system/">
+                            硬件系统级地线哲学
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            一、 静电放电与系统电荷交互物理学人体电容模型与能量守恒静电放电是导致硬件系统损坏的常见瞬态干扰源。在干燥环境中，人体由于摩擦积累的静电电压可达 3kV 至 15kV。当人体接触弱电电路板时，并非板子本身的低压导致触电，而是人体作为高压源向板子放电。人体可以等效为一个具备一定电容特性的高压源。根据人体模型，人体的等效电容  通常在 100pF 至 150pF 之间。当人体携带高压静电时，其储...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Fri Jun 19 2026 05:37:13 GMT+0800">
+                
+                    2026-06-19
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/">电力电子</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/%E9%9A%94%E7%A6%BB%E4%B8%8E%E6%8E%A5%E5%9C%B0/">隔离与接地</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E9%9A%94%E7%A6%BB/">隔离</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%8E%A5%E5%9C%B0/">接地</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/system/">阅读全文<span class="seo-reader-text">硬件系统级地线哲学</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/switch-driver-datasheet-reading/">
+                            开关与驱动数据手册阅读
                         </a>
                     </h3>
 
@@ -893,7 +979,116 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
                         
                             
                             
-硅与碳化硅半导体材料的演进逻辑在电力电子工程界，传统 MOSFET 默认指代硅基器件。半导体理论上可采用多种材料，但硅凭借其独特的自然属性与成本优势统治了该领域。硅器件的核心杀手锏在于二氧化硅。通过高温氧化，硅表面能自然生成极度致密、绝缘性能极佳的二氧化硅层，使栅极漏电流低至皮安级别。此外，硅的原材料为自然界广泛存在的石英砂，经过极其成熟的直拉法提纯拉晶，制造成本被极大地摊薄。然而，随着现...
+继电器通用数据手册额定负载与浪涌电流继电器的触点额定值是选型的核心依据，它定义了在保证安全、可靠性和电气寿命的前提下，触点能够承载和切换的电气参数。
+
+
+
+参数
+定义
+
+
+
+额定切换电压
+触点间可以安全切换（带电通断）的最大电压。
+
+
+额定电流
+在额定电压下，触点可以长期通过并安全切换的电流。
+
+
+额定切换功率
+触点可以安全切换的最大视在功率。
+
+
+浪涌电流能力
+触点闭合瞬间能够承受的、远...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Fri Jun 19 2026 05:37:13 GMT+0800">
+                
+                    2026-06-19
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/">芯片数据手册</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/%E9%80%9A%E7%94%A8%E9%98%85%E8%AF%BB%E6%8C%87%E5%8D%97/">通用阅读指南</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/">数据手册</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E9%98%85%E8%AF%BB%E6%8C%87%E5%8D%97/">阅读指南</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/switch-driver-datasheet-reading/">阅读全文<span class="seo-reader-text">开关与驱动数据手册阅读</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/switch-driver-design-cases/">
+                            开关与驱动设计案例
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            
+模拟开关
+高侧开关基本概念与工作机制高侧开关基本概念与工作机制
+高侧开关的命名源于其在电路拓扑中的物理位置。开关放置在电源正极与负载之间，电流路径为电源流经开关，再经过负载，最终流向地。由于开关处于整个回路的高电位一侧，因此被称为高侧开关。
+高侧开关芯片内部通常使用 NMOS 作为功率开关管。为了使高侧 NMOS 导通，其栅极电压必须高于源极电压。由于导通时源极电压接近电源电压，芯片内部集...
                         
                     </div>
 
@@ -925,7 +1120,7 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
                             <li>></li>
                         
                         <li>
-                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E4%BE%9B%E5%BA%94%E5%95%86%E5%90%8D%E5%BD%95/">供应商名录</a>&nbsp;
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">电路设计案例</a>&nbsp;
                         </li>
                     
                     
@@ -940,12 +1135,7 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
                     
                         <li>
                             
-                            <a href="/tags/%E4%BE%9B%E5%BA%94%E5%95%86/">供应商</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E9%87%87%E8%B4%AD/">采购</a>&nbsp;
+                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">设计案例</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -953,7 +1143,7 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
         
     </div>
 
-    <a href="/switch-supplier/">阅读全文<span class="seo-reader-text">开关管供应商</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/switch-driver-design-cases/">阅读全文<span class="seo-reader-text">开关与驱动设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1327,8 +1517,8 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/switch-driver-design-cases/">
-                            开关与驱动设计案例
+                        <a href="/s-n-u-b-b-e-r-design-cases/">
+                            snubber设计案例
                         </a>
                     </h3>
 
@@ -1336,10 +1526,11 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
                         
                             
                             
-模拟开关
-高侧开关基本概念与工作机制高侧开关基本概念与工作机制
-高侧开关的命名源于其在电路拓扑中的物理位置。开关放置在电源正极与负载之间，电流路径为电源流经开关，再经过负载，最终流向地。由于开关处于整个回路的高电位一侧，因此被称为高侧开关。
-高侧开关芯片内部通常使用 NMOS 作为功率开关管。为了使高侧 NMOS 导通，其栅极电压必须高于源极电压。由于导通时源极电压接近电源电压，芯片内部集...
+RC吸收电路RC吸收电路主要用于抑制功率回路中的震荡，特别是针对Buck电路中SW节点或二极管反向恢复引起的震荡。
+震荡源头与电路位置
+
+震荡源头：高频震荡通常产生于上管开启瞬间。此时输入电压加载在下管两端，回路寄生电感  与下管输出寄生电容  发生剧烈谐振。
+安装位置：吸收电路应紧靠下管（SW节点与GND之间）并联安装。虽然从交流小信号角度看电源与地短路，但在工程实践中，必须在震荡源头（...
                         
                     </div>
 
@@ -1394,196 +1585,7 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
         
     </div>
 
-    <a href="/switch-driver-design-cases/">阅读全文<span class="seo-reader-text">开关与驱动设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/system/">
-                            硬件系统级地线哲学
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            一、 静电放电与系统电荷交互物理学人体电容模型与能量守恒静电放电是导致硬件系统损坏的常见瞬态干扰源。在干燥环境中，人体由于摩擦积累的静电电压可达 3kV 至 15kV。当人体接触弱电电路板时，并非板子本身的低压导致触电，而是人体作为高压源向板子放电。人体可以等效为一个具备一定电容特性的高压源。根据人体模型，人体的等效电容  通常在 100pF 至 150pF 之间。当人体携带高压静电时，其储...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Jun 19 2026 05:37:13 GMT+0800">
-                
-                    2026-06-19
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/">电力电子</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/%E9%9A%94%E7%A6%BB%E4%B8%8E%E6%8E%A5%E5%9C%B0/">隔离与接地</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E9%9A%94%E7%A6%BB/">隔离</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E6%8E%A5%E5%9C%B0/">接地</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/system/">阅读全文<span class="seo-reader-text">硬件系统级地线哲学</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/switch-driver-datasheet-reading/">
-                            开关与驱动数据手册阅读
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            
-继电器通用数据手册额定负载与浪涌电流继电器的触点额定值是选型的核心依据，它定义了在保证安全、可靠性和电气寿命的前提下，触点能够承载和切换的电气参数。
-
-
-
-参数
-定义
-
-
-
-额定切换电压
-触点间可以安全切换（带电通断）的最大电压。
-
-
-额定电流
-在额定电压下，触点可以长期通过并安全切换的电流。
-
-
-额定切换功率
-触点可以安全切换的最大视在功率。
-
-
-浪涌电流能力
-触点闭合瞬间能够承受的、远...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Jun 19 2026 05:37:13 GMT+0800">
-                
-                    2026-06-19
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/">芯片数据手册</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/%E9%80%9A%E7%94%A8%E9%98%85%E8%AF%BB%E6%8C%87%E5%8D%97/">通用阅读指南</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/">数据手册</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E9%98%85%E8%AF%BB%E6%8C%87%E5%8D%97/">阅读指南</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/switch-driver-datasheet-reading/">阅读全文<span class="seo-reader-text">开关与驱动数据手册阅读</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/s-n-u-b-b-e-r-design-cases/">阅读全文<span class="seo-reader-text">snubber设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>

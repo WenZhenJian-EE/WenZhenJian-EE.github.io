@@ -797,16 +797,22 @@ mjx-container[display="true"] + br {
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/electromechanical-structure-design-cases/">
-                            机电、结构、设计案例
+                        <a href="/driver-design-cases/">
+                            驱动设计案例
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            叠层母排的基础结构与电气功能叠层母排的基础结构与电气功能
-叠层母排是现代大功率电力电子设备（如 PCS、光伏逆变器、电动汽车电驱）中的核心复合连接部件，主要用于连接直流母线电容与功率半导体模块（如 IGBT 或 SiC MOSFET）。在物理形态上，它将多层宽大、扁平的导电金属排（通常为紫铜排）与极薄的绝缘材料（如 PET、PI 聚酰亚胺膜或 Nomex 纸）交替层叠，并经过高温热压密封封装...
+                            
+
+高边驱动方案高边驱动方案
+驱动单个高边N沟道MOSFET的核心挑战在于，需要创建一个参考于其源极的浮动驱动电源，该电源的电压需比源极高出10V至15V。实现这一目标的方案选择，主要取决于应用对占空比的要求。
+
+自举电路方案
+自举电路是性价比最高且最常用的高边驱动方法，但其应用受限于特定的工作条件。
+工作原理即使电路中没有低边开关，只要负载能够提供到地的通路，并且高边开关会周期性关断，就可...
                         
                     </div>
 
@@ -838,7 +844,7 @@ mjx-container[display="true"] + br {
                             <li>></li>
                         
                         <li>
-                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">电路设计案例</a>&nbsp;
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E9%A9%B1%E5%8A%A8%E4%B8%8E%E5%BC%80%E5%85%B3%E7%AE%A1/">驱动与开关管</a>&nbsp;
                         </li>
                     
                     
@@ -853,7 +859,12 @@ mjx-container[display="true"] + br {
                     
                         <li>
                             
-                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">设计案例</a>&nbsp;
+                            <a href="/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E5%BC%80%E5%85%B3%E7%AE%A1/">开关管</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -861,7 +872,7 @@ mjx-container[display="true"] + br {
         
     </div>
 
-    <a href="/electromechanical-structure-design-cases/">阅读全文<span class="seo-reader-text">机电、结构、设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/driver-design-cases/">阅读全文<span class="seo-reader-text">驱动设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1031,6 +1042,96 @@ mjx-container[display="true"] + br {
     </div>
 
     <a href="/emc-design-cases-2/">阅读全文<span class="seo-reader-text">EMC设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/emc-design-cases/">
+                            EMC设计案例、理解
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            
+H桥驱动与差模干扰的产生机理感性负载的基础特性与干扰
+
+感性负载在电流被切断时，会因磁场能量的释放而产生一个高压反电动势，其关系为 ，试图维持原有电流。这是感性负载最直观的电气特性。
+在电路原理图层面，通常只关注理想的电压和电流路径，容易忽略由实际电路中非理想电流行为引发的差模干扰问题。
+
+
+H桥驱动与差模干扰的产生机理H桥驱动感性负载（如电机）是典型的差模干扰源。其根源在于H桥的开关工作...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Fri Jun 19 2026 05:37:13 GMT+0800">
+                
+                    2026-06-19
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/">电力电子</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/EMC-EMI/">EMC/EMI</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/EMC/">EMC</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/EMI/">EMI</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/emc-design-cases/">阅读全文<span class="seo-reader-text">EMC设计案例、理解</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1223,8 +1324,8 @@ EMS：衡量设备...
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/datasheet-reading/">
-                            信号处理与采集数据手册阅读
+                        <a href="/essence/">
+                            源的本质定义理解
                         </a>
                     </h3>
 
@@ -1232,17 +1333,31 @@ EMS：衡量设备...
                         
                             
                             
-SN74HC08与门芯片核心参数深度解读
-对于电力电子应用，我们关注的不是逻辑门的功能本身，而是它在强噪声、宽电压、宽温度环境下的电气鲁棒性、时序性能和驱动能力。
+驱动控制体系：电流型与电压型机制驱动电路的基本工作原理与阻抗特性驱动电路的设计核心在于能量的传递。无论是电压驱动还是电流驱动，其物理本质都涉及电流的流动，但作用机制与负载的阻抗特性密切相关。
 
-电源与电压范围
 
-专业名词与定义
 
-Vcc: 供电电压，芯片正常工作所需的直流电源电压。
-: 高电平输入电压，芯片能可靠识别为逻辑“1”的最低输入电压。
-: 低电平输入电压，芯片能可靠识别为逻辑“0”的最高输入电压。
-在  和...
+驱动类型
+类比模型
+物理本质
+电流的作用
+
+
+
+电流型光耦
+有漏洞的水桶
+阻性负载
+维持状态，以直流分量主导
+
+
+电压型CMOS
+密封的气球
+容性负载
+改变状态，以瞬态分量主导
+
+
+
+电压驱动模...
                         
                     </div>
 
@@ -1264,7 +1379,7 @@ Vcc: 供电电压，芯片正常工作所需的直流电源电压。
                     
                         
                         <li>
-                            <a href="/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/">芯片数据手册</a>&nbsp;
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/">电力电子</a>&nbsp;
                         </li>
                     
                     
@@ -1274,7 +1389,7 @@ Vcc: 供电电压，芯片正常工作所需的直流电源电压。
                             <li>></li>
                         
                         <li>
-                            <a href="/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/%E9%80%9A%E7%94%A8%E9%98%85%E8%AF%BB%E6%8C%87%E5%8D%97/">通用阅读指南</a>&nbsp;
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/%E7%94%B5%E8%B7%AF%E5%88%86%E6%9E%90/">电路分析</a>&nbsp;
                         </li>
                     
                     
@@ -1289,12 +1404,12 @@ Vcc: 供电电压，芯片正常工作所需的直流电源电压。
                     
                         <li>
                             
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/">数据手册</a>&nbsp;
+                            <a href="/tags/%E7%94%B5%E8%B7%AF%E5%88%86%E6%9E%90/">电路分析</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E9%98%85%E8%AF%BB%E6%8C%87%E5%8D%97/">阅读指南</a>&nbsp;
+                            <a href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">底层原理</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1302,7 +1417,7 @@ Vcc: 供电电压，芯片正常工作所需的直流电源电压。
         
     </div>
 
-    <a href="/datasheet-reading/">阅读全文<span class="seo-reader-text">信号处理与采集数据手册阅读</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/essence/">阅读全文<span class="seo-reader-text">源的本质定义理解</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1472,96 +1587,6 @@ Vcc: 供电电压，芯片正常工作所需的直流电源电压。
     </div>
 
     <a href="/failure-analysis/">阅读全文<span class="seo-reader-text">失效分析</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/emc-design-cases/">
-                            EMC设计案例、理解
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            
-H桥驱动与差模干扰的产生机理感性负载的基础特性与干扰
-
-感性负载在电流被切断时，会因磁场能量的释放而产生一个高压反电动势，其关系为 ，试图维持原有电流。这是感性负载最直观的电气特性。
-在电路原理图层面，通常只关注理想的电压和电流路径，容易忽略由实际电路中非理想电流行为引发的差模干扰问题。
-
-
-H桥驱动与差模干扰的产生机理H桥驱动感性负载（如电机）是典型的差模干扰源。其根源在于H桥的开关工作...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Jun 19 2026 05:37:13 GMT+0800">
-                
-                    2026-06-19
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/">电力电子</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/EMC-EMI/">EMC/EMI</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/EMC/">EMC</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/EMI/">EMI</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/emc-design-cases/">阅读全文<span class="seo-reader-text">EMC设计案例、理解</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
