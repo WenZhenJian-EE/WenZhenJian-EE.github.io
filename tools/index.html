@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
 <meta property="article:published_time" content="2026-06-19T06:45:00.000Z">
-<meta property="article:modified_time" content="2026-06-19T07:24:06.093Z">
+<meta property="article:modified_time" content="2026-06-19T07:36:21.181Z">
 <meta property="article:author" content="WenZhenJian-EE">
 <meta property="article:tag" content="电源设计, 硬件工程师, PCS, SiC, Hexo">
 <meta name="twitter:card" content="summary">
@@ -566,7 +566,8 @@
 		<h1>在线工程计算工具箱</h1>
 		
 
-		<div class="tools-wrapper">
+		
+<div class="tools-wrapper">
   <p class="tools-intro">面向电力电子与硬件开发工程师的在线计算工具箱。所有计算均在本地浏览器实时进行，无需联网，即时输出，并自适应日间与暗黑模式。</p>
 
   <!-- Tabs Navigation -->
@@ -583,6 +584,7 @@
   </div>
 
   <!-- Tab Contents -->
+  
   <!-- 1. PCB Trace Width Calculator -->
   <div class="tab-content active" id="tab-pcb">
     <div class="calculator-grid">
@@ -590,80 +592,79 @@
       <div class="panel input-panel">
         <h3 class="panel-title"><i class="fa-solid fa-sliders"></i> 输入参数</h3>
         
-<pre><code>    &lt;div class=&quot;form-group&quot;&gt;
-      &lt;label for=&quot;pcb-current&quot;&gt;设计电流 (Current)&lt;/label&gt;
-      &lt;div class=&quot;input-with-unit&quot;&gt;
-        &lt;input type=&quot;number&quot; id=&quot;pcb-current&quot; value=&quot;5.0&quot; step=&quot;0.1&quot; min=&quot;0.1&quot; oninput=&quot;calculatePCB()&quot;&gt;
-        &lt;span class=&quot;unit&quot;&gt;A&lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+        <div class="form-group">
+          <label for="pcb-current">设计电流 (Current)</label>
+          <div class="input-with-unit">
+            <input type="number" id="pcb-current" value="5.0" step="0.1" min="0.1" oninput="calculatePCB()">
+            <span class="unit">A</span>
+          </div>
+        </div>
 
-    &lt;div class=&quot;form-group&quot;&gt;
-      &lt;label for=&quot;pcb-temp-rise&quot;&gt;允许温升 (Temperature Rise)&lt;/label&gt;
-      &lt;div class=&quot;input-with-unit&quot;&gt;
-        &lt;input type=&quot;number&quot; id=&quot;pcb-temp-rise&quot; value=&quot;10&quot; step=&quot;1&quot; min=&quot;1&quot; oninput=&quot;calculatePCB()&quot;&gt;
-        &lt;span class=&quot;unit&quot;&gt;°C&lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+        <div class="form-group">
+          <label for="pcb-temp-rise">允许温升 (Temperature Rise)</label>
+          <div class="input-with-unit">
+            <input type="number" id="pcb-temp-rise" value="10" step="1" min="1" oninput="calculatePCB()">
+            <span class="unit">°C</span>
+          </div>
+        </div>
 
-    &lt;div class=&quot;form-group&quot;&gt;
-      &lt;label for=&quot;pcb-thickness&quot;&gt;铜箔厚度 (Copper Thickness)&lt;/label&gt;
-      &lt;div class=&quot;input-with-unit&quot;&gt;
-        &lt;input type=&quot;number&quot; id=&quot;pcb-thickness&quot; value=&quot;1.0&quot; step=&quot;0.1&quot; min=&quot;0.1&quot; oninput=&quot;calculatePCB()&quot;&gt;
-        &lt;select id=&quot;pcb-thickness-unit&quot; onchange=&quot;calculatePCB()&quot;&gt;
-          &lt;option value=&quot;oz&quot;&gt;oz (盎司)&lt;/option&gt;
-          &lt;option value=&quot;um&quot;&gt;μm (微米)&lt;/option&gt;
-        &lt;/select&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+        <div class="form-group">
+          <label for="pcb-thickness">铜箔厚度 (Copper Thickness)</label>
+          <div class="input-with-unit">
+            <input type="number" id="pcb-thickness" value="1.0" step="0.1" min="0.1" oninput="calculatePCB()">
+            <select id="pcb-thickness-unit" onchange="calculatePCB()">
+              <option value="oz">oz (盎司)</option>
+              <option value="um">μm (微米)</option>
+            </select>
+          </div>
+        </div>
 
-    &lt;div class=&quot;form-group&quot;&gt;
-      &lt;label&gt;导线所处层 (Trace Location)&lt;/label&gt;
-      &lt;div class=&quot;radio-group&quot;&gt;
-        &lt;label class=&quot;radio-label&quot;&gt;
-          &lt;input type=&quot;radio&quot; name=&quot;pcb-layer&quot; value=&quot;external&quot; checked onchange=&quot;calculatePCB()&quot;&gt; 外层 (External)
-        &lt;/label&gt;
-        &lt;label class=&quot;radio-label&quot;&gt;
-          &lt;input type=&quot;radio&quot; name=&quot;pcb-layer&quot; value=&quot;internal&quot; onchange=&quot;calculatePCB()&quot;&gt; 内层 (Internal)
-        &lt;/label&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+        <div class="form-group">
+          <label>导线所处层 (Trace Location)</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="pcb-layer" value="external" checked onchange="calculatePCB()"> 外层 (External)
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="pcb-layer" value="internal" onchange="calculatePCB()"> 内层 (Internal)
+            </label>
+          </div>
+        </div>
+      </div>
 
-  &lt;!-- Output Panel --&gt;
-  &lt;div class=&quot;panel output-panel&quot;&gt;
-    &lt;h3 class=&quot;panel-title&quot;&gt;&lt;i class=&quot;fa-solid fa-chart-simple&quot;&gt;&lt;/i&gt; 计算结果 (IPC-2221)&lt;/h3&gt;
-    
-    &lt;div class=&quot;result-box highlighted&quot;&gt;
-      &lt;div class=&quot;result-label&quot;&gt;推荐最小线宽 (Required Width)&lt;/div&gt;
-      &lt;div class=&quot;result-value-group&quot;&gt;
-        &lt;div class=&quot;result-main&quot;&gt;
-          &lt;span id=&quot;pcb-width-mm&quot;&gt;1.94&lt;/span&gt; &lt;span class=&quot;result-unit&quot;&gt;mm&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;result-sub&quot;&gt;
-          &lt;span id=&quot;pcb-width-mil&quot;&gt;76.3&lt;/span&gt; mil
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+      <!-- Output Panel -->
+      <div class="panel output-panel">
+        <h3 class="panel-title"><i class="fa-solid fa-chart-simple"></i> 计算结果 (IPC-2221)</h3>
+        
+        <div class="result-box highlighted">
+          <div class="result-label">推荐最小线宽 (Required Width)</div>
+          <div class="result-value-group">
+            <div class="result-main">
+              <span id="pcb-width-mm">1.94</span> <span class="result-unit">mm</span>
+            </div>
+            <div class="result-sub">
+              <span id="pcb-width-mil">76.3</span> mil
+            </div>
+          </div>
+        </div>
 
-    &lt;div class=&quot;result-detail-grid&quot;&gt;
-      &lt;div class=&quot;detail-item&quot;&gt;
-        &lt;span class=&quot;detail-label&quot;&gt;横截面积 (Cross-Section Area)&lt;/span&gt;
-        &lt;span class=&quot;detail-value&quot;&gt;&lt;span id=&quot;pcb-area-mil&quot;&gt;94.8&lt;/span&gt; mil²&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;detail-item&quot;&gt;
-        &lt;span class=&quot;detail-label&quot;&gt;等效厚度 (Equivalent Thickness)&lt;/span&gt;
-        &lt;span class=&quot;detail-value&quot;&gt;&lt;span id=&quot;pcb-thick-mil&quot;&gt;1.38&lt;/span&gt; mil (&lt;span id=&quot;pcb-thick-um&quot;&gt;35.0&lt;/span&gt; μm)&lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+        <div class="result-detail-grid">
+          <div class="detail-item">
+            <span class="detail-label">横截面积 (Cross-Section Area)</span>
+            <span class="detail-value"><span id="pcb-area-mil">94.8</span> mil²</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">等效厚度 (Equivalent Thickness)</span>
+            <span class="detail-value"><span id="pcb-thick-mil">1.38</span> mil (<span id="pcb-thick-um">35.0</span> μm)</span>
+          </div>
+        </div>
 
-    &lt;div class=&quot;info-alert&quot;&gt;
-      &lt;i class=&quot;fa-solid fa-circle-info&quot;&gt;&lt;/i&gt;
-      &lt;span&gt;基于 IPC-2221 标准公式计算。大电流设计建议预留 20% 以上的线宽安全裕量，并注意大面积铺铜散热。&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
+        <div class="info-alert">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>基于 IPC-2221 标准公式计算。大电流设计建议预留 20% 以上的线宽安全裕量，并注意大面积铺铜散热。</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- 2. LC Resonance Calculator -->
@@ -673,83 +674,82 @@
       <div class="panel input-panel">
         <h3 class="panel-title"><i class="fa-solid fa-sliders"></i> 参数输入 (选择任意两个计算第三个)</h3>
         
-<pre><code>    &lt;div class=&quot;form-group&quot;&gt;
-      &lt;div class=&quot;flex-label&quot;&gt;
-        &lt;label for=&quot;lc-inductance&quot;&gt;电感量 L (Inductance)&lt;/label&gt;
-        &lt;input type=&quot;checkbox&quot; id=&quot;lc-calc-l&quot; onchange=&quot;toggleLock(&#39;l&#39;)&quot;&gt; &lt;span class=&quot;lock-label&quot;&gt;计算此项&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;input-with-unit&quot;&gt;
-        &lt;input type=&quot;number&quot; id=&quot;lc-inductance&quot; value=&quot;10&quot; step=&quot;0.1&quot; min=&quot;0.001&quot; oninput=&quot;calculateLC()&quot;&gt;
-        &lt;select id=&quot;lc-l-unit&quot; onchange=&quot;calculateLC()&quot;&gt;
-          &lt;option value=&quot;uH&quot; selected&gt;μH&lt;/option&gt;
-          &lt;option value=&quot;mH&quot;&gt;mH&lt;/option&gt;
-          &lt;option value=&quot;nH&quot;&gt;nH&lt;/option&gt;
-        &lt;/select&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+        <div class="form-group">
+          <div class="flex-label">
+            <label for="lc-inductance">电感量 L (Inductance)</label>
+            <input type="checkbox" id="lc-calc-l" onchange="toggleLock('l')"> <span class="lock-label">计算此项</span>
+          </div>
+          <div class="input-with-unit">
+            <input type="number" id="lc-inductance" value="10" step="0.1" min="0.001" oninput="calculateLC()">
+            <select id="lc-l-unit" onchange="calculateLC()">
+              <option value="uH" selected>μH</option>
+              <option value="mH">mH</option>
+              <option value="nH">nH</option>
+            </select>
+          </div>
+        </div>
 
-    &lt;div class=&quot;form-group&quot;&gt;
-      &lt;div class=&quot;flex-label&quot;&gt;
-        &lt;label for=&quot;lc-capacitance&quot;&gt;电容量 C (Capacitance)&lt;/label&gt;
-        &lt;input type=&quot;checkbox&quot; id=&quot;lc-calc-c&quot; onchange=&quot;toggleLock(&#39;c&#39;)&quot;&gt; &lt;span class=&quot;lock-label&quot;&gt;计算此项&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;input-with-unit&quot;&gt;
-        &lt;input type=&quot;number&quot; id=&quot;lc-capacitance&quot; value=&quot;100&quot; step=&quot;1&quot; min=&quot;0.001&quot; oninput=&quot;calculateLC()&quot;&gt;
-        &lt;select id=&quot;lc-c-unit&quot; onchange=&quot;calculateLC()&quot;&gt;
-          &lt;option value=&quot;nF&quot; selected&gt;nF&lt;/option&gt;
-          &lt;option value=&quot;uF&quot;&gt;μF&lt;/option&gt;
-          &lt;option value=&quot;pF&quot;&gt;pF&lt;/option&gt;
-        &lt;/select&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+        <div class="form-group">
+          <div class="flex-label">
+            <label for="lc-capacitance">电容量 C (Capacitance)</label>
+            <input type="checkbox" id="lc-calc-c" onchange="toggleLock('c')"> <span class="lock-label">计算此项</span>
+          </div>
+          <div class="input-with-unit">
+            <input type="number" id="lc-capacitance" value="100" step="1" min="0.001" oninput="calculateLC()">
+            <select id="lc-c-unit" onchange="calculateLC()">
+              <option value="nF" selected>nF</option>
+              <option value="uF">μF</option>
+              <option value="pF">pF</option>
+            </select>
+          </div>
+        </div>
 
-    &lt;div class=&quot;form-group&quot;&gt;
-      &lt;div class=&quot;flex-label&quot;&gt;
-        &lt;label for=&quot;lc-frequency&quot;&gt;谐振频率 f (Resonant Frequency)&lt;/label&gt;
-        &lt;input type=&quot;checkbox&quot; id=&quot;lc-calc-f&quot; checked onchange=&quot;toggleLock(&#39;f&#39;)&quot;&gt; &lt;span class=&quot;lock-label&quot;&gt;计算此项&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;input-with-unit&quot;&gt;
-        &lt;input type=&quot;number&quot; id=&quot;lc-frequency&quot; value=&quot;159.15&quot; step=&quot;0.01&quot; min=&quot;0.001&quot; disabled oninput=&quot;calculateLC()&quot;&gt;
-        &lt;select id=&quot;lc-f-unit&quot; onchange=&quot;calculateLC()&quot;&gt;
-          &lt;option value=&quot;kHz&quot; selected&gt;kHz&lt;/option&gt;
-          &lt;option value=&quot;MHz&quot;&gt;MHz&lt;/option&gt;
-          &lt;option value=&quot;Hz&quot;&gt;Hz&lt;/option&gt;
-        &lt;/select&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+        <div class="form-group">
+          <div class="flex-label">
+            <label for="lc-frequency">谐振频率 f (Resonant Frequency)</label>
+            <input type="checkbox" id="lc-calc-f" checked onchange="toggleLock('f')"> <span class="lock-label">计算此项</span>
+          </div>
+          <div class="input-with-unit">
+            <input type="number" id="lc-frequency" value="159.15" step="0.01" min="0.001" disabled oninput="calculateLC()">
+            <select id="lc-f-unit" onchange="calculateLC()">
+              <option value="kHz" selected>kHz</option>
+              <option value="MHz">MHz</option>
+              <option value="Hz">Hz</option>
+            </select>
+          </div>
+        </div>
+      </div>
 
-  &lt;!-- Output Panel --&gt;
-  &lt;div class=&quot;panel output-panel&quot;&gt;
-    &lt;h3 class=&quot;panel-title&quot;&gt;&lt;i class=&quot;fa-solid fa-chart-simple&quot;&gt;&lt;/i&gt; 计算结果&lt;/h3&gt;
-    
-    &lt;div class=&quot;result-box highlighted&quot;&gt;
-      &lt;div class=&quot;result-label&quot;&gt;计算出的参量值 (Calculated Value)&lt;/div&gt;
-      &lt;div class=&quot;result-value-group&quot;&gt;
-        &lt;div class=&quot;result-main&quot;&gt;
-          &lt;span id=&quot;lc-calc-val&quot;&gt;159.15&lt;/span&gt; &lt;span class=&quot;result-unit&quot; id=&quot;lc-calc-unit&quot;&gt;kHz&lt;/span&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+      <!-- Output Panel -->
+      <div class="panel output-panel">
+        <h3 class="panel-title"><i class="fa-solid fa-chart-simple"></i> 计算结果</h3>
+        
+        <div class="result-box highlighted">
+          <div class="result-label">计算出的参量值 (Calculated Value)</div>
+          <div class="result-value-group">
+            <div class="result-main">
+              <span id="lc-calc-val">159.15</span> <span class="result-unit" id="lc-calc-unit">kHz</span>
+            </div>
+          </div>
+        </div>
 
-    &lt;div class=&quot;result-detail-grid&quot;&gt;
-      &lt;div class=&quot;detail-item&quot;&gt;
-        &lt;span class=&quot;detail-label&quot;&gt;波形特征阻抗 Z₀ (Characteristic Impedance)&lt;/span&gt;
-        &lt;span class=&quot;detail-value&quot;&gt;&lt;span id=&quot;lc-z0&quot;&gt;10.00&lt;/span&gt; Ω&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;detail-item&quot;&gt;
-        &lt;span class=&quot;detail-label&quot;&gt;角频率 ω (Angular Frequency)&lt;/span&gt;
-        &lt;span class=&quot;detail-value&quot;&gt;&lt;span id=&quot;lc-omega&quot;&gt;1.00M&lt;/span&gt; rad/s&lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+        <div class="result-detail-grid">
+          <div class="detail-item">
+            <span class="detail-label">波形特征阻抗 Z₀ (Characteristic Impedance)</span>
+            <span class="detail-value"><span id="lc-z0">10.00</span> Ω</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">角频率 ω (Angular Frequency)</span>
+            <span class="detail-value"><span id="lc-omega">1.00M</span> rad/s</span>
+          </div>
+        </div>
 
-    &lt;div class=&quot;info-alert&quot;&gt;
-      &lt;i class=&quot;fa-solid fa-circle-info&quot;&gt;&lt;/i&gt;
-      &lt;span&gt;谐振阻抗 $Z_0 = \sqrt&#123;L/C&#125;$ 决定了谐振腔的能量承载与品质因数设计，在大功率 LLC / LCC 拓扑参数设计中是核心参考量。&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
+        <div class="info-alert">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>谐振阻抗 $Z_0 = \sqrt{L/C}$ 决定了谐振腔的能量承载与品质因数设计，在大功率 LLC / LCC 拓扑参数设计中是核心参考量。</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- 3. Voltage Divider & Resistor Matcher -->
@@ -759,60 +759,59 @@
       <div class="panel input-panel">
         <h3 class="panel-title"><i class="fa-solid fa-sliders"></i> 分压要求</h3>
         
-<pre><code>    &lt;div class=&quot;form-group&quot;&gt;
-      &lt;label for=&quot;div-vin&quot;&gt;输入电压 Vin (Input Voltage)&lt;/label&gt;
-      &lt;div class=&quot;input-with-unit&quot;&gt;
-        &lt;input type=&quot;number&quot; id=&quot;div-vin&quot; value=&quot;12&quot; step=&quot;0.1&quot; min=&quot;0.1&quot; oninput=&quot;calculateDivider()&quot;&gt;
-        &lt;span class=&quot;unit&quot;&gt;V&lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+        <div class="form-group">
+          <label for="div-vin">输入电压 Vin (Input Voltage)</label>
+          <div class="input-with-unit">
+            <input type="number" id="div-vin" value="12" step="0.1" min="0.1" oninput="calculateDivider()">
+            <span class="unit">V</span>
+          </div>
+        </div>
 
-    &lt;div class=&quot;form-group&quot;&gt;
-      &lt;label for=&quot;div-vout&quot;&gt;目标输出电压 Vout (Target Output)&lt;/label&gt;
-      &lt;div class=&quot;input-with-unit&quot;&gt;
-        &lt;input type=&quot;number&quot; id=&quot;div-vout&quot; value=&quot;3.3&quot; step=&quot;0.1&quot; min=&quot;0.01&quot; oninput=&quot;calculateDivider()&quot;&gt;
-        &lt;span class=&quot;unit&quot;&gt;V&lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+        <div class="form-group">
+          <label for="div-vout">目标输出电压 Vout (Target Output)</label>
+          <div class="input-with-unit">
+            <input type="number" id="div-vout" value="3.3" step="0.1" min="0.01" oninput="calculateDivider()">
+            <span class="unit">V</span>
+          </div>
+        </div>
 
-    &lt;div class=&quot;form-group&quot;&gt;
-      &lt;label for=&quot;div-resistance-range&quot;&gt;阻值量级选择 (Resistance Range)&lt;/label&gt;
-      &lt;select id=&quot;div-resistance-range&quot; onchange=&quot;calculateDivider()&quot;&gt;
-        &lt;option value=&quot;10k&quot; selected&gt;中等功耗 (1kΩ - 100kΩ，推荐)&lt;/option&gt;
-        &lt;option value=&quot;100k&quot;&gt;微功耗 (10kΩ - 1MΩ，适合电池)&lt;/option&gt;
-        &lt;option value=&quot;1k&quot;&gt;高频/高速 (100Ω - 10kΩ，抗干扰强)&lt;/option&gt;
-      &lt;/select&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+        <div class="form-group">
+          <label for="div-resistance-range">阻值量级选择 (Resistance Range)</label>
+          <select id="div-resistance-range" onchange="calculateDivider()">
+            <option value="10k" selected>中等功耗 (1kΩ - 100kΩ，推荐)</option>
+            <option value="100k">微功耗 (10kΩ - 1MΩ，适合电池)</option>
+            <option value="1k">高频/高速 (100Ω - 10kΩ，抗干扰强)</option>
+          </select>
+        </div>
+      </div>
 
-  &lt;!-- Output Panel --&gt;
-  &lt;div class=&quot;panel output-panel&quot;&gt;
-    &lt;h3 class=&quot;panel-title&quot;&gt;&lt;i class=&quot;fa-solid fa-list-check&quot;&gt;&lt;/i&gt; E96 (1%) / E24 (5%) 最优标称电阻组合&lt;/h3&gt;
-    
-    &lt;div class=&quot;results-table-container&quot;&gt;
-      &lt;table class=&quot;resistor-results-table&quot;&gt;
-        &lt;thead&gt;
-          &lt;tr&gt;
-            &lt;th&gt;标准&lt;/th&gt;
-            &lt;th&gt;R1 (上拉)&lt;/th&gt;
-            &lt;th&gt;R2 (下拉)&lt;/th&gt;
-            &lt;th&gt;实际 Vout&lt;/th&gt;
-            &lt;th&gt;误差&lt;/th&gt;
-          &lt;/tr&gt;
-        &lt;/thead&gt;
-        &lt;tbody id=&quot;divider-results-tbody&quot;&gt;
-          &lt;!-- Dynamically populated --&gt;
-        &lt;/tbody&gt;
-      &lt;/table&gt;
-    &lt;/div&gt;
+      <!-- Output Panel -->
+      <div class="panel output-panel">
+        <h3 class="panel-title"><i class="fa-solid fa-list-check"></i> E96 (1%) / E24 (5%) 最优标称电阻组合</h3>
+        
+        <div class="results-table-container">
+          <table class="resistor-results-table">
+            <thead>
+              <tr>
+                <th>标准</th>
+                <th>R1 (上拉)</th>
+                <th>R2 (下拉)</th>
+                <th>实际 Vout</th>
+                <th>误差</th>
+              </tr>
+            </thead>
+            <tbody id="divider-results-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
 
-    &lt;div class=&quot;info-alert&quot;&gt;
-      &lt;i class=&quot;fa-solid fa-circle-info&quot;&gt;&lt;/i&gt;
-      &lt;span&gt;算法自动搜索数万种 E24/E96 电阻阻值组合，推荐误差最小的前 3 组方案，帮助在实际贴片打样时快速选料。&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
+        <div class="info-alert">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>算法自动搜索数万种 E24/E96 电阻阻值组合，推荐误差最小的前 3 组方案，帮助在实际贴片打样时快速选料。</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
