@@ -797,8 +797,95 @@ mjx-container[display="true"] + br {
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/circuit-test-test/">
-                            电路测试与测试仪器
+                        <a href="/cooling-heatsink/">
+                            风冷散热
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            风扇流体力学与电路类比选型
+
+功率：对应物理量 ，第一性原理，决定风扇输出能量的天花板。高功率可以同时支撑大风量与高风压，犹如大容量电源。标签上的额定功率（如 5W、12W）是风扇电机的输入电功率，代表电机的总力量。
+转速：对应物理量 ，单位 RPM。指电机的输出角频率，而非叶片的线速度。转速是系统最敏感的自变量，受限于电机功率与动平衡。
+风速：对应物理量 ，单位 m/s。气流离开出风口的速...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Fri Jun 19 2026 05:37:13 GMT+0800">
+                
+                    2026-06-19
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/">电力电子</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/%E7%83%AD%E8%AE%BE%E8%AE%A1/">热设计</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E7%83%AD%E8%AE%BE%E8%AE%A1/">热设计</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%95%A3%E7%83%AD/">散热</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/cooling-heatsink/">阅读全文<span class="seo-reader-text">风冷散热</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/d-i-s-c-r-e-t-e-f-i-l-t-e-f-a-c-t-s/">
+                            Discrete Filte、FACTs
                         </a>
                     </h3>
 
@@ -806,12 +893,8 @@ mjx-container[display="true"] + br {
                         
                             
                             
-A-1-电路测试波形分析留存
-
-调试通用原则调试流程与要点
-
-电路合理性检查：首先确认电路各关键节点的电压是否符合设计预期。检查开关管是否受控，采样电路是否正常工作，以及驱动波形与控制信号是否正常。在空载条件下，电流环路通常是不受控的。
-带载测试：在连接负载后，测试系统的电压与电流输出。分别在恒压和恒流模式下进行测试，检验输出是否稳定受控，是否与设定的目标值一致，以及系统能否响应目标值的调...
+Discrete Filter
+Simulink 控制器模块体系与选型基准在模型驱动开发中，连续域与离散域模块的选择、参数配置以及底层结构决断，直接影响生成的微控制器代码执行效率与系统稳定性。在数字控制与信号处理的底层逻辑中，任何线性时不变系统都可以通过分子分母同除以最高阶次变量的方式，在不同数学域和多项式表达形式之间自由切换。面向微控制器生成生产级代码的子系统中，严禁出现任何连续域模块。...
                         
                     </div>
 
@@ -843,7 +926,7 @@ A-1-电路测试波形分析留存
                             <li>></li>
                         
                         <li>
-                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%B7%A5%E7%A8%8B%E5%BA%94%E7%94%A8/">测试与工程应用</a>&nbsp;
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E6%A8%A1%E6%8B%9F%E6%8E%A7%E5%88%B6%E4%B8%8E%E8%BF%90%E6%94%BE/">模拟控制与运放</a>&nbsp;
                         </li>
                     
                     
@@ -858,12 +941,12 @@ A-1-电路测试波形分析留存
                     
                         <li>
                             
-                            <a href="/tags/%E6%B5%8B%E8%AF%95/">测试</a>&nbsp;
+                            <a href="/tags/%E6%A8%A1%E6%8B%9F%E6%8E%A7%E5%88%B6/">模拟控制</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E5%B7%A5%E7%A8%8B%E5%BA%94%E7%94%A8/">工程应用</a>&nbsp;
+                            <a href="/tags/%E8%BF%90%E6%94%BE/">运放</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -871,7 +954,7 @@ A-1-电路测试波形分析留存
         
     </div>
 
-    <a href="/circuit-test-test/">阅读全文<span class="seo-reader-text">电路测试与测试仪器</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/d-i-s-c-r-e-t-e-f-i-l-t-e-f-a-c-t-s/">阅读全文<span class="seo-reader-text">Discrete Filte、FACTs</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1049,87 +1132,6 @@ LM 系列...
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/design-cases/">
-                            信号处理与采集设计案例
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            
-隔离采样架构基础与 Σ-Δ 调制原理数字隔离器主要用于解决发波驱动问题，擅长跨越隔离栅传输纯数字信号。但在采样环节，采样电阻上获取的通常为连续模拟信号，纯数字隔离器无法直接处理。Σ-Δ 调制器等效于极简版 ADC，通过 PDM 将模拟量转化为 1-bit 高速比特流，依靠高低电平出现的密度表达模拟电压大小。
-
-当输入正满量程电压时，输出高密度 1，偶尔穿插 0，例如 11111011111...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Jun 19 2026 05:37:13 GMT+0800">
-                
-                    2026-06-19
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/">电路开发</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">电路设计案例</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">设计案例</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/design-cases/">阅读全文<span class="seo-reader-text">信号处理与采集设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
                         <a href="/datasheet-reading/">
                             信号处理与采集数据手册阅读
                         </a>
@@ -1224,8 +1226,8 @@ Vcc: 供电电压，芯片正常工作所需的直流电源电压。
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/auxiliary-power-topology/">
-                            辅助电源拓扑
+                        <a href="/design-cases/">
+                            信号处理与采集设计案例
                         </a>
                     </h3>
 
@@ -1233,15 +1235,9 @@ Vcc: 供电电压，芯片正常工作所需的直流电源电压。
                         
                             
                             
-Flyback
-反激变换器工作原理反激变换器中的变压器本质上是一个耦合电感，其核心工作方式是先存储能量，再释放能量，而非传统变压器的实时能量传递。
+隔离采样架构基础与 Σ-Δ 调制原理数字隔离器主要用于解决发波驱动问题，擅长跨越隔离栅传输纯数字信号。但在采样环节，采样电阻上获取的通常为连续模拟信号，纯数字隔离器无法直接处理。Σ-Δ 调制器等效于极简版 ADC，通过 PDM 将模拟量转化为 1-bit 高速比特流，依靠高低电平出现的密度表达模拟电压大小。
 
-开关管导通阶段：能量存储
-
-当开关管导通时，输入电压施加在初级绕组上，电流流过初级绕组。
-此时，由于次级二极管因感应电压而反向截止，次级绕组处于开路状态。
-能量并未传递到次级，而是以磁能的形式存储在变压器的磁芯中。
-存储的磁能可由公式  计算...
+当输入正满量程电压时，输出高密度 1，偶尔穿插 0，例如 11111011111...
                         
                     </div>
 
@@ -1263,7 +1259,7 @@ Flyback
                     
                         
                         <li>
-                            <a href="/categories/%E7%94%B5%E8%B7%AF%E6%8B%93%E6%89%91/">电路拓扑</a>&nbsp;
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/">电路开发</a>&nbsp;
                         </li>
                     
                     
@@ -1273,7 +1269,7 @@ Flyback
                             <li>></li>
                         
                         <li>
-                            <a href="/categories/%E7%94%B5%E8%B7%AF%E6%8B%93%E6%89%91/%E6%8B%93%E6%89%91%E5%89%96%E6%9E%90/">拓扑剖析</a>&nbsp;
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">电路设计案例</a>&nbsp;
                         </li>
                     
                     
@@ -1288,12 +1284,7 @@ Flyback
                     
                         <li>
                             
-                            <a href="/tags/%E7%94%B5%E8%B7%AF%E6%8B%93%E6%89%91/">电路拓扑</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E6%8B%93%E6%89%91/">拓扑</a>&nbsp;
+                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">设计案例</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1301,7 +1292,7 @@ Flyback
         
     </div>
 
-    <a href="/auxiliary-power-topology/">阅读全文<span class="seo-reader-text">辅助电源拓扑</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/design-cases/">阅读全文<span class="seo-reader-text">信号处理与采集设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1495,6 +1486,96 @@ RS触发器
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
+                        <a href="/driver-design-cases/">
+                            驱动设计案例
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            
+
+高边驱动方案高边驱动方案
+驱动单个高边N沟道MOSFET的核心挑战在于，需要创建一个参考于其源极的浮动驱动电源，该电源的电压需比源极高出10V至15V。实现这一目标的方案选择，主要取决于应用对占空比的要求。
+
+自举电路方案
+自举电路是性价比最高且最常用的高边驱动方法，但其应用受限于特定的工作条件。
+工作原理即使电路中没有低边开关，只要负载能够提供到地的通路，并且高边开关会周期性关断，就可...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Fri Jun 19 2026 05:37:13 GMT+0800">
+                
+                    2026-06-19
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/">电路开发</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E9%A9%B1%E5%8A%A8%E4%B8%8E%E5%BC%80%E5%85%B3%E7%AE%A1/">驱动与开关管</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E5%BC%80%E5%85%B3%E7%AE%A1/">开关管</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/driver-design-cases/">阅读全文<span class="seo-reader-text">驱动设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
                         <a href="/driver-problems-analysis/">
                             驱动问题分析
                         </a>
@@ -1568,92 +1649,6 @@ MOSFET驱动波形过冲与下冲的核心机制MOSFET驱动波形过冲与下�
     </div>
 
     <a href="/driver-problems-analysis/">阅读全文<span class="seo-reader-text">驱动问题分析</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/emc-datasheet-reading/">
-                            EMC数据手册阅读
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            
-共模滤波器器件概述ZJYS81R5系列是一款用于车载信号线的共模滤波器，主要应用于CAN-BUS等车载差分信号总线。
-
-共模阻抗共模阻抗是衡量滤波器对共模电流抑制能力的核心参数。共模电流是指在两根或多根信号线上方向相同、大小相等的噪声电流，通常由外部电磁场耦合或接地电位差产生。共模阻抗随频率变化，其在特定频率下的阻抗值直接决定了滤波器的EMI抑制效果。在噪声路径上，高阻抗可以有效衰减共模噪...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Jun 19 2026 05:37:13 GMT+0800">
-                
-                    2026-06-19
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/">芯片数据手册</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/%E9%80%9A%E7%94%A8%E9%98%85%E8%AF%BB%E6%8C%87%E5%8D%97/">通用阅读指南</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/">数据手册</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E9%98%85%E8%AF%BB%E6%8C%87%E5%8D%97/">阅读指南</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/emc-datasheet-reading/">阅读全文<span class="seo-reader-text">EMC数据手册阅读</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>

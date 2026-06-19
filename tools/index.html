@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
 <meta property="article:published_time" content="2026-06-19T06:45:00.000Z">
-<meta property="article:modified_time" content="2026-06-19T07:36:21.181Z">
+<meta property="article:modified_time" content="2026-06-19T08:12:50.549Z">
 <meta property="article:author" content="WenZhenJian-EE">
 <meta property="article:tag" content="电源设计, 硬件工程师, PCS, SiC, Hexo">
 <meta name="twitter:card" content="summary">
@@ -572,13 +572,13 @@
 
   <!-- Tabs Navigation -->
   <div class="tools-tabs">
-    <button class="tab-btn active" onclick="switchTab('pcb')">
+    <button class="tab-btn active" onclick="switchTab('pcb', this)">
       <i class="fa-solid fa-bolt"></i> PCB 线宽承载
     </button>
-    <button class="tab-btn" onclick="switchTab('lc')">
+    <button class="tab-btn" onclick="switchTab('lc', this)">
       <i class="fa-solid fa-wave-square"></i> LC 谐振计算
     </button>
-    <button class="tab-btn" onclick="switchTab('divider')">
+    <button class="tab-btn" onclick="switchTab('divider', this)">
       <i class="fa-solid fa-network-wired"></i> 分压电阻标称匹配
     </button>
   </div>
@@ -1167,322 +1167,331 @@
 </style>
 
 <script>
-// Tab switcher
-function switchTab(tabId) {
-  const contents = document.querySelectorAll('.tab-content');
-  const buttons = document.querySelectorAll('.tab-btn');
+(function() {
+  // Global variables attached to window or checked for existence
+  if (!window.E24) {
+    window.E24 = [1.0, 1.1, 1.2, 1.3, 1.5, 1.6, 1.8, 2.0, 2.2, 2.4, 2.7, 3.0, 3.3, 3.6, 3.9, 4.3, 4.7, 5.1, 5.6, 6.2, 6.8, 7.5, 8.2, 9.1];
+  }
+  if (!window.E96) {
+    window.E96 = [1.00, 1.02, 1.05, 1.07, 1.10, 1.13, 1.15, 1.18, 1.21, 1.24, 1.27, 1.30, 1.33, 1.37, 1.40, 1.43, 1.47, 1.50, 1.54, 1.58, 1.62, 1.65, 1.69, 1.74, 1.78, 1.82, 1.87, 1.91, 1.96, 2.00, 2.05, 2.10, 2.15, 2.21, 2.26, 2.32, 2.37, 2.43, 2.49, 2.55, 2.61, 2.67, 2.74, 2.80, 2.87, 2.94, 3.01, 3.09, 3.16, 3.24, 3.32, 3.40, 3.48, 3.57, 3.65, 3.74, 3.83, 3.92, 4.02, 4.12, 4.22, 4.32, 4.42, 4.53, 4.64, 4.75, 4.87, 4.99, 5.11, 5.23, 5.36, 5.49, 5.62, 5.76, 5.90, 6.04, 6.19, 6.34, 6.49, 6.65, 6.81, 6.98, 7.15, 7.32, 7.50, 7.68, 7.87, 8.06, 8.25, 8.45, 8.66, 8.87, 9.09, 9.31, 9.53, 9.76];
+  }
   
-  contents.forEach(content => content.classList.remove('active'));
-  buttons.forEach(btn => btn.classList.remove('active'));
-  
-  document.getElementById('tab-' + tabId).classList.add('active');
-  event.currentTarget.classList.add('active');
-}
+  window.lcActiveLock = window.lcActiveLock || 'f';
 
-// Global active locks for LC resonance
-let lcActiveLock = 'f'; // default calculation target
-
-function toggleLock(param) {
-  // Check checkboxes logic
-  const locks = {
-    l: document.getElementById('lc-calc-l'),
-    c: document.getElementById('lc-calc-c'),
-    f: document.getElementById('lc-calc-f')
-  };
-  
-  const inputs = {
-    l: document.getElementById('lc-inductance'),
-    c: document.getElementById('lc-capacitance'),
-    f: document.getElementById('lc-frequency')
+  // Export functions to window
+  window.switchTab = function(tabId, btnEl) {
+    const contents = document.querySelectorAll('.tab-content');
+    const buttons = document.querySelectorAll('.tab-btn');
+    
+    contents.forEach(content => content.classList.remove('active'));
+    buttons.forEach(btn => btn.classList.remove('active'));
+    
+    const activeTab = document.getElementById('tab-' + tabId);
+    if (activeTab) activeTab.classList.add('active');
+    if (btnEl) btnEl.classList.add('active');
   };
 
-  // Toggle active lock
-  lcActiveLock = param;
-  
-  // Update disabled states
-  Object.keys(locks).forEach(k => {
-    locks[k].checked = (k === param);
-    inputs[k].disabled = (k === param);
-  });
-  
-  calculateLC();
-}
-
-// 1. PCB Calculator
-function calculatePCB() {
-  const current = parseFloat(document.getElementById('pcb-current').value);
-  const tempRise = parseFloat(document.getElementById('pcb-temp-rise').value);
-  let thickness = parseFloat(document.getElementById('pcb-thickness').value);
-  const thicknessUnit = document.getElementById('pcb-thickness-unit').value;
-  const isExternal = document.querySelector('input[name="pcb-layer"]:checked').value === 'external';
-
-  if (isNaN(current) || isNaN(tempRise) || isNaN(thickness) || current <= 0 || tempRise <= 0 || thickness <= 0) {
-    return;
-  }
-
-  // Convert thickness to oz
-  let thicknessOz = thickness;
-  if (thicknessUnit === 'um') {
-    thicknessOz = thickness / 35.0; // 1oz = 35um
-  } else {
-    thickness = thicknessOz * 35.0; // keep thickness updated in um
-  }
-
-  // Constants based on IPC-2221
-  const k = isExternal ? 0.048 : 0.024;
-  
-  // Formula: Area = (I / (k * (dT^0.44)))^(1/0.725)  in mils^2
-  const area = Math.pow((current / (k * Math.pow(tempRise, 0.44))), 1.0 / 0.725);
-  
-  // Equivalent thickness in mils
-  const thickMils = thicknessOz * 1.378; // 1oz copper = 1.378 mils
-  
-  // Required width = Area / Thickness  in mils
-  const widthMils = area / thickMils;
-  const widthMm = widthMils * 0.0254; // 1 mil = 0.0254 mm
-
-  // Update DOM
-  document.getElementById('pcb-width-mm').innerText = widthMm.toFixed(3);
-  document.getElementById('pcb-width-mil').innerText = widthMils.toFixed(1);
-  document.getElementById('pcb-area-mil').innerText = area.toFixed(1);
-  document.getElementById('pcb-thick-mil').innerText = thickMils.toFixed(2);
-  document.getElementById('pcb-thick-um').innerText = thickness.toFixed(1);
-}
-
-// 2. LC Resonance Calculator
-function calculateLC() {
-  const lVal = parseFloat(document.getElementById('lc-inductance').value);
-  const cVal = parseFloat(document.getElementById('lc-capacitance').value);
-  const fVal = parseFloat(document.getElementById('lc-frequency').value);
-
-  const lUnit = document.getElementById('lc-l-unit').value;
-  const cUnit = document.getElementById('lc-c-unit').value;
-  const fUnit = document.getElementById('lc-f-unit').value;
-
-  // Convert to base units (H, F, Hz)
-  let l = lVal;
-  if (lUnit === 'uH') l = lVal * 1e-6;
-  else if (lUnit === 'mH') l = lVal * 1e-3;
-  else if (lUnit === 'nH') l = lVal * 1e-9;
-
-  let c = cVal;
-  if (cUnit === 'nF') c = cVal * 1e-9;
-  else if (cUnit === 'uF') c = cVal * 1e-6;
-  else if (cUnit === 'pF') c = cVal * 1e-12;
-
-  let f = fVal;
-  if (fUnit === 'kHz') f = fVal * 1e3;
-  else if (fUnit === 'MHz') f = fVal * 1e6;
-  else if (fUnit === 'Hz') f = fVal;
-
-  let calculatedVal = 0;
-  let targetInput = null;
-
-  if (lcActiveLock === 'f') {
-    if (isNaN(lVal) || isNaN(cVal) || lVal <= 0 || cVal <= 0) return;
-    // f = 1 / (2 * pi * sqrt(L * C))
-    f = 1.0 / (2.0 * Math.PI * Math.sqrt(l * c));
-    calculatedVal = f;
+  window.toggleLock = function(param) {
+    const locks = {
+      l: document.getElementById('lc-calc-l'),
+      c: document.getElementById('lc-calc-c'),
+      f: document.getElementById('lc-calc-f')
+    };
     
-    // Convert back to frequency UI unit
-    if (fUnit === 'kHz') calculatedVal = f / 1e3;
-    else if (fUnit === 'MHz') calculatedVal = f / 1e6;
-    else calculatedVal = f;
+    const inputs = {
+      l: document.getElementById('lc-inductance'),
+      c: document.getElementById('lc-capacitance'),
+      f: document.getElementById('lc-frequency')
+    };
+
+    window.lcActiveLock = param;
     
-    document.getElementById('lc-frequency').value = calculatedVal.toFixed(3);
-    document.getElementById('lc-calc-val').innerText = calculatedVal.toFixed(2);
-    document.getElementById('lc-calc-unit').innerText = fUnit;
-  } 
-  else if (lcActiveLock === 'l') {
-    if (isNaN(fVal) || isNaN(cVal) || fVal <= 0 || cVal <= 0) return;
-    // L = 1 / ((2 * pi * f)^2 * C)
-    l = 1.0 / (Math.pow(2.0 * Math.PI * f, 2) * c);
-    calculatedVal = l;
-
-    // Convert back to inductance UI unit
-    if (lUnit === 'uH') calculatedVal = l / 1e-6;
-    else if (lUnit === 'mH') calculatedVal = l / 1e-3;
-    else if (lUnit === 'nH') calculatedVal = l / 1e-9;
-
-    document.getElementById('lc-inductance').value = calculatedVal.toFixed(4);
-    document.getElementById('lc-calc-val').innerText = calculatedVal.toFixed(3);
-    document.getElementById('lc-calc-unit').innerText = lUnit;
-  }
-  else if (lcActiveLock === 'c') {
-    if (isNaN(fVal) || isNaN(lVal) || fVal <= 0 || lVal <= 0) return;
-    // C = 1 / ((2 * pi * f)^2 * L)
-    c = 1.0 / (Math.pow(2.0 * Math.PI * f, 2) * l);
-    calculatedVal = c;
-
-    // Convert back to capacitance UI unit
-    if (cUnit === 'nF') calculatedVal = c / 1e-9;
-    else if (cUnit === 'uF') calculatedVal = c / 1e-6;
-    else if (cUnit === 'pF') calculatedVal = c / 1e-12;
-
-    document.getElementById('lc-capacitance').value = calculatedVal.toFixed(3);
-    document.getElementById('lc-calc-val').innerText = calculatedVal.toFixed(2);
-    document.getElementById('lc-calc-unit').innerText = cUnit;
-  }
-
-  // Calculate extra outputs (Z0 and Omega)
-  if (l > 0 && c > 0) {
-    const z0 = Math.sqrt(l / c);
-    const omega = 2 * Math.PI * f;
-
-    document.getElementById('lc-z0').innerText = z0.toFixed(2);
+    Object.keys(locks).forEach(k => {
+      if (locks[k]) locks[k].checked = (k === param);
+      if (inputs[k]) inputs[k].disabled = (k === param);
+    });
     
-    if (omega >= 1e6) {
-      document.getElementById('lc-omega').innerText = (omega / 1e6).toFixed(2) + ' M';
-    } else if (omega >= 1e3) {
-      document.getElementById('lc-omega').innerText = (omega / 1e3).toFixed(2) + ' k';
-    } else {
-      document.getElementById('lc-omega').innerText = omega.toFixed(1);
+    window.calculateLC();
+  };
+
+  window.calculatePCB = function() {
+    const currentEl = document.getElementById('pcb-current');
+    const tempRiseEl = document.getElementById('pcb-temp-rise');
+    const thicknessEl = document.getElementById('pcb-thickness');
+    const thicknessUnitEl = document.getElementById('pcb-thickness-unit');
+    const layerEl = document.querySelector('input[name="pcb-layer"]:checked');
+
+    if (!currentEl || !tempRiseEl || !thicknessEl || !thicknessUnitEl || !layerEl) return;
+
+    const current = parseFloat(currentEl.value);
+    const tempRise = parseFloat(tempRiseEl.value);
+    let thickness = parseFloat(thicknessEl.value);
+    const thicknessUnit = thicknessUnitEl.value;
+    const isExternal = layerEl.value === 'external';
+
+    if (isNaN(current) || isNaN(tempRise) || isNaN(thickness) || current <= 0 || tempRise <= 0 || thickness <= 0) {
+      return;
     }
+
+    let thicknessOz = thickness;
+    if (thicknessUnit === 'um') {
+      thicknessOz = thickness / 35.0; // 1oz = 35um
+    } else {
+      thickness = thicknessOz * 35.0;
+    }
+
+    // Constants based on IPC-2221
+    const k = isExternal ? 0.048 : 0.024;
+    const area = Math.pow((current / (k * Math.pow(tempRise, 0.44))), 1.0 / 0.725);
+    const thickMils = thicknessOz * 1.378;
+    const widthMils = area / thickMils;
+    const widthMm = widthMils * 0.0254;
+
+    document.getElementById('pcb-width-mm').innerText = widthMm.toFixed(3);
+    document.getElementById('pcb-width-mil').innerText = widthMils.toFixed(1);
+    document.getElementById('pcb-area-mil').innerText = area.toFixed(1);
+    document.getElementById('pcb-thick-mil').innerText = thickMils.toFixed(2);
+    document.getElementById('pcb-thick-um').innerText = thickness.toFixed(1);
+  };
+
+  window.calculateLC = function() {
+    const lValEl = document.getElementById('lc-inductance');
+    const cValEl = document.getElementById('lc-capacitance');
+    const fValEl = document.getElementById('lc-frequency');
+    const lUnitEl = document.getElementById('lc-l-unit');
+    const cUnitEl = document.getElementById('lc-c-unit');
+    const fUnitEl = document.getElementById('lc-f-unit');
+
+    if (!lValEl || !cValEl || !fValEl || !lUnitEl || !cUnitEl || !fUnitEl) return;
+
+    const lVal = parseFloat(lValEl.value);
+    const cVal = parseFloat(cValEl.value);
+    const fVal = parseFloat(fValEl.value);
+    const lUnit = lUnitEl.value;
+    const cUnit = cUnitEl.value;
+    const fUnit = fUnitEl.value;
+
+    let l = lVal;
+    if (lUnit === 'uH') l = lVal * 1e-6;
+    else if (lUnit === 'mH') l = lVal * 1e-3;
+    else if (lUnit === 'nH') l = lVal * 1e-9;
+
+    let c = cVal;
+    if (cUnit === 'nF') c = cVal * 1e-9;
+    else if (cUnit === 'uF') c = cVal * 1e-6;
+    else if (cUnit === 'pF') c = cVal * 1e-12;
+
+    let f = fVal;
+    if (fUnit === 'kHz') f = fVal * 1e3;
+    else if (fUnit === 'MHz') f = fVal * 1e6;
+    else if (fUnit === 'Hz') f = fVal;
+
+    let calculatedVal = 0;
+
+    if (window.lcActiveLock === 'f') {
+      if (isNaN(lVal) || isNaN(cVal) || lVal <= 0 || cVal <= 0) return;
+      f = 1.0 / (2.0 * Math.PI * Math.sqrt(l * c));
+      calculatedVal = f;
+      
+      if (fUnit === 'kHz') calculatedVal = f / 1e3;
+      else if (fUnit === 'MHz') calculatedVal = f / 1e6;
+      else calculatedVal = f;
+      
+      document.getElementById('lc-frequency').value = calculatedVal.toFixed(3);
+      document.getElementById('lc-calc-val').innerText = calculatedVal.toFixed(2);
+      document.getElementById('lc-calc-unit').innerText = fUnit;
+    } 
+    else if (window.lcActiveLock === 'l') {
+      if (isNaN(fVal) || isNaN(cVal) || fVal <= 0 || cVal <= 0) return;
+      l = 1.0 / (Math.pow(2.0 * Math.PI * f, 2) * c);
+      calculatedVal = l;
+
+      if (lUnit === 'uH') calculatedVal = l / 1e-6;
+      else if (lUnit === 'mH') calculatedVal = l / 1e-3;
+      else if (lUnit === 'nH') calculatedVal = l / 1e-9;
+
+      document.getElementById('lc-inductance').value = calculatedVal.toFixed(4);
+      document.getElementById('lc-calc-val').innerText = calculatedVal.toFixed(3);
+      document.getElementById('lc-calc-unit').innerText = lUnit;
+    }
+    else if (window.lcActiveLock === 'c') {
+      if (isNaN(fVal) || isNaN(lVal) || fVal <= 0 || lVal <= 0) return;
+      c = 1.0 / (Math.pow(2.0 * Math.PI * f, 2) * l);
+      calculatedVal = c;
+
+      if (cUnit === 'nF') calculatedVal = c / 1e-9;
+      else if (cUnit === 'uF') calculatedVal = c / 1e-6;
+      else if (cUnit === 'pF') calculatedVal = c / 1e-12;
+
+      document.getElementById('lc-capacitance').value = calculatedVal.toFixed(3);
+      document.getElementById('lc-calc-val').innerText = calculatedVal.toFixed(2);
+      document.getElementById('lc-calc-unit').innerText = cUnit;
+    }
+
+    if (l > 0 && c > 0) {
+      const z0 = Math.sqrt(l / c);
+      const omega = 2 * Math.PI * f;
+
+      document.getElementById('lc-z0').innerText = z0.toFixed(2);
+      
+      if (omega >= 1e6) {
+        document.getElementById('lc-omega').innerText = (omega / 1e6).toFixed(2) + ' M';
+      } else if (omega >= 1e3) {
+        document.getElementById('lc-omega').innerText = (omega / 1e3).toFixed(2) + ' k';
+      } else {
+        document.getElementById('lc-omega').innerText = omega.toFixed(1);
+      }
+    }
+  };
+
+  function formatResistor(ohms) {
+    if (ohms >= 1e6) return (ohms / 1e6).toFixed(2).replace(/\.00$/, '') + ' MΩ';
+    if (ohms >= 1e3) return (ohms / 1e3).toFixed(2).replace(/\.00$/, '') + ' kΩ';
+    return ohms.toFixed(1).replace(/\.0$/, '') + ' Ω';
   }
-}
 
-// 3. Voltage Divider Matcher
-const E24 = [1.0, 1.1, 1.2, 1.3, 1.5, 1.6, 1.8, 2.0, 2.2, 2.4, 2.7, 3.0, 3.3, 3.6, 3.9, 4.3, 4.7, 5.1, 5.6, 6.2, 6.8, 7.5, 8.2, 9.1];
-const E96 = [1.00, 1.02, 1.05, 1.07, 1.10, 1.13, 1.15, 1.18, 1.21, 1.24, 1.27, 1.30, 1.33, 1.37, 1.40, 1.43, 1.47, 1.50, 1.54, 1.58, 1.62, 1.65, 1.69, 1.74, 1.78, 1.82, 1.87, 1.91, 1.96, 2.00, 2.05, 2.10, 2.15, 2.21, 2.26, 2.32, 2.37, 2.43, 2.49, 2.55, 2.61, 2.67, 2.74, 2.80, 2.87, 2.94, 3.01, 3.09, 3.16, 3.24, 3.32, 3.40, 3.48, 3.57, 3.65, 3.74, 3.83, 3.92, 4.02, 4.12, 4.22, 4.32, 4.42, 4.53, 4.64, 4.75, 4.87, 4.99, 5.11, 5.23, 5.36, 5.49, 5.62, 5.76, 5.90, 6.04, 6.19, 6.34, 6.49, 6.65, 6.81, 6.98, 7.15, 7.32, 7.50, 7.68, 7.87, 8.06, 8.25, 8.45, 8.66, 8.87, 9.09, 9.31, 9.53, 9.76];
+  window.calculateDivider = function() {
+    const vinEl = document.getElementById('div-vin');
+    const voutEl = document.getElementById('div-vout');
+    const rangeEl = document.getElementById('div-resistance-range');
+    const tbody = document.getElementById('divider-results-tbody');
 
-function formatResistor(ohms) {
-  if (ohms >= 1e6) return (ohms / 1e6).toFixed(2).replace(/\.00$/, '') + ' MΩ';
-  if (ohms >= 1e3) return (ohms / 1e3).toFixed(2).replace(/\.00$/, '') + ' kΩ';
-  return ohms.toFixed(1).replace(/\.0$/, '') + ' Ω';
-}
+    if (!vinEl || !voutEl || !rangeEl || !tbody) return;
 
-function calculateDivider() {
-  const vin = parseFloat(document.getElementById('div-vin').value);
-  const vout = parseFloat(document.getElementById('div-vout').value);
-  const range = document.getElementById('div-resistance-range').value;
+    const vin = parseFloat(vinEl.value);
+    const vout = parseFloat(voutEl.value);
+    const range = rangeEl.value;
 
-  if (isNaN(vin) || isNaN(vout) || vin <= 0 || vout <= 0 || vout >= vin) {
-    return;
-  }
+    if (isNaN(vin) || isNaN(vout) || vin <= 0 || vout <= 0 || vout >= vin) {
+      return;
+    }
 
-  let minRes = 1000;
-  let maxRes = 100000;
-  if (range === '100k') {
-    minRes = 10000;
-    maxRes = 1000000;
-  } else if (range === '1k') {
-    minRes = 100;
-    maxRes = 10000;
-  }
+    let minRes = 1000;
+    let maxRes = 100000;
+    if (range === '100k') {
+      minRes = 10000;
+      maxRes = 1000000;
+    } else if (range === '1k') {
+      minRes = 100;
+      maxRes = 10000;
+    }
 
-  const targetRatio = vout / vin;
+    const targetRatio = vout / vin;
 
-  // Search logic for E-series
-  function findBestMatches(series, label) {
-    const matches = [];
-    const decades = [-3, -2, -1, 0, 1, 2, 3];
+    function findBestMatches(series, label) {
+      const matches = [];
+      const decades = [-3, -2, -1, 0, 1, 2, 3];
 
-    for (let r1Base of series) {
-      for (let r2Base of series) {
-        for (let decDiff of decades) {
-          // Calculate absolute resistor values in ohms
-          // We anchor R1 in the middle of our search range
-          const r1BaseScale = minRes * 5; 
-          const r1 = r1Base * r1BaseScale;
-          const r2 = r2Base * r1BaseScale * Math.pow(10, decDiff);
+      for (let r1Base of series) {
+        for (let r2Base of series) {
+          for (let decDiff of decades) {
+            const r1BaseScale = minRes * 5; 
+            const r1 = r1Base * r1BaseScale;
+            const r2 = r2Base * r1BaseScale * Math.pow(10, decDiff);
 
-          if (r1 < minRes || r1 > maxRes || r2 < minRes || r2 > maxRes) {
-            continue;
+            if (r1 < minRes || r1 > maxRes || r2 < minRes || r2 > maxRes) {
+              continue;
+            }
+
+            const actualRatio = r2 / (r1 + r2);
+            const actualVout = vin * actualRatio;
+            const errorPercent = ((actualVout - vout) / vout) * 100;
+            const absErr = Math.abs(errorPercent);
+
+            matches.push({ r1, r2, actualVout, errorPercent, absErr });
           }
-
-          const actualRatio = r2 / (r1 + r2);
-          const actualVout = vin * actualRatio;
-          const errorPercent = ((actualVout - vout) / vout) * 100;
-          const absErr = Math.abs(errorPercent);
-
-          matches.push({
-            r1,
-            r2,
-            actualVout,
-            errorPercent,
-            absErr
-          });
         }
       }
+
+      matches.sort((a, b) => a.absErr - b.absErr);
+      
+      const unique = [];
+      const seenRatios = new Set();
+      for (let m of matches) {
+        const key = `${m.r1.toFixed(0)}-${m.r2.toFixed(0)}`;
+        if (!seenRatios.has(key)) {
+          seenRatios.add(key);
+          unique.push(m);
+          if (unique.length >= 3) break;
+        }
+      }
+      return unique;
     }
 
-    // Sort by absolute error ascending
-    matches.sort((a, b) => a.absErr - b.absErr);
-    
-    // Return top 3 unique results (removing duplicate electrical ratios if present)
-    const unique = [];
-    const seenRatios = new Set();
-    for (let m of matches) {
-      const key = `${m.r1.toFixed(0)}-${m.r2.toFixed(0)}`;
-      if (!seenRatios.has(key)) {
-        seenRatios.add(key);
-        unique.push(m);
-        if (unique.length >= 3) break;
+    const e96Matches = findBestMatches(window.E96, 'E96');
+    const e24Matches = findBestMatches(window.E24, 'E24');
+
+    tbody.innerHTML = '';
+
+    const allResults = [
+      ...e96Matches.map(m => ({ ...m, type: 'E96' })),
+      ...e24Matches.map(m => ({ ...m, type: 'E24' }))
+    ];
+
+    allResults.sort((a, b) => a.absErr - b.absErr);
+
+    allResults.slice(0, 6).forEach(res => {
+      const tr = document.createElement('tr');
+      
+      const stdTd = document.createElement('td');
+      stdTd.innerHTML = res.type === 'E96' 
+        ? '<span class="badge-e96">E96 (1%)</span>' 
+        : '<span class="badge-e24">E24 (5%)</span>';
+      
+      const r1Td = document.createElement('td');
+      r1Td.innerHTML = `<strong>${formatResistor(res.r1)}</strong>`;
+
+      const r2Td = document.createElement('td');
+      r2Td.innerHTML = `<strong>${formatResistor(res.r2)}</strong>`;
+
+      const voutTd = document.createElement('td');
+      voutTd.innerText = res.actualVout.toFixed(4) + ' V';
+
+      const errTd = document.createElement('td');
+      const errText = (res.errorPercent >= 0 ? '+' : '') + res.errorPercent.toFixed(2) + '%';
+      if (res.absErr < 0.05) {
+        errTd.innerHTML = `<span class="error-perfect">${errText} (极准)</span>`;
+      } else if (res.errorPercent > 0) {
+        errTd.innerHTML = `<span class="error-positive">${errText}</span>`;
+      } else {
+        errTd.innerHTML = `<span class="error-negative">${errText}</span>`;
       }
+
+      tr.appendChild(stdTd);
+      tr.appendChild(r1Td);
+      tr.appendChild(r2Td);
+      tr.appendChild(voutTd);
+      tr.appendChild(errTd);
+
+      tbody.appendChild(tr);
+    });
+  };
+
+  // Immediate triggers
+  function runAllCalculations() {
+    if (document.getElementById('pcb-current')) {
+      window.calculatePCB();
     }
-    return unique;
+    if (document.getElementById('lc-inductance')) {
+      window.calculateLC();
+    }
+    if (document.getElementById('div-vin')) {
+      window.calculateDivider();
+    }
   }
 
-  const e96Matches = findBestMatches(E96, 'E96');
-  const e24Matches = findBestMatches(E24, 'E24');
+  // Bind to load events
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runAllCalculations);
+  } else {
+    runAllCalculations();
+  }
 
-  // Populate tbody
-  const tbody = document.getElementById('divider-results-tbody');
-  tbody.innerHTML = '';
-
-  // Interleave or list E96 then E24
-  const allResults = [
-    ...e96Matches.map(m => ({ ...m, type: 'E96' })),
-    ...e24Matches.map(m => ({ ...m, type: 'E24' }))
-  ];
-
-  // Sort them so that the absolute best matches are on top regardless of standard
-  allResults.sort((a, b) => a.absErr - b.absErr);
-
-  // Take top 6 results
-  allResults.slice(0, 6).forEach(res => {
-    const tr = document.createElement('tr');
-    
-    const stdTd = document.createElement('td');
-    stdTd.innerHTML = res.type === 'E96' 
-      ? '<span class="badge-e96">E96 (1%)</span>' 
-      : '<span class="badge-e24">E24 (5%)</span>';
-    
-    const r1Td = document.createElement('td');
-    r1Td.innerHTML = `<strong>${formatResistor(res.r1)}</strong>`;
-
-    const r2Td = document.createElement('td');
-    r2Td.innerHTML = `<strong>${formatResistor(res.r2)}</strong>`;
-
-    const voutTd = document.createElement('td');
-    voutTd.innerText = res.actualVout.toFixed(4) + ' V';
-
-    const errTd = document.createElement('td');
-    const errText = (res.errorPercent >= 0 ? '+' : '') + res.errorPercent.toFixed(2) + '%';
-    if (res.absErr < 0.05) {
-      errTd.innerHTML = `<span class="error-perfect">${errText} (极准)</span>`;
-    } else if (res.errorPercent > 0) {
-      errTd.innerHTML = `<span class="error-positive">${errText}</span>`;
-    } else {
-      errTd.innerHTML = `<span class="error-negative">${errText}</span>`;
-    }
-
-    tr.appendChild(stdTd);
-    tr.appendChild(r1Td);
-    tr.appendChild(r2Td);
-    tr.appendChild(voutTd);
-    tr.appendChild(errTd);
-
-    tbody.appendChild(tr);
-  });
-}
-
-// Initial triggers
-window.addEventListener('DOMContentLoaded', () => {
-  calculatePCB();
-  calculateLC();
-  calculateDivider();
-});
+  // PJAX/Swup Event Handler: Re-initialize calculations when content is replaced
+  document.addEventListener('swup:contentReplaced', runAllCalculations);
+  // Support other common PJAX systems
+  document.addEventListener('pjax:complete', runAllCalculations);
+})();
 </script>
 
 	</div>
