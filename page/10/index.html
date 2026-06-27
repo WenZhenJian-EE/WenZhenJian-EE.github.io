@@ -676,7 +676,7 @@ mjx-container[display="true"] + br {
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">50</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">49</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -713,7 +713,7 @@ mjx-container[display="true"] + br {
 </div>
                 <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">50</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">49</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -798,17 +798,24 @@ mjx-container[display="true"] + br {
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
                         <a href="/comparator-design-cases/">
-                            高精密比较器设计：MCU输入漏电流与动态电流分析
+                            比较器设计案例
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            
-[!NOTE]技术备忘：本篇整理在高精密采样与快速过流/过压保护电路设计中，比较器输出级与 MCU 输入引脚连接时的静态漏电流与动态跳变瞬态电流匹配设计。
+                            MCU 输入引脚电流特性
+输入漏电流
 
-1. MCU 输入引脚的电学模型在采用高速电压比较器（如 LM393、TLV3501）检测过流/过压信号，并将输出的逻辑电平引脚输入给 MCU/DSP（如 C2000 级捕获单元）时，MCU 输入引脚并非理想的无穷大阻抗。在高速跳变时...
+输入引脚在数据手册中会标明输入漏电流指标。
+这是指在引脚电平保持静态（高电平或低电平）时，由于引脚内部电路与电源或地之间存在的微小漏电路径所产生的电流。
+
+动态电流
+
+当输入引脚的电平反复高低跳变时，会产生动态电流。
+每个输入引脚都存在一个微小的输入电容 （根据数据手册，典型值约为 3.5 pF）。
+当外部信号从0变到1或从1变到0时，需要对这个小电容...
                         
                     </div>
 
@@ -858,17 +865,12 @@ mjx-container[display="true"] + br {
                             <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">设计案例</a>&nbsp;
                         </li>
                     
-                        <li>
-                            | 
-                            <a href="/tags/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/">技术备忘</a>&nbsp;
-                        </li>
-                    
                 </ul>
             </span>
         
     </div>
 
-    <a href="/comparator-design-cases/">阅读全文<span class="seo-reader-text">高精密比较器设计：MCU输入漏电流与动态电流分析</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/comparator-design-cases/">阅读全文<span class="seo-reader-text">比较器设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>

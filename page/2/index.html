@@ -676,7 +676,7 @@ mjx-container[display="true"] + br {
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">50</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">49</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -713,7 +713,7 @@ mjx-container[display="true"] + br {
 </div>
                 <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">50</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">49</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -798,7 +798,7 @@ mjx-container[display="true"] + br {
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
                         <a href="/switch-driver-circuit/">
-                            达林顿晶体管放大与放电加速电路设计
+                            开关与驱动相关电路
                         </a>
                     </h3>
 
@@ -806,10 +806,8 @@ mjx-container[display="true"] + br {
                         
                             
                             
-[!NOTE]技术备忘：本篇探讨达林顿管在开关驱动与功率放大电路中的基本设计规范，重点分析基极-发射极（B-E）并联分流/释放电阻的作用机理及设计选型。
+达林顿晶体管电路可以实现放到，最后一级放大倍数为β1×β2，输入阻抗高，输出阻抗低基极和发射极之间并联一个电阻，可以加快BE之间的结电容放电且通过设计电阻可以钳位Q2 BE间电压，防止因Q1漏电流而导致Q2导通
 
-1. 达林顿晶体管的基本结构与优势达林顿管（Darlington Transistor）由两个三极管串联级联而成，其典型三极管对偶结构如下：
-123456789101112131415161718              Collec...
                         
                     </div>
 
@@ -864,17 +862,12 @@ mjx-container[display="true"] + br {
                             <a href="/tags/%E7%BB%93%E6%9E%84%E6%A1%88%E4%BE%8B/">结构案例</a>&nbsp;
                         </li>
                     
-                        <li>
-                            | 
-                            <a href="/tags/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/">技术备忘</a>&nbsp;
-                        </li>
-                    
                 </ul>
             </span>
         
     </div>
 
-    <a href="/switch-driver-circuit/">阅读全文<span class="seo-reader-text">达林顿晶体管放大与放电加速电路设计</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/switch-driver-circuit/">阅读全文<span class="seo-reader-text">开关与驱动相关电路</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -977,19 +970,15 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
                         <a href="/supplier/">
-                            高频磁性器件生产工艺与供应商沟通备忘录
+                            供应商沟通记录
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            
-[!NOTE]研发手记：本篇记录大功率高频变压器与电感器件在样品阶段、小批量试制及量产阶的工艺差异，并总结在配合供应商（如可立克等）定制磁性器件时的核心物理参数与结构布局约束。
-
-1. 样品阶段与量产阶段的工艺差异在配合大功率电力电子项目开发时，磁器件（高频变压器、共模/差模电感）常面临定制化的几何尺寸需求，工艺路径如下：
-1.1 磁芯加工工艺
-研发样品阶段：定制尺寸的磁芯通常基于标准磁芯...
+                            可立克1 一般他们接的样品，中柱都是不开洞的 2 骨架如果是定制，都是3d打印，磁芯定制，可以雕刻。后期批量都是开模3 中柱面积通常都是等于两倍边柱等于铁轭的面积，如果三者不相等，Ae值通常是取三者平均值 4 加了骨架之后，原来40kw充电模块的变压器离高度离最近的元器件是3mm，dcdc的需要调整
+加了骨架更利于保证品质，磁芯与骨架之间的距离也有保障，做成网状骨架，也有利于线包散热骨架如果...
                         
                     </div>
 
@@ -1036,11 +1025,6 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
                     
                         <li>
                             
-                            <a href="/tags/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/">技术备忘</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
                             <a href="/tags/%E7%A3%81%E8%AE%BE%E8%AE%A1/">磁设计</a>&nbsp;
                         </li>
                     
@@ -1054,7 +1038,7 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
         
     </div>
 
-    <a href="/supplier/">阅读全文<span class="seo-reader-text">高频磁性器件生产工艺与供应商沟通备忘录</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/supplier/">阅读全文<span class="seo-reader-text">供应商沟通记录</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1167,7 +1151,7 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
                         <a href="/standard/">
-                            电力电子与硬件工程国际/国家标准合规速查表
+                            标准
                         </a>
                     </h3>
 
@@ -1238,7 +1222,7 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
         
     </div>
 
-    <a href="/standard/">阅读全文<span class="seo-reader-text">电力电子与硬件工程国际/国家标准合规速查表</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/standard/">阅读全文<span class="seo-reader-text">标准</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1254,17 +1238,15 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
                         <a href="/sampling/">
-                            高精度电压与电流模拟信号采样电路设计规范
+                            采样
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            母线电压采样*4母线全压1700V，按2000V电压采样设计，则上半母线按1000V，下半母线1000V设计。1000V对应ADC 3V
-电阻比例定义：
-
-反馈电阻选择18K，0603封装差分电阻，选择6个 1206封装电阻差分电阻参数校验：每个电阻承受的实际电压为常规 1206 贴片电阻的额定工作电压通常为 200V，166.67V 运行在安全范166围内，留有 16.67% 的裕量每个 ...
+                            在电力电子与数字电源的研发中，高精度的电压和电流模拟信号采样是控制环路稳定与系统级保护（如过压、过流保护）的基石。在设计高压变换器（如 1000V+ 充电模块、三相光伏逆变器）的采样电路时，我们不仅要关注阻值比例，更要严格校验阻容元器件的耐压裕量、热功耗降额以及PCB 物理爬电距离，同时要根据系统开关频率合理匹配低通滤波器的截止频率和 ADC 的采样建立时间。
+本文整理了我日常研发中积累的一...
                         
                     </div>
 
@@ -1324,7 +1306,7 @@ FC-MLI 是一种常用于中高压、大功率 DC-AC 变换的多电平逆变器
         
     </div>
 
-    <a href="/sampling/">阅读全文<span class="seo-reader-text">高精度电压与电流模拟信号采样电路设计规范</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/sampling/">阅读全文<span class="seo-reader-text">采样</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>

@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-03-22T19:19:59.000Z">
-<meta property="article:modified_time" content="2026-06-27T17:39:30.083Z">
+<meta property="article:modified_time" content="2026-06-27T22:37:08.996Z">
 <meta property="article:author" content="WenZhenJian-EE">
 <meta property="article:tag" content="模拟控制">
 <meta property="article:tag" content="运放">
@@ -320,7 +320,7 @@ mjx-container[display="true"] + br {
     "https://WenZhenJian-EE.github.io/images/redefine-og.webp"
   ],
   "datePublished": "2025-03-22T19:19:59.000Z",
-  "dateModified": "2026-06-27T17:39:30.083Z",
+  "dateModified": "2026-06-27T22:37:08.996Z",
   "author": {
     "@type": "Person",
     "name": "WenZhenJian-EE",
@@ -676,7 +676,7 @@ mjx-container[display="true"] + br {
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">50</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">49</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -733,8 +733,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-06-28 01:39:30</span>
-            <span class="mobile">2026-06-28 01:39:30</span>
+            <span class="desktop">2026-06-28 06:37:08</span>
+            <span class="mobile">2026-06-28 06:37:08</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -933,7 +933,6 @@ mjx-container[display="true"] + br {
 <p>电压控制模式与峰值电流控制模式在底层环路运行逻辑上有着本质区别。电压控制仅包含一个电压单环，芯片将输出电压的误差信号直接与内部固定生成的人造锯齿波进行比较以切断 PWM，系统对电感的实际电流状态一无所知。而峰值电流控制在硬件层面上实现了电压外环与电流内环的串联双环结构。其电压外环计算出的误差信号不再直接参与切波，而是转化为电流内环的指令参考值；电流内环直接利用采集到的真实向上攀升的电感电流波形与该指令参考值进行比较，当真实电流触碰设定的电压天花板时瞬间关断 PWM。</p>
 <p>在单片机数字控制系统中，纯粹依靠软件代码编写的串联双闭环控制通常属于平均电流型控制，而非峰值电流控制。为避开开关管高频切换时产生的振铃噪声，数字电源的 ADC 采样触发点通常设定在 PWM 波形的绝对中心点，在连续导通模式下，此处的采样数值恰好等于电感电流的平均值。内环算法利用该平均电流进行 PI 计算得出占空比数值，再交给定时器硬件去产生下一周期的 PWM。纯软件控制的执行过程包含了采样、运算及写入寄存器的固有延迟，因此无法在纳秒级别完成峰值截断。</p>
 <p>现代高阶单片机实现真正的峰值电流控制依赖于其内部的数字与模拟混合外设架构。其运作机制为：软件层面的电压外环负责运算并输出电流参考值，随后将此数值写入单片机内部的 DAC 模块转换为模拟基准电压。真实的电感高频电流信号被引入单片机内部高速模拟比较器的正端，负端接 DAC 的输出参考基准。比较器的翻转输出通过内部纯硬件逻辑直接连接至 PWM 模块的触发保护区。当电感电流冲高至设定阈值的瞬间，模拟比较器迅速翻转并直接通过硬件切断 PWM 信号。该流程全程无需 CPU 中断介入，兼具了数字算法处理外环的灵活性与纯硬件电流内环逐周期截断的极速响应能力。</p>
-<hr>
 
 		</div>
 
@@ -948,7 +947,7 @@ mjx-container[display="true"] + br {
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-06-28 01:39:30
+                    :</strong> 2026-06-28 06:37:08
             </li>
         
         <li>
@@ -996,9 +995,9 @@ mjx-container[display="true"] + br {
 </a><a class="recommended-article-item" href="/inverter/" title="逆变器专题" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="逆变器专题" class="!max-w-none">
   <span class="title">逆变器专题</span>
-</a><a class="recommended-article-item" href="/buck-boost/" title="Buck / Boost 双向变换器原理与设计" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="Buck / Boost 双向变换器原理与设计" class="!max-w-none">
-  <span class="title">Buck / Boost 双向变换器原理与设计</span>
+</a><a class="recommended-article-item" href="/buck-boost/" title="buck、boost" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="buck、boost" class="!max-w-none">
+  <span class="title">buck、boost</span>
 </a></div>
    </div>
    <div class="recommended-mobile">

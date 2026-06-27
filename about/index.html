@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
 <meta property="article:published_time" content="2026-06-18T21:00:00.000Z">
-<meta property="article:modified_time" content="2026-06-27T17:39:30.106Z">
+<meta property="article:modified_time" content="2026-06-27T22:37:09.018Z">
 <meta property="article:author" content="WenZhenJian-EE">
 <meta property="article:tag" content="电源设计, 硬件工程师, PCS, SiC, Hexo">
 <meta name="twitter:card" content="summary">
@@ -531,7 +531,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">50</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">49</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -584,27 +584,26 @@
 <!-- Intro Card -->
 <div class="about-card full-width">
 <h3><i class="fa-solid fa-user"></i> 个人简介</h3>
-<p>欢迎来到我的技术博客！我是一名专注于<strong>电力电子变换器设计</strong>与<strong>硬件工程效率工具开发</strong>的研发工程师。</p>
-<p>这里是我在日常研发中记录的“硬件工程设计手册”。我喜欢将复杂的磁路分析、环路控制数学推导、安规爬电标准和实际电路测试波形整理成文，在方便自己备忘的同时，也希望能为同行提供一些严谨的工程参考。除硬件开发外，我也乐于使用 Python 独立编写一些能提升硬件设计效率的效率工具与上位机软件。</p>
+<p>欢迎来到我的个人实验室与研发手记！我是一名电力电子 & 硬件研发工程师，目前专注于<strong>电力电子变换器设计</strong>，并在空闲时间开发一些提升日常研发效率的硬件辅助工具与上位机软件。</p>
+<p>这个博客最初只是我个人的“硬件设计备忘录”，里面记录了我在实验室推导的控制环路数学公式、各种磁芯电感的磁路计算、安规爬电设计规范以及实际调试时的波形记录。后来我把这些零散的内容整理出来，在方便自己随时随地查阅的同时，也希望能给遇到类似工程设计难题的同行提供一些真实的、可落地的参考。每一个公式和波形，都是我在工作台和示波器前反复折腾、实测验证过的。</p>
 </div>
 
 <!-- Skill Areas -->
 <div class="about-card">
-<h3><i class="fa-solid fa-screwdriver-wrench"></i> 核心研发领域</h3>
+<h3><i class="fa-solid fa-screwdriver-wrench"></i> 平日折腾的领域</h3>
 <ul class="about-list">
-<li><strong>电力电子拓扑</strong>：熟练掌握 Buck/Boost、有源 PFC、LLC 谐振、DAB 等拓扑的计算与磁件匹配设计。</li>
-<li><strong>高频磁设计</strong>：基于磁阻网络法（Reluctance Network）进行高频变压器与电感的绕组损耗、磁饱和及漏感精细化分析。</li>
-<li><strong>控制与信号</strong>：Type I/II/III 环路补偿器零极点配置，ADC 模拟前端调理与精密采样电路设计。</li>
-<li><strong>安规与热设计</strong>：熟悉 IEC 60664 / UL 60950 标准下的高压爬电距离校验，建立稳态热阻模型进行温升散热仿真。</li>
+<li><strong>电力电子拓扑</strong>：平时调得最多的是 Buck/Boost、有源 PFC、LLC 谐振及 DAB 拓扑，主要负责整机电路计算与高频磁件匹配设计。</li>
+<li><strong>高频磁设计</strong>：比较深究磁性元件，习惯用磁阻网络法（Reluctance Network）对高频变压器和电感进行绕组损耗、磁饱和以及漏感的精细核算，防止满载饱和冒烟。</li>
+<li><strong>控制与信号</strong>：推过无数次 Type I/II/III 环路补偿器的零极点，负责 ADC 模拟前端调理与精密采样电路的开发。</li>
+<li><strong>安规与热设计</strong>：熟悉 IEC 60664 和 UL 60950 标准下的高压爬电距离校验，日常也会通过搭建简易稳态热阻模型进行温升和散热器仿真。</li>
 </ul>
 </div>
 
 <div class="about-card">
-<h3><i class="fa-solid fa-laptop-code"></i> 开源与辅助工具</h3>
+<h3><i class="fa-solid fa-laptop-code"></i> 动手写的辅助工具</h3>
 <ul class="about-list">
-<li><strong>Hardware Engineering Toolbox</strong>：自研开源 PyQt5 硬件工具箱，内置 30+ 种电力电子磁件、环路与安规计算模块。</li>
-<li><strong>Serial & CAN Bus Debugger V2</strong>：自研高性能串口与车载 CAN 总线分析上位机，支持 DBC 解码、示波沿触发与异常黑匣子导出。</li>
-<li><strong>技术栈</strong>：Python (PyQt5, Numpy, Pandas, Matplotlib), C/C++ (DSP/MCU 嵌入式开发), EJS, Stylus.</li>
+<li><strong>Hardware Engineering Toolbox</strong>：自己用 Python + PyQt5 写的一个免安装小工具箱，里面集成了 30 多种平时计算磁性器件、环路参数和爬电距离常用的核算模块，免得每次都要查书或按计算器。</li>
+<li><strong>Serial & CAN Bus Debugger V2</strong>：为了调试串口和车载 CAN 总线顺手而写的上位机，支持 DBC 文件解码、示波器级别的边沿触发，以及异常黑匣子数据的 CSV 一键导出。</li>
 </ul>
 </div>
 
