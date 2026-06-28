@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
 <meta property="article:published_time" content="2026-02-17T14:23:49.000Z">
-<meta property="article:modified_time" content="2026-06-28T07:14:21.562Z">
+<meta property="article:modified_time" content="2026-06-28T07:20:18.168Z">
 <meta property="article:author" content="WenZhenJian-EE">
 <meta property="article:tag" content="测试">
 <meta property="article:tag" content="工程应用">
@@ -320,7 +320,7 @@ mjx-container[display="true"] + br {
     "https://WenZhenJian-EE.github.io/images/redefine-og.webp"
   ],
   "datePublished": "2026-02-17T14:23:49.000Z",
-  "dateModified": "2026-06-28T07:14:21.562Z",
+  "dateModified": "2026-06-28T07:20:18.168Z",
   "author": {
     "@type": "Person",
     "name": "WenZhenJian-EE",
@@ -334,7 +334,7 @@ mjx-container[display="true"] + br {
       "url": "https://WenZhenJian-EE.github.io/images/redefine-logo.webp"
     }
   },
-  "description": "电力电子学习仪器从低压DC-DC变换器开始是学习电力电子最理想且安全的起点。实践中应避免直接操作市电或高压直流。通过搭建例如输入24V、输出5V的Buck变换器，可以掌握电力电子软件设计的核心概念，如PWM、ADC采样、闭环控制及故障保护，同时将安全风险降至最低。 电力电子入门实验设备指南第一阶段：必需品 微控制器开发...",
+  "description": "电力电子学习入门的正确姿势聊聊电力电子的学习和实践。我们在入门的时候，最忌讳的就是贪大求快，上来就直接去摸 220V 交流电或者高压直流源，那不是做实验，那是在玩命。电解电容炸裂或者高压拉弧的威力，没交过学费的人是体会不到的。 我们在研发实践中，最推荐的起步点是从低压数字控制 DC-DC 变换器开始。比如搭一个输入 2...",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://wenzhenjian-ee.github.io/practice-study/"
@@ -733,8 +733,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-06-28 15:14:21</span>
-            <span class="mobile">2026-06-28 15:14:21</span>
+            <span class="desktop">2026-06-28 15:20:18</span>
+            <span class="mobile">2026-06-28 15:20:18</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -803,68 +803,61 @@ mjx-container[display="true"] + br {
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
 			<hr>
-<h3 id="电力电子学习仪器"><a href="#电力电子学习仪器" class="headerlink" title="电力电子学习仪器"></a>电力电子学习仪器</h3><p>从低压DC-DC变换器开始是学习电力电子最理想且安全的起点。实践中应避免直接操作市电或高压直流。通过搭建例如输入24V、输出5V的Buck变换器，可以掌握电力电子软件设计的核心概念，如PWM、ADC采样、闭环控制及故障保护，同时将安全风险降至最低。</p>
+<h3 id="电力电子学习入门的正确姿势"><a href="#电力电子学习入门的正确姿势" class="headerlink" title="电力电子学习入门的正确姿势"></a>电力电子学习入门的正确姿势</h3><p>聊聊电力电子的学习和实践。我们在入门的时候，最忌讳的就是贪大求快，上来就直接去摸 220V 交流电或者高压直流源，那不是做实验，那是在玩命。电解电容炸裂或者高压拉弧的威力，没交过学费的人是体会不到的。</p>
+<p>我们在研发实践中，最推荐的起步点是从<strong>低压数字控制 DC-DC 变换器</strong>开始。比如搭一个输入 24V、输出 5V 的同步 Buck 变换器。别看电压低，它麻雀虽小五脏俱全。在这个安全的平台上，你可以把数字电源开发的核心概念——高频 PWM 互补发波、ADC 同步采样、PID 闭环环路补偿以及过压过流保护逻辑彻底玩透，同时把人身和仪器受损的风险降到最低。</p>
 <hr>
-<p>电力电子入门实验设备指南<br>第一阶段：必需品</p>
-<ul>
-<li>微控制器开发套件<ul>
-<li>功能：作为控制系统的核心，是所有软件算法的运行平台。</li>
-<li>推荐选择：<ul>
-<li>TI C2000 LaunchPad系列 (如 LAUNCHXL-F280049C 或 LAUNCHXL-F28379D)：电力电子行业的标准平台，内置高精度PWM、快速ADC等专用外设，有助于无缝对接工业应用。</li>
-<li>STM32 Nucleo或Discovery系列 (如 NUCLEO-G474RE)：通用MCU领域的领导者，其G4系列针对数字电源和电机控制进行了优化，拥有庞大的社区和丰富的学习资料。</li>
+<h3 id="电力电子入门实验设备指南"><a href="#电力电子入门实验设备指南" class="headerlink" title="电力电子入门实验设备指南"></a>电力电子入门实验设备指南</h3><p>我们在做低压实验时，手头得有几件趁手的“兵器”。以下是我们在实验室里摸爬滚打整理出的实验装备分级推荐。</p>
+<h4 id="第一阶段：必需品（没这几样没法开工）"><a href="#第一阶段：必需品（没这几样没法开工）" class="headerlink" title="第一阶段：必需品（没这几样没法开工）"></a>第一阶段：必需品（没这几样没法开工）</h4><ul>
+<li><strong>微控制器（MCU）开发板</strong>：这是控制系统的大脑。<ul>
+<li><strong>我们的首选推荐</strong>：<ul>
+<li><strong>TI C2000 LaunchPad 系列</strong>（如 <code>LAUNCHXL-F280049C</code> 或 <code>LAUNCHXL-F28379D</code>）：这可以说是电力电子工业界的“行业标准”芯片。它内置的高精度 PWM（HRPWM）、超快采样 ADC 和窗口比较器（CMPSS）都是为了数字电源和电机控制量身定制的，学通了直接对接工业界。</li>
+<li><strong>STM32 G4 系列</strong>（如 <code>NUCLEO-G474RE</code>）：通用 MCU 霸主 ST 针对数字电源推出的神片。内置高分辨率定时器（HRTIM），社区生态极其庞大，上手门槛相对较低。</li>
 </ul>
 </li>
-<li>关键点：官方开发套件通常集成了编程与调试器（如TI的XDS110或ST的ST-Link），无需额外购买，通过USB线即可进行开发。</li>
+<li><strong>避坑点</strong>：官方的 LaunchPad 板载了调试器（如 XDS110 或 ST-Link），买一块板子插上 USB 线就能烧录和在线调试，不需要额外花钱买昂贵的仿真器。</li>
 </ul>
 </li>
-<li>直流稳压电源<ul>
-<li>功能：为整个系统提供安全、可控的电能。</li>
-<li>规格要求：必须具备电压、电流连续可调以及恒流限流保护功能。限流功能是关键的安全保障，能在电路异常时保护元器件免于烧毁。</li>
-<li>建议规格：0-30V电压范围与0-5A电流范围足以满足绝大多数低压DC-DC实验的需求。</li>
+<li><strong>可调直流稳压电源</strong>：系统的“粮仓”。<ul>
+<li><strong>规格要求</strong>：<strong>必须具备电压、电流连续可调以及恒流（CC）限流保护功能</strong>。限流是我们调试新板子时的第一生命线。我们在新板子第一次上电时，必须把限流设在很小的值（比如 100mA），万一板子短路了，直流源会立刻进入恒流拉低输出电压，防止板子上的 MOSFET 和芯片瞬间冒烟烧毁。</li>
+<li><strong>推荐参数</strong>：0-30V / 0-5A 的普通双路台式电源，完全够低压实验折腾。</li>
 </ul>
 </li>
-<li>电子负载<ul>
-<li>功能：模拟各类用电器，是验证电源变换器性能的关键设备。</li>
-<li>必要性：相较于水泥电阻，电子负载能精确工作在恒流(CC)、恒压(CV)、恒功率(CP)等多种模式下，便于测试控制环路在不同负载条件下的动态响应和稳定性。水泥电阻的阻值会随温度变化，且无法动态调整。</li>
-<li>建议规格：150W功率，120V/30A左右的电压电流范围。</li>
-<li>预算替代方案：初期可使用不同阻值的大功率水泥电阻（如5Ω, 10Ω, 50Ω，功率25W以上）并联组合，但在进行闭环控制调试时，强烈建议升级为电子负载。</li>
+<li><strong>可编程电子负载</strong>：模拟你的用电器。<ul>
+<li><strong>为什么不能用普通电阻代替</strong>：水泥电阻的阻值会随着发热发生大漂移，而且我们没法模拟突载跳变。<strong>电子负载可以工作在恒流（CC）、恒压（CV）和动态跳变模式下</strong>。我们在调试 PID 环路时，用电子负载跑一个“电流突变拉载（比如 1A 突变到 3A）”，抓取输出电压跌落的波形，是检验我们环路相位裕度和恢复时间最有效的手段。</li>
+<li><strong>推荐规格</strong>：150W 左右，带动态测试功能的桌面电子负载。初期实在预算有限，可以买几个大功率铝壳电阻（25W，如 5Ω、10Ω）并联凑合，但调闭环时强烈建议升级。</li>
 </ul>
 </li>
-<li>基础电子元器件与工具<ul>
-<li>原型搭建：面包板、杜邦线、洞洞板、电烙铁及焊锡。</li>
-<li>功率元器件：<ul>
-<li>功率开关管：MOSFET（如IRF540N, IRLB8721等低压大电流型号）及其驱动芯片（如IR2110, UCC27511）。</li>
-<li>无源器件：功率电感、功率二极管（特别是肖特基二极管）、电解电容与陶瓷电容。</li>
-<li>采样与调理：毫欧级采样电阻、运算放大器。</li>
+<li><strong>基础元器件与焊接工具</strong>：<ul>
+<li><strong>硬件地基</strong>：面包板只适合做弱电逻辑验证，<strong>开关功率回路绝对不能搭在面包板上</strong>，因为面包板的寄生电感和接触电阻会大到让你的开关波形面目全非。老老实实买洞洞板（万能板）用粗铜线焊接，或者直接画 PCB 打样。</li>
+<li><strong>功率器件</strong>：低压大电流 N-MOSFET（如经典通用的 <code>IRF540N</code>）以及半桥驱动芯片（如 <code>IR2110</code> 或高低边单通道驱动器 <code>UCC27511</code>）。</li>
+<li><strong>无源与采样</strong>：铁硅铝磁环电感、肖特基二极管、低 ESR 电解电容、陶瓷电容，以及用于电流采样的毫欧级贴片分流电阻和运放调理电路。</li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<p>第二阶段：强烈推荐</p>
-<ul>
-<li>逻辑分析仪<ul>
-<li>用途：<ul>
-<li>观察多路数字信号时序，如检查半桥电路上下管驱动信号的死区时间。</li>
-<li>调试UART/SCI等通信协议，通过MCU向上位机打印调试信息，实现高效的“printf”调试。</li>
+<h4 id="第二阶段：进阶利器（想调好环路和EMC必入）"><a href="#第二阶段：进阶利器（想调好环路和EMC必入）" class="headerlink" title="第二阶段：进阶利器（想调好环路和EMC必入）"></a>第二阶段：进阶利器（想调好环路和EMC必入）</h4><ul>
+<li><strong>USB 逻辑分析仪</strong>：<ul>
+<li><strong>干什么用</strong>：我们在调同步 Buck 或半桥 LLC 时，上下管驱动必须有互补发波且带死区时间（Deadtime），一旦发生上下管同时导通，就会发生“直通炸管”。我们用逻辑分析仪配合开源软件 <code>PulseView</code>，可以非常直观地抓取两路驱动信号，确认死区时间是否安全。它也能用来监测串口或 SPI 通信。</li>
 </ul>
 </li>
-<li>推荐选择：8通道的USB逻辑分析仪配合开源软件PulseView/Sigrok即可满足大部分需求。</li>
+<li><strong>工频隔离变压器（220V 转 220V）</strong>：<ul>
+<li><strong>安全命门</strong>：当我们要开始碰高压或者市电侧变流器时，<strong>隔离变压器是第一安全屏障</strong>。普通示波器的探头地线是直接连到三相插头的保护地（PE）的。如果不用隔离变压器，把示波器地线往整流桥的负极一夹，等同于把市电火线对地直接短路，瞬间火花四溅，直接烧毁示波器和板子。我们把示波器或者被测板插在隔离变压器后面，实现电气悬浮，可以有效防止这种“地线短路”惨剧。</li>
 </ul>
 </li>
-<li>隔离变压器<ul>
-<li>用途：在进行市电相关实验时，提供操作者与电网之间的电气隔离，是首要的安全保障设备。能有效避免因误操作导致的触电或因地线连接错误烧毁示”波器等仪器。</li>
-<li>建议规格：500W左右的220V转220V隔离变压器。养成使用其为测量仪器供电的习惯。</li>
-</ul>
-</li>
-<li>差分探头<ul>
-<li>用途：安全、精确地测量非接地的浮动信号。例如，在半桥电路中测量上管MOSFET的栅源电压<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.667ex;" xmlns="http://www.w3.org/2000/svg" width="3.02ex" height="2.213ex" role="img" focusable="false" viewBox="0 -683 1334.9 978"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D449" d="M52 648Q52 670 65 683H76Q118 680 181 680Q299 680 320 683H330Q336 677 336 674T334 656Q329 641 325 637H304Q282 635 274 635Q245 630 242 620Q242 618 271 369T301 118L374 235Q447 352 520 471T595 594Q599 601 599 609Q599 633 555 637Q537 637 537 648Q537 649 539 661Q542 675 545 679T558 683Q560 683 570 683T604 682T668 681Q737 681 755 683H762Q769 676 769 672Q769 655 760 640Q757 637 743 637Q730 636 719 635T698 630T682 623T670 615T660 608T652 599T645 592L452 282Q272 -9 266 -16Q263 -18 259 -21L241 -22H234Q216 -22 216 -15Q213 -9 177 305Q139 623 138 626Q133 637 76 637H59Q52 642 52 648Z"></path></g><g data-mml-node="TeXAtom" transform="translate(616,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D454" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path></g><g data-mml-node="mi" transform="translate(477,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path></g></g></g></g></g></svg></mjx-container>，其参考点（源极）电位随开关节点电压剧烈跳变，使用普通探头测量会造成短路。</li>
-<li>替代方案：初期可使用两个普通探头，并利用示波器的数学运算功能(CH1-CH2)进行测量，但其精度和共模抑制比远不及专业差分探头。</li>
+<li><strong>高压差分探头</strong>：<ul>
+<li><strong>高侧测量痛点</strong>：在半桥拓扑中，上管的源极（Source）是一个电位从 0V 瞬间跳变到母线高压的节点（Switch Node）。我们普通的探头地夹没法夹在这个点上。差分探头能安全地测量两点之间的压差，消除共模电压地弹干扰，是我们抓取上管 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.667ex;" xmlns="http://www.w3.org/2000/svg" width="3.02ex" height="2.213ex" role="img" focusable="false" viewBox="0 -683 1334.9 978"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D449" d="M52 648Q52 670 65 683H76Q118 680 181 680Q299 680 320 683H330Q336 677 336 674T334 656Q329 641 325 637H304Q282 635 274 635Q245 630 242 620Q242 618 271 369T301 118L374 235Q447 352 520 471T595 594Q599 601 599 609Q599 633 555 637Q537 637 537 648Q537 649 539 661Q542 675 545 679T558 683Q560 683 570 683T604 682T668 681Q737 681 755 683H762Q769 676 769 672Q769 655 760 640Q757 637 743 637Q730 636 719 635T698 630T682 623T670 615T660 608T652 599T645 592L452 282Q272 -9 266 -16Q263 -18 259 -21L241 -22H234Q216 -22 216 -15Q213 -9 177 305Q139 623 138 626Q133 637 76 637H59Q52 642 52 648Z"></path></g><g data-mml-node="TeXAtom" transform="translate(616,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D454" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path></g><g data-mml-node="mi" transform="translate(477,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path></g></g></g></g></g></svg></mjx-container> 和功率器件漏源极 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.355ex;" xmlns="http://www.w3.org/2000/svg" width="3.089ex" height="1.901ex" role="img" focusable="false" viewBox="0 -683 1365.3 840.1"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D449" d="M52 648Q52 670 65 683H76Q118 680 181 680Q299 680 320 683H330Q336 677 336 674T334 656Q329 641 325 637H304Q282 635 274 635Q245 630 242 620Q242 618 271 369T301 118L374 235Q447 352 520 471T595 594Q599 601 599 609Q599 633 555 637Q537 637 537 648Q537 649 539 661Q542 675 545 679T558 683Q560 683 570 683T604 682T668 681Q737 681 755 683H762Q769 676 769 672Q769 655 760 640Q757 637 743 637Q730 636 719 635T698 630T682 623T670 615T660 608T652 599T645 592L452 282Q272 -9 266 -16Q263 -18 259 -21L241 -22H234Q216 -22 216 -15Q213 -9 177 305Q139 623 138 626Q133 637 76 637H59Q52 642 52 648Z"></path></g><g data-mml-node="TeXAtom" transform="translate(616,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="mi" transform="translate(520,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path></g></g></g></g></g></svg></mjx-container> 过冲的必备工具。</li>
 </ul>
 </li>
 </ul>
 <hr>
-<h3 id="电力电子实践双向DCDC"><a href="#电力电子实践双向DCDC" class="headerlink" title="电力电子实践双向DCDC"></a>电力电子实践双向DCDC</h3>
+<h3 id="电力电子实践：双向-DC-DC-变换器"><a href="#电力电子实践：双向-DC-DC-变换器" class="headerlink" title="电力电子实践：双向 DC-DC 变换器"></a>电力电子实践：双向 DC-DC 变换器</h3><p>我们在玩熟了单向 Buck 之后，下一步进阶实践最推荐的项目就是搞<strong>双向 Buck-Boost 变换器</strong>。</p>
+<p>在双向 DCDC 调试中，我们会碰到比单向电源更复杂的硬核控制算法：</p>
+<ul>
+<li><strong>双向功率流切换逻辑</strong>：系统需要根据外部指令或者电池状态，在 Buck（充电）和 Boost（放电）模式之间实现无缝平滑切换，电流过零点时环路不能发生崩塌或者过冲。</li>
+<li><strong>同步整流（SR）死区匹配</strong>：在反向放电时，二极管被 MOSFET 替代用作同步整流。死区时间多几个纳秒就会增加导通损耗，少几个纳秒就会直通炸管。我们需要用差分探头去抓漏极振铃，动态调整死区时间。</li>
+<li><strong>防倒灌与软启动</strong>：在两端都有电压源（比如电池和直流母线）接通的瞬间，如果控制算法发波不对，极易产生巨大的倒灌浪涌电流，瞬间融化继电器触点或者烧毁功率管。</li>
+</ul>
+<p>学通了双向 DCDC，后续再去做储能双向 PCS 或者双向充电机（OBC），底层的控制思维和调试手法都是相通的。</p>
+
 		</div>
 
 		
@@ -878,7 +871,7 @@ mjx-container[display="true"] + br {
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-06-28 15:14:21
+                    :</strong> 2026-06-28 15:20:18
             </li>
         
         <li>
@@ -926,9 +919,9 @@ mjx-container[display="true"] + br {
 </a><a class="recommended-article-item" href="/problems-analysis/" title="问题分析留存" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="问题分析留存" class="!max-w-none">
   <span class="title">问题分析留存</span>
-</a><a class="recommended-article-item" href="/grounding/" title="接地策略详细概念" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="接地策略详细概念" class="!max-w-none">
-  <span class="title">接地策略详细概念</span>
+</a><a class="recommended-article-item" href="/circuit-test-analysis/" title="电路测试波形分析留存" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="电路测试波形分析留存" class="!max-w-none">
+  <span class="title">电路测试波形分析留存</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
@@ -986,7 +979,7 @@ mjx-container[display="true"] + br {
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
 		<div class="page-title">实践学习</div>
-		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E5%AD%A6%E4%B9%A0%E4%BB%AA%E5%99%A8"><span class="nav-text">电力电子学习仪器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E5%AE%9E%E8%B7%B5%E5%8F%8C%E5%90%91DCDC"><span class="nav-text">电力电子实践双向DCDC</span></a></li></ol>
+		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF"><span class="nav-text">电力电子学习入门的正确姿势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E5%85%A5%E9%97%A8%E5%AE%9E%E9%AA%8C%E8%AE%BE%E5%A4%87%E6%8C%87%E5%8D%97"><span class="nav-text">电力电子入门实验设备指南</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E5%AE%9E%E8%B7%B5%EF%BC%9A%E5%8F%8C%E5%90%91-DC-DC-%E5%8F%98%E6%8D%A2%E5%99%A8"><span class="nav-text">电力电子实践：双向 DC-DC 变换器</span></a></li></ol>
 
 	</div>
 </div>
