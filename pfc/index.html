@@ -87,14 +87,14 @@
         
         <meta name="description" content="WenZhenJian&#39;s Tech Blog - 电力电子与硬件开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PFC专题">
+<meta property="og:title" content="有源功率因数校正（PFC）原理与工程设计避坑指南">
 <meta property="og:url" content="https://wenzhenjian-ee.github.io/pfc/index.html">
 <meta property="og:site_name" content="WenZhenJian&#39;s Tech Blog">
 <meta property="og:description" content="WenZhenJian&#39;s Tech Blog - 电力电子与硬件开发">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
 <meta property="article:published_time" content="2026-01-22T08:59:24.000Z">
-<meta property="article:modified_time" content="2026-06-28T06:55:47.733Z">
+<meta property="article:modified_time" content="2026-06-28T06:55:59.592Z">
 <meta property="article:author" content="WenZhenJian-EE">
 <meta property="article:tag" content="电路拓扑">
 <meta property="article:tag" content="拓扑">
@@ -111,7 +111,7 @@
     
     <title>
         
-            PFC专题 | WenZhenJian&#39;s Tech Blog
+            有源功率因数校正（PFC）原理与工程设计避坑指南 | WenZhenJian&#39;s Tech Blog
         
     </title>
 
@@ -315,12 +315,12 @@ mjx-container[display="true"] + br {
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "PFC专题",
+  "headline": "有源功率因数校正（PFC）原理与工程设计避坑指南",
   "image": [
     "https://WenZhenJian-EE.github.io/images/redefine-og.webp"
   ],
   "datePublished": "2026-01-22T08:59:24.000Z",
-  "dateModified": "2026-06-28T06:55:47.733Z",
+  "dateModified": "2026-06-28T06:55:59.592Z",
   "author": {
     "@type": "Person",
     "name": "WenZhenJian-EE",
@@ -334,7 +334,7 @@ mjx-container[display="true"] + br {
       "url": "https://WenZhenJian-EE.github.io/images/redefine-logo.webp"
     }
   },
-  "description": "功率因数校正（PFC）的基本概念功率因数校正（PFC）是一种应用于AC-DC变换器中的技术，旨在提高电路的功率因数，使其接近于1。功率因数定义为有用功率与视在功率的比值，是衡量电能被有效利用程度的指标。 PFC技术通过引入补偿电路，使输入电流波形尽可能地跟随输入电压波形，从而让整个设备对于电网来说呈现出类似纯电阻的特性...",
+  "description": "有源功率因数校正（PFC）原理与工程设计避坑指南在 AC-DC 开关电源设计中，如果输入端整流后直接接大容量滤波电容，由于电容电压被钳在高位，整流二极管的导通角会变得极窄（通常只有 30°~70°），导致输入交流电流呈现出极窄、极高的高频尖峰脉冲。 这不仅会让系统功率因数（PF）跌落到 0.5~0.6，产生大量的无功损...",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://wenzhenjian-ee.github.io/pfc/"
@@ -707,7 +707,7 @@ mjx-container[display="true"] + br {
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">PFC专题</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">有源功率因数校正（PFC）原理与工程设计避坑指南</h1>
 			</div>
 			
 		</div>
@@ -733,8 +733,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-06-28 14:55:47</span>
-            <span class="mobile">2026-06-28 14:55:47</span>
+            <span class="desktop">2026-06-28 14:55:59</span>
+            <span class="mobile">2026-06-28 14:55:59</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -802,44 +802,59 @@ mjx-container[display="true"] + br {
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<hr>
-<p>功率因数校正（PFC）的基本概念<br>功率因数校正（PFC）是一种应用于AC-DC变换器中的技术，旨在提高电路的功率因数，使其接近于1。功率因数定义为有用功率与视在功率的比值，是衡量电能被有效利用程度的指标。</p>
-<p>PFC技术通过引入补偿电路，使输入电流波形尽可能地跟随输入电压波形，从而让整个设备对于电网来说呈现出类似纯电阻的特性。常见的PFC技术包括：</p>
-<ul>
-<li>有源PFC：使用开关器件（如MOSFET）和控制电路主动地对输入电流波形进行整形。</li>
-<li>无源PFC：使用电感、电容等无源元件构成滤波器来改善功率因数。</li>
-<li>无桥PFC：一种效率更高的有源PFC拓扑，通过减少整流桥中的二极管导通损耗来提升整体效率。</li>
+			<h2 id="有源功率因数校正（PFC）原理与工程设计避坑指南"><a href="#有源功率因数校正（PFC）原理与工程设计避坑指南" class="headerlink" title="有源功率因数校正（PFC）原理与工程设计避坑指南"></a>有源功率因数校正（PFC）原理与工程设计避坑指南</h2><p>在 AC-DC 开关电源设计中，如果输入端整流后直接接大容量滤波电容，由于电容电压被钳在高位，整流二极管的导通角会变得极窄（通常只有 30°~70°），导致输入交流电流呈现出极窄、极高的高频尖峰脉冲。</p>
+<p>这不仅会让系统功率因数（PF）跌落到 0.5~0.6，产生大量的无功损耗，还会因为极高的 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="5.081ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2246 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="mi" transform="translate(520,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(865,0)"><g data-mml-node="mo"><path data-c="2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path></g></g><g data-mml-node="mi" transform="translate(1365,0)"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="mi" transform="translate(1885,0)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g></g></g></svg></mjx-container> 带来灾难性的 EMI/EMC 电磁干扰。为了解决这个问题，PFC（Power Factor Correction）功率因数校正电路就成了大功率整流电源的标配。</p>
+<hr>
+<h3 id="一、-为什么未校正的整流电路是“网侧污染源”？"><a href="#一、-为什么未校正的整流电路是“网侧污染源”？" class="headerlink" title="一、 为什么未校正的整流电路是“网侧污染源”？"></a>一、 为什么未校正的整流电路是“网侧污染源”？</h3><p>传统的不可控整流滤波电路中，只有在交流输入电压的瞬时值高于滤波电容两端电压时，二极管才会导通充电。</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[不可控整流电压与电流波形]</span><br><span class="line">        电压输入 Vin (正弦波)</span><br><span class="line">        ┌───┐         ┌───┐</span><br><span class="line">      ┌─┘   └─┐     ┌─┘   └─┐</span><br><span class="line">─────/─────────\───/─────────\───► 时间</span><br><span class="line">      │  ▲▲▲   │   │  ▲▲▲   │</span><br><span class="line">      └──███───┘   └──███───┘</span><br><span class="line">        电流脉冲 Iin (导通角极窄的尖峰)</span><br></pre></td></tr></table></figure></div>
+
+<p>这种窄脉冲电流含有大量的奇次谐波（3次、5次、7次等）。根据傅里叶分析，这种非正弦的电流波形会导致：</p>
+<ol>
+<li><strong>功率因数低下</strong>：视在功率远大于有功功率，电网电能利用率极低。</li>
+<li><strong>网侧谐波污染</strong>：谐波电流流过电网阻抗会产生谐波电压降，导致电网电压波形畸变，干扰同一电网内的其他设备。</li>
+<li><strong>EMI 恶化</strong>：极窄的导通角意味着极大的 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="5.081ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2246 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="mi" transform="translate(520,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(865,0)"><g data-mml-node="mo"><path data-c="2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path></g></g><g data-mml-node="mi" transform="translate(1365,0)"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="mi" transform="translate(1885,0)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g></g></g></svg></mjx-container>。这种突变的瞬态电流会在空间激发出强烈的电磁辐射，使传导和辐射 EMI 严重超标。</li>
+</ol>
+<p>有源 PFC 的核心目标，就是通过控制开关管的主动开关，<strong>强行将输入电流重塑为与输入电压同频同相的正弦波</strong>，使整个电源模块在电网面前等效为一个纯电阻。</p>
+<hr>
+<h3 id="二、-PFC-的三大工作模式（CCM-BCM-DCM）硬核对比"><a href="#二、-PFC-的三大工作模式（CCM-BCM-DCM）硬核对比" class="headerlink" title="二、 PFC 的三大工作模式（CCM, BCM, DCM）硬核对比"></a>二、 PFC 的三大工作模式（CCM, BCM, DCM）硬核对比</h3><p>有源 Boost PFC 按照电感电流的连续性，主要分为三种工作模式，它们在控制复杂度、磁件体积以及器件损耗上各有取舍：</p>
+<h4 id="1-连续导通模式-CCM-Continuous-Conduction-Mode"><a href="#1-连续导通模式-CCM-Continuous-Conduction-Mode" class="headerlink" title="1. 连续导通模式 (CCM - Continuous Conduction Mode)"></a>1. 连续导通模式 (CCM - Continuous Conduction Mode)</h4><ul>
+<li><strong>物理特征</strong>：在一个开关周期内，电感电流始终不归零。</li>
+<li><strong>适用场景</strong>：适用于中大功率（一般大于 300W，至数 kW）。</li>
+<li><strong>设计挑战</strong>：当主 MOSFET 导通时，Boost 二极管正处于续流状态，必须强行反向截止。因此，<strong>对二极管的反向恢复性能要求极高</strong>。如果使用普通超快恢复二极管，会产生巨大的反向恢复电流尖峰，导致严重的开关损耗和 EMI 辐射。</li>
+<li><strong>对策</strong>：在 CCM 模式下，<strong>必须使用碳化硅（SiC）肖特基二极管</strong>，其反向恢复电荷几乎为零，能彻底解决二极管反向恢复带来的效率屏障。</li>
+</ul>
+<h4 id="2-临界导通模式-BCM-Boundary-Conduction-Mode"><a href="#2-临界导通模式-BCM-Boundary-Conduction-Mode" class="headerlink" title="2. 临界导通模式 (BCM - Boundary Conduction Mode)"></a>2. 临界导通模式 (BCM - Boundary Conduction Mode)</h4><ul>
+<li><strong>物理特征</strong>：开关管在电感电流刚好下降到零的瞬间开通。</li>
+<li><strong>适用场景</strong>：适用于中小功率（如 100W~300W，如笔记本适配器、LED 驱动）。</li>
+<li><strong>优势</strong>：由于开通时电感电流为零，Boost 二极管自然截止，<strong>完全没有二极管反向恢复损耗</strong>，允许使用普通的低成本二极管，且主 MOSFET 可实现零电流开通（ZCS），开关损耗极低。</li>
+<li><strong>劣势</strong>：电感电流峰值是平均电流的两倍，导致高频纹波极大，输入端需要并联较大的差模 EMI 滤波器。同时，开关频率会随着交流输入电压瞬时值的变化而大幅漂移，控制稍显复杂。</li>
+</ul>
+<h4 id="3-断续导通模式-DCM-Discontinuous-Conduction-Mode"><a href="#3-断续导通模式-DCM-Discontinuous-Conduction-Mode" class="headerlink" title="3. 断续导通模式 (DCM - Discontinuous Conduction Mode)"></a>3. 断续导通模式 (DCM - Discontinuous Conduction Mode)</h4><ul>
+<li><strong>物理特征</strong>：每个开关周期内，电感电流有一段时间保持为零。</li>
+<li><strong>特点</strong>：通常采用固定占空比和固定开关频率控制。控制极其简单，但电流尖峰最大，导通损耗高，通常仅在非常小功率或低成本方案中才会使用。</li>
 </ul>
 <hr>
-<p>未校正AC-DC整流电路的问题根源<br>在典型的AC-DC电路中，交流电经过整流桥后直接连接到一个大容量的母线电容进行滤波。这种结构是导致功率因数低和电流畸变的根本原因。</p>
+<h3 id="三、-传统-Boost-PFC-vs-无桥-PFC"><a href="#三、-传统-Boost-PFC-vs-无桥-PFC" class="headerlink" title="三、 传统 Boost PFC vs 无桥 PFC"></a>三、 传统 Boost PFC vs 无桥 PFC</h3><p>在传统的 Boost PFC 电路中，交流电首先需要流过整流桥（4个二极管），然后再流过 Boost 拓扑（1个二极管和 1个 MOSFET）。在任何时刻，电流都必须流经 2个整流桥二极管和 1个高频开关器件。</p>
+<h4 id="传统方案的效率瓶颈"><a href="#传统方案的效率瓶颈" class="headerlink" title="传统方案的效率瓶颈"></a>传统方案的效率瓶颈</h4><p>对于一个 110V 交流输入、2kW 输出的电源，输入电流有效值约为 18A。二极管的典型导通压降为 1V。<br>仅整流桥部分，在两个导通二极管上产生的稳态损耗就高达：<br><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -0.667ex;" xmlns="http://www.w3.org/2000/svg" width="30.498ex" height="2.287ex" role="img" focusable="false" viewBox="0 -716 13480 1011"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"></path></g><g data-mml-node="TeXAtom" transform="translate(675,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g><g data-mml-node="mi" transform="translate(298,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="mi" transform="translate(783,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path></g><g data-mml-node="msub" transform="translate(1252,0)"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path></g><g data-mml-node="mi" transform="translate(502,-150) scale(0.707)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path></g></g><g data-mml-node="mi" transform="translate(2107.3,0)"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(2558.3,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(2903.3,0)"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="mi" transform="translate(3423.3,0)"><path data-c="1D454" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path></g><g data-mml-node="mi" transform="translate(3900.3,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g></g></g><g data-mml-node="mo" transform="translate(4090.3,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(5146,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z" transform="translate(500,0)"></path></g><g data-mml-node="mtext" transform="translate(6146,0)"><path data-c="A0" d=""></path><path data-c="41" d="M255 0Q240 3 140 3Q48 3 39 0H32V46H47Q119 49 139 88Q140 91 192 245T295 553T348 708Q351 716 366 716H376Q396 715 400 709Q402 707 508 390L617 67Q624 54 636 51T687 46H717V0H708Q699 3 581 3Q458 3 437 0H427V46H440Q510 46 510 64Q510 66 486 138L462 209H229L209 150Q189 91 189 85Q189 72 209 59T259 46H264V0H255ZM447 255L345 557L244 256Q244 255 345 255H447Z" transform="translate(250,0)"></path></g><g data-mml-node="mo" transform="translate(7368.3,0)"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></g><g data-mml-node="mn" transform="translate(8368.5,0)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mtext" transform="translate(8868.5,0)"><path data-c="A0" d=""></path><path data-c="56" d="M114 620Q113 621 110 624T107 627T103 630T98 632T91 634T80 635T67 636T48 637H19V683H28Q46 680 152 680Q273 680 294 683H305V637H284Q223 634 223 620Q223 618 313 372T404 126L490 358Q575 588 575 597Q575 616 554 626T508 637H503V683H512Q527 680 627 680Q718 680 724 683H730V637H723Q648 637 627 596Q627 595 515 291T401 -14Q396 -22 382 -22H374H367Q353 -22 348 -14Q346 -12 231 303Q114 617 114 620Z" transform="translate(250,0)"></path></g><g data-mml-node="mo" transform="translate(10146.3,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(11202,0)"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z" transform="translate(500,0)"></path></g><g data-mml-node="mtext" transform="translate(12202,0)"><path data-c="A0" d=""></path><path data-c="57" d="M792 683Q810 680 914 680Q991 680 1003 683H1009V637H996Q931 633 915 598Q912 591 863 438T766 135T716 -17Q711 -22 694 -22Q676 -22 673 -15Q671 -13 593 231L514 477L435 234Q416 174 391 92T358 -6T341 -22H331Q314 -21 310 -15Q309 -14 208 302T104 622Q98 632 87 633Q73 637 35 637H18V683H27Q69 681 154 681Q164 681 181 681T216 681T249 682T276 683H287H298V637H285Q213 637 213 620Q213 616 289 381L364 144L427 339Q490 535 492 546Q487 560 482 578T475 602T468 618T461 628T449 633T433 636T408 637H380V683H388Q397 680 508 680Q629 680 650 683H660V637H647Q576 637 576 619L727 146Q869 580 869 600Q869 605 863 612T839 627T794 637H783V683H792Z" transform="translate(250,0)"></path></g></g></g></svg></mjx-container><br>这 36W 的热量全部耗散在整流桥磁件上，使得整机效率很难突破 96%。</p>
+<h4 id="图腾柱无桥-PFC（Totem-Pole-Bridgeless-PFC）"><a href="#图腾柱无桥-PFC（Totem-Pole-Bridgeless-PFC）" class="headerlink" title="图腾柱无桥 PFC（Totem-Pole Bridgeless PFC）"></a>图腾柱无桥 PFC（Totem-Pole Bridgeless PFC）</h4><p>为了消灭整流桥的二极管损耗，行业引入了无桥 PFC 拓扑，其中最主流的是图腾柱无桥 PFC：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AC_Line ─────┬───────── [ High-Freq Leg (SiC/GaN) ]</span><br><span class="line">             │</span><br><span class="line">            ( ) AC Source</span><br><span class="line">             │</span><br><span class="line">AC_Neutral ──┴───────── [ Low-Freq Leg (Active Rectifier) ]</span><br></pre></td></tr></table></figure></div>
+
 <ul>
-<li>导通角极小：整流二极管只有在输入交流电压瞬时值高于母线电容上的直流电压时才会导通。这导致二极管的导通时间极短，导通角远小于180度，通常仅为30至70度。</li>
-<li>脉冲式充电电流：由于交流电源仅在每个电压半周期的峰值附近对电容进行充电，输入电流不再是平滑的正弦波，而是呈现出幅值很高、宽度极窄的尖峰脉冲形态。</li>
+<li><strong>工作原理</strong>：它将电路分为高频桥臂（使用 SiC MOSFET 或 GaN 氮化镓器件）和工频电网同步整流臂。</li>
+<li><strong>物理红利</strong>：电流通道中不再有高压降的二极管，仅流过低导通电阻的 MOSFET。这使整体功耗急剧下降，能将 AC-DC 前级的效率直接推高到 98.5% 以上，是大功率高性能服务器电源和车载充电机的主流演进方向。</li>
+<li><strong>技术限制</strong>：由于高频桥臂在工频切换时存在续流管的反向恢复，<strong>传统的硅基 MOSFET 绝对不能用作高频图腾柱臂</strong>，必须使用具有极低反向恢复电荷（<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.439ex;" xmlns="http://www.w3.org/2000/svg" width="3.42ex" height="2.032ex" role="img" focusable="false" viewBox="0 -704 1511.8 898"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D444" d="M399 -80Q399 -47 400 -30T402 -11V-7L387 -11Q341 -22 303 -22Q208 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435Q740 255 592 107Q529 47 461 16L444 8V3Q444 2 449 -24T470 -66T516 -82Q551 -82 583 -60T625 -3Q631 11 638 11Q647 11 649 2Q649 -6 639 -34T611 -100T557 -165T481 -194Q399 -194 399 -87V-80ZM636 468Q636 523 621 564T580 625T530 655T477 665Q429 665 379 640Q277 591 215 464T153 216Q153 110 207 59Q231 38 236 38V46Q236 86 269 120T347 155Q372 155 390 144T417 114T429 82T435 55L448 64Q512 108 557 185T619 334T636 468ZM314 18Q362 18 404 39L403 49Q399 104 366 115Q354 117 347 117Q344 117 341 117T337 118Q317 118 296 98T274 52Q274 18 314 18Z"></path></g><g data-mml-node="TeXAtom" transform="translate(824,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(451,0)"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g></g></g></g></g></svg></mjx-container>）的宽禁带半导体器件（GaN 或 SiC）。</li>
 </ul>
 <hr>
-<p>低功率因数与电流畸变的危害<br>由上述问题导致的非正弦脉冲电流，会引发一系列严重后果：</p>
+<h3 id="四、-PFC-电感与控制环路设计避坑要点"><a href="#四、-PFC-电感与控制环路设计避坑要点" class="headerlink" title="四、 PFC 电感与控制环路设计避坑要点"></a>四、 PFC 电感与控制环路设计避坑要点</h3><h4 id="1-PFC-电感磁芯饱和风险（直流偏置）"><a href="#1-PFC-电感磁芯饱和风险（直流偏置）" class="headerlink" title="1. PFC 电感磁芯饱和风险（直流偏置）"></a>1. PFC 电感磁芯饱和风险（直流偏置）</h4><p>PFC 电感在交流电压峰值处承受着最大的直流偏置电流。</p>
 <ul>
-<li>功率因数降低：输入电流与电压波形不一致且相位不同，导致系统中存在大量无功功率和畸变功率，电能利用率低下。</li>
-<li>电网负荷加重：无功功率和高次谐波电流增加了电网线路和变压器的负荷，引发额外的线路损耗和变压器损耗。</li>
-<li>电压质量下降：增大的线路损耗会导致显著的电压降，使得用户端的实际电压偏低，影响设备正常工作。</li>
-<li>电磁干扰（EMI）：电流脉冲的导通角小，意味着在极短时间内电流变化率（di/dt）极大。这种剧烈的电流突变会产生强大的电磁场，形成严重的电磁干扰，影响自身及周边设备的电磁兼容（EMC）性能。</li>
+<li><strong>避坑防线</strong>：在选择磁芯时，绝对不能使用像铁氧体（Ferrite）这种具有陡峭饱和特性的磁芯。一旦电感电流过载，磁芯瞬间饱和，感量断崖式暴跌，会导致 MOSFET 瞬间过流烧毁。</li>
+<li><strong>正确选型</strong>：必须选用<strong>铁硅铝（Sendust）、高磁通（High Flux）或铁镍（Slope Saturation）等金属粉芯</strong>。它们具有软饱和特性（Soft Saturation），在强直流偏置下感量只是缓慢下降，能为系统过流保护留出足够的响应时间。</li>
 </ul>
-<hr>
-<p>PFC电路的核心目标与原理<br>PFC电路的核心目标是解决由整流电容滤波引起的输入电流畸变问题。</p>
+<h4 id="2-双闭环控制的“频段隔离”铁律"><a href="#2-双闭环控制的“频段隔离”铁律" class="headerlink" title="2. 双闭环控制的“频段隔离”铁律"></a>2. 双闭环控制的“频段隔离”铁律</h4><p>有源 PFC 控制系统通常包含两个环路：外环是电压环，内环是电流环。</p>
 <ul>
-<li>原理：通过控制PFC电路中的开关管，强制性地对输入电流波形进行重塑，使其在形态上成为一个与输入电压同相位的标准正弦波。</li>
-<li>效果：<ul>
-<li>功率因数提升：实现输入电压与电流同相位，功率因数接近1。</li>
-<li>谐波抑制：消除电流波形中的尖峰脉冲，大幅降低高次谐波含量，解决了EMI和EMC问题。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p>PFC电路的工作模式<br>根据电感电流在一个开关周期内是否降为零，有源PFC电路主要有三种工作模式：</p>
-<ul>
-<li>连续导通模式（CCM）</li>
-<li>不连续导通模式（DCM）</li>
-<li>临界导通模式（BCM）</li>
+<li><strong>电流内环</strong>：带宽要求极高（通常在几 kHz 到几十 kHz），目的是让电感电流能快速、实时跟踪交流输入电压的波形变化。</li>
+<li><strong>电压外环</strong>：<strong>其环路带宽必须设计得极低（通常只有 10Hz~20Hz）</strong>。</li>
+<li><strong>为什么外环必须“迟钝”？</strong><br>因为输出滤波电容上存在两倍工频（100Hz 或 120Hz）的纹波电压。如果电压外环的带宽过高（例如 100Hz），它就会误将这个 100Hz 的输出电压纹波当作输出变动进行调整，进而去调制电流内环的参考基准。<br>这样一来，输入电流基准会被强行混入 100Hz 的扰动，导致正弦输入电流波形严重畸变，THD 彻底崩溃。因此，<strong>电压环必须设计得足够迟钝，以彻底滤除 100Hz 的电容纹波干扰，这是保证高 PF 值和低 THD 的底层环路红线</strong>。</li>
 </ul>
 
 		</div>
@@ -848,14 +863,14 @@ mjx-container[display="true"] + br {
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> PFC专题</li>
+        <li><strong>标题:</strong> 有源功率因数校正（PFC）原理与工程设计避坑指南</li>
         <li><strong>作者:</strong> WenZhenJian-EE</li>
         <li><strong>创建于
                 :</strong> 2026-01-22 16:59:24</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-06-28 14:55:47
+                    :</strong> 2026-06-28 14:55:59
             </li>
         
         <li>
@@ -897,27 +912,27 @@ mjx-container[display="true"] + br {
     <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
     </div>
-    <div class="recommended-article-group"><a class="recommended-article-item" href="/fundamentals-1/" title="电力电子基础1" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="电力电子基础1" class="!max-w-none">
-  <span class="title">电力电子基础1</span>
-</a><a class="recommended-article-item" href="/llc/" title="LLC专题" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="LLC专题" class="!max-w-none">
-  <span class="title">LLC专题</span>
-</a><a class="recommended-article-item" href="/circuit-topology-1/" title="电路拓扑1" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="电路拓扑1" class="!max-w-none">
-  <span class="title">电路拓扑1</span>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/driver-circuit-circuit/" title="栅极驱动与有源米勒钳位调试笔记" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="栅极驱动与有源米勒钳位调试笔记" class="!max-w-none">
+  <span class="title">栅极驱动与有源米勒钳位调试笔记</span>
+</a><a class="recommended-article-item" href="/loss-structure-material-winding-test/" title="高频变压器与电感损耗模型、结构选材与工艺测试实战手记" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="高频变压器与电感损耗模型、结构选材与工艺测试实战手记" class="!max-w-none">
+  <span class="title">高频变压器与电感损耗模型、结构选材与工艺测试实战手记</span>
+</a><a class="recommended-article-item" href="/resistor-design-cases/" title="电阻选型与失效避坑：耐压、温漂、抗冲击与防浪涌设计" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="电阻选型与失效避坑：耐压、温漂、抗冲击与防浪涌设计" class="!max-w-none">
+  <span class="title">电阻选型与失效避坑：耐压、温漂、抗冲击与防浪涌设计</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
    </div>
-   <div class="recommended-article-group"><a class="recommended-article-item" href="/fundamentals-1/" title="电力电子基础1" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="电力电子基础1" class="!max-w-none">
-  <span class="title">电力电子基础1</span>
-</a><a class="recommended-article-item" href="/llc/" title="LLC专题" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="LLC专题" class="!max-w-none">
-  <span class="title">LLC专题</span>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/driver-circuit-circuit/" title="栅极驱动与有源米勒钳位调试笔记" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="栅极驱动与有源米勒钳位调试笔记" class="!max-w-none">
+  <span class="title">栅极驱动与有源米勒钳位调试笔记</span>
+</a><a class="recommended-article-item" href="/loss-structure-material-winding-test/" title="高频变压器与电感损耗模型、结构选材与工艺测试实战手记" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="高频变压器与电感损耗模型、结构选材与工艺测试实战手记" class="!max-w-none">
+  <span class="title">高频变压器与电感损耗模型、结构选材与工艺测试实战手记</span>
 </a></div>
    </div>
   </div>
@@ -962,8 +977,8 @@ mjx-container[display="true"] + br {
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
-		<div class="page-title">PFC专题</div>
-		
+		<div class="page-title">有源功率因数校正（PFC）原理与工程设计避坑指南</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E6%BA%90%E5%8A%9F%E7%8E%87%E5%9B%A0%E6%95%B0%E6%A0%A1%E6%AD%A3%EF%BC%88PFC%EF%BC%89%E5%8E%9F%E7%90%86%E4%B8%8E%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1%E9%81%BF%E5%9D%91%E6%8C%87%E5%8D%97"><span class="nav-text">有源功率因数校正（PFC）原理与工程设计避坑指南</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%AA%E6%A0%A1%E6%AD%A3%E7%9A%84%E6%95%B4%E6%B5%81%E7%94%B5%E8%B7%AF%E6%98%AF%E2%80%9C%E7%BD%91%E4%BE%A7%E6%B1%A1%E6%9F%93%E6%BA%90%E2%80%9D%EF%BC%9F"><span class="nav-text">一、 为什么未校正的整流电路是“网侧污染源”？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-PFC-%E7%9A%84%E4%B8%89%E5%A4%A7%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%EF%BC%88CCM-BCM-DCM%EF%BC%89%E7%A1%AC%E6%A0%B8%E5%AF%B9%E6%AF%94"><span class="nav-text">二、 PFC 的三大工作模式（CCM, BCM, DCM）硬核对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E4%BC%A0%E7%BB%9F-Boost-PFC-vs-%E6%97%A0%E6%A1%A5-PFC"><span class="nav-text">三、 传统 Boost PFC vs 无桥 PFC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81-PFC-%E7%94%B5%E6%84%9F%E4%B8%8E%E6%8E%A7%E5%88%B6%E7%8E%AF%E8%B7%AF%E8%AE%BE%E8%AE%A1%E9%81%BF%E5%9D%91%E8%A6%81%E7%82%B9"><span class="nav-text">四、 PFC 电感与控制环路设计避坑要点</span></a></li></ol></li></ol>
 
 	</div>
 </div>

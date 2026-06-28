@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-12-27T05:19:39.000Z">
-<meta property="article:modified_time" content="2026-06-28T06:55:47.731Z">
+<meta property="article:modified_time" content="2026-06-28T06:55:59.590Z">
 <meta property="article:author" content="WenZhenJian-EE">
 <meta property="article:tag" content="标准">
 <meta property="article:tag" content="名词">
@@ -320,7 +320,7 @@ mjx-container[display="true"] + br {
     "https://WenZhenJian-EE.github.io/images/redefine-og.webp"
   ],
   "datePublished": "2025-12-27T05:19:39.000Z",
-  "dateModified": "2026-06-28T06:55:47.731Z",
+  "dateModified": "2026-06-28T06:55:59.590Z",
   "author": {
     "@type": "Person",
     "name": "WenZhenJian-EE",
@@ -334,7 +334,7 @@ mjx-container[display="true"] + br {
       "url": "https://WenZhenJian-EE.github.io/images/redefine-logo.webp"
     }
   },
-  "description": "储能系统 PCS 核心架构能量转换系统 PCS 是储能系统的核心设备，负责在电网的交流电与电池的直流电之间进行双向能量变换。在向电网放电时作为逆变器工作，在从电网充电时作为整流器工作。 能源管理系统 EMS 是整个储能电站的顶层控制单元，层级在能量转换系统 PCS 和电池管理系统 BMS 之上，如同大脑或总指挥官，负责...",
+  "description": "在电力电子和新能源汽车研发行业里，每天开会或者看技术文档，都会被各种各样的英文缩写（比如BCU、MCU、ZCU、ADCU、VSG）轰炸。刚入行的小白很容易听得云里雾里，甚至在改BOM表、看电路图时把不同领域的同名缩写搞混。 今天我就把我自己工程笔记里整理的核心名词库拿出来分享给大家，全是在项目里天天打交道的技术要点，还...",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://wenzhenjian-ee.github.io/note/"
@@ -733,8 +733,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-06-28 14:55:47</span>
-            <span class="mobile">2026-06-28 14:55:47</span>
+            <span class="desktop">2026-06-28 14:55:59</span>
+            <span class="mobile">2026-06-28 14:55:59</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -802,20 +802,24 @@ mjx-container[display="true"] + br {
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<hr>
-<h2 id="储能系统-PCS-核心架构"><a href="#储能系统-PCS-核心架构" class="headerlink" title="储能系统 PCS 核心架构"></a>储能系统 PCS 核心架构</h2><p>能量转换系统 PCS 是储能系统的核心设备，负责在电网的交流电与电池的直流电之间进行双向能量变换。在向电网放电时作为逆变器工作，在从电网充电时作为整流器工作。</p>
-<p>能源管理系统 EMS 是整个储能电站的顶层控制单元，层级在能量转换系统 PCS 和电池管理系统 BMS 之上，如同大脑或总指挥官，负责制定整体的能量调度策略、优化运行和响应电网指令。</p>
-<p>电池管理系统 BMS 负责监控、管理和保护电池组的核心单元，如同电池的智能管家，确保电池在安全、可靠、高效的状态下运行。</p>
+			<p>在电力电子和新能源汽车研发行业里，每天开会或者看技术文档，都会被各种各样的英文缩写（比如BCU、MCU、ZCU、ADCU、VSG）轰炸。刚入行的小白很容易听得云里雾里，甚至在改BOM表、看电路图时把不同领域的同名缩写搞混。</p>
+<p>今天我就把我自己工程笔记里整理的核心名词库拿出来分享给大家，全是在项目里天天打交道的技术要点，还附带了一些避坑和速记方法。</p>
 <hr>
-<h2 id="储能-BMS-三级管理体系"><a href="#储能-BMS-三级管理体系" class="headerlink" title="储能 BMS 三级管理体系"></a>储能 BMS 三级管理体系</h2><p>储能电池管理系统 BMS 通常采用分层架构，由高到低分为三个层级：</p>
+<h3 id="储能系统-PCS-核心架构与三级管理体系"><a href="#储能系统-PCS-核心架构与三级管理体系" class="headerlink" title="储能系统 PCS 核心架构与三级管理体系"></a>储能系统 PCS 核心架构与三级管理体系</h3><p>储能项目大热，很多做逆变器的兄弟都转来做储能了。在这个领域，有几个“大脑”级别的东西必须理清：</p>
 <ul>
-<li>电池簇控制器 BCU ：作为电池管理系统的主控单元，管理一个或多个并联的电池簇，是电池簇与能量转换系统 PCS 之间的信息枢纽。</li>
-<li>电池管理单元 BMU ：负责管理一个电池模组或一个电池架，采集其内部信息并上报给电池簇控制器 BCU 。</li>
-<li>单体采集单元 CSC ：位于最底层，直接监测和采集每个单体电芯的电压和温度等基础数据。</li>
+<li><strong>PCS（储能变流器）</strong>：这是能量流动的总执行者。交流和直流之间的双向能量变换全靠它。电网放电时充当逆变器，充电时充当整流器。</li>
+<li><strong>EMS（能量管理系统）</strong>：这是整个储能电站的“总指挥官”。层级最高，负责决定什么时候充电、什么时候放电、怎么响应电网调度。</li>
+<li><strong>BMS（电池管理系统）</strong>：这是电池的“贴身大管家”。负责盯紧每个电芯的电压、温度和安全。</li>
 </ul>
-<p>在大型储能系统中，还会使用电池簇管理系统 BAMS 作为电池阵列集群的管理模块，对多个电池簇进行统一协调。</p>
+<p>而在大型储能系统里，BMS通常采用分层架构，由低到高分为三个层级：</p>
+<ul>
+<li><strong>单体采集单元 CSC</strong>：位于最底层，直接贴在电芯上，测每个电芯的电压和温度等基础数据。</li>
+<li><strong>电池管理单元 BMU</strong>：负责管理一个电池模组（包含多个电芯），汇总 CSC 上报的数据并上报给 BCU。</li>
+<li><strong>电池簇控制器 BCU</strong>：作为电池簇的主控单元，管理一整簇电池，是电池簇与能量转换系统 PCS / EMS 之间的信息枢纽。</li>
+<li><strong>电池簇管理系统 BAMS</strong>：在大型储能电站中，作为电池阵列集群的管理模块，对多个电池簇进行统一协调。</li>
+</ul>
 <hr>
-<h2 id="电动汽车-EV-动力控制单元"><a href="#电动汽车-EV-动力控制单元" class="headerlink" title="电动汽车 (EV) 动力控制单元"></a>电动汽车 (EV) 动力控制单元</h2><p>电动汽车及混动车辆的动力系统由多个核心控制单元协同工作：</p>
+<h3 id="新能源汽车-EV-动力与座舱控制单元"><a href="#新能源汽车-EV-动力与座舱控制单元" class="headerlink" title="新能源汽车 (EV) 动力与座舱控制单元"></a>新能源汽车 (EV) 动力与座舱控制单元</h3><p>新能源车绝对是缩写的重灾区，我整理了一个动力控制核心表：</p>
 <table>
 <thead>
 <tr>
@@ -853,27 +857,36 @@ mjx-container[display="true"] + br {
 <td>OBC</td>
 <td>On-Board Charger</td>
 <td>车载充电机</td>
-<td>安装在电动汽车内部的设备，负责将来自交流充电桩或普通交流电源的交流电转换为直流电，为车载动力电池充电。其额定功率直接决定了车辆的交流充电速度。</td>
+<td>安装在电动汽车内部，负责将交流充电桩或普通交流电转换为直流电为动力电池充电。其额定功率决定了交流慢充的速度。</td>
 </tr>
 </tbody></table>
-<hr>
-<h2 id="电池状态关键指标-KPI"><a href="#电池状态关键指标-KPI" class="headerlink" title="电池状态关键指标(KPI)"></a>电池状态关键指标(KPI)</h2><p>用于衡量电池电量、老化程度及使用强度的核心指标：</p>
+<p>另外，车身与智能交互系统也少不了域控制器的参与：</p>
 <ul>
-<li>荷电状态 SOC ：表示电池当前剩余电量占其总容量的百分比。<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.131ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 500 688"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g></g></g></svg></mjx-container> 表示完全放电，<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1500 688"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"></path></g></g></g></svg></mjx-container> 表示完全充满。</li>
-<li>健康状态 SOH ：衡量电池老化或衰退程度的指标。新电池的健康状态为 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1500 688"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"></path></g></g></g></svg></mjx-container> ，随着使用和循环次数的增加，其数值会逐渐下降。</li>
-<li>放电深度 DOD ：指电池已放出电量占其总容量的百分比。例如，从 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1500 688"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"></path></g></g></g></svg></mjx-container> 荷电状态放电至 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1000 688"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g></g></g></svg></mjx-container> ，则放电深度为 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1000 688"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g></g></g></svg></mjx-container> 。采用较低的放电深度（浅充浅放）通常有利于延长电池的循环寿命。</li>
+<li><strong>座舱域控制器 CDC</strong>：统筹管理仪表盘、中控大屏、HUD 以及语音助手等座舱内交互设备。</li>
+<li><strong>仪表控制单元 ICU</strong>：专门负责车辆屏幕及仪表的图形化显示控制。</li>
+<li><strong>远程通讯终端 T-Box</strong>：内置移动网络通讯模块，负责车联网数据交互与远程控制指令下发。</li>
+<li><strong>自动驾驶域控制器 ADCU</strong>：系统中算力最强的处理单元，负责挂载并处理各类摄像头和雷达传感器的数据，运行智驾算法。</li>
+<li><strong>车身控制器 BCM（车身控制单元 BCU）</strong>：传统架构中负责管理灯光、雨刮、中控锁等附件的模块。在现代架构中，其功能正逐步被区域控制器整合。</li>
+<li><strong>辅助控制单元 ACU</strong>：在复杂系统里负责管理水冷泵、散热风扇等辅助设备，整合外部接口，协调热管理与系统状态。</li>
+<li><strong>变速箱控制单元 TCU</strong>：燃油车或混动车型中专门用于计算与执行换挡逻辑的模块。</li>
+<li><strong>智能控制单元 SCU</strong>：通常指代内部集成了高级控制逻辑或具备初步独立感知能力的末端执行器。</li>
 </ul>
 <hr>
-<h2 id="并网控制与构网技术"><a href="#并网控制与构网技术" class="headerlink" title="# 并网控制与构网技术"></a># 并网控制与构网技术</h2><p>在并网能量转换系统中，实现变换器与电网协调运行的关键技术：</p>
+<h3 id="电池状态关键指标-KPI"><a href="#电池状态关键指标-KPI" class="headerlink" title="电池状态关键指标(KPI)"></a>电池状态关键指标(KPI)</h3><p>用于衡量电池电量、老化程度及使用强度的核心指标：</p>
 <ul>
-<li>锁相环 PLL ：用于精确、快速地检测电网电压的相位、频率和幅值，是实现变换器输出与电网同步的基础，使变换器能够被动地跟随电网特性。</li>
-<li>电压源型变流器 VSC ：指直流侧通过大电容维持稳定电压的电力电子变流器。在传统的并网应用中， VSC 通常工作在跟网型模式下，通过 PLL 跟随电网，表现为受控电流源，根据上层指令向电网注入或吸收特定大小和相位的电流，自身不主动建立电压和频率。</li>
-<li>虚拟同步发电机 VSG ：一种先进的控制策略，通过在变流器控制算法中模拟传统同步发电机的转子运动方程和调速特性，使其对外呈现出与同步发电机相似的惯性和阻尼特性。采用此控制的变流器是一种构网型变换器。</li>
-<li>模拟惯性：当电网频率波动时，能像真实发电机的旋转动能一样，自动、瞬时地调整有功功率输出，以抑制频率变化。</li>
-<li>模拟阻尼：通过模拟阻尼绕组的作用，快速抑制功率和频率的振荡，提升系统稳定性。</li>
-<li>主动构网：能够作为电压源主动建立本地电网的电压和频率，可以独立支撑微电网运行，或在并网时主动参与电网的频率和电压调节。</li>
+<li><strong>荷电状态 SOC</strong>：表示电池当前剩余电量占其总容量的百分比。<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.131ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 500 688"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g></g></g></svg></mjx-container> 表示没电，<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1500 688"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"></path></g></g></g></svg></mjx-container> 表示充满。</li>
+<li><strong>健康状态 SOH</strong>：衡量电池老化程度。新电池为 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1500 688"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"></path></g></g></g></svg></mjx-container> ，随着充放电循环老化慢慢下降。</li>
+<li><strong>放电深度 DOD</strong>：指已放出的电量占总容量的百分比。避坑技巧：为了让电池活得更久，在设计BMS控制策略时，应尽量引导用户浅充浅放，控制较低的放电深度。</li>
 </ul>
-<h2 id="现代汽车-E-E-架构-域控与区域"><a href="#现代汽车-E-E-架构-域控与区域" class="headerlink" title="现代汽车 E/E 架构 (域控与区域)"></a>现代汽车 E/E 架构 (域控与区域)</h2><p>在现代化的分布式控制系统及向集中式演进的架构中，各控制模块按功能区域和地位层级进行划分：</p>
+<hr>
+<h3 id="并网控制与构网技术"><a href="#并网控制与构网技术" class="headerlink" title="并网控制与构网技术"></a>并网控制与构网技术</h3><p>在并网逆变器中，实现变换器与电网协调运行的关键技术：</p>
+<ul>
+<li><strong>锁相环 PLL</strong>：跟网型逆变器的标配。用于精确、快速地检测电网电压的相位、频率和幅值，让变换器被动跟随电网的节奏。</li>
+<li><strong>电压源型变流器 VSC</strong>：直流侧通过大电容维持稳定电压的电力电子变流器。在传统并网中，通常表现为受控电流源，自身不主动建立电压和频率。</li>
+<li><strong>虚拟同步发电机 VSG</strong>：一种先进的构网型控制策略。通过在算法中模拟同步发电机的转子运动方程和调速特性，对外呈现惯性和阻尼特性。它能够作为电压源主动建立本地的电压和频率，是独立微电网支撑的绝对神器。</li>
+</ul>
+<hr>
+<h3 id="现代汽车-E-E-架构-域控与区域"><a href="#现代汽车-E-E-架构-域控与区域" class="headerlink" title="现代汽车 E/E 架构 (域控与区域)"></a>现代汽车 E/E 架构 (域控与区域)</h3><p>以前车里有上百个ECU，线束又重又乱。现在的趋势是扁平化与区域化：</p>
 <table>
 <thead>
 <tr>
@@ -893,7 +906,7 @@ mjx-container[display="true"] + br {
 <td>ZCU</td>
 <td>Zone Control Unit</td>
 <td>区域控制器</td>
-<td>按物理位置划分的区域控制核心，负责汇总该区域内所有硬件信号，打包后通过以太网传输给中心大脑，起到承上启下和极大简化线束的作用。例如左前域控制器可同时管理左前门窗、大灯和后视镜。</td>
+<td>按物理位置就近接入区域所有硬件信号，打包后通过以太网传给中心大脑，极大精简了车内线束。例如左前域控制器可同时管理左前门窗、大灯和后视镜。</td>
 </tr>
 <tr>
 <td>CCU</td>
@@ -915,73 +928,44 @@ mjx-container[display="true"] + br {
 </tr>
 </tbody></table>
 <hr>
-<h2 id="智能座舱与交互控制单元"><a href="#智能座舱与交互控制单元" class="headerlink" title="# 智能座舱与交互控制单元"></a># 智能座舱与交互控制单元</h2><p>座舱与舒适层控制单元负责车辆内部的座舱环境、车身附件操作、用户交互以及外部通讯：</p>
-<ul>
-<li>座舱域控制器 CDC ：统筹管理仪表盘、中控大屏、HUD 以及语音助手等座舱内交互设备。</li>
-<li>仪表控制单元 ICU ：专门负责车辆屏幕及仪表的图形化显示控制。</li>
-<li>远程通讯终端 T-Box ：内置移动网络通讯模块，负责车联网数据交互与远程控制指令下发。</li>
+<h3 id="通讯协议、接口与防护"><a href="#通讯协议、接口与防护" class="headerlink" title="通讯协议、接口与防护"></a>通讯协议、接口与防护</h3><ul>
+<li><strong>控制器局域网络 CAN</strong>：我们最常用的工业和汽车现场总线，差分传输，抗电磁干扰极强，具备出色的错误检测和重发机制。</li>
+<li><strong>V2G (Vehicle-to-Grid)</strong>：双向充电技术，能把车上的动力电池反向给电网送电，让电动汽车变成移动的储能站。</li>
+<li><strong>外壳防护等级 IP</strong>：界定设备外壳防尘防水性能。例如常挂在嘴边的 IP65：<ul>
+<li><strong>首位数字 6</strong>：完全防止粉尘进入的防尘最高级。</li>
+<li><strong>第二位数字 5</strong>：防止任何方向低压喷水的影响。</li>
+<li>如果是户外大功率机柜，我们一般要求到 IP65 甚至更严苛的 IP68/IP69K（承受高温高压水流冲洗）。</li>
+</ul>
+</li>
+<li><strong>高压配电单元 PDU</strong>：大功率高压电能分配中枢，集成了继电器、保险丝（Fuse）等，相当于高压侧的强电配电箱。</li>
 </ul>
 <hr>
-<h2 id="智能驾驶与安全控制单元"><a href="#智能驾驶与安全控制单元" class="headerlink" title="智能驾驶与安全控制单元"></a>智能驾驶与安全控制单元</h2><p>负责车辆环境感知、决策处理以及核心被动安全保护：</p>
-<ul>
-<li>自动驾驶域控制器 ADCU ：系统中算力最强的处理单元，负责挂载并处理各类摄像头和雷达传感器的数据。</li>
-<li>安全气囊控制器 ACU ：在汽车被动安全领域，专指安全气囊的触发与控制模块，属于核心安全件。</li>
-</ul>
-<hr>
-<h2 id="车身舒适与辅助设备控制单元"><a href="#车身舒适与辅助设备控制单元" class="headerlink" title="车身舒适与辅助设备控制单元"></a>车身舒适与辅助设备控制单元</h2><p>负责车辆基础电器功能及温控辅助系统：</p>
-<ul>
-<li>车身控制单元 BCU ：传统架构中负责管理灯光、雨刮、中控锁等附件的模块。在现代架构中，其功能正逐步被区域控制器整合。</li>
-<li>车身控制器 BCM ：功能与车身控制单元高度重合，属于不同厂商的命名习惯差异。</li>
-<li>辅助控制单元 ACU ：在复杂系统中负责管理水冷、风扇、照明等辅助设备，整合外部接口。它通常作为中间层，不运行核心算法，但负责将区域控制器采集的数据与电池控制单元的状态进行逻辑协调，随后下发给执行机构。</li>
-<li>变速箱控制单元 TCU ：燃油车或混动车型中专门用于计算与执行换挡逻辑的模块。</li>
-<li>智能控制单元 SCU ：通常指代内部集成了高级控制逻辑或具备初步感知能力的末端执行器。</li>
-</ul>
-<hr>
-<h2 id="通讯协议与接口技术"><a href="#通讯协议与接口技术" class="headerlink" title="通讯协议与接口技术"></a>通讯协议与接口技术</h2><p>设备间进行数据交换的核心标准与模式：</p>
-<ul>
-<li>控制器局域网络 CAN ：一种广泛应用于汽车电子、工业自动化和储能系统中的现场总线通信协议。其特点是高可靠性、强大的错误检测机制和良好的实时性，适合在电磁干扰强的环境中进行设备间的数据交换。</li>
-<li>V2G ：Vehicle-to-Grid 的缩写，意为车辆到电网。它是一种使电动汽车不仅能从电网单向充电，还能在需要时作为移动储能单元反向给电网送电的技术。可以将其想象成一个带轮子的巨型充电宝。</li>
-</ul>
-<h2 id="防护标准与高压配电单元"><a href="#防护标准与高压配电单元" class="headerlink" title="防护标准与高压配电单元"></a>防护标准与高压配电单元</h2><p>硬件设备的物理防护性能与电能分配中枢：</p>
-<ul>
-<li>外壳防护等级 IP ：用于界定电气设备外壳对固体异物和液体侵入的防护能力的标准。代码解读以 IP65 为例：</li>
-<li>第一位数字 6 ：防尘等级，表示对固体异物的防护能力。6 代表完全防止粉尘进入。</li>
-<li>第二位数字 5 ：防水等级，表示对液体的防护能力。5 代表可防止来自任何方向的低压喷水。</li>
-<li>更高级别示例：IP68 代表设备可长期浸泡在指定压力的水中；IP69K 代表设备能承受高温高压水流的冲洗。</li>
-<li>高压配电单元 PDU ：负责高压电力的统筹与分配，起到系统级高压保险与配电中枢的作用。</li>
-</ul>
-<hr>
-<h2 id="控制单元命名规律与识别策略"><a href="#控制单元命名规律与识别策略" class="headerlink" title="控制单元命名规律与识别策略"></a>控制单元命名规律与识别策略</h2><p>在面对未知的控制单元缩写时，可以通过拆解字母组合与分析系统层级来进行功能推演：</p>
-<ul>
-<li>观察首字母定对象：缩写的第一个字母通常代表其控制的物理对象或系统范围。例如 V 多代表整车全局， B 多代表电池系统或车身附件， M 多代表电机或主控节点。</li>
-<li>观察中间字母定职能：缩写的中间字母通常揭示其核心工作方式或架构级别。例如 C 代表控制逻辑或通讯链路， D 代表功能域或能量分配。</li>
-<li>结合系统拓扑定层级：在分析接口定义时，需结合该模块在系统拓扑中的上下游关系进行判断。若一个模块主要负责收集离散信号并与多个不同类型的控制器进行数据交换，此类以辅助或协调为名的模块通常扮演着整合信息与分配指令的中间人角色。</li>
-</ul>
+<h3 id="避坑：缩写冲突预警"><a href="#避坑：缩写冲突预警" class="headerlink" title="避坑：缩写冲突预警"></a>避坑：缩写冲突预警</h3><p>在看电路图纸、开会或者评审BOM时，一定要小心领域不同带来的重名缩写冲突：</p>
 <table>
 <thead>
 <tr>
 <th>缩写冲突预警</th>
-<th>领域 A 含义</th>
-<th>领域 B 含义</th>
+<th>储能/大功率领域含义</th>
+<th>汽车/车身安全领域含义</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>BCU</td>
-<td>Battery Cluster Unit 电池簇控制器（储能）</td>
-<td>Body Control Unit 车身控制单元（汽车）</td>
+<td><strong>BCU</strong></td>
+<td>Battery Cluster Unit 电池簇控制器</td>
+<td>Body Control Unit 车身控制单元</td>
 </tr>
 <tr>
-<td>ACU</td>
-<td>Airbag Control Unit 安全气囊控制器（汽车安全）</td>
-<td>Auxiliary Control Unit 辅助控制单元（系统协调）</td>
+<td><strong>ACU</strong></td>
+<td>Auxiliary Control Unit 辅助控制单元</td>
+<td>Airbag Control Unit 安全气囊控制器</td>
 </tr>
 <tr>
-<td>EMS</td>
-<td>Energy Management System 能量管理系统（储能）</td>
-<td>Engine Management System 发动机管理系统（燃油车）</td>
+<td><strong>EMS</strong></td>
+<td>Energy Management System 能量管理系统</td>
+<td>Engine Management System 发动机管理系统</td>
 </tr>
 </tbody></table>
-<p>你需要我将这 12 个模块合并为一个完整的长文档发送给你吗？</p>
+<p>评审BOM时看清上下文，别闹出把汽车气囊控制器买到储能电站的笑话。</p>
 
 		</div>
 
@@ -996,7 +980,7 @@ mjx-container[display="true"] + br {
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-06-28 14:55:47
+                    :</strong> 2026-06-28 14:55:59
             </li>
         
         <li>
@@ -1041,9 +1025,9 @@ mjx-container[display="true"] + br {
     <div class="recommended-article-group"><a class="recommended-article-item" href="/inverter/" title="逆变器专题" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="逆变器专题" class="!max-w-none">
   <span class="title">逆变器专题</span>
-</a><a class="recommended-article-item" href="/circuit-topology-1/" title="电路拓扑1" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="电路拓扑1" class="!max-w-none">
-  <span class="title">电路拓扑1</span>
+</a><a class="recommended-article-item" href="/fundamentals-2/" title="电力电子基础2" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="电力电子基础2" class="!max-w-none">
+  <span class="title">电力电子基础2</span>
 </a><a class="recommended-article-item" href="/m-c-u-comparison-resources/" title="MCU对比、资源" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="MCU对比、资源" class="!max-w-none">
   <span class="title">MCU对比、资源</span>
@@ -1056,9 +1040,9 @@ mjx-container[display="true"] + br {
    <div class="recommended-article-group"><a class="recommended-article-item" href="/inverter/" title="逆变器专题" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="逆变器专题" class="!max-w-none">
   <span class="title">逆变器专题</span>
-</a><a class="recommended-article-item" href="/circuit-topology-1/" title="电路拓扑1" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="电路拓扑1" class="!max-w-none">
-  <span class="title">电路拓扑1</span>
+</a><a class="recommended-article-item" href="/fundamentals-2/" title="电力电子基础2" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="电力电子基础2" class="!max-w-none">
+  <span class="title">电力电子基础2</span>
 </a></div>
    </div>
   </div>
@@ -1104,7 +1088,7 @@ mjx-container[display="true"] + br {
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
 		<div class="page-title">相关名词解析</div>
-		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%82%A8%E8%83%BD%E7%B3%BB%E7%BB%9F-PCS-%E6%A0%B8%E5%BF%83%E6%9E%B6%E6%9E%84"><span class="nav-text">储能系统 PCS 核心架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%82%A8%E8%83%BD-BMS-%E4%B8%89%E7%BA%A7%E7%AE%A1%E7%90%86%E4%BD%93%E7%B3%BB"><span class="nav-text">储能 BMS 三级管理体系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%8A%A8%E6%B1%BD%E8%BD%A6-EV-%E5%8A%A8%E5%8A%9B%E6%8E%A7%E5%88%B6%E5%8D%95%E5%85%83"><span class="nav-text">电动汽车 (EV) 动力控制单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E6%B1%A0%E7%8A%B6%E6%80%81%E5%85%B3%E9%94%AE%E6%8C%87%E6%A0%87-KPI"><span class="nav-text">电池状态关键指标(KPI)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E7%BD%91%E6%8E%A7%E5%88%B6%E4%B8%8E%E6%9E%84%E7%BD%91%E6%8A%80%E6%9C%AF"><span class="nav-text"># 并网控制与构网技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E4%BB%A3%E6%B1%BD%E8%BD%A6-E-E-%E6%9E%B6%E6%9E%84-%E5%9F%9F%E6%8E%A7%E4%B8%8E%E5%8C%BA%E5%9F%9F"><span class="nav-text">现代汽车 E&#x2F;E 架构 (域控与区域)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%BA%E8%83%BD%E5%BA%A7%E8%88%B1%E4%B8%8E%E4%BA%A4%E4%BA%92%E6%8E%A7%E5%88%B6%E5%8D%95%E5%85%83"><span class="nav-text"># 智能座舱与交互控制单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%BA%E8%83%BD%E9%A9%BE%E9%A9%B6%E4%B8%8E%E5%AE%89%E5%85%A8%E6%8E%A7%E5%88%B6%E5%8D%95%E5%85%83"><span class="nav-text">智能驾驶与安全控制单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%A6%E8%BA%AB%E8%88%92%E9%80%82%E4%B8%8E%E8%BE%85%E5%8A%A9%E8%AE%BE%E5%A4%87%E6%8E%A7%E5%88%B6%E5%8D%95%E5%85%83"><span class="nav-text">车身舒适与辅助设备控制单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%8E%A5%E5%8F%A3%E6%8A%80%E6%9C%AF"><span class="nav-text">通讯协议与接口技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%B2%E6%8A%A4%E6%A0%87%E5%87%86%E4%B8%8E%E9%AB%98%E5%8E%8B%E9%85%8D%E7%94%B5%E5%8D%95%E5%85%83"><span class="nav-text">防护标准与高压配电单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%8D%95%E5%85%83%E5%91%BD%E5%90%8D%E8%A7%84%E5%BE%8B%E4%B8%8E%E8%AF%86%E5%88%AB%E7%AD%96%E7%95%A5"><span class="nav-text">控制单元命名规律与识别策略</span></a></li></ol>
+		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%82%A8%E8%83%BD%E7%B3%BB%E7%BB%9F-PCS-%E6%A0%B8%E5%BF%83%E6%9E%B6%E6%9E%84%E4%B8%8E%E4%B8%89%E7%BA%A7%E7%AE%A1%E7%90%86%E4%BD%93%E7%B3%BB"><span class="nav-text">储能系统 PCS 核心架构与三级管理体系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E8%83%BD%E6%BA%90%E6%B1%BD%E8%BD%A6-EV-%E5%8A%A8%E5%8A%9B%E4%B8%8E%E5%BA%A7%E8%88%B1%E6%8E%A7%E5%88%B6%E5%8D%95%E5%85%83"><span class="nav-text">新能源汽车 (EV) 动力与座舱控制单元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E6%B1%A0%E7%8A%B6%E6%80%81%E5%85%B3%E9%94%AE%E6%8C%87%E6%A0%87-KPI"><span class="nav-text">电池状态关键指标(KPI)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B6%E7%BD%91%E6%8E%A7%E5%88%B6%E4%B8%8E%E6%9E%84%E7%BD%91%E6%8A%80%E6%9C%AF"><span class="nav-text">并网控制与构网技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%B0%E4%BB%A3%E6%B1%BD%E8%BD%A6-E-E-%E6%9E%B6%E6%9E%84-%E5%9F%9F%E6%8E%A7%E4%B8%8E%E5%8C%BA%E5%9F%9F"><span class="nav-text">现代汽车 E&#x2F;E 架构 (域控与区域)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE%E3%80%81%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%98%B2%E6%8A%A4"><span class="nav-text">通讯协议、接口与防护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%BF%E5%9D%91%EF%BC%9A%E7%BC%A9%E5%86%99%E5%86%B2%E7%AA%81%E9%A2%84%E8%AD%A6"><span class="nav-text">避坑：缩写冲突预警</span></a></li></ol>
 
 	</div>
 </div>

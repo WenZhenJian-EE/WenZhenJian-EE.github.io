@@ -976,16 +976,15 @@ F: 代表芯片内置了Flash Memory作为程序存储器。
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
                         <a href="/buck-boost/">
-                            buck、boost
+                            双向与交错并联 Buck-Boost 变换器设计与调试手记
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            双向buckboost双向buck-boost能量流动方向取决于两电源电压大小和占空比 Ｄｙ的大小。
-双向Buck-Boost变换器工作原理决定电流流向的不是PWM信号本身，而是两侧电压的“势”与PWM占空比共同作用的结果。其核心是电感的伏秒平衡原理，即在一个稳态的开关周期内，电感两端的平均电压必须为零。
-设高压侧电压为 ，低压侧电压为 ，半桥开关中点对地电压为 ，上管FETD1的占空比为D...
+                            双向与交错并联 Buck-Boost 变换器设计与调试手记平时做电源开发，Buck-Boost 绝对是接触最多的拓扑之一。从最基础的单向 Buck/Boost，到双向充放电、交错并联以减小体积，再到高压下的三电平拓扑，里面有太多只有在实验室里用示波器抓波形、焊铜箔才能体会到的“暗坑”。
+这篇长文是我这几年在做双向 DCDC 变换器和交错并联拓扑时的设计、仿真与调试笔记。内容包括控制建模、MO...
                         
                     </div>
 
@@ -1045,7 +1044,7 @@ F: 代表芯片内置了Flash Memory作为程序存储器。
         
     </div>
 
-    <a href="/buck-boost/">阅读全文<span class="seo-reader-text">buck、boost</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/buck-boost/">阅读全文<span class="seo-reader-text">双向与交错并联 Buck-Boost 变换器设计与调试手记</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1061,23 +1060,15 @@ F: 代表芯片内置了Flash Memory作为程序存储器。
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
                         <a href="/auxiliary-power-topology/">
-                            辅助电源拓扑
+                            高压大功率系统中的辅助电源（反激/ACF/正激）设计与调试避坑手记
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            
-Flyback
-反激变换器工作原理反激变换器中的变压器本质上是一个耦合电感，其核心工作方式是先存储能量，再释放能量，而非传统变压器的实时能量传递。
-
-开关管导通阶段：能量存储
-
-当开关管导通时，输入电压施加在初级绕组上，电流流过初级绕组。
-此时，由于次级二极管因感应电压而反向截止，次级绕组处于开路状态。
-能量并未传递到次级，而是以磁能的形式存储在变压器的磁芯中。
-存储的磁能可由公式  计算...
+                            辅助电源设计避坑与参数计算：反激、有源钳位（ACF）与环路补偿实战在一个大功率电力电子系统（比如 100kW 的光伏逆变器或充放电模块）里，主回路再牛，也得靠辅助电源（Auxiliary Power）把主控板 DSP、风扇、继电器和 SiC/IGBT 驱动器点亮。辅助电源通常需要多路隔离输出（比如 5V、12V、24V，以及驱动用的 +15V/-5V），还要能抗得住很宽的直流母线电压波动。
+...
                         
                     </div>
 
@@ -1137,7 +1128,7 @@ Flyback
         
     </div>
 
-    <a href="/auxiliary-power-topology/">阅读全文<span class="seo-reader-text">辅助电源拓扑</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/auxiliary-power-topology/">阅读全文<span class="seo-reader-text">高压大功率系统中的辅助电源（反激/ACF/正激）设计与调试避坑手记</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
