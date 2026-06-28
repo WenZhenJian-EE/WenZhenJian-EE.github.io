@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wenzhenjian-ee.github.io/projects/index.html</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/tools/index.html</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/tags/index.html</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://wenzhenjian-ee.github.io/thermal-fundamentals/</loc>
     
     <lastmod>2026-06-28</lastmod>
@@ -56,25 +83,7 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/projects/index.html</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/tags/index.html</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/tools/index.html</loc>
+    <loc>https://wenzhenjian-ee.github.io/switch-driver-circuit/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -84,15 +93,6 @@
   
   <url>
     <loc>https://wenzhenjian-ee.github.io/switch-capacitor-flying-capacitor-capacitor/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/switch-driver-circuit/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -146,25 +146,7 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/r-l-c-d-datasheet-reading/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://wenzhenjian-ee.github.io/resistor-design-cases/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/safety-design/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -182,7 +164,7 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/safety-fundamentals/</loc>
+    <loc>https://wenzhenjian-ee.github.io/safety-design/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -192,6 +174,15 @@
   
   <url>
     <loc>https://wenzhenjian-ee.github.io/safety-standard/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/safety-fundamentals/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -245,25 +236,7 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/physics-fundamentals-material/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/poles-zeros-analysis/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/power-circuit/</loc>
+    <loc>https://wenzhenjian-ee.github.io/power-datasheet-reading/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -290,15 +263,6 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/power-datasheet-reading/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://wenzhenjian-ee.github.io/problems-analysis/</loc>
     
     <lastmod>2026-06-28</lastmod>
@@ -317,7 +281,7 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/protection-circuit/</loc>
+    <loc>https://wenzhenjian-ee.github.io/protection-datasheet-reading/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -326,7 +290,7 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/protection-datasheet-reading/</loc>
+    <loc>https://wenzhenjian-ee.github.io/protection-circuit/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -344,7 +308,7 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/opamp-math-logic-circuit/</loc>
+    <loc>https://wenzhenjian-ee.github.io/r-l-c-d-datasheet-reading/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -380,6 +344,15 @@
   </url>
   
   <url>
+    <loc>https://wenzhenjian-ee.github.io/opamp-sampling-design-cases/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://wenzhenjian-ee.github.io/pfc/</loc>
     
     <lastmod>2026-06-28</lastmod>
@@ -389,7 +362,142 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/opamp-sampling-design-cases/</loc>
+    <loc>https://wenzhenjian-ee.github.io/physics-fundamentals-material/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/poles-zeros-analysis/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/power-circuit/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/magnetics-saturation-gap-leakage/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/maxwell-transformer-circuit-analysis/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/mechanical/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/miller-parallel-d-s-capacitor-switch/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/note/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/opamp-math-logic-circuit/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/math/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/isolation-datasheet-reading/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/isolation-design-cases/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/llc/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/loss-structure-material-winding-test/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/loop-compensation/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/m-c-u-comparison-resources/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -434,195 +542,6 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/magnetics-saturation-gap-leakage/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/math/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/m-c-u-comparison-resources/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/maxwell-transformer-circuit-analysis/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/miller-parallel-d-s-capacitor-switch/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/note/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/mechanical/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/high-frequency-circuit/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/inductor-design-cases/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/inverter/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/isolation-c-a-n-transceiver-peripheral-circuit-design/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/isolation-datasheet-reading/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/isolation-design-cases/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/llc/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/loop-compensation/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/loss-structure-material-winding-test/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/failure-analysis/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/filter-opamp-circuit-structure/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/formulas/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/fundamentals-2/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/fundamentals-circuit-analysis/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://wenzhenjian-ee.github.io/g-p-s-design/</loc>
     
     <lastmod>2026-06-28</lastmod>
@@ -641,16 +560,7 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/fundamentals-1/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/hardware-handbook-directory/</loc>
+    <loc>https://wenzhenjian-ee.github.io/heatsink-supplier/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -668,7 +578,151 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/heatsink-supplier/</loc>
+    <loc>https://wenzhenjian-ee.github.io/hardware-handbook-directory/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/inductor-design-cases/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/high-frequency-circuit/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/isolation-c-a-n-transceiver-peripheral-circuit-design/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/inverter/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/emi-emc-test-supplier/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/emi-test/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/f-i-l-t-e-r-design-cases/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/failure-analysis/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/essence/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/filter-opamp-circuit-structure/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/fundamentals-1/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/formulas/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/fundamentals-circuit-analysis/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/fundamentals-2/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/datasheet-reading/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/design-cases/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -767,42 +821,6 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/emi-emc-test-supplier/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/emi-test/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/f-i-l-t-e-r-design-cases/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/essence/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://wenzhenjian-ee.github.io/communication-datasheet-reading/</loc>
     
     <lastmod>2026-06-28</lastmod>
@@ -857,15 +875,6 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/datasheet-materials-prefix-identification-package-naming-standards/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://wenzhenjian-ee.github.io/datasheet-reading-production-mechanical/</loc>
     
     <lastmod>2026-06-28</lastmod>
@@ -875,97 +884,7 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/design-cases/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/datasheet-reading/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/c-2-0-0-0-minimum-system-peripheral-circuit-design/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/c-p-l-d-minimum-system-peripheral-circuit-design/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/capacitor-design-cases/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/circuit-fundamentals/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/circuit-test-analysis/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/circuit-topology-1/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/circuit-test-test/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/circuit/</loc>
-    
-    <lastmod>2026-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/4-g-design/</loc>
+    <loc>https://wenzhenjian-ee.github.io/datasheet-materials-prefix-identification-package-naming-standards/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -1029,6 +948,87 @@
   
   <url>
     <loc>https://wenzhenjian-ee.github.io/buck-boost/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/capacitor-design-cases/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/c-2-0-0-0-minimum-system-peripheral-circuit-design/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/c-p-l-d-minimum-system-peripheral-circuit-design/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/circuit-fundamentals/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/circuit-topology-1/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/circuit-test-test/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/circuit/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/circuit-test-analysis/</loc>
+    
+    <lastmod>2026-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/4-g-design/</loc>
     
     <lastmod>2026-06-28</lastmod>
     
@@ -1132,20 +1132,6 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/tags/%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/tags/%E5%B7%A5%E7%A8%8B%E5%BA%94%E7%94%A8/</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://wenzhenjian-ee.github.io/tags/%E5%A4%A7%E7%BA%B2/</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -1154,6 +1140,20 @@
   
   <url>
     <loc>https://wenzhenjian-ee.github.io/tags/%E6%8B%93%E6%89%91%E5%A4%A7%E7%B1%BB/</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/tags/%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/tags/%E5%B7%A5%E7%A8%8B%E5%BA%94%E7%94%A8/</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1182,20 +1182,6 @@
   
   <url>
     <loc>https://wenzhenjian-ee.github.io/tags/%E6%95%A3%E7%83%AD/</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/tags/%E7%89%A9%E6%96%99%E5%91%BD%E5%90%8D/</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenzhenjian-ee.github.io/tags/%E5%B0%81%E8%A3%85/</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1244,6 +1230,20 @@
   </url>
   
   <url>
+    <loc>https://wenzhenjian-ee.github.io/tags/%E7%89%A9%E6%96%99%E5%91%BD%E5%90%8D/</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/tags/%E5%B0%81%E8%A3%85/</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://wenzhenjian-ee.github.io/tags/%E5%AE%89%E8%A7%84/</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -1258,13 +1258,6 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/tags/%E5%85%83%E5%99%A8%E4%BB%B6%E9%80%89%E5%9E%8B/</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://wenzhenjian-ee.github.io/tags/%E9%9A%94%E7%A6%BB/</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -1273,6 +1266,13 @@
   
   <url>
     <loc>https://wenzhenjian-ee.github.io/tags/%E6%8E%A5%E5%9C%B0/</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/tags/%E5%85%83%E5%99%A8%E4%BB%B6%E9%80%89%E5%9E%8B/</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1484,13 +1484,6 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/%E5%91%BD%E5%90%8D%E4%B8%8E%E5%B0%81%E8%A3%85%E8%A7%84%E8%8C%83/</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://wenzhenjian-ee.github.io/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E9%A9%B1%E5%8A%A8%E4%B8%8E%E5%BC%80%E5%85%B3%E7%AE%A1/</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -1498,7 +1491,7 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/EMC-EMI/</loc>
+    <loc>https://wenzhenjian-ee.github.io/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E4%BE%9B%E5%BA%94%E5%95%86%E5%90%8D%E5%BD%95/</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1512,7 +1505,14 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E4%BE%9B%E5%BA%94%E5%95%86%E5%90%8D%E5%BD%95/</loc>
+    <loc>https://wenzhenjian-ee.github.io/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/EMC-EMI/</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenzhenjian-ee.github.io/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/%E5%91%BD%E5%90%8D%E4%B8%8E%E5%B0%81%E8%A3%85%E8%A7%84%E8%8C%83/</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1540,14 +1540,14 @@
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/%E9%AB%98%E9%A2%91%E8%A1%8C%E4%B8%BA/</loc>
+    <loc>https://wenzhenjian-ee.github.io/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/%E7%83%AD%E8%AE%BE%E8%AE%A1/</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://wenzhenjian-ee.github.io/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/%E7%83%AD%E8%AE%BE%E8%AE%A1/</loc>
+    <loc>https://wenzhenjian-ee.github.io/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/%E9%AB%98%E9%A2%91%E8%A1%8C%E4%B8%BA/</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

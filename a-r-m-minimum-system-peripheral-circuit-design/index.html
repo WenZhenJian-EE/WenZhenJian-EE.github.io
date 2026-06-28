@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-03-09T19:02:28.000Z">
-<meta property="article:modified_time" content="2026-06-28T07:12:14.625Z">
+<meta property="article:modified_time" content="2026-06-28T07:12:36.680Z">
 <meta property="article:author" content="WenZhenJian-EE">
 <meta property="article:tag" content="最小系统">
 <meta property="article:tag" content="系统设计">
@@ -320,7 +320,7 @@ mjx-container[display="true"] + br {
     "https://WenZhenJian-EE.github.io/images/redefine-og.webp"
   ],
   "datePublished": "2025-03-09T19:02:28.000Z",
-  "dateModified": "2026-06-28T07:12:14.625Z",
+  "dateModified": "2026-06-28T07:12:36.680Z",
   "author": {
     "@type": "Person",
     "name": "WenZhenJian-EE",
@@ -334,7 +334,7 @@ mjx-container[display="true"] + br {
       "url": "https://WenZhenJian-EE.github.io/images/redefine-logo.webp"
     }
   },
-  "description": "STM32F412VET3 与 APM32A407VGT7 核心参数与资源对比STM32F412VET3 型号命名解析 根据芯片数据手册的命名规则，型号 STM32F412VET3 的后缀字母和数字代表以下具体参数： V：代表引脚数量，表示该芯片为 100 引脚。 E：代表 Flash 容量，表示内置的 Flash 存...",
+  "description": "从 STM32F412 到极海 APM32A407：一次“血泪交织”的平替备忘录在最近的项目研发中，因为供应链波动和成本压力，我们尝试用极海的 APM32A407VGT7 去平替意法半导体的 STM32F412VET3。虽然这两颗芯片在架构上高度相似，但在实际画板子和移植软件的过程中，如果抱着“直接原位替换”的侥幸心理...",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://wenzhenjian-ee.github.io/a-r-m-minimum-system-peripheral-circuit-design/"
@@ -733,8 +733,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-06-28 15:12:14</span>
-            <span class="mobile">2026-06-28 15:12:14</span>
+            <span class="desktop">2026-06-28 15:12:36</span>
+            <span class="mobile">2026-06-28 15:12:36</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -803,17 +803,15 @@ mjx-container[display="true"] + br {
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
 			<hr>
-<h2 id="STM32F412VET3-与-APM32A407VGT7-核心参数与资源对比"><a href="#STM32F412VET3-与-APM32A407VGT7-核心参数与资源对比" class="headerlink" title="STM32F412VET3 与 APM32A407VGT7 核心参数与资源对比"></a>STM32F412VET3 与 APM32A407VGT7 核心参数与资源对比</h2><p>STM32F412VET3 型号命名解析</p>
-<p>根据芯片数据手册的命名规则，型号 STM32F412VET3 的后缀字母和数字代表以下具体参数：</p>
+<h2 id="从-STM32F412-到极海-APM32A407：一次“血泪交织”的平替备忘录"><a href="#从-STM32F412-到极海-APM32A407：一次“血泪交织”的平替备忘录" class="headerlink" title="从 STM32F412 到极海 APM32A407：一次“血泪交织”的平替备忘录"></a>从 STM32F412 到极海 APM32A407：一次“血泪交织”的平替备忘录</h2><p>在最近的项目研发中，因为供应链波动和成本压力，我们尝试用极海的 APM32A407VGT7 去平替意法半导体的 STM32F412VET3。虽然这两颗芯片在架构上高度相似，但在实际画板子和移植软件的过程中，如果抱着“直接原位替换”的侥幸心理，绝对会让你尝到炸板或无法起振的苦头。</p>
+<p>首先，我们先通过芯片命名来还原一下原厂的硬件电气规格。以我们用的 <strong>STM32F412VET3</strong> 为例：</p>
 <ul>
-<li>V：代表引脚数量，表示该芯片为 100 引脚。</li>
-<li>E：代表 Flash 容量，表示内置的 Flash 存储器容量为 512 KB。</li>
-<li>T：代表封装类型，表示采用 LQFP 封装。</li>
-<li>3：代表温度范围，表示工作环境温度范围为 -40°C 至 +125°C。此为扩展的工业级宽温标准，能够在中高温等严苛条件下稳定运行。</li>
+<li><strong>V</strong>：代表芯片的引脚数量为 100 Pin。</li>
+<li><strong>E</strong>：代表内置的 Flash 存储器容量为 512 KB。</li>
+<li><strong>T</strong>：代表采用 LQFP 封装。</li>
+<li><strong>3</strong>：代表工作环境温度范围是 -40°C 至 +125°C。对于我们做大功率储能或者工业控制的项目，这个宽温指标是刚需，必须确保在高温烤箱里工作时系统不会开机复位。</li>
 </ul>
-<hr>
-<p>STM32F412VET3 与 APM32A407VGT7 核心参数与资源对比</p>
-<p>两款芯片在内核性能、存储容量及外设资源上存在显著差异，具体参数对比见下表：</p>
+<p>接下来，我们在下表中列出两款芯片的核心参数差异：</p>
 <table>
 <thead>
 <tr>
@@ -854,87 +852,74 @@ mjx-container[display="true"] + br {
 </tr>
 </tbody></table>
 <hr>
-<p>硬件替换可行性与引脚兼容性分析</p>
-<p>虽然 STM32F412VET3 和 APM32A407VGT7 均采用 LQFP 封装，且基础复用资源高度兼容，但两者无法进行直接的原位替换，主要原因及兼容性情况如下：</p>
-<ul>
-<li>致命引脚冲突：第 48 和 49 引脚存在严重的硬件不兼容。在 STM32F412VET3 中，第 48 脚为内部调压器输出引脚，第 49 脚为接地引脚。而在 APM32A407VGT7 中，第 48 脚为普通 IO 引脚 PB11，第 49 脚为内部调压器输出引脚。若直接替换，APM32A407VGT7 的内部 1.2V 核心调压器输出端将被直接短路至地，导致芯片无法启动并极大概率烧毁。必须通过修改 PCB 布线，将核心电容和接地网络正确连接至对应的引脚。</li>
-<li>基础外设兼容性：两者的 PWM, CAN, USART, SPI, I2C 等基础外设的复用引脚位置完全一致。原电路中为 STM32F412VET3 分配的 ADC 采样引脚可直接对应至 APM32A407VGT7 的 ADC1 引脚，能够实现平替。</li>
-<li>高级外设不兼容：APM32A407VGT7 硬件上不支持 Quad-SPI 和 DFSDM。若原电路使用了此类接口外挂存储器或滤波器，替换后将无法驱动相关外围器件。</li>
-</ul>
+<h3 id="避坑重点：千万别漏掉的致命引脚冲突！"><a href="#避坑重点：千万别漏掉的致命引脚冲突！" class="headerlink" title="避坑重点：千万别漏掉的致命引脚冲突！"></a>避坑重点：千万别漏掉的致命引脚冲突！</h3><p>在画 PCB 时，千万不要以为它们都是 LQFP100 封装，管脚图看着差不多就直接平铺走线。我们在研发测试中发现了一个极其致命的引脚陷阱：</p>
+<blockquote>
+<p>[!WARNING]<br><strong>第 48 脚与第 49 脚的硬冲突</strong>：<br>在 STM32F412VET3 中，第 48 脚是内部 LDO 调压器的输出引脚（VCAP），需要接电容到地；第 49 脚则是数字地（VSS）。<br>在极海 APM32A407VGT7 中，引脚定义发生了变化：它的第 48 脚是普通 IO 引脚（PB11），第 49 脚才是内部调压器的输出引脚（VCAP）。</p>
+<p><strong>后果</strong>：如果你不做任何改动直接把 APM32A407 焊接在原 STM32F412 的板子上，APM32 的内部 1.2V 核心调压器输出引脚（Pin 49）会直接被原板上的 VSS 铜皮短路到地。上电瞬间，芯片内部的核心电压直接降为 0V，芯片不仅无法启动，而且调压器会因为瞬间过流急剧发热，大概率直接当场烧毁！</p>
+</blockquote>
+<p>所以在替换时，必须修改 PCB 走线，把 VCAP 电容和接地过孔挪到对应的管脚上。</p>
+<p>至于其他基础外设（如 PWM、CAN、USART、SPI、I2C），两者的复用管脚位置完全兼容。我们在原电路中预留给 STM32 的 ADC 采样通道，平替到 APM32 之后，可以直接对应到它的 ADC1 输入上，这块可以实现平替。但如果你的前级电路外挂了 Quad-SPI Flash 或者使用了 DFSDM 调制器接口，那 APM32 就不支持了，替换时要格外注意这些高级外设的逆向兼容。</p>
 <hr>
-<p>时钟系统与软件移植注意事项</p>
-<p>在解决硬件引脚冲突后，若要使系统正常运行，还需要在硬件晶振匹配与软件时钟树配置方面进行处理：</p>
-<ul>
-<li>晶振硬件共用：两款芯片的高速外部时钟支持的晶体振荡器频率范围均为 4 MHz 至 26 MHz。因此，原有的 20MHz 晶振在硬件上可以完全共用，无需更换。</li>
-<li>软件时钟树重构：由于两款芯片的最高运行主频不同，软件移植时必须重新配置时钟树。需修改代码中的锁相环倍频和分频参数，例如 PLL_M, PLL_N, PLL_P, PLL_Q，将 20MHz 的基准时钟重新映射到 APM32A407VGT7 适用的系统时钟以及 APB1 和 APB2 总线频率上，以确保外设波特率和定时器周期的准确性。</li>
-</ul>
+<h3 id="晶振硬件共用与软件时钟树重建"><a href="#晶振硬件共用与软件时钟树重建" class="headerlink" title="晶振硬件共用与软件时钟树重建"></a>晶振硬件共用与软件时钟树重建</h3><p>硬件电路上，两款芯片的高速外部时钟（HSE）都支持 4 MHz 到 26 MHz 的无源晶振。我们在板子上使用的 20MHz 晶振可以直接共用，负载电容不用换，起振波形依然很漂亮。</p>
+<p>但在软件移植时，时钟树必须重新配置。因为 APM32 的最高主频跑到了 168MHz，如果直接用 STM32 的时钟配置参数，外设波特率和定时器周期全都会乱套。我们在代码中需要重新计算并修改锁相环的倍频和分频参数（<code>PLL_M</code>、<code>PLL_N</code>、<code>PLL_P</code>、<code>PLL_Q</code>），把 20MHz 的基准时钟重新映射到 APM32 适用的系统时钟上，确保 APB1 和 APB2 总线频率正确。</p>
 <hr>
-<h2 id="STM特性"><a href="#STM特性" class="headerlink" title="STM特性"></a>STM特性</h2><p><strong>可以的，完全没问题！</strong> 这是一个非常经典且极其节省外设资源的 MCU 定时器高级用法。</p>
-<p>在 APM32（以及 STM32）的硬件架构中，像 TMR9 这样的通用定时器，它的各个通道（CH1、CH2 等）在<strong>功能配置上是相互独立的</strong>。每个通道都有自己独立的捕获/比较寄存器。</p>
-<p>这意味着您可以像这样自由组合：</p>
+<h2 id="硬件定时器的高级用法：一进一出，共用时基"><a href="#硬件定时器的高级用法：一进一出，共用时基" class="headerlink" title="硬件定时器的高级用法：一进一出，共用时基"></a>硬件定时器的高级用法：一进一出，共用时基</h2><p>在引脚极其紧张的工业控制板上，我们经常会遇到资源不够用的情况。有兄弟问过我：<strong>“能不能用同一个定时器（比如 TMR9），它的 CH1 用来输出 PWM 控风扇，同时 CH2 用来捕获风扇的测速方波？”</strong></p>
+<p>我们的答案是：<strong>完全可以，而且我们在研发中经常这么干，非常节省资源！</strong></p>
+<p>在 APM32 和 STM32 的硬件架构中，像 TMR9 这样的通用定时器，每个通道（CH1、CH2）的捕获/比较寄存器都是完全独立的。我们可以在软件初始化时，把它们配置成不同的工作模式：</p>
 <ul>
-<li><p><strong>PE5 (TMR9_CH1)</strong>：在软件里配置为 <strong>PWM 输出</strong>模式（比如用来控制散热风扇的转速）。</p>
-</li>
-<li><p><strong>PE6 (TMR9_CH2)</strong>：在软件里配置为 <strong>输入捕获 (CAP)</strong> 模式（比如同时用来接收那个风扇传回来的 FG 测速方波脉冲）。</p>
-</li>
+<li><strong>PE5 (TMR9_CH1)</strong>：配置为 <strong>PWM 输出</strong>，产生 20kHz 的信号去控制风扇驱动电路。</li>
+<li><strong>PE6 (TMR9_CH2)</strong>：配置为 <strong>输入捕获 (CAP)</strong>，去测风扇传回来的 FG 测速脉冲。</li>
 </ul>
-<p>虽然它们一进一出互不干涉，但由于它们属于<strong>同一个定时器 (TMR9)</strong>，因此在底层物理结构上，它们必须<strong>共享同一个时基 (Timebase)</strong>。</p>
-<p>这会带来一个关键的连带效应：</p>
-<ol>
-<li><p><strong>共享预分频器 (PSC) 和 自动重装载寄存器 (ARR)</strong>：这决定了定时器数数的速度和数到多少清零。</p>
-</li>
-<li><p><strong>互相制约</strong>：假设您为了让 CH1 输出特定频率（例如 20kHz）的 PWM，把 ARR 设为了 1000。那么 CH2 在做输入捕获时，它的计数器也是每数到 1000 就会溢出一次。如果 CH2 捕获的外部方波频率非常低（脉宽很长），定时器可能在两个边沿之间溢出了好几次。您的软件代码里就必须去处理这个“定时器溢出中断”，把溢出次数加进去，才能算出真实的输入脉宽。</p>
-</li>
-</ol>
-<p><strong>总结：</strong></p>
-<p>只要在软件设计时，平衡好 PWM 输出所需的频率与输入捕获所需的测量精度（使用相同的时钟底频），您完全可以在同一个定时器上“一心二用”。在引脚如此紧张的情况下，这种操作非常实用。</p>
-<h2 id="APM32A407xGT7启动配置与电源监控硬件设计体系"><a href="#APM32A407xGT7启动配置与电源监控硬件设计体系" class="headerlink" title="APM32A407xGT7启动配置与电源监控硬件设计体系"></a>APM32A407xGT7启动配置与电源监控硬件设计体系</h2><p>APM32A407xGT7系列单片机LQFP144封装中涉及系统启动、复位控制及电源管理的核心引脚物理属性与功能定义如下：</p>
-<ul>
-<li>25引脚：NRST，属于I/O类型，结构为内置上拉电阻的双向复位引脚。此引脚为单片机的全局硬件复位输入端，拉低此引脚将触发整个芯片复位。该引脚同时具备EVENTOUT的复用功能。</li>
-<li>48引脚：PB2-BOOT，属于I/O类型，引脚结构为支持5V容忍的输入输出引脚。在系统上电复位期间，该引脚作为BOOT1使用，与BOOT0引脚协同决定单片机的启动模式。复位完成后，其默认作为普通GPIO（PB2）使用，支持EVENTOUT复用。</li>
-<li>138引脚：BOOT0，仅输入类型，结构为专用启动引脚。这是决定单片机启动位置的最核心引脚，每次复位后芯片会通过采样此引脚的电平状态来分配内存映射并决定启动区域，同时具备VPP附加功能。</li>
-<li>143引脚：PDR_ON，仅输入类型，支持5V容忍。该引脚专用于控制单片机内部的掉电复位电路监控器是否激活。</li>
-</ul>
+<p>虽然一进一出互不干涉，但因为它们共用同一个定时器的时基，这就带来了一个需要特别注意的连带效应：</p>
+<blockquote>
+<p>[!IMPORTANT]<br><strong>预分频器（PSC）和自动重装载寄存器（ARR）是共享的。</strong><br>这意味着，为了让 CH1 能够输出 20kHz 的 PWM，你把 ARR 设为了 1000。那么 CH2 捕获计数的上限也就被锁死在了 1000。<br>如果风扇转速很慢，测速信号的脉宽很长，计数器在两次捕获边沿之间可能溢出了好几次。我们在编写软件中断服务程序时，必须去处理这个定时器溢出中断，把电平变化溢出的次数累加进最终的脉宽计算公式中，否则读出来的转速数据就会产生严重的误差。</p>
+</blockquote>
 <hr>
-<p>启动模式配置逻辑与真值表</p>
-<p>为确保系统稳定从主闪存启动，底层硬件判断逻辑要求BOOT0引脚必须为低电平，此时BOOT1引脚的电平状态为任意值。规范的硬件接线方案如下：</p>
+<h2 id="启动配置与电源监控的硬件防跑飞体系"><a href="#启动配置与电源监控的硬件防跑飞体系" class="headerlink" title="启动配置与电源监控的硬件防跑飞体系"></a>启动配置与电源监控的硬件防跑飞体系</h2><p>对于 APM32A407xGT7（LQFP144 封装），我们在设计最小系统的启动和复位部分时，重点关注以下几个核心管脚：</p>
 <ul>
-<li>BOOT0网络设计：推荐通过一个10kΩ的下拉电阻连接至GND。此方案可确保上电瞬间引脚电平稳定，且保留了后期调试与维护的冗余度。当需要通过串口或USB ISP烧录固件进入系统存储器时，可通过测试针直接向BOOT0施加3.3V高电平，不会造成电源对地短路。</li>
-<li>PB2-BOOT网络设计：由于BOOT0已置低，PB2的启动选择功能被硬件层直接屏蔽。在原理图设计中，可完全将其视作普通I/O口外接驱动或通信电路。若不使用该引脚，直接悬空即可。复位期间及复位后引脚默认处于浮空输入状态，悬空不会对主程序的启动运行造成干扰。</li>
+<li><strong>25引脚 (NRST)</strong>：内置上拉电阻的双向复位脚。拉低此脚会触发全局硬件复位。</li>
+<li><strong>48引脚 (PB2-BOOT)</strong>：复位期间作为 BOOT1，复位后作为普通 GPIO（PB2）使用。</li>
+<li><strong>138引脚 (BOOT0)</strong>：专用启动引脚。上电复位瞬间，MCU 会采样它的电平来决定从哪里启动。</li>
+<li><strong>143引脚 (PDR_ON)</strong>：电源掉电复位监控使能引脚。</li>
 </ul>
-<p>芯片启动模式分配真值表：</p>
+<h3 id="启动配置与阻值选择"><a href="#启动配置与阻值选择" class="headerlink" title="启动配置与阻值选择"></a>启动配置与阻值选择</h3><p>在我们的量产设计中，为了让芯片上电稳定从 Flash 中启动，BOOT0 必须拉低。我们规范的接线方案是：<strong>通过一个 10kΩ 的下拉电阻连接到地</strong>。</p>
+<p>这里不建议直接将 BOOT0 接死到地。因为我们在产线烧录或者现场调试时，可能需要通过串口或 USB ISP 重新刷写固件。如果留了 10kΩ 下拉，我们只需通过测试针或拨码开关给 BOOT0 强行施加一个 3.3V 高电平，就能顺利进入系统存储器（System Memory）的 Bootloader，同时不会造成电源对地短路。</p>
+<p>启动模式分配如下表所示：</p>
 <table>
 <thead>
 <tr>
 <th>BOOT0电平</th>
-<th>BOOT1电平</th>
-<th>启动模式分配区域</th>
+<th>BOOT1 (PB2) 电平</th>
+<th>启动映射区域</th>
+<th>典型应用</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>0</td>
+<td><strong>0</strong></td>
 <td>任意</td>
-<td>主闪存</td>
+<td>主闪存 (Main Flash)</td>
+<td>正常运行模式</td>
 </tr>
 <tr>
-<td>1</td>
+<td><strong>1</strong></td>
 <td>0</td>
-<td>系统存储器</td>
+<td>系统存储器 (System Memory)</td>
+<td>串口 ISP 烧录模式</td>
 </tr>
 <tr>
+<td><strong>1</strong></td>
 <td>1</td>
-<td>1</td>
-<td>内置SRAM</td>
+<td>内置 SRAM</td>
+<td>调试与代码暂存</td>
 </tr>
 </tbody></table>
 <hr>
-<p>内部电源监控电路与PDR_ON配置</p>
-<p>PDR_ON引脚决定了单片机是否启用内部自带的电源状态监控状态机。根据系统架构需求，存在两种设计分支：</p>
-<ul>
-<li>接VDD（常规工业接法）：直接连接至3.3V电源或通过10kΩ电阻上拉。此状态激活内部电源监控器。主板上电时，内部电路监测VDD电压，上升至安全阈值（约1.8V）后释放复位；运行中出现电源波动则自动产生复位信号。在储能PCS或重卡BCU等对主控状态要求稳定的工业级应用中，此接法最为稳妥。</li>
-<li>接VSS（特殊低功耗/定制接法）：直接短接至GND。此状态关闭单片机内部电源监控器。采用此方案必须在主板额外增设专用的外部硬件复位芯片（如SP809、MAX809等）进行精准的3.3V电压监控，并向NRST输出信号。此接法多用于对复位阈值有极苛刻定制要求，或追求极致低功耗的电池供电设备中。</li>
-</ul>
-<p>在实际电力电子硬件架构中，通常将PDR_ON接VDD开启内部监控（约1.8V阈值兜底），并结合外部独立监控芯片（例如2.63V阈值预警）构成双重电源监控冗余体系。外部芯片先于内部电路动作，可最大程度防止MCU在欠压状态下代码跑飞。</p>
+<h3 id="电源监控电路（PDR-ON）的工业级冗余设计"><a href="#电源监控电路（PDR-ON）的工业级冗余设计" class="headerlink" title="电源监控电路（PDR_ON）的工业级冗余设计"></a>电源监控电路（PDR_ON）的工业级冗余设计</h3><p>PDR_ON 引脚决定了芯片是否启用内部的掉电复位监控。我们在实际研发中，通常有以下两种设计分支：</p>
+<ol>
+<li><strong>接 VDD（工业级标准接法，推荐）</strong>：直接接入 3.3V。此时芯片内部的电源监控器激活。当 VDD 电压上升到 1.8V 以上时释放复位；运行中如果电网电压波动导致 3.3V 跌落，内部电路会自动拉低 NRST 进行保护。这在储能 PCS 或重卡 BCU 等电磁干扰大、对主控稳定性要求极高的电力电子场景中，是最稳妥的接法。</li>
+<li><strong>接 VSS（低功耗/定制接法）</strong>：直接接地。这样会关闭芯片内部的掉电监控。<strong>采用此方案时，我们必须在外部设计专用的硬件监控芯片</strong>（例如 SP809、MAX809 等，将阈值设为 2.63V 或 2.93V），把复位输出接到 NRST 脚上。</li>
+</ol>
+<p>在我们的实际电力电子硬件架构中，通常会使用 <strong>“双重电源监控冗余体系”</strong>：将 PDR_ON 接 VDD，开启内部 1.8V 的底线保护；同时在外部增加一颗 2.63V 阈值的独立监控芯片。由于外部芯片的阈值更高，当电源异常时会先于内部电路动作，能够最大程度防止 MCU 在欠压临界状态下代码跑飞，避免引起逆变桥上下管误导通等恶性故障。</p>
 
 		</div>
 
@@ -949,7 +934,7 @@ mjx-container[display="true"] + br {
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-06-28 15:12:14
+                    :</strong> 2026-06-28 15:12:36
             </li>
         
         <li>
@@ -991,27 +976,27 @@ mjx-container[display="true"] + br {
     <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
     </div>
-    <div class="recommended-article-group"><a class="recommended-article-item" href="/m-c-u-datasheet-reading/" title="MCU相关数据手册阅读" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="MCU相关数据手册阅读" class="!max-w-none">
-  <span class="title">MCU相关数据手册阅读</span>
-</a><a class="recommended-article-item" href="/m-c-u-comparison-resources/" title="MCU对比、资源" rel="bookmark">
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/m-c-u-comparison-resources/" title="MCU对比、资源" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="MCU对比、资源" class="!max-w-none">
   <span class="title">MCU对比、资源</span>
-</a><a class="recommended-article-item" href="/switch-driver-datasheet-reading/" title="开关与驱动数据手册阅读" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="开关与驱动数据手册阅读" class="!max-w-none">
-  <span class="title">开关与驱动数据手册阅读</span>
+</a><a class="recommended-article-item" href="/m-c-u-datasheet-reading/" title="MCU相关数据手册阅读" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="MCU相关数据手册阅读" class="!max-w-none">
+  <span class="title">MCU相关数据手册阅读</span>
+</a><a class="recommended-article-item" href="/m-c-u-design-cases/" title="MCU相关设计案例" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="MCU相关设计案例" class="!max-w-none">
+  <span class="title">MCU相关设计案例</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
    </div>
-   <div class="recommended-article-group"><a class="recommended-article-item" href="/m-c-u-datasheet-reading/" title="MCU相关数据手册阅读" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="MCU相关数据手册阅读" class="!max-w-none">
-  <span class="title">MCU相关数据手册阅读</span>
-</a><a class="recommended-article-item" href="/m-c-u-comparison-resources/" title="MCU对比、资源" rel="bookmark">
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/m-c-u-comparison-resources/" title="MCU对比、资源" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="MCU对比、资源" class="!max-w-none">
   <span class="title">MCU对比、资源</span>
+</a><a class="recommended-article-item" href="/m-c-u-datasheet-reading/" title="MCU相关数据手册阅读" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="MCU相关数据手册阅读" class="!max-w-none">
+  <span class="title">MCU相关数据手册阅读</span>
 </a></div>
    </div>
   </div>
@@ -1057,7 +1042,7 @@ mjx-container[display="true"] + br {
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
 		<div class="page-title">ARM系列最小系统外围电路设计</div>
-		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#STM32F412VET3-%E4%B8%8E-APM32A407VGT7-%E6%A0%B8%E5%BF%83%E5%8F%82%E6%95%B0%E4%B8%8E%E8%B5%84%E6%BA%90%E5%AF%B9%E6%AF%94"><span class="nav-text">STM32F412VET3 与 APM32A407VGT7 核心参数与资源对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#STM%E7%89%B9%E6%80%A7"><span class="nav-text">STM特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#APM32A407xGT7%E5%90%AF%E5%8A%A8%E9%85%8D%E7%BD%AE%E4%B8%8E%E7%94%B5%E6%BA%90%E7%9B%91%E6%8E%A7%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%B3%BB"><span class="nav-text">APM32A407xGT7启动配置与电源监控硬件设计体系</span></a></li></ol>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E-STM32F412-%E5%88%B0%E6%9E%81%E6%B5%B7-APM32A407%EF%BC%9A%E4%B8%80%E6%AC%A1%E2%80%9C%E8%A1%80%E6%B3%AA%E4%BA%A4%E7%BB%87%E2%80%9D%E7%9A%84%E5%B9%B3%E6%9B%BF%E5%A4%87%E5%BF%98%E5%BD%95"><span class="nav-text">从 STM32F412 到极海 APM32A407：一次“血泪交织”的平替备忘录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%BF%E5%9D%91%E9%87%8D%E7%82%B9%EF%BC%9A%E5%8D%83%E4%B8%87%E5%88%AB%E6%BC%8F%E6%8E%89%E7%9A%84%E8%87%B4%E5%91%BD%E5%BC%95%E8%84%9A%E5%86%B2%E7%AA%81%EF%BC%81"><span class="nav-text">避坑重点：千万别漏掉的致命引脚冲突！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%99%B6%E6%8C%AF%E7%A1%AC%E4%BB%B6%E5%85%B1%E7%94%A8%E4%B8%8E%E8%BD%AF%E4%BB%B6%E6%97%B6%E9%92%9F%E6%A0%91%E9%87%8D%E5%BB%BA"><span class="nav-text">晶振硬件共用与软件时钟树重建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E5%AE%9A%E6%97%B6%E5%99%A8%E7%9A%84%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95%EF%BC%9A%E4%B8%80%E8%BF%9B%E4%B8%80%E5%87%BA%EF%BC%8C%E5%85%B1%E7%94%A8%E6%97%B6%E5%9F%BA"><span class="nav-text">硬件定时器的高级用法：一进一出，共用时基</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E9%85%8D%E7%BD%AE%E4%B8%8E%E7%94%B5%E6%BA%90%E7%9B%91%E6%8E%A7%E7%9A%84%E7%A1%AC%E4%BB%B6%E9%98%B2%E8%B7%91%E9%A3%9E%E4%BD%93%E7%B3%BB"><span class="nav-text">启动配置与电源监控的硬件防跑飞体系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E9%85%8D%E7%BD%AE%E4%B8%8E%E9%98%BB%E5%80%BC%E9%80%89%E6%8B%A9"><span class="nav-text">启动配置与阻值选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E6%BA%90%E7%9B%91%E6%8E%A7%E7%94%B5%E8%B7%AF%EF%BC%88PDR-ON%EF%BC%89%E7%9A%84%E5%B7%A5%E4%B8%9A%E7%BA%A7%E5%86%97%E4%BD%99%E8%AE%BE%E8%AE%A1"><span class="nav-text">电源监控电路（PDR_ON）的工业级冗余设计</span></a></li></ol></li></ol>
 
 	</div>
 </div>
