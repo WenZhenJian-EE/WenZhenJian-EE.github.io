@@ -1168,14 +1168,15 @@ mjx-container[display="true"] + br {
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
                         <a href="/driver-circuit-circuit/">
-                            栅极驱动电路、功率管电路收集
+                            栅极驱动与有源米勒钳位调试笔记
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            功率半导体栅极驱动设计：开关管关断加速与有源米勒钳位（Active Miller Clamp）调试笔记在高频大功率电力电子变换器（如基于 SiC MOSFET 的相移全桥、LLC 或三相逆变器）中，栅极驱动电路的设计直接决定了开关管的工作效率、热应力以及整机 EMC 表现。特别是在半导体开关速度极快、高  强干扰的场景下，如何保证开关管在关断期间**“绝对、安全地关断”**是硬件设计的重中之...
+                            功率半导体栅极驱动与有源米勒钳位（Active Miller Clamp）调试笔记做大功率电源或者高频变换器，SiC MOSFET 或 IGBT 的驱动电路设计绝对是核心。开关管在高速切换的时候，高  强干扰很容易通过米勒电容把下桥管子误导通，轻则效率变差、EMC 挂掉，重则上下臂直通，啪的一声直接炸管。
+前阵子调一款基于 SiC 的全桥 DCDC，就在有源米勒钳位（Active Mille...
                         
                     </div>
 
@@ -1235,7 +1236,7 @@ mjx-container[display="true"] + br {
         
     </div>
 
-    <a href="/driver-circuit-circuit/">阅读全文<span class="seo-reader-text">栅极驱动电路、功率管电路收集</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/driver-circuit-circuit/">阅读全文<span class="seo-reader-text">栅极驱动与有源米勒钳位调试笔记</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1251,15 +1252,15 @@ mjx-container[display="true"] + br {
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
                         <a href="/system/">
-                            硬件系统级地线哲学
+                            硬件系统级接地与地线设计的几点感悟
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            硬件研发手记：静电放电（ESD）瞬态电荷平衡与系统地线隔离哲学系统接地与地线设计是硬件开发中最容易被忽视、却又最具哲学意义的领域。在直流与低频状态下，地线只是电位的参考基准点；而在高频瞬态、静电放电（ESD）以及雷击浪涌下，地线则转变为高频阻抗和电磁场交织的动态战场。
-本文基于我在开发车载系统与工业测试仪器时的调试经历，探讨 ESD 放电的瞬态电荷平衡、数模混合系统中的“地线反噬”灾难，以及...
+                            硬件系统级接地与 ESD 瞬态电荷平衡的底层逻辑搞硬件的都知道，接地和地线设计是个大坑。在直流或者低频电路里，地线也就是个零电位参考点；但只要频率一高，遇到静电（ESD）或者雷击浪涌，地线立马就变成了一个由寄生电感和电磁场主导的战场。
+之前做过不少车载系统和工业仪器的开发，被地线问题折腾过好几回。这里就聊聊 ESD 放电的瞬态电荷平衡、浮地单板和电脑调试时的地电位反噬，以及我们经常挂在嘴边的...
                         
                     </div>
 
@@ -1319,7 +1320,7 @@ mjx-container[display="true"] + br {
         
     </div>
 
-    <a href="/system/">阅读全文<span class="seo-reader-text">硬件系统级地线哲学</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/system/">阅读全文<span class="seo-reader-text">硬件系统级接地与地线设计的几点感悟</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1335,15 +1336,15 @@ mjx-container[display="true"] + br {
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
                         <a href="/safety-design/">
-                            硬件安规设计核心体系
+                            聊聊高压系统安规设计与爬电距离校准
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            硬件研发手记：基于 HBSE 安全工程的系统绝缘设计与爬电距离校准在进行高压变流器、大功率车载充电机（OBC）或工业逆变电路的研发时，安规（Safety）是一道不可逾越的硬性防线。如果安规设计不达标，产品不仅无法通过认证（如 CE、UL、3C），甚至可能在调试或运行中发生人员触电或火灾等恶性安全事故。
-本文结合我在研发大功率电源期间整改安规耐压测试击穿、爬电距离不足的实战经历，整理基于 HB...
+                            大功率系统安规设计的底层逻辑与避坑笔记做高压变流器、大功率车载充电机（OBC）或者工业逆变器，安规（Safety）是绕不过去的一道坎。安规要是没设计好，测试时耐压打不过、击穿漏电，产品根本出不了厂。更别提这玩意如果在线上出故障，漏电把人给击了，那可是重大安全事故。
+这篇笔记整理了我之前搞大功率电源时，在安规击穿整改、爬电距离设计上踩过的坑。顺便聊聊基于危险源的安全工程（HBSE）的防护思想，...
                         
                     </div>
 
@@ -1403,7 +1404,7 @@ mjx-container[display="true"] + br {
         
     </div>
 
-    <a href="/safety-design/">阅读全文<span class="seo-reader-text">硬件安规设计核心体系</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/safety-design/">阅读全文<span class="seo-reader-text">聊聊高压系统安规设计与爬电距离校准</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1419,15 +1420,15 @@ mjx-container[display="true"] + br {
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
                         <a href="/pcb-layout/">
-                            PCB Layout
+                            PCB Layout 避坑：大电流环路、驱动走线与数模地线设计
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            硬件研发手记：高频大电流环路（Hot Loop）与高精度模拟 Layout 避坑指南在印制电路板（PCB）设计中，画线是一门极其讲究电气物理规律的艺术。许多新手或拉线工仅满足于“把线连通、DRC 不报错”，但在大功率开关电源和高精密模拟混合信号系统中，不当的布局布线会导致系统出现严重的电压过冲、控制环路自激、ADC 采样底噪飙升甚至开关管击穿。
-本文结合我在实验室调试 SiC MOSFET ...
+                            从实验室炸管到数模干扰：PCB Layout 避坑手记画 PCB 可不是简单的“拉线工”，光指望 DRC 不报错就想一次投板成功是不可能的。尤其是在大功率开关电源或者高精密模拟系统里，Layout 画得不好，轻则控制环路自激、ADC 采样满是毛刺，重则开机直接击穿开关管。
+前阵子调一块 SiC MOSFET 板子，因为一个过冲电压问题在实验室焊了三天。这里结合排查经历，总结几个 Layout...
                         
                     </div>
 
@@ -1477,7 +1478,7 @@ mjx-container[display="true"] + br {
         
     </div>
 
-    <a href="/pcb-layout/">阅读全文<span class="seo-reader-text">PCB Layout</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/pcb-layout/">阅读全文<span class="seo-reader-text">PCB Layout 避坑：大电流环路、驱动走线与数模地线设计</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1493,15 +1494,15 @@ mjx-container[display="true"] + br {
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
                         <a href="/emc-design-cases/">
-                            EMC设计案例、理解
+                            EMC 调试避坑：开关电源共模/差模 EMI 产生机理与 π 滤波整改实录
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            硬件研发手记：开关电源共模/差模 EMI 的产生机理与 π 型滤波器整改实录在电力电子产品的开发与合规测试中，电磁兼容（EMC/EMI）往往是决定产品能否如期量产的最关键瓶颈。特别是在高频、高压、大功率开关电源系统中，开关器件极高的  和  会通过寄生通道产生强烈的共模（CM）与差模（DM）电磁干扰，导致传导测试（150kHz - 30MHz）大幅超标。
-本文结合我在实验室整改 H 桥驱动风...
+                            开关电源共模/差模 EMI 产生机理与 π 型滤波器整改实录做电力电子和开关电源，最头疼的莫过于 EMC/EMI 测试。高频、高压、大功率器件在高速开关时，极高的  和  会通过各种寄生通道产生强烈的共模（CM）与差模（DM）电磁干扰，导致传导测试（150kHz - 30MHz）直接爆表。
+前阵子在实验室整改了一个 H 桥风扇差模噪声，以及一个 800V 高压变换器的共模漏电流超标问题。今天...
                         
                     </div>
 
@@ -1561,7 +1562,7 @@ mjx-container[display="true"] + br {
         
     </div>
 
-    <a href="/emc-design-cases/">阅读全文<span class="seo-reader-text">EMC设计案例、理解</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/emc-design-cases/">阅读全文<span class="seo-reader-text">EMC 调试避坑：开关电源共模/差模 EMI 产生机理与 π 滤波整改实录</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1577,15 +1578,15 @@ mjx-container[display="true"] + br {
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
                         <a href="/poles-zeros-analysis/">
-                            零极点分析
+                            环路控制避坑：零极点分析与 Bode 图扫频实战
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            硬件研发手记：开关电源控制建模与 Bode 图调试避坑指南在开关电源开发中，控制建模与零极点分析往往被工程师视为畏途。许多人依赖仿真软件（如 Simplis / LTspice）跑出一个好看的波形，但到了实验室用网络分析仪（Bode 100）实测时，却发现波形满是杂散噪声，甚至系统在特定频段发生意外震荡。
-本文总结了我在实验室调试大功率变换器时积累的控制环路设计与扫频实战经验，涵盖零极点的物...
+                            开关电源控制建模与 Bode 图调试避坑笔记搞开关电源的，控制建模和零极点分析绝对是个硬骨头。很多人喜欢在电脑上用 Simplis 或者 LTspice 仿真，跑出一个漂亮得不真实的波形，结果一去实验室，用网络分析仪（比如 Bode 100）实测，扫频曲线满是杂波，甚至直接震荡报警。
+这篇笔记整理了我调大功率变换器时的环路控制设计和扫频实战经验。咱们抛开枯燥的控制理论公式，直奔物理本质，聊聊...
                         
                     </div>
 
@@ -1645,7 +1646,7 @@ mjx-container[display="true"] + br {
         
     </div>
 
-    <a href="/poles-zeros-analysis/">阅读全文<span class="seo-reader-text">零极点分析</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/poles-zeros-analysis/">阅读全文<span class="seo-reader-text">环路控制避坑：零极点分析与 Bode 图扫频实战</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1661,15 +1662,15 @@ mjx-container[display="true"] + br {
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
                         <a href="/loop-compensation/">
-                            模拟环路补偿
+                            环路补偿调试：Type II/III 模拟补偿器设计与阻容计算
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            硬件研发手记：从零极点到实战 Type II/III 模拟补偿器设计与调试在电子系统与开关电源的闭环控制设计中，控制环路的稳定性是决定系统动态响应指标与安全性的核心。如果补偿网络设计不当，系统要么在负载突变时产生漫长的振荡，要么直接陷入自激，导致输出电平剧烈抖动、磁芯饱和甚至“炸管”。
-本文结合我在实验室调试  输入车载 DCDC 电源时的控制环路自激整改经历，分享模拟环路补偿器（Type ...
+                            从零极点到实战：Type II/III 模拟补偿器设计与调试做开关电源或者任何闭环控制系统，环路调试都是决定动态响应和稳定性的关键。如果电网或负载突变时补偿网络搭得不好，系统就会产生漫长的振荡，甚至直接自激，听到电感发出啸叫声，接着就是磁芯饱和、管子“啪”的一声炸掉。
+前阵子调一款 500W 的车载 DCDC，就在环路自激上吃了不少苦头。今天把 Type I、II、III 模拟补偿器的物理直...
                         
                     </div>
 
@@ -1729,7 +1730,7 @@ mjx-container[display="true"] + br {
         
     </div>
 
-    <a href="/loop-compensation/">阅读全文<span class="seo-reader-text">模拟环路补偿</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/loop-compensation/">阅读全文<span class="seo-reader-text">环路补偿调试：Type II/III 模拟补偿器设计与阻容计算</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1745,15 +1746,15 @@ mjx-container[display="true"] + br {
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
                         <a href="/comparator-design-cases/">
-                            比较器设计案例
+                            比较器硬件保护电路：迟滞回差计算与 Layout 避坑
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            在开发数字电源（如 2kW LLC 恒流恒压充电模块）或电机控制器（大功率逆变器）时，硬件过流/过压保护（OCP/OVP）是防止系统“炸管”的最底层硬件防线。然而，在实验室调试初期，最常碰到的问题就是高速比较器输出被高频噪声干扰，导致保护信号误触发抖动，或者由于 MCU 输入引脚的寄生参数导致信号判决滞后甚至逻辑紊乱。
-本文结合我之前整改一个“比较器误触发保护”的真实调试案例，详细整理高速电...
+                            比较器硬件过流保护：迟滞窗口手算与 Layout 避坑手记在大功率数字电源（比如 2kW 的 LLC 充电模块）或者电机控制器里，硬件过流/过压保护（OCP/OVP）是防止炸管的底线。但很多时候在实验室调试，一跑大电流，保护信号就莫名其妙地误触发或者来回抖动，甚至搞得 MCU 逻辑紊乱。
+前阵子调一个 1.2kW 的双向 DCDC 拓扑，就卡在这个问题上整改了半天。今天把高速比较器防噪迟滞窗...
                         
                     </div>
 
@@ -1808,7 +1809,7 @@ mjx-container[display="true"] + br {
         
     </div>
 
-    <a href="/comparator-design-cases/">阅读全文<span class="seo-reader-text">比较器设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/comparator-design-cases/">阅读全文<span class="seo-reader-text">比较器硬件保护电路：迟滞回差计算与 Layout 避坑</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1824,15 +1825,15 @@ mjx-container[display="true"] + br {
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
                         <a href="/capacitor-design-cases/">
-                            电容设计案例
+                            MLCC 电容选型避坑：直流偏置效应、啸叫与反谐振陷阱
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            硬件研发手记：二类陶瓷电容（MLCC）直流偏置效应翻车实录与高压电容均压调试在微小型化、高频化的现代电源和数字系统中，多层陶瓷电容器（MLCC）凭借超低的 ESR、ESL 以及微小的封装，成为了旁路滤波和去耦的主力军。然而，由于材料物理特性的限制，MLCC 隐藏着许多致命的“暗坑”，最典型的就是直流偏置效应（DC Bias Effect）、压电效应（啸叫）以及多电容并联反谐振陷阱。
-本文基于...
+                            MLCC 陶瓷电容直流偏置效应翻车实录与避坑笔记多层陶瓷电容（MLCC）因为超低的 ESR、ESL 加上尺寸小，现在几乎是板子上用得最多的器件。但陶瓷电容尤其是二类陶瓷电容（像 X7R/X5R）有很多物理局限性，也就是所谓的“暗坑”。最典型的就是直流偏置效应（DC Bias）、压电效应（啸叫）以及并联时的反谐振陷阱。
+这篇笔记结合我在实验室调 LDO 自激、电容啸叫和射频耦合噪声时的整改经历...
                         
                     </div>
 
@@ -1887,7 +1888,7 @@ mjx-container[display="true"] + br {
         
     </div>
 
-    <a href="/capacitor-design-cases/">阅读全文<span class="seo-reader-text">电容设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/capacitor-design-cases/">阅读全文<span class="seo-reader-text">MLCC 电容选型避坑：直流偏置效应、啸叫与反谐振陷阱</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
