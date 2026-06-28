@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
 <meta property="article:published_time" content="2026-04-28T08:03:23.000Z">
-<meta property="article:modified_time" content="2026-06-28T06:37:23.387Z">
+<meta property="article:modified_time" content="2026-06-28T06:55:47.735Z">
 <meta property="article:author" content="WenZhenJian-EE">
 <meta property="article:tag" content="磁设计">
 <meta property="article:tag" content="磁学">
@@ -320,7 +320,7 @@ mjx-container[display="true"] + br {
     "https://WenZhenJian-EE.github.io/images/redefine-og.webp"
   ],
   "datePublished": "2026-04-28T08:03:23.000Z",
-  "dateModified": "2026-06-28T06:37:23.387Z",
+  "dateModified": "2026-06-28T06:55:47.735Z",
   "author": {
     "@type": "Person",
     "name": "WenZhenJian-EE",
@@ -334,7 +334,7 @@ mjx-container[display="true"] + br {
       "url": "https://WenZhenJian-EE.github.io/images/redefine-logo.webp"
     }
   },
-  "description": "可立克1 一般他们接的样品，中柱都是不开洞的 2 骨架如果是定制，都是3d打印，磁芯定制，可以雕刻。后期批量都是开模3 中柱面积通常都是等于两倍边柱等于铁轭的面积，如果三者不相等，Ae值通常是取三者平均值 4 加了骨架之后，原来40kw充电模块的变压器离高度离最近的元器件是3mm，dcdc的需要调整 加了骨架更利于保证...",
+  "description": "最近在跟变压器供应商可立克（Click）对接我们 40kW 充电模块的高频变压器样品制作。 搞磁设计的兄弟都知道，磁学这块，纸上谈兵的理论计算和供应商实际工程落地往往存在不小的鸿沟。为了保证磁芯散热、绝缘可靠性以及后期量产的良率，我跟他们的技术专家来回撕扯了好几轮。今天把样品开发阶段、磁芯/骨架定制、以及 DCDC 整...",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://wenzhenjian-ee.github.io/supplier/"
@@ -733,8 +733,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-06-28 14:37:23</span>
-            <span class="mobile">2026-06-28 14:37:23</span>
+            <span class="desktop">2026-06-28 14:55:47</span>
+            <span class="mobile">2026-06-28 14:55:47</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -802,8 +802,40 @@ mjx-container[display="true"] + br {
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h2 id="可立克"><a href="#可立克" class="headerlink" title="可立克"></a>可立克</h2><p>1 一般他们接的样品，中柱都是不开洞的<br> 2 骨架如果是定制，都是3d打印，磁芯定制，可以雕刻。后期批量都是开模<br>3 中柱面积通常都是等于两倍边柱等于铁轭的面积，如果三者不相等，Ae值通常是取三者平均值<br> 4 加了骨架之后，原来40kw充电模块的变压器离高度离最近的元器件是3mm，dcdc的需要调整</p>
-<p>加了骨架更利于保证品质，磁芯与骨架之间的距离也有保障，<br>做成网状骨架，也有利于线包散热<br>骨架如果是定制，都是3d打印，磁芯定制，可以雕刻。后期批量都是开模 </p>
+			<p>最近在跟变压器供应商可立克（Click）对接我们 40kW 充电模块的高频变压器样品制作。</p>
+<p>搞磁设计的兄弟都知道，磁学这块，纸上谈兵的理论计算和供应商实际工程落地往往存在不小的鸿沟。为了保证磁芯散热、绝缘可靠性以及后期量产的良率，我跟他们的技术专家来回撕扯了好几轮。今天把样品开发阶段、磁芯/骨架定制、以及 DCDC 整体结构布局上的沟通要点和避坑经验做个整理，方便我们后续批量化生产时翻阅。</p>
+<hr>
+<h3 id="1-磁芯中柱与-Ae-值的确定（理论与实际的折中）"><a href="#1-磁芯中柱与-Ae-值的确定（理论与实际的折中）" class="headerlink" title="1. 磁芯中柱与 Ae 值的确定（理论与实际的折中）"></a>1. 磁芯中柱与 Ae 值的确定（理论与实际的折中）</h3><p>我们在算磁通密度和电感量时，经常默认磁芯的 Ae 值是固定的。但可立克的技术反馈了几个磁芯几何设计的行内细节：</p>
+<ul>
+<li><strong>截面积匹配</strong>：在标准的磁芯结构里，为了磁路的对称和优化，中柱的截面积（<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="5.727ex" height="1.977ex" role="img" focusable="false" viewBox="0 -716 2531.5 873.8"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g><g data-mml-node="msub" transform="translate(750,0)"><g data-mml-node="mi"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="TeXAtom" transform="translate(499,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(878,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(1223,0)"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g></g></g></g></g></svg></mjx-container>）通常设计为两个边柱截面积之和，同时也等于铁轭的截面积。</li>
+<li><strong>Ae 值的取值原则</strong>：如果定制的非标磁芯中柱面积不等于两倍边柱，或者和铁轭不相等，这时候磁路的磁通分布是非线性的。在这种情况下，供应商算 Ae 值通常是<strong>取这三者（中柱、两倍边柱、铁轭）面积的平均值</strong>来做磁电转换计算。我们在做磁仿真和算饱和磁通时，要用这个平均 Ae 值来校准，防止实际饱和点比理论计算值提前到来导致炸管。</li>
+</ul>
+<hr>
+<h3 id="2-样品阶段的定制策略（3D-打印与磁芯雕刻）"><a href="#2-样品阶段的定制策略（3D-打印与磁芯雕刻）" class="headerlink" title="2. 样品阶段的定制策略（3D 打印与磁芯雕刻）"></a>2. 样品阶段的定制策略（3D 打印与磁芯雕刻）</h3><p>在研发初期，我们经常需要快速拿到样品进行摸底测试，但又不能一上来就花几十万去开模。可立克给出了样品阶段和批量阶段的差异化策略：</p>
+<ul>
+<li><strong>磁芯打样</strong>：样品阶段不需要开模，他们直接用大块磁芯坯料进行<strong>机械雕刻</strong>。虽然雕刻件表面比较粗糙，磁性能和开模件微有差异，但用来做电性能摸底完全足够。批量生产时再统一开模压制。</li>
+<li><strong>骨架（Bobbin）打样</strong>：样品阶段的非标骨架全部采用 <strong>3D 打印</strong> 制作（耐高温树脂或尼龙）。<ul>
+<li><strong>避坑点</strong>：<strong>可立克明确提出，一般他们接的变压器样品，中柱是默认不开洞的。</strong> 如果我们有中柱散热孔或者需要穿螺杆固定，必须在 3D 打印和磁芯雕刻的图纸里明确标注，否则拿到的样品中柱就是实心的。</li>
+<li><strong>量产过渡</strong>：批量化生产时，骨架必须全部开注塑模具。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="3-骨架（Bobbin）的引入与-DCDC-结构避坑"><a href="#3-骨架（Bobbin）的引入与-DCDC-结构避坑" class="headerlink" title="3. 骨架（Bobbin）的引入与 DCDC 结构避坑"></a>3. 骨架（Bobbin）的引入与 DCDC 结构避坑</h3><p>40kW 充电模块的变压器工作在几十安培的大电流和几十 kHz 的高频下，温升非常变态。为了保质保量，我们最终决定引入定制骨架：</p>
+<ul>
+<li><strong>引入骨架的好处</strong>：虽然骨架会占用一部分窗口面积，但它能带来极大的品质保障。磁芯与绕组线包之间的绝缘距离有了塑料骨架的物理隔离，耐压更容易过。而且线包在骨架上绕制更规整，一致性好。</li>
+<li><strong>结构布局冲突</strong>：<ul>
+<li><strong>发现的问题</strong>：引入骨架后，整个变压器的外形尺寸变大了。根据可立克提供的最新结构图，我们核对 3D 堆叠时发现，变压器边缘距离周围最近的低压元器件只剩下 <strong>3mm</strong>。</li>
+<li><strong>整改措施</strong>：在 800V DCDC 的高压板 Layout 上，3mm 的空间距离对于过安规和防高频共模干扰耦合来说都太危险了。我们必须调整 Layout，将变压器周边的敏感元器件（特别是电流采样芯片和控制信号线）往外撤，保证安全净空距离。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="4-散热优化与绕组结构"><a href="#4-散热优化与绕组结构" class="headerlink" title="4. 散热优化与绕组结构"></a>4. 散热优化与绕组结构</h3><p>高频大功率变流器最怕变压器热积聚。</p>
+<ul>
+<li>我们要求可立克将骨架做成<strong>网状骨架（Skeleton Bobbin）</strong>。这种设计去掉了骨架上非关键的塑料支撑面，只保留框架。</li>
+<li>这样不仅有利于变压器线包的空气自然对流或风冷散热，还方便散热胶直接接触到绕组和磁芯，极大地降低了满载运行时的局部热点温度。</li>
+</ul>
 
 		</div>
 
@@ -818,7 +850,7 @@ mjx-container[display="true"] + br {
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-06-28 14:37:23
+                    :</strong> 2026-06-28 14:55:47
             </li>
         
         <li>
@@ -866,9 +898,9 @@ mjx-container[display="true"] + br {
 </a><a class="recommended-article-item" href="/magnetic-reluctance/" title="磁阻网络解析法" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="磁阻网络解析法" class="!max-w-none">
   <span class="title">磁阻网络解析法</span>
-</a><a class="recommended-article-item" href="/transformer-inductor-design-topology-magnetics-design/" title="变压器、电感设计、拓扑磁设计" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="变压器、电感设计、拓扑磁设计" class="!max-w-none">
-  <span class="title">变压器、电感设计、拓扑磁设计</span>
+</a><a class="recommended-article-item" href="/magnetics-saturation-gap-leakage/" title="磁饱和、气隙、漏感" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="磁饱和、气隙、漏感" class="!max-w-none">
+  <span class="title">磁饱和、气隙、漏感</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
@@ -926,7 +958,7 @@ mjx-container[display="true"] + br {
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
 		<div class="page-title">供应商沟通记录</div>
-		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E7%AB%8B%E5%85%8B"><span class="nav-text">可立克</span></a></li></ol>
+		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%A3%81%E8%8A%AF%E4%B8%AD%E6%9F%B1%E4%B8%8E-Ae-%E5%80%BC%E7%9A%84%E7%A1%AE%E5%AE%9A%EF%BC%88%E7%90%86%E8%AE%BA%E4%B8%8E%E5%AE%9E%E9%99%85%E7%9A%84%E6%8A%98%E4%B8%AD%EF%BC%89"><span class="nav-text">1. 磁芯中柱与 Ae 值的确定（理论与实际的折中）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%A0%B7%E5%93%81%E9%98%B6%E6%AE%B5%E7%9A%84%E5%AE%9A%E5%88%B6%E7%AD%96%E7%95%A5%EF%BC%883D-%E6%89%93%E5%8D%B0%E4%B8%8E%E7%A3%81%E8%8A%AF%E9%9B%95%E5%88%BB%EF%BC%89"><span class="nav-text">2. 样品阶段的定制策略（3D 打印与磁芯雕刻）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E9%AA%A8%E6%9E%B6%EF%BC%88Bobbin%EF%BC%89%E7%9A%84%E5%BC%95%E5%85%A5%E4%B8%8E-DCDC-%E7%BB%93%E6%9E%84%E9%81%BF%E5%9D%91"><span class="nav-text">3. 骨架（Bobbin）的引入与 DCDC 结构避坑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%95%A3%E7%83%AD%E4%BC%98%E5%8C%96%E4%B8%8E%E7%BB%95%E7%BB%84%E7%BB%93%E6%9E%84"><span class="nav-text">4. 散热优化与绕组结构</span></a></li></ol>
 
 	</div>
 </div>

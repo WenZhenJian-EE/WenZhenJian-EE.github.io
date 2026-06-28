@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
 <meta property="article:published_time" content="2026-04-06T14:27:34.000Z">
-<meta property="article:modified_time" content="2026-06-28T06:37:23.386Z">
+<meta property="article:modified_time" content="2026-06-28T06:55:47.735Z">
 <meta property="article:author" content="WenZhenJian-EE">
 <meta property="article:tag" content="安规">
 <meta property="article:tag" content="安全规范">
@@ -320,7 +320,7 @@ mjx-container[display="true"] + br {
     "https://WenZhenJian-EE.github.io/images/redefine-og.webp"
   ],
   "datePublished": "2026-04-06T14:27:34.000Z",
-  "dateModified": "2026-06-28T06:37:23.386Z",
+  "dateModified": "2026-06-28T06:55:47.735Z",
   "author": {
     "@type": "Person",
     "name": "WenZhenJian-EE",
@@ -334,7 +334,7 @@ mjx-container[display="true"] + br {
       "url": "https://WenZhenJian-EE.github.io/images/redefine-logo.webp"
     }
   },
-  "description": "常用标准收录通用PCB设计与绝缘配合标准 IPC-2221B (通用PCB设计标准) 定位与用途：作为PCB设计和制造的通用工业标准，提供了基于电压的基础间距表格。 应用局限性：该标准未充分考量污染等级、过电压类别、绝缘类型等安规核心要素。因此，其给出的数值不能直接用于设计需要通过安规认证的隔离屏障，仅适用于非安全相关...",
+  "description": "我们在研发中经常要和各种安规、EMC、可靠性标准打交道。很多兄弟一听到“标准”两个字就头大，觉得都是些枯燥晦涩的条文。其实，标准就是前人踩了无数个雷、炸了无数个管子之后总结出来的“排雷指南”。今天我结合手头做过的一些高压大功率产品，把我们在研发中天天翻阅的核心标准，以及怎么去“读懂”那些复杂的安规表格，用我们搞硬件的大...",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://wenzhenjian-ee.github.io/safety-standard/"
@@ -733,8 +733,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-06-28 14:37:23</span>
-            <span class="mobile">2026-06-28 14:37:23</span>
+            <span class="desktop">2026-06-28 14:55:47</span>
+            <span class="mobile">2026-06-28 14:55:47</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -802,116 +802,98 @@ mjx-container[display="true"] + br {
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h2 id="常用标准收录"><a href="#常用标准收录" class="headerlink" title="常用标准收录"></a>常用标准收录</h2><p>通用PCB设计与绝缘配合标准</p>
-<p>IPC-2221B (通用PCB设计标准)</p>
-<ul>
-<li>定位与用途：作为PCB设计和制造的通用工业标准，提供了基于电压的基础间距表格。</li>
-<li>应用局限性：该标准未充分考量污染等级、过电压类别、绝缘类型等安规核心要素。因此，其给出的数值不能直接用于设计需要通过安规认证的隔离屏障，仅适用于非安全相关电路部分的设计参考。</li>
+			<p>我们在研发中经常要和各种安规、EMC、可靠性标准打交道。很多兄弟一听到“标准”两个字就头大，觉得都是些枯燥晦涩的条文。其实，标准就是前人踩了无数个雷、炸了无数个管子之后总结出来的“排雷指南”。今天我结合手头做过的一些高压大功率产品，把我们在研发中天天翻阅的核心标准，以及怎么去“读懂”那些复杂的安规表格，用我们搞硬件的大白话做个彻底的梳理。</p>
+<h3 id="我们天天在查的常用标准"><a href="#我们天天在查的常用标准" class="headerlink" title="我们天天在查的常用标准"></a>我们天天在查的常用标准</h3><h4 id="1-通用-PCB-设计与绝缘配合标准"><a href="#1-通用-PCB-设计与绝缘配合标准" class="headerlink" title="1. 通用 PCB 设计与绝缘配合标准"></a>1. 通用 PCB 设计与绝缘配合标准</h4><ul>
+<li><strong>IPC-2221B (通用 PCB 设计标准)</strong><ul>
+<li><strong>我的理解</strong>：这算是个“行业通识”。它从工艺制造的角度规定了 PCB 走线线宽、线距和耐压的底线值。</li>
+<li><strong>避坑点</strong>：<strong>千万别直接用 IPC-2221B 的间距表格去设计安规隔离带！</strong> 因为这个标准根本没有把污染等级、过电压类别这些关键的安规要素考虑进去。如果你只盯着 IPC-2221B 划定原副边间距，去过安规认证时保证被裁判直接拍死。它只能用来作为板子内部非安全电路（比如控制信号走线线距）的制造参考。</li>
 </ul>
-<p>GB/T 16935 (等同于 IEC 60664-1, 低压系统内设备的绝缘配合)</p>
-<ul>
-<li>定位与用途：计算爬电距离和电气间隙的权威基础标准，是绝缘系统设计的核心依据。</li>
-<li>关键概念：引入了工作电压、瞬态过电压、过电压类别、污染等级 (PD) 以及基于材料相对漏电起痕指数 (CTI) 的材料组别等概念。例如，FR-4 材料通常属于 CTI 值较低的组别，在设计时需要预留更长的爬电距离。</li>
-<li>工程应用：当具体的产品安全标准要求特定绝缘等级时，设计者需依据此标准，结合实际应用场景（如海拔、污染程度）查表或计算出具体的物理距离要求。</li>
+</li>
+<li><strong>GB/T 16935 (等同于 IEC 60664-1, 低压系统内设备的绝缘配合)</strong><ul>
+<li><strong>我的理解</strong>：这才是真正的<strong>安规底层母标准</strong>。它解释了为什么我们需要拉开距离，以及怎么根据工作电压、瞬态过电压、污染等级和板材的相对漏电痕迹指数（CTI）来计算具体的电气间隙和爬电距离。不管是做逆变器、充电桩还是家电，绝缘计算的源头都在这里。</li>
 </ul>
-<hr>
-<p>产品安全标准与设计规范</p>
-<p>安全标准演进</p>
-<ul>
-<li>IEC 60950-1 (旧标准)：针对信息技术设备的规定性标准，直接提供查阅表格。目前已被 IEC 62368-1 取代，新产品认证普遍要求使用新标准。</li>
-<li>IEC 62368-1 (新标准)：涵盖音视频、信息和通信技术设备的主流安全标准。该标准采用基于危险源的安全工程 (HBSE) 理念，要求识别能量源，分析能量传递路径，并设置安全防护装置。在设计隔离屏障时，该标准指导设计者引用 IEC 60664 来确定具体的爬电和电气间隙。</li>
+</li>
 </ul>
-<p>PCB层间介质厚度设计推荐 (参考 IEC 62368-1)<br>安规标准通常不完全信任理论计算值，因为制造缺陷、环境因素、长期老化和批次差异可能导致绝缘性能下降。以下是不同绝缘等级下的层间介质厚度推荐：</p>
+<h4 id="2-产品类安全标准"><a href="#2-产品类安全标准" class="headerlink" title="2. 产品类安全标准"></a>2. 产品类安全标准</h4><ul>
+<li><strong>IEC 60950-1 与 IEC 62368-1 的演进</strong><ul>
+<li>旧的 60950-1 就像是一本硬性规定的教科书，直接给你条文和数字。而新一代的 62368-1 引入了 <strong>HBSE（基于危害的安全工程）</strong> 理念，它不强制说你必须留多少 mm，而是让你去识别你的产品里有哪些危险的“能量源”（比如 ES3 级高压），然后分析这个能量源会通过什么路径传导给人，接着要求你设计相应的物理屏障（防护）来隔离它。</li>
+</ul>
+</li>
+<li><strong>PCB层间介质厚度设计推荐 (参考 IEC 62368-1)</strong><br>安规认证时，考官对 PCB 垂直层间（比如原边线和副边线在上下层重叠）的绝缘要求非常高。因为层压过程中一旦有杂质或空洞，高压一下就穿了。以下是我们在工艺设计时指定的最小介质厚度：</li>
+</ul>
 <table>
 <thead>
 <tr>
 <th>绝缘等级</th>
 <th>典型应用场景</th>
 <th>推荐最小介质厚度</th>
-<th>设计与工艺要点</th>
+<th>我的工艺备忘</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>功能绝缘 (Functional)</td>
 <td>同一电路内部 (如 5V 信号层与 3.3V 电源层之间)</td>
 <td>~0.1 mm (4 mil)</td>
-<td>通常单张 PP 片 (Prepreg) 的厚度即可满足要求。</td>
+<td>通常单张最薄的 PP 片（半固化片）就能搞定。</td>
 </tr>
 <tr>
 <td>基本绝缘 (Basic)</td>
-<td>提供基础防电击保护 (如 110V 初级侧电源层与其地层之间)</td>
+<td>提供基础防电击保护 (如 110V 原边侧电源层与地层之间)</td>
 <td>~0.2 mm (8 mil)</td>
-<td>需确保介质厚度，可能需要一张较厚的 PP 片或两张薄 PP 片叠层。</td>
+<td>必须确保介质厚度，一般工厂建议至少叠两张薄 PP，防止单张针孔缺陷。</td>
 </tr>
 <tr>
 <td>加强绝缘 (Reinforced)</td>
-<td>隔离危险电压与用户可接触的安全电压 (如初级侧与次级侧之间)</td>
+<td>隔离危险高压与安全低压 (如初级侧与次级侧在多层板中重叠)</td>
 <td>≥ 0.4 mm (16 mil)</td>
-<td>安规认证的关键检查点。为稳定达到此厚度，通常需在 PCB 层压结构中指定使用两张或以上的 PP 片。</td>
+<td><strong>安规审查的重中之重！</strong> 必须在压合结构图（Stack-up）里指定使用至少两张甚至三张 PP 片，绝对不能用单张 PP，以防单点电击穿。</td>
 </tr>
 </tbody></table>
 <hr>
-<p>电磁兼容性 (EMC/EMI) 标准体系</p>
-<p>该体系主要由 IEC 61000 系列及 CISPR 标准组成，分为发射和抗扰度两大类。</p>
-<p>发射 (Emission)<br>旨在限制设备对外界产生的电磁干扰：</p>
+<h3 id="电磁兼容性-EMC-EMI-常用标准"><a href="#电磁兼容性-EMC-EMI-常用标准" class="headerlink" title="电磁兼容性 (EMC/EMI) 常用标准"></a>电磁兼容性 (EMC/EMI) 常用标准</h3><p>过安规只是保命，过 EMC 才是真功夫。我们的设备不仅不能变成一个大辐射源去干扰别人，还得能扛住别人的电磁骚扰。</p>
+<h4 id="1-发射类-Emission"><a href="#1-发射类-Emission" class="headerlink" title="1. 发射类 (Emission)"></a>1. 发射类 (Emission)</h4><p>限制我们的设备往外排电磁“垃圾”：</p>
 <ul>
-<li>CISPR 11 / EN 55011：适用于工业、科学和医疗 (ISM) 设备。</li>
-<li>CISPR 32 / EN 55032：适用于多媒体设备。</li>
-<li>IEC 61000-3-2：谐波电流发射限值，是 PFC 电路设计的直接依据。</li>
-<li>IEC 61000-3-3：电压波动和闪烁限值。</li>
+<li><strong>CISPR 11 / EN 55011</strong>：工科医（ISM）设备的发射限值。</li>
+<li><strong>CISPR 32 / EN 55032</strong>：多媒体、IT 类设备的发射限值。</li>
+<li><strong>IEC 61000-3-2</strong>：谐波电流限制。<strong>搞主动 PFC 电路的兄弟对这个最熟悉</strong>，如果你的输入电流畸变率（THD）超了，或者低次谐波高了，过不了这关就别想在欧洲卖。</li>
+<li><strong>IEC 61000-3-3</strong>：电压波动和闪烁限值。</li>
 </ul>
-<p>抗扰度 (Immunity)<br>旨在评估设备在电磁环境中的抗干扰能力：</p>
+<h4 id="2-抗扰度-Immunity"><a href="#2-抗扰度-Immunity" class="headerlink" title="2. 抗扰度 (Immunity)"></a>2. 抗扰度 (Immunity)</h4><p>考核我们设备挨揍时的耐受力：</p>
 <ul>
-<li>IEC 61000-4-2：静电放电 (ESD) 抗扰度。</li>
-<li>IEC 61000-4-3：射频电磁场辐射抗扰度。</li>
-<li>IEC 61000-4-4：电快速瞬变脉冲群 (EFT/Burst) 抗扰度。</li>
-<li>IEC 61000-4-5：浪涌 (Surge) 抗扰度，对电力电子产品（如逆变器、电源）极为重要。</li>
-<li>IEC 61000-4-6：射频场感应的传导骚扰抗扰度。</li>
-<li>IEC 61000-4-11：电压暂降、短时中断和电压变化抗扰度。</li>
-</ul>
-<hr>
-<p>特定应用领域与环境可靠性标准</p>
-<p>行业专用安全标准</p>
-<ul>
-<li>IEC 61010-1：测量、控制和实验室用电气设备。</li>
-<li>IEC 61800-5-1：可调速电机驱动系统 (如变频器)。</li>
-<li>IEC 62109-1 / -2：光伏发电系统用电力转换器 (光伏逆变器)。</li>
-<li>IEC 60601-1：医用电气设备，具有极其严格的安全要求。</li>
-<li>UL 1741：北美市场的并网逆变器、转换器及控制器标准。</li>
-<li>汽车电子：ISO 26262 (功能安全) 和 AEC-Q 系列 (元器件可靠性)。</li>
-</ul>
-<p>环境与可靠性规范</p>
-<ul>
-<li>IEC 60529 (IP 等级)：定义外壳对固体异物（防尘）和水（防水）的防护等级。</li>
-<li>IEC 60068 系列：环境试验标准，涵盖温度、湿度、振动、冲击等测试方法。</li>
-<li>化学品与材料法规：RoHS (有害物质限制) 和 REACH (化学品注册、评估、授权和限制)。</li>
+<li><strong>IEC 61000-4-2 (静电 ESD)</strong>：防的就是冬天干燥时人手去摸接口的那一下。</li>
+<li><strong>IEC 61000-4-3 (辐射抗扰 RS)</strong>：防外界无线电波对我们控制电路的干扰。</li>
+<li><strong>IEC 61000-4-4 (脉冲群 EFT)</strong>：测试电源线和信号线上由于开关断开等原因引入的快速瞬变尖峰脉冲。</li>
+<li><strong>IEC 61000-4-5 (雷击浪涌 Surge)</strong>：<strong>大功率设备（逆变器、大电源）的鬼门关</strong>。通常要打差模 2kV、共模 4kV 以上的高压冲击，压敏电阻（MOV）和气体放电管（GDT）选型不好，或者板上间距没留够，打浪涌时直接“啪”地拉弧放电，当场炸毁。</li>
+<li><strong>IEC 61000-4-6 (传导抗扰 CS)</strong>：射频场感应的传导干扰。</li>
+<li><strong>IEC 61000-4-11 (跌落与暂降)</strong>：网电压突然抖一下或者断个几十毫秒，看我们的电源会不会挂掉。</li>
 </ul>
 <hr>
-<p>标准在工程设计中的应用流程</p>
+<h3 id="各行各业的特定安全与可靠性规范"><a href="#各行各业的特定安全与可靠性规范" class="headerlink" title="各行各业的特定安全与可靠性规范"></a>各行各业的特定安全与可靠性规范</h3><p>做不同的项目，对应的顶层标准完全不同：</p>
+<ul>
+<li><strong>测量控制仪器</strong>：走 <strong>IEC 61010-1</strong>。</li>
+<li><strong>电机驱动变频器</strong>：看 <strong>IEC 61800-5-1</strong>。</li>
+<li><strong>光伏逆变器/储能变流器</strong>：走 <strong>IEC 62109-1 / -2</strong>，这里对直流 1500V 系统的绝缘要求有专门的严苛条款。</li>
+<li><strong>医疗电气</strong>：那就是大名鼎鼎的 <strong>IEC 60601-1</strong>。医疗安规对漏电流限制极其变态（微安级），隔离必须上双重隔离，患者接触端甚至需要两层加强绝缘。</li>
+<li><strong>北美并网准入</strong>：<strong>UL 1741</strong> 绕不开。</li>
+<li><strong>车规电子</strong>：功能安全走 <strong>ISO 26262</strong>，元器件可靠性看 <strong>AEC-Q 系列</strong>。</li>
+<li><strong>外壳防护与试验</strong>：<strong>IEC 60529</strong>（IP 防护等级，防尘防水）；<strong>IEC 60068 系列</strong>（高温、高湿、振动等环境可靠性测试）。</li>
+</ul>
+<hr>
+<h3 id="实战中怎么套用这些标准？"><a href="#实战中怎么套用这些标准？" class="headerlink" title="实战中怎么套用这些标准？"></a>实战中怎么套用这些标准？</h3><p>我们在开发一个新项目时，可不是盲目去翻标准，而是有一套标准的闭环流程：</p>
 <ol>
-<li>定义产品与市场<br>明确产品的设备类型（例如：变频器、充电桩）以及目标销售区域（例如：欧洲、北美），以确定适用的法律法规体系。</li>
-<li>确定顶层标准<br>根据产品定义锁定对应的产品族安全标准和 EMC 标准。例如，设计光伏逆变器时，主要遵循 IEC 62109。</li>
-<li>分解技术指标<br>从顶层标准中提炼出具体的设计输入，例如：</li>
-</ol>
-<ul>
-<li>绝缘等级要求（如加强绝缘）。</li>
-<li>EMC 发射限值（如 B 类）。</li>
-<li>抗扰度等级（如 4kV 浪涌）。</li>
+<li><strong>搞清卖给谁、在哪卖</strong>：确定是工科医、光伏还是家用，以及销售地区（国内 CCC，欧洲 CE，北美 UL）。</li>
+<li><strong>锁定顶层标准</strong>：比如设计一款户用光伏逆变器，先抱住 <strong>IEC 62109</strong>。</li>
+<li><strong>拆解硬指标</strong>：从顶层标准里抠出设计底线。比如输入 1000V，要求加强绝缘，EMC 要过 B 类限制，雷击浪涌要扛共模 4kV。</li>
+<li><strong>翻阅底层标准干活</strong>：<ul>
+<li>画 PCB 时，具体留多少间距，调出 <strong>GB/T 16935 (IEC 60664)</strong> 查表。</li>
+<li>做 PFC 电路和输入 EMI 滤波器设计，按照 <strong>IEC 61000-3-2</strong> 计算谐波余量。</li>
+<li>进行浪涌摸底时，按照 <strong>IEC 61000-4-5</strong> 的测试波形在实验室里打压整改。</li>
 </ul>
-<ol start="4">
-<li>引用基础标准执行设计<br>针对具体的技术指标，查阅相应的基础标准获取详细参数与方法：</li>
+</li>
 </ol>
-<ul>
-<li>绝缘距离计算：查阅 GB/T 16935 (IEC 60664)。</li>
-<li>谐波抑制设计：依据 IEC 61000-3-2。</li>
-<li>浪涌测试验证：依据 IEC 61000-4-5。</li>
-<li>PCB 布局布线：参考 IPC-2221B 进行通用物理设计。</li>
-</ul>
 <hr>
-<h2 id="安规表格解读"><a href="#安规表格解读" class="headerlink" title="安规表格解读"></a>安规表格解读</h2><hr>
-<p>安规表格上的专业术语：<br>I/P原边,O/P副边,FG外壳，PE真正的大地,F（function）功能绝缘，B（base）基础绝缘，R（reinforce）加强绝缘/双重绝缘，是基础绝缘的二倍。<br>加强绝缘，单层实现双重绝缘的强度效果；双重绝缘，基础绝缘乘2，一层击穿还有一层。二者在绝缘强度上等价<br>安规表IEC60950低于60VDC定义是低压<br>安规表IEC60950中的原边，一般是指AC电源连接的，比如电网，是取电的源头；副边指与原边，即主电路无直接连接的电路，但可以通过变压器手段从主电路取电<br>副边电压可以高于原边</p>
-<hr>
-<p>电气间隙，海拔高度影响确定<br> Altitude Correction Factors of IEC60664-1</p>
+<h3 id="安规表格解读：别被那些天书一样的数字唬住"><a href="#安规表格解读：别被那些天书一样的数字唬住" class="headerlink" title="安规表格解读：别被那些天书一样的数字唬住"></a>安规表格解读：别被那些天书一样的数字唬住</h3><p>安规标准的附录里通常有一堆表，很多兄弟看得一头雾水。我总结了几个查表的底层逻辑和黑话：</p>
+<h4 id="1-高海拔的空气大坑"><a href="#1-高海拔的空气大坑" class="headerlink" title="1. 高海拔的空气大坑"></a>1. 高海拔的空气大坑</h4><p>安规表格里的间距都是以<strong>海拔 2000 米以下</strong>为基准的。如果客户要求设备必须能在西藏、青海等高海拔地区运行，电气间隙必须乖乖乘以修正系数。<strong>空气越稀薄，越容易被电击穿！</strong></p>
 <table>
 <thead>
 <tr>
@@ -964,27 +946,27 @@ mjx-container[display="true"] + br {
 <td>14.50</td>
 </tr>
 </tbody></table>
-<p><strong>Note:</strong></p>
-<ol>
-<li>Linear Interpolation is permitted for in between values of altitudes</li>
-<li>The contents of this Table is not totally the same as the Table in the IEC60664-1 standard. The portions that are irrelevant were deleted to avoid confusion.</li>
-</ol>
-<p><strong>污染等级</strong></p>
-<p>确定所需爬电距离和电气间隙的下一个重要参数是污染等级。污染等级环境分为四类 [2]:</p>
+<p><em>注：如果产品海拔要求在两个档次之间（比如要求 3500 米），允许使用线性插值法来算修正系数。</em></p>
+<h4 id="2-污染等级的物理意义"><a href="#2-污染等级的物理意义" class="headerlink" title="2. 污染等级的物理意义"></a>2. 污染等级的物理意义</h4><p>爬电距离最怕的就是表面脏了漏电。污染等级反映了你产品的使用环境：</p>
 <ul>
-<li><p><strong>污染等级 1:</strong> 无污染或仅存在干燥的非导电性污染。这些系统经过密封以防止灰尘和湿气进入，或者 PCB 使用了保形涂层，这样元件就不会受到湿度或温度相关冷凝的影响。</p>
-</li>
-<li><p><strong>污染等级 2:</strong> 由于偶尔出现冷凝，环境会暂时变得导电。归类为污染等级 2 的常见环境示例包括实验室、办公室以及服务器、电信设备和无线基础设施的外壳。</p>
-</li>
-<li><p><strong>污染等级 3:</strong> 环境受到导电污染或非导电污染的影响，而后者在预期的冷凝情况下可能变得导电。常见的示例包括工业应用、农业设备和没有供暖设施的工厂车间。</p>
-</li>
-<li><p><strong>污染等级 4:</strong> 因导电性粉尘、雨水或其他潮湿状况而导致的持久导电性污染。这在室外应用中很常见。</p>
-</li>
+<li><strong>污染等级 1:</strong> 最干净。比如完全灌了胶、或者涂了厚厚三防漆的 PCB 内部。这种地方基本不需要考虑漏电起痕，间距可以缩到极致。</li>
+<li><strong>污染等级 2:</strong> 普通室内。常规办公室、服务器机房。虽然偶尔会因为温差结露，但平时还是干燥非导电的。<strong>我们大多数工业/消费类裸露 PCB 外层设计默认按污染等级 2 查表</strong>。</li>
+<li><strong>污染等级 3:</strong> 工业现场。粉尘、湿气很重，或者露天没有防护的地方。爬电距离必须拉得很开。</li>
+<li><strong>污染等级 4:</strong> 极端恶劣。比如经常被雨淋的露天设备，导电性粉尘漫天飞。</li>
 </ul>
-<p>Table 2K的表，确定第一个C1电气间隙，这是无条件的，看你设备的最高电压<br>图中，如果峰值电压420DCV,瞬间过压需要打2500V，污染等级属于I或者II类，即可确定F是1.5，B是2.0,如果峰值电压的范围表格没有，可以解方程得到<br>峰值电压与安规表中的绝缘距离类似一个线性关系，是满足一个二元一次方程的，而非比例关系，420对应的Base是2,840对应的Base是3.2，那么其中间的值，解一个方程就可以得到</p>
-<p>Table 2L的表，确定第二个C2电气间隙，这是看你最高电压，超过AC电网电压峰值的多少来定义，最终绝缘是C1+C2</p>
-<p>FR4的材料类别，一般属于III类</p>
-<p>爬电直接看AC的有效值</p>
+<h4 id="3-怎么查电气间隙？-以-Table-2K-Table-2L-为例"><a href="#3-怎么查电气间隙？-以-Table-2K-Table-2L-为例" class="headerlink" title="3. 怎么查电气间隙？(以 Table 2K / Table 2L 为例)"></a>3. 怎么查电气间隙？(以 Table 2K / Table 2L 为例)</h4><p>在旧的标准里：</p>
+<ul>
+<li><strong>第一个电气间隙 C1 (Table 2K)</strong>：这是无条件的。直接看你系统能承受的最大脉冲耐压。比如系统直流母线 420VDC，网口浪涌要求耐压 2500V。在污染等级 I 或 II 类下，查 Table 2K 就能得出，功能绝缘（F）要求 1.5mm，基本绝缘（B）要求 2.0mm。<ul>
+<li><strong>解方程秘籍</strong>：如果你的工作电压刚好夹在表格里两个档次之间，安规表的值实际上是一个二元一次方程（线性关系），而不是直接等比例算。假设峰值电压 420V 对应基本绝缘（Base）是 2.0mm，840V 对应是 3.2mm，如果你的电压是中间的值，只要列个一次方程，解出中间值即可。</li>
+</ul>
+</li>
+<li><strong>第二个电气间隙 C2 (Table 2L)</strong>：这取决于你的系统电压超过电网瞬态电压的程度。最终的电气间隙需要 C1 + C2。</li>
+</ul>
+<h4 id="4-怎么查爬电距离？"><a href="#4-怎么查爬电距离？" class="headerlink" title="4. 怎么查爬电距离？"></a>4. 怎么查爬电距离？</h4><ul>
+<li><strong>只看交流的有效值 (RMS) 或直流的额定值</strong>。</li>
+<li>确认你所用 PCB 板材的 <strong>CTI 组别</strong>（一般普通 FR-4 板材默认归为 IIIb 或 IIIa 组，CTI 比较低，在 175V 左右）。</li>
+<li>结合污染等级和有效值电压去对应表格查表，得出具体的爬电距离。如果板上空间不够，要么换高 CTI 板材（比如 I 组，CTI <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.312ex;" xmlns="http://www.w3.org/2000/svg" width="1.76ex" height="1.751ex" role="img" focusable="false" viewBox="0 -636 778 774"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2265" d="M83 616Q83 624 89 630T99 636Q107 636 253 568T543 431T687 361Q694 356 694 346T687 331Q685 329 395 192L107 56H101Q83 58 83 76Q83 77 83 79Q82 86 98 95Q117 105 248 167Q326 204 378 228L626 346L360 472Q291 505 200 548Q112 589 98 597T83 616ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path></g></g></g></svg></mjx-container> 600V），要么开隔离槽。</li>
+</ul>
 
 		</div>
 
@@ -999,7 +981,7 @@ mjx-container[display="true"] + br {
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-06-28 14:37:23
+                    :</strong> 2026-06-28 14:55:47
             </li>
         
         <li>
@@ -1107,7 +1089,7 @@ mjx-container[display="true"] + br {
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
 		<div class="page-title">安规标准收录、解读</div>
-		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86%E6%94%B6%E5%BD%95"><span class="nav-text">常用标准收录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A7%84%E8%A1%A8%E6%A0%BC%E8%A7%A3%E8%AF%BB"><span class="nav-text">安规表格解读</span></a></li></ol>
+		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E4%BB%AC%E5%A4%A9%E5%A4%A9%E5%9C%A8%E6%9F%A5%E7%9A%84%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86"><span class="nav-text">我们天天在查的常用标准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E7%A3%81%E5%85%BC%E5%AE%B9%E6%80%A7-EMC-EMI-%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86"><span class="nav-text">电磁兼容性 (EMC&#x2F;EMI) 常用标准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%84%E8%A1%8C%E5%90%84%E4%B8%9A%E7%9A%84%E7%89%B9%E5%AE%9A%E5%AE%89%E5%85%A8%E4%B8%8E%E5%8F%AF%E9%9D%A0%E6%80%A7%E8%A7%84%E8%8C%83"><span class="nav-text">各行各业的特定安全与可靠性规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E6%88%98%E4%B8%AD%E6%80%8E%E4%B9%88%E5%A5%97%E7%94%A8%E8%BF%99%E4%BA%9B%E6%A0%87%E5%87%86%EF%BC%9F"><span class="nav-text">实战中怎么套用这些标准？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A7%84%E8%A1%A8%E6%A0%BC%E8%A7%A3%E8%AF%BB%EF%BC%9A%E5%88%AB%E8%A2%AB%E9%82%A3%E4%BA%9B%E5%A4%A9%E4%B9%A6%E4%B8%80%E6%A0%B7%E7%9A%84%E6%95%B0%E5%AD%97%E5%94%AC%E4%BD%8F"><span class="nav-text">安规表格解读：别被那些天书一样的数字唬住</span></a></li></ol>
 
 	</div>
 </div>

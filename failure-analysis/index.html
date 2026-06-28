@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-08-18T04:21:05.000Z">
-<meta property="article:modified_time" content="2026-06-28T06:37:23.378Z">
+<meta property="article:modified_time" content="2026-06-28T06:55:47.726Z">
 <meta property="article:author" content="WenZhenJian-EE">
 <meta property="article:tag" content="安规">
 <meta property="article:tag" content="安全规范">
@@ -320,7 +320,7 @@ mjx-container[display="true"] + br {
     "https://WenZhenJian-EE.github.io/images/redefine-og.webp"
   ],
   "datePublished": "2025-08-18T04:21:05.000Z",
-  "dateModified": "2026-06-28T06:37:23.378Z",
+  "dateModified": "2026-06-28T06:55:47.726Z",
   "author": {
     "@type": "Person",
     "name": "WenZhenJian-EE",
@@ -334,7 +334,7 @@ mjx-container[display="true"] + br {
       "url": "https://WenZhenJian-EE.github.io/images/redefine-logo.webp"
     }
   },
-  "description": "SPOF 基础概念与系统级危害评估 在电力电子系统中，SPOF 指的是系统中存在的某一个组件、节点或环节，一旦发生物理损坏、逻辑错误或失去功能，就会导致整个系统立刻陷入瘫痪、停机，甚至引发灾难性的硬件损坏，且系统没有任何后备、冗余或容错机制来接管其工作。即牵一发而动全身。 与低功耗数字系统不同，电力电子设备处理高电压和...",
+  "description": "在做高电压、大功率的电力电子研发时，我们最害怕听到一个词——“单点失效”（SPOF，Single Point of Failure）。 普通的低功耗数字电路要是挂个电阻，大不了芯片死机、重新上电复位；但在处理上百伏甚至上千伏、几十安培电流的高压系统里，一旦关键节点发生单点失效，能量就会瞬间失控。这种失控的电能在微秒级内...",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://wenzhenjian-ee.github.io/failure-analysis/"
@@ -733,8 +733,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-06-28 14:37:23</span>
-            <span class="mobile">2026-06-28 14:37:23</span>
+            <span class="desktop">2026-06-28 14:55:47</span>
+            <span class="mobile">2026-06-28 14:55:47</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -802,10 +802,10 @@ mjx-container[display="true"] + br {
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<p>SPOF 基础概念与系统级危害评估</p>
-<p>在电力电子系统中，SPOF 指的是系统中存在的某一个组件、节点或环节，一旦发生物理损坏、逻辑错误或失去功能，就会导致整个系统立刻陷入瘫痪、停机，甚至引发灾难性的硬件损坏，且系统没有任何后备、冗余或容错机制来接管其工作。即牵一发而动全身。</p>
-<p>与低功耗数字系统不同，电力电子设备处理高电压和强电流。在此类设备中发生 SPOF 不仅意味着停止工作，更意味着能量失去控制。 失控的电能会在微秒到毫秒级内摧毁昂贵的功率半导体、造成铜箔烧毁、引发电气火灾，直接威胁生命安全。</p>
-<p>常见单点失效环节与后果特征</p>
+			<p>在做高电压、大功率的电力电子研发时，我们最害怕听到一个词——“单点失效”（SPOF，Single Point of Failure）。</p>
+<p>普通的低功耗数字电路要是挂个电阻，大不了芯片死机、重新上电复位；但在处理上百伏甚至上千伏、几十安培电流的高压系统里，一旦关键节点发生单点失效，能量就会瞬间失控。这种失控的电能在微秒级内就能把几十块钱的 SiC MOSFET 炸得粉碎，连带烧毁整块 PCB 铜箔，甚至引发严重的电气火灾。今天我就结合自己在变流器和 DCDC 研发中的避坑经验，来聊聊单点失效的排查、冗余设计的边界，以及怎么揪出那些隐蔽的“共因失效”（CCF）。</p>
+<hr>
+<h3 id="我们研发中常见的单点失效"><a href="#我们研发中常见的单点失效" class="headerlink" title="我们研发中常见的单点失效"></a>我们研发中常见的单点失效</h3><p>搞硬件的兄弟们在做系统 FMEA 时，下面这几个节点是出了名的“单点失效重灾区”：</p>
 <table>
 <thead>
 <tr>
@@ -815,51 +815,49 @@ mjx-container[display="true"] + br {
 </tr>
 </thead>
 <tbody><tr>
-<td>辅助供电</td>
-<td>DC-DC 变换器的主开关管或变压器</td>
-<td>所有控制和保护电路瞬间断电，主控失去对整机的控制权，导致系统直接陷入瘫痪。</td>
+<td><strong>辅助供电</strong></td>
+<td>DC-DC 辅助电源的开关管或高频变压器</td>
+<td>一旦辅助电源挂了，整板的控制芯片、驱动电路、保护比较器瞬间断电。主控 DSP 失去控制权，系统直接“趴窝”或者由于保护失效导致灾难性损毁。</td>
 </tr>
 <tr>
-<td>控制核心</td>
+<td><strong>控制核心</strong></td>
 <td>DSP 或 MCU</td>
-<td>遭遇严重电磁干扰、软件死循环或硬件故障导致死机，PWM 信号卡死。若无底层硬件保护极易引发半桥直通炸机。</td>
+<td>遭遇强电磁干扰、程序跑飞进入死循环、或者时钟停振。如果外围没有设计纯硬件的死区保护，控制引脚卡死在固定电平，极易引发半桥直通，当场炸管。</td>
 </tr>
 <tr>
-<td>关键传感</td>
-<td>单路 DC-Link 电压传感器</td>
-<td>错误报告母线电压极低或为零，闭环 PI 调节器为拉高电压而疯狂增加占空比，导致母线电容过压爆裂或功率管击穿。</td>
+<td><strong>关键传感</strong></td>
+<td>单路 DC-Link 电压采样运放/电阻</td>
+<td>如果采样运放坏了，错误地向主控报告母线电压为 0V。主控的闭环 PI 调节器为了拉高电压，会把 PWM 占空比疯狂推到最大，直接导致母线电容过压爆裂或功率管击穿。</td>
 </tr>
 <tr>
-<td>散热枢纽</td>
-<td>唯一散热风扇或水冷循环泵</td>
-<td>散热循环停摆，满载情况下的 IGBT 或 SiC MOSFET 在极短时间内因热失控而烧毁。</td>
+<td><strong>散热枢纽</strong></td>
+<td>唯一的水冷循环泵或散热风扇</td>
+<td>满载工作时散热系统一旦停摆，IGBT 或 SiC 功率模块会在极短时间内因热量无法散发而发生热失控烧毁。</td>
 </tr>
 </tbody></table>
 <hr>
-<p>SPOF 规避策略与冗余设计边界</p>
-<p>为达到工业级或车规级高可靠性，工程设计上必须通过结构化手段防范单点失效：</p>
+<h3 id="冗余设计的边界在哪？别被“过度设计”反噬"><a href="#冗余设计的边界在哪？别被“过度设计”反噬" class="headerlink" title="冗余设计的边界在哪？别被“过度设计”反噬"></a>冗余设计的边界在哪？别被“过度设计”反噬</h3><p>为了搞出高可靠性的工业级或车规级产品，我们在硬件上通常会设计各种防线：</p>
 <ul>
-<li>架构与系统冗余：硬件架构采用并联冗余配置，模块烧毁时系统可自动将其切除并降额运行。关键子系统采用双路辅助电源互为备份，母线电压与关键测点温度强制使用多路传感器交叉校验。</li>
-<li>硬件级独立保护：安全保障决不能全盘押注在微控制器的软件逻辑上。底层驱动电路必须具备独立的 DESAT、UVLO 和米勒钳位功能。 即使主控制核心完全崩溃，驱动器依然能依靠硬件比较器在数微秒内关断功率管。</li>
-<li>失效导向安全设计：确保器件发生损坏时，系统自动停留在安全状态。例如在 PWM 驱动信号线上增设下拉电阻，一旦控制引脚变为高阻态，下拉电阻能确保开关管处于被动且稳定的关断状态，防止由于栅极电荷积累引发误导通。</li>
+<li><strong>架构冗余</strong>：多模块并联，坏了一个，系统自动降额运行，切掉故障模块。或者用双路辅助电源互为备份，母线电压用多路采样交叉校验。</li>
+<li><strong>纯硬件保护</strong>：<strong>千万别把设备的安全全部押注在软件代码上！</strong> 底层的驱动电路必须有独立的退饱和保护（DESAT）、欠压锁定（UVLO）和有源米勒钳位。哪怕 DSP 已经死机得透透的，驱动芯片也能靠硬件比较器在几微秒内强行关断功率管，保住硬件。</li>
+<li><strong>失效导向安全 (Fail-Safe)</strong>：比如在 PWM 驱动信号线上一定要加下拉电阻。这样万一主控引脚坏了变成高阻态，下拉电阻能确保开关管被稳稳关断，防止栅极电荷积累误导通。</li>
 </ul>
-<p>工程界处理冗余设计的极限原则是适可而止，坚决抵制无休止的过度叠加。在绝大多数标准中实现双重冗余即达到要求上限，例如将采样电路供电拆分给两路独立的 LDO 即可闭环，绝不允许在 LDO 输入端再嵌套备份。过度设计会直接违反工程规律：</p>
+<h4 id="避坑点：冗余不是越叠越好，适可而止才是硬道理"><a href="#避坑点：冗余不是越叠越好，适可而止才是硬道理" class="headerlink" title="避坑点：冗余不是越叠越好，适可而止才是硬道理"></a>避坑点：冗余不是越叠越好，适可而止才是硬道理</h4><p>很多兄弟做设计容易走极端，觉得多加几个备份总没错。但是在安规和可靠性工程中，双重冗余基本就是天花板了。比如你把采样供电拆分给两颗独立的 LDO 已经够安全了，如果你还在 LDO 输入端再去套娃备份，那就属于“过度设计”了。</p>
+<p>过度冗余会带来三个致命的副作用：</p>
+<ol>
+<li><strong>BOM 复杂度反噬 MTBF</strong>：你多加一颗芯片，板上就多了一个失效源。每一个元器件都自带故障率（FIT）。层层嵌套冗余，最后往往是因为那些“备份芯片”本身发生虚焊或电容短路，导致系统频繁误报、停机，反而降低了整机的平均无故障工作时间。</li>
+<li><strong>偏离核心目标</strong>：我们搞电力电子设备的，和飞在天上的飞机不同。变流设备一旦发现异常，最优解是<strong>立刻封锁 PWM、断开交流继电器，安全地趴窝</strong>。只要有一路可靠的硬件保护能把输出彻底切断，Fail-Safe 的目标就达到了，没必要像航天器那样搞三模冗余非要维持运行。</li>
+<li><strong>残余风险接受度</strong>：安全标准的核心是“容忍单一随机故障”。把关键路径拆成两个独立通道，恰好同时发生随机物理损坏的概率已经是百亿分之一以下了。这种极低概率的事件在工程上被称为“残余风险”，是可以直接接受的。</li>
+</ol>
+<hr>
+<h3 id="多重失效与隐蔽的“共因失效-CCF-”"><a href="#多重失效与隐蔽的“共因失效-CCF-”" class="headerlink" title="多重失效与隐蔽的“共因失效 (CCF)”"></a>多重失效与隐蔽的“共因失效 (CCF)”</h3><p>在做 FMEA 分析时，我们可以忽略两颗完全独立的电阻在同一秒钟发生随机损坏的“巧合”。但是，我们必须严密防范<strong>具有连带关系的多重失效</strong>：</p>
 <ul>
-<li>达标即止与残余风险接受：工业与汽车安全标准的核心诉求是系统能容忍单一随机硬件故障且不引发危险。拆分出两个独立组件即已实现该容错诉求，同一时刻发生不同随机损坏的概率属于可忽略的残余风险。</li>
-<li>复杂度反噬整体可靠性：盲目增加备份会导致系统 BOM 数量剧增。每一个额外添加的组件都自带独立的 FIT 故障率，层层嵌套冗余往往导致系统中非致命的备份元件频发虚焊或短路故障，引发设备疯狂误报与频频停机，最终导致系统整体的 MTBF 大幅缩水。</li>
-<li>核心目标为安全停机：与必须依靠多模冗余维持飞行的航空器不同，变流设备在检测到异常时，最优解是立刻封锁 PWM 脉冲、断开主继电器并安全趴窝。只要存在一路可靠的保护机制能彻底切断输出，设备便实现了安全失效目标。</li>
+<li><strong>连锁失效</strong>：看起来是多处同时坏，但根子只有一个。比如风扇停转导致温升过高，功率管热击穿，进而引起母线短路炸机。这就要求我们必须在功率管附近加温度传感器，一旦超温强制拉低驱动。</li>
+<li><strong>共因失效 (CCF, Common Cause Failure)</strong>：<strong>这是设计冗余最容易翻车的地方</strong>。指的是你特意设计了两个互为备份的防线，结果因为同一个外部诱因被“一锅端”。比如你搞了双路电压采样，但它们用的是同一个偏置电源，或者在 PCB 上紧挨着走线。一旦遇到外部雷击浪涌，两路采样直接同时被击穿损坏。</li>
+<li><strong>潜伏故障 + 单点失效</strong>：最阴险的双点失效。保护电路（比如过压保护比较器）其实早就虚焊坏了，但因为平时电压正常，系统根本不知道它坏了（潜伏故障）。等到几个月后，系统真的发生过压，这道防线已经没用了，样机当场炸毁。应对办法是必须加上<strong>开机自检 (BIST)</strong>。</li>
 </ul>
 <hr>
-<p>进阶多重失效的严密分类与推演逻辑</p>
-<p>在常规 FMEA 表格分析中，防范分析瘫痪的核心策略是直接忽略两个完全独立的组件在同一时刻发生随机损坏。例如单个器件的失效概率是十万分之一，两个独立器件恰好同时失效的概率仅为百亿分之一，为该极小概率事件投入高昂硬件成本并不符合工程逻辑。但在高可靠性要求的领域，不可防范随机巧合，却必须严密防范具有关联性的连带失效。其分类逻辑如下：</p>
-<ul>
-<li>连锁失效：多个功能看似同时瘫痪，但诱因仅有一个。如散热风扇停转导致功率模块热击穿，进而引起母线短路与整机炸机。在底层逻辑中这仍被视为风扇的单点失效，但须将其严重程度评估至极高，并强制要求在回路中增加温度采样以触发降额或停机的硬切断逻辑。</li>
-<li>共因失效：即 CCF，指两个或多个原本设计为互为冗余、相互独立的防线，因为同一个外部诱因被彻底一锅端。 例如两路互相校验的隔离采样系统共用同一组电源或走线距离极近，遭遇强浪涌时被同时击穿。必须通过物理隔离或异构设计方案消除此类共因。</li>
-<li>潜伏故障叠加单点失效：功能安全领域最核心的双点失效场景。即保护机制早已损坏且系统毫无察觉，随后主运行系统也发生致命损坏。例如外围虚焊导致硬件过压保护电路早已失效，数月后主控程序跑飞并输出最大占空比，引发严重炸机。应对策略是必须在系统中加入周期性的自检与诊断机制。</li>
-</ul>
-<hr>
-<p>CCF 排查边界与物理寻迹导向</p>
-<p>共因失效分析不能依靠发散思维盲目猜测，且该分析仅针对刻意进行过冗余备份设计的系统。对于无备份设计的薄弱节点直接评估炸机后果即可，只有双重保护电路才需要顺藤摸瓜排查隐蔽共因。排查过程严格沿着以下四条物理家谱进行：</p>
+<h3 id="CCF-共因失效排查指南"><a href="#CCF-共因失效排查指南" class="headerlink" title="CCF 共因失效排查指南"></a>CCF 共因失效排查指南</h3><p>在研发中，只有做过双重保护或者冗余的系统，才需要去做 CCF 排查。我们要顺着下面这四条物理家谱，把能“一锅端”的隐患彻底切断：</p>
 <table>
 <thead>
 <tr>
@@ -869,40 +867,34 @@ mjx-container[display="true"] + br {
 </tr>
 </thead>
 <tbody><tr>
-<td>电源树分布</td>
-<td>两路隔离保护芯片的供电来自同一个反激变压器的同组辅助绕组，或共用同一颗 LDO。一旦该节点电源损坏，两路自以为独立的采样或保护将同时暴毙。</td>
-<td>将两路冗余采样系统分别连接至两路完全独立的 LDO 或变压器绕组上，切断供电维度的物理联系。</td>
+<td><strong>电源树分布</strong></td>
+<td>两路隔离保护芯片的供电来自同一个反激变压器的同组辅助绕组，或共用同一颗 LDO。电源坏了，两路保护一起瘫痪。</td>
+<td>将两路冗余系统的供电接在不同的 LDO 或变压器独立绕组上，从源头上切断电源维度的联系。</td>
 </tr>
 <tr>
-<td>接地与回流路径</td>
-<td>冗余保护电路的 GND 在 PCB 布局上靠得太近或跨接电容选型一致。巨大的高频浪涌袭来时，干扰电流未通过 PE 大排地泄放，而是瞬间抬高两路芯片的参考地导致同时击穿。</td>
-<td>仔细检查并重构 PCB 地层划分，确保冗余电路的参考地与回流路径具备足够的物理间距和电磁隔离度。</td>
+<td><strong>接地与回流路径</strong></td>
+<td>两路保护电路的地（GND）在 PCB 布局上靠得太近，共用了同一个接地孔。大电流浪涌冲过来时，地电平瞬间被抬高，把两个芯片同时烧毁。</td>
+<td>严格划分 PCB 地平面，确保两个冗余电路的参考地和回流路径有足够的物理间距，互不干扰。</td>
 </tr>
 <tr>
-<td>时钟与逻辑主脑</td>
-<td>为防范并机崩溃而设计的多套软件限流、限压逻辑均运行在同一个 DSP 核心中。若微控制器外挂晶振发生虚焊或停振，所有通过软件编写的防线将同时停摆。</td>
-<td>在控制核心外部增设由分立模拟器件构成的纯硬件比较器电路，完全脱离软件时钟域独立执行保护动作。</td>
+<td><strong>时钟与逻辑主脑</strong></td>
+<td>软件上设计的两套限流、限压保护算法，全都运行在同一个 DSP 里。万一外挂晶振虚焊或者控制核心卡死，两条防线同时崩盘。</td>
+<td>在 DSP 外部设计由模拟比较器构成的纯硬件保护电路，完全不依赖软件时钟域，独立关断驱动。</td>
 </tr>
 <tr>
-<td>物理与热力学环境</td>
-<td>两颗相互独立的模块贴装于同一块水冷散热基板上。由于水路堵塞或循环泵损坏，器件面临完全相同的恶劣散热条件，最终同时触发热击穿。</td>
-<td>将共用的散热系统直接判定为共因，在外部系统级加入针对环境特征参数的独立监测与强制停机机制。</td>
+<td><strong>物理与热力学环境</strong></td>
+<td>两个互为冗余的功率模块贴在同一个水冷基板上。由于水路堵塞，散热条件恶化，两个模块同时过温烧毁。</td>
+<td>将共用散热通道视为共因，引入外围系统级的独立水流/水温监测，一旦异常强行切断主回路。</td>
 </tr>
 </tbody></table>
 <hr>
-<p>系统级功能安全分析三步法与诊断机制闭环</p>
-<p>构建高可靠性硬件架构，需严格贯彻并执行严密的工程分析三步法，并利用诊断自检机制实现安全闭环：</p>
-<ul>
-<li>单点失效地毯式推演：即 FMEA 执行阶段。遍历整个物料清单与电路图，逐一假设引脚短路、电容开路等基础元器件损坏后果。精准定位出所有会导致系统起火、伤人的致命节点，并据此修改设计或增加底层保护。</li>
-<li>双点失效定点清除：专注排查不参与日常运作的闲置保护电路。针对保护机制潜伏失效叠加主系统功能异常的双点失效组合，强制引入 BIST 或周期性的诊断逻辑。通过开机下发测试脉冲等手段验证保护电路状态正常，防止失效潜伏。</li>
-<li>冗余系统隐患溯源：专门针对双路采样、双套驱动等冗余备份节点，沿着电源、接地、时钟和环境四个物理维度进行逆向排查，找出能导致多路冗余同时崩溃的隐形单点枢纽，并彻底切断其物理纽带。</li>
-</ul>
-<p>关于保护电路的诊断自检与单点失效排查的辩证统一：<br>为保护电路加入诊断自检并能在发现异常后锁死系统，能将极其危险的潜伏故障转化为可控的已检测故障，属于最核心的保护措施。但即便已知其状态可知可控，在工程分析流程中依然必须对自检与保护电路本身执行详尽的单点失效排查。其核心逻辑在于自证与量化：</p>
-<ul>
-<li>证明进入安全状态闭环：自检流程使失效的破坏力发生降级。当硬件比较器发生输出卡死的单点失效时，上电阶段的检测脉冲会立刻发现该异常，主控随即拒绝闭合主继电器。系统锁死无法开机，但并未发生炸机事故，以此在分析报告中成功自证达到了安全失效状态。</li>
-<li>量化 DC 诊断覆盖率指标：任何自检与诊断手段均存在探测盲区。执行单点分析能清晰地剥离出哪些损坏（如内部逻辑错误）会被完全抓住，哪些损坏（如外部滤波网络短路）会成为漏网之鱼，进而精准推算出符合高标准车规级或工业级要求的覆盖率数值。</li>
-<li>平衡系统安全性与可用性：防止系统因过度敏感而陷入死锁。若保护电路自身损坏倾向于输出误报信号，虽保障了绝对安全，却会导致设备在应用现场陷入疯狂报错与重启死循环。必须排查此类风险以优化自检滤波算法或放宽阈值，避免系统可用性遭遇毁灭性打击。</li>
-</ul>
+<h3 id="研发落地三步法"><a href="#研发落地三步法" class="headerlink" title="研发落地三步法"></a>研发落地三步法</h3><p>我们在设计一款高可靠性变流器时，要走完这三步分析：</p>
+<ol>
+<li><strong>单点失效地毯式推演 (FMEA)</strong>：把 BOM 表里的每一个器件、每一根线都假设短路或开路，分析后果。凡是会导致设备起火、电人的致命单点，必须通过修改设计或者加底层硬件保护来消灭。</li>
+<li><strong>双点失效定点清除</strong>：重点排查平时不动作的保护电路。加入开机自检（比如开机时主控发个微弱的脉冲去触发保护，看保护信号能不能反馈回来），把危险的潜伏故障变成可控的“已检测故障”，防患于未然。</li>
+<li><strong>冗余系统逆向排查</strong>：针对双路采样、双驱动等冗余节点，从电源、接地、时钟、环境四个维度逆向捋一遍，把所有能导致双防线同时暴毙的单点因素彻底清除。</li>
+</ol>
+<h4 id="辩证统一：有了自检，还要排查保护电路本身的单点失效吗？"><a href="#辩证统一：有了自检，还要排查保护电路本身的单点失效吗？" class="headerlink" title="辩证统一：有了自检，还要排查保护电路本身的单点失效吗？"></a>辩证统一：有了自检，还要排查保护电路本身的单点失效吗？</h4><p><strong>必须排查！</strong> 自检虽然能把“潜伏故障”转化为系统锁死不开机的“安全状态”，但我们依然要分析保护电路本身的单点失效。<br>一方面，我们要自证系统在保护电路坏了的时候，能通过自检安全停机（比如比较器坏了，开机自检不通过，主继电器拒绝闭合，保证设备安全）。<br>另一方面，我们要量化诊断覆盖率，并且防止保护电路设计得过于敏感导致“误报”。如果保护电路天天误报让设备频繁死锁重启，那产品的可用性就直接崩溃了。我们需要在安全性和可用性之间找到完美的平衡点。</p>
 
 		</div>
 
@@ -917,7 +909,7 @@ mjx-container[display="true"] + br {
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-06-28 14:37:23
+                    :</strong> 2026-06-28 14:55:47
             </li>
         
         <li>
@@ -959,27 +951,27 @@ mjx-container[display="true"] + br {
     <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
     </div>
-    <div class="recommended-article-group"><a class="recommended-article-item" href="/switch-driver-datasheet-reading/" title="开关与驱动数据手册阅读" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="开关与驱动数据手册阅读" class="!max-w-none">
-  <span class="title">开关与驱动数据手册阅读</span>
-</a><a class="recommended-article-item" href="/problems-analysis/" title="问题分析留存" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="问题分析留存" class="!max-w-none">
-  <span class="title">问题分析留存</span>
-</a><a class="recommended-article-item" href="/design-cases/" title="信号处理与采集设计案例" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="信号处理与采集设计案例" class="!max-w-none">
-  <span class="title">信号处理与采集设计案例</span>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/safety-test-cases/" title="安规测试、案例" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="安规测试、案例" class="!max-w-none">
+  <span class="title">安规测试、案例</span>
+</a><a class="recommended-article-item" href="/safety-standard/" title="安规标准收录、解读" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="安规标准收录、解读" class="!max-w-none">
+  <span class="title">安规标准收录、解读</span>
+</a><a class="recommended-article-item" href="/safety-fundamentals/" title="安规基础" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="安规基础" class="!max-w-none">
+  <span class="title">安规基础</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
    </div>
-   <div class="recommended-article-group"><a class="recommended-article-item" href="/switch-driver-datasheet-reading/" title="开关与驱动数据手册阅读" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="开关与驱动数据手册阅读" class="!max-w-none">
-  <span class="title">开关与驱动数据手册阅读</span>
-</a><a class="recommended-article-item" href="/problems-analysis/" title="问题分析留存" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="问题分析留存" class="!max-w-none">
-  <span class="title">问题分析留存</span>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/safety-test-cases/" title="安规测试、案例" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="安规测试、案例" class="!max-w-none">
+  <span class="title">安规测试、案例</span>
+</a><a class="recommended-article-item" href="/safety-standard/" title="安规标准收录、解读" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="安规标准收录、解读" class="!max-w-none">
+  <span class="title">安规标准收录、解读</span>
 </a></div>
    </div>
   </div>
@@ -1025,7 +1017,7 @@ mjx-container[display="true"] + br {
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
 		<div class="page-title">失效分析</div>
-		
+		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E4%BB%AC%E7%A0%94%E5%8F%91%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E5%8D%95%E7%82%B9%E5%A4%B1%E6%95%88"><span class="nav-text">我们研发中常见的单点失效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%97%E4%BD%99%E8%AE%BE%E8%AE%A1%E7%9A%84%E8%BE%B9%E7%95%8C%E5%9C%A8%E5%93%AA%EF%BC%9F%E5%88%AB%E8%A2%AB%E2%80%9C%E8%BF%87%E5%BA%A6%E8%AE%BE%E8%AE%A1%E2%80%9D%E5%8F%8D%E5%99%AC"><span class="nav-text">冗余设计的边界在哪？别被“过度设计”反噬</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E9%87%8D%E5%A4%B1%E6%95%88%E4%B8%8E%E9%9A%90%E8%94%BD%E7%9A%84%E2%80%9C%E5%85%B1%E5%9B%A0%E5%A4%B1%E6%95%88-CCF-%E2%80%9D"><span class="nav-text">多重失效与隐蔽的“共因失效 (CCF)”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CCF-%E5%85%B1%E5%9B%A0%E5%A4%B1%E6%95%88%E6%8E%92%E6%9F%A5%E6%8C%87%E5%8D%97"><span class="nav-text">CCF 共因失效排查指南</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A0%94%E5%8F%91%E8%90%BD%E5%9C%B0%E4%B8%89%E6%AD%A5%E6%B3%95"><span class="nav-text">研发落地三步法</span></a></li></ol>
 
 	</div>
 </div>
