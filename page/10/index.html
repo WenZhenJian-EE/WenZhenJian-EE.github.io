@@ -684,7 +684,7 @@ mjx-container[display="true"] + br {
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">109</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">110</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -721,7 +721,7 @@ mjx-container[display="true"] + br {
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">109</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">110</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -797,6 +797,93 @@ mjx-container[display="true"] + br {
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
+                        <a href="/cooling-heatsink/">
+                            风冷散热
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            风扇流体力学与电路类比选型
+
+功率：对应物理量 ，第一性原理，决定风扇输出能量的天花板。高功率可以同时支撑大风量与高风压，犹如大容量电源。标签上的额定功率（如 5W、12W）是风扇电机的输入电功率，代表电机的总力量。
+转速：对应物理量 ，单位 RPM。指电机的输出角频率，而非叶片的线速度。转速是系统最敏感的自变量，受限于电机功率与动平衡。
+风速：对应物理量 ，单位 m/s。气流离开出风口的速...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Fri May 23 2025 06:21:17 GMT+0800">
+                
+                    2025-05-23
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/">电力电子</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/%E7%83%AD%E8%AE%BE%E8%AE%A1/">热设计</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E7%83%AD%E8%AE%BE%E8%AE%A1/">热设计</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%95%A3%E7%83%AD/">散热</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/cooling-heatsink/">阅读全文<span class="seo-reader-text">风冷散热</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
                         <a href="/comparator-design-cases/">
                             比较器设计案例
                         </a>
@@ -805,17 +892,8 @@ mjx-container[display="true"] + br {
                     <div class="home-article-content markdown-body">
                         
                             
-                            MCU 输入引脚电流特性
-输入漏电流
-
-输入引脚在数据手册中会标明输入漏电流指标。
-这是指在引脚电平保持静态（高电平或低电平）时，由于引脚内部电路与电源或地之间存在的微小漏电路径所产生的电流。
-
-动态电流
-
-当输入引脚的电平反复高低跳变时，会产生动态电流。
-每个输入引脚都存在一个微小的输入电容 （根据数据手册，典型值约为 3.5 pF）。
-当外部信号从0变到1或从1变到0时，需要对这个小电容...
+                            在开发数字电源（如 2kW LLC 恒流恒压充电模块）或电机控制器（大功率逆变器）时，硬件过流/过压保护（OCP/OVP）是防止系统“炸管”的最底层硬件防线。然而，在实验室调试初期，最常碰到的问题就是高速比较器输出被高频噪声干扰，导致保护信号误触发抖动，或者由于 MCU 输入引脚的寄生参数导致信号判决滞后甚至逻辑紊乱。
+本文结合我之前整改一个“比较器误触发保护”的真实调试案例，详细整理高速电...
                         
                     </div>
 
@@ -1551,96 +1629,6 @@ C0G 与 NP0C0G 与 NP0 为同一类一类陶瓷电介质的不同命名。NP0 �
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/c-p-l-d-minimum-system-peripheral-circuit-design/">
-                            CPLD最小系统外围电路设计
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            
-CPLD在电力电子控制系统中的角色与特性在变频器、光伏逆变器及伺服驱动等电力电子应用中，采用 C2000 DSP + CPLD 的架构时，思维方式需从 MCU 的软件主导转变为硬件描述逻辑。CPLD 在此架构中主要承担协处理器与硬件保护层的角色。与传统 MCU 相比，CPLD 在硬件设计上具有显著差异。
-C2000/STM32与CPLD硬件特性对比
-
-
-
-特性
-C2000/STM32 (M...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Wed Apr 09 2025 13:59:12 GMT+0800">
-                
-                    2025-04-09
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E6%95%B0%E5%AD%97%E6%8E%A7%E5%88%B6/">数字控制</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E6%95%B0%E5%AD%97%E6%8E%A7%E5%88%B6/%E5%BE%AE%E6%8E%A7%E5%88%B6%E5%99%A8%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">微控制器系统设计</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F/">最小系统</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">系统设计</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/c-p-l-d-minimum-system-peripheral-circuit-design/">阅读全文<span class="seo-reader-text">CPLD最小系统外围电路设计</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
@@ -1671,7 +1659,7 @@ C2000/STM32 (M...
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 109 篇文章
+                        共撰写了 110 篇文章
                     </span>
                     
                 </p>
