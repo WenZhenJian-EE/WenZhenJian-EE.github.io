@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-09-13T10:02:11.000Z">
-<meta property="article:modified_time" content="2026-06-28T07:08:01.584Z">
+<meta property="article:modified_time" content="2026-06-28T07:12:14.629Z">
 <meta property="article:author" content="WenZhenJian-EE">
 <meta property="article:tag" content="最小系统">
 <meta property="article:tag" content="系统设计">
@@ -320,7 +320,7 @@ mjx-container[display="true"] + br {
     "https://WenZhenJian-EE.github.io/images/redefine-og.webp"
   ],
   "datePublished": "2025-09-13T10:02:11.000Z",
-  "dateModified": "2026-06-28T07:08:01.584Z",
+  "dateModified": "2026-06-28T07:12:14.629Z",
   "author": {
     "@type": "Person",
     "name": "WenZhenJian-EE",
@@ -334,7 +334,7 @@ mjx-container[display="true"] + br {
       "url": "https://WenZhenJian-EE.github.io/images/redefine-logo.webp"
     }
   },
-  "description": "核心理论：GPS与GNSS射频基础系统工作频段与信号特性 GPS L1频段中心频率为1575.42MHz 北斗 B1频段中心频率为1561.098MHz 系统整体工作频段约为1560MHz至1580MHz 信号衰减特性：卫星信号属于微波频段，到达地面时极其微弱，接收功率通常在-130dBm以下，对空间噪声、传输衰减和外...",
+  "description": "我们在做车载定位或者工业物联网项目时，GPS/GNSS 射频部分往往最容易掉链子。稍有不慎，搜星慢、掉线、或者干脆一个星都搜不到。今天我就结合带团队做项目的实战经验，聊聊 GPS/GNSS 射频以及外围电路设计的核心理论与避坑指南。 GPS/GNSS 射频基础：卫星微波信号那点事儿首先我们要对天上的卫星信号有个基本的物...",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://wenzhenjian-ee.github.io/g-p-s-design/"
@@ -733,8 +733,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-06-28 15:08:01</span>
-            <span class="mobile">2026-06-28 15:08:01</span>
+            <span class="desktop">2026-06-28 15:12:14</span>
+            <span class="mobile">2026-06-28 15:12:14</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -802,30 +802,30 @@ mjx-container[display="true"] + br {
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<hr>
-<h2 id="核心理论：GPS与GNSS射频基础"><a href="#核心理论：GPS与GNSS射频基础" class="headerlink" title="核心理论：GPS与GNSS射频基础"></a>核心理论：GPS与GNSS射频基础</h2><p>系统工作频段与信号特性</p>
+			<p>我们在做车载定位或者工业物联网项目时，GPS/GNSS 射频部分往往最容易掉链子。稍有不慎，搜星慢、掉线、或者干脆一个星都搜不到。今天我就结合带团队做项目的实战经验，聊聊 GPS/GNSS 射频以及外围电路设计的核心理论与避坑指南。</p>
+<hr>
+<h2 id="GPS-GNSS-射频基础：卫星微波信号那点事儿"><a href="#GPS-GNSS-射频基础：卫星微波信号那点事儿" class="headerlink" title="GPS/GNSS 射频基础：卫星微波信号那点事儿"></a>GPS/GNSS 射频基础：卫星微波信号那点事儿</h2><p>首先我们要对天上的卫星信号有个基本的物理概念：</p>
 <ul>
-<li>GPS L1频段中心频率为1575.42MHz</li>
-<li>北斗 B1频段中心频率为1561.098MHz</li>
-<li>系统整体工作频段约为1560MHz至1580MHz</li>
-<li>信号衰减特性：卫星信号属于微波频段，到达地面时极其微弱，接收功率通常在-130dBm以下，对空间噪声、传输衰减和外部电磁干扰极为敏感</li>
+<li>GPS L1频段中心频率在 1575.42MHz。</li>
+<li>北斗 B1频段中心频率在 1561.098MHz。</li>
+<li>我们系统整体的工作频段大概在 1560MHz 至 1580MHz 之间。</li>
+<li><strong>信号衰减特性</strong>：卫星信号从几万公里的高空传下来，到达地面时已经极其微弱，接收功率通常在 -130dBm 以下。这也就是说，它对空间噪声、传输衰减和外部电磁干扰（比如板子上的DCDC、高速串口）极其敏感，这也是我们做射频设计时要小心翼翼的原因。</li>
 </ul>
 <hr>
-<p>高频元件特性：射频扼流圈与自谐振频率<br>在常规阻抗匹配网络中，电感的工作频率必须远低于其自谐振频率，因为一旦超过自谐振频率，电感会表现出容性。但在有源天线直流馈电电路中，电感的作用是射频扼流圈，核心任务是允许3.3V直流电无阻碍通过，同时阻挡1.57GHz的高频射频信号倒灌进电源地。</p>
+<h3 id="射频扼流圈（RFC）与自谐振频率（SRF）：别被常规思维框死"><a href="#射频扼流圈（RFC）与自谐振频率（SRF）：别被常规思维框死" class="headerlink" title="射频扼流圈（RFC）与自谐振频率（SRF）：别被常规思维框死"></a>射频扼流圈（RFC）与自谐振频率（SRF）：别被常规思维框死</h3><p>在设计常规的低频阻抗匹配网络时，我们都要求电感的工作频率必须远低于它的自谐振频率（SRF），因为一旦超过自谐振频率，电感就会表现出容性，不再是纯电感。</p>
+<p>但在有源天线的直流偏置馈电电路中，我们的做法恰恰相反。这里的电感是充当“射频扼流圈”（RF Choke），它的核心任务是允许3.3V直流电无阻碍地通过，同时阻挡1.57GHz的高频射频信号倒灌进我们的电源地。</p>
 <ul>
-<li>47nH电感的自谐振频率通常在800MHz至1000MHz左右</li>
-<li>超频工作原理：虽然1.57GHz超过了47nH电感的自谐振频率使其呈现容性，但此时的寄生电容极小，其整体绝对阻抗<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.564ex;" xmlns="http://www.w3.org/2000/svg" width="2.894ex" height="2.26ex" role="img" focusable="false" viewBox="0 -749.5 1279 999"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo" transform="translate(0 -0.5)"><path data-c="7C" d="M139 -249H137Q125 -249 119 -235V251L120 737Q130 750 139 750Q152 750 159 735V-235Q151 -249 141 -249H139Z"></path></g><g data-mml-node="mi" transform="translate(278,0)"><path data-c="1D44D" d="M58 8Q58 23 64 35Q64 36 329 334T596 635L586 637Q575 637 512 637H500H476Q442 637 420 635T365 624T311 598T266 548T228 469Q227 466 226 463T224 458T223 453T222 450L221 448Q218 443 202 443Q185 443 182 453L214 561Q228 606 241 651Q249 679 253 681Q256 683 487 683H718Q723 678 723 675Q723 673 717 649Q189 54 188 52L185 49H274Q369 50 377 51Q452 60 500 100T579 247Q587 272 590 277T603 282H607Q628 282 628 271Q547 5 541 2Q538 0 300 0H124Q58 0 58 8Z"></path></g><g data-mml-node="mo" transform="translate(1001,0) translate(0 -0.5)"><path data-c="7C" d="M139 -249H137Q125 -249 119 -235V251L120 737Q130 750 139 750Q152 750 159 735V-235Q151 -249 141 -249H139Z"></path></g></g></g></svg></mjx-container>依然高达几百甚至上千欧姆。相对于50欧姆的射频走线，几百欧姆的高阻抗足以完美隔离高频微波信号</li>
-<li>参数选择工程经验：理论上27nH或33nH电感的自谐振频率恰好在1.5GHz附近，阻抗尖峰最大。官方推荐使用47nH是因为芯片内部供电引脚可能带有低频噪声，47nH在较低频段的隔离效果优于27nH，是兼顾宽带滤波和高频隔离的折中参数，且经过大批量流片和电磁兼容测试验证最为稳定。封装建议选择0402，因为射频走线较细，0402焊盘寄生电容更小</li>
+<li>47nH电感的自谐振频率通常在 800MHz 至 1000MHz 左右。</li>
+<li><strong>超频工作原理</strong>：虽然 1.57GHz 已经超过了 47nH 电感的自谐振频率，导致它呈现出容性，但因为高频叠层电感的寄生电容极小，其整体绝对阻抗 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.564ex;" xmlns="http://www.w3.org/2000/svg" width="2.894ex" height="2.26ex" role="img" focusable="false" viewBox="0 -749.5 1279 999"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo" transform="translate(0 -0.5)"><path data-c="7C" d="M139 -249H137Q125 -249 119 -235V251L120 737Q130 750 139 750Q152 750 159 735V-235Q151 -249 141 -249H139Z"></path></g><g data-mml-node="mi" transform="translate(278,0)"><path data-c="1D44D" d="M58 8Q58 23 64 35Q64 36 329 334T596 635L586 637Q575 637 512 637H500H476Q442 637 420 635T365 624T311 598T266 548T228 469Q227 466 226 463T224 458T223 453T222 450L221 448Q218 443 202 443Q185 443 182 453L214 561Q228 606 241 651Q249 679 253 681Q256 683 487 683H718Q723 678 723 675Q723 673 717 649Q189 54 188 52L185 49H274Q369 50 377 51Q452 60 500 100T579 247Q587 272 590 277T603 282H607Q628 282 628 271Q547 5 541 2Q538 0 300 0H124Q58 0 58 8Z"></path></g><g data-mml-node="mo" transform="translate(1001,0) translate(0 -0.5)"><path data-c="7C" d="M139 -249H137Q125 -249 119 -235V251L120 737Q130 750 139 750Q152 750 159 735V-235Q151 -249 141 -249H139Z"></path></g></g></g></svg></mjx-container> 在1.57GHz下依然高达几百甚至上千欧姆。相对于 50 欧姆的射频走线，几百欧姆的高阻抗已经足够把高频微波信号隔离在外面了。</li>
+<li><strong>参数选型的工程经验</strong>：从理论上讲，27nH 或 33nH 电感的自谐振频率恰好在 1.5GHz 附近，阻抗尖峰最大。但很多官方参考设计推荐使用 47nH，这是因为模块内部的供电引脚可能带有一些几十兆到几百兆的低频开关噪声，47nH 在这个较低频段的隔离和滤波效果比 27nH 更好。这是一个兼顾宽频滤波和高频隔离的折中参数，而且经过了我们大批量出货和电磁兼容测试的验证。封装上我建议首选 0402，因为射频走线本身就很细，0402 的焊盘寄生电容更小。</li>
 </ul>
 <hr>
-<p>高频元件特性：去耦电容与直流偏置效应<br>陶瓷电容在直流供电下存在直流偏置效应。在3.3V直流偏置下，常规10uF电容的实际有效容量可能会大幅衰减到5uF甚至更低。</p>
+<h3 id="直流偏置效应：大电容不可忽视的容量衰减"><a href="#直流偏置效应：大电容不可忽视的容量衰减" class="headerlink" title="直流偏置效应：大电容不可忽视的容量衰减"></a>直流偏置效应：大电容不可忽视的容量衰减</h3><p>我们在选型陶瓷电容时，很容易忽视直流偏置效应（DC Bias Effect）。在3.3V直流电压下，一颗常规的 10uF 陶瓷电容的实际有效容量可能会打折到 5uF 甚至更低。</p>
 <ul>
-<li>应对策略：提高额定耐压值，并选择温度特性更好的介质材料</li>
-<li>参数选择工程经验：主电源滤波去耦电容建议耐压选10V或以上。在车载户外宽温环境下，必须选用X7R材质以抵抗直流偏置效应和温度变化带来的容量衰减。在10uF大电容基础上，建议并联一个0.1uF的高频去耦电容以滤除高频噪声</li>
+<li><strong>应对策略</strong>：提高额定耐压，并选用温度特性更好的介质。</li>
+<li><strong>选型经验</strong>：主电源的滤波电容耐压一定要选 10V 或以上。由于车载或户外设备工作在宽温环境下，必须选用 X7R 材质以抵抗直流偏置和温漂导致的电容容量衰减。在 10uF 大电容旁，别忘了并联一个 0.1uF 的高频去耦电容。</li>
 </ul>
-<hr>
-<p>核心射频元器件工程选型推荐</p>
-<table>
+<h3 id="我的常用射频-BOM-选型清单"><a href="#我的常用射频-BOM-选型清单" class="headerlink" title="我的常用射频 BOM 选型清单"></a>我的常用射频 BOM 选型清单</h3><table>
 <thead>
 <tr>
 <th>元器件类型</th>
@@ -857,25 +857,21 @@ mjx-container[display="true"] + br {
 <td>紧靠主电源引脚放置，配合10uF电容滤除高频干扰</td>
 </tr>
 </tbody></table>
-<h2 id="射频前端架构：有源与无源"><a href="#射频前端架构：有源与无源" class="headerlink" title="射频前端架构：有源与无源"></a>射频前端架构：有源与无源</h2><p>有源天线架构与极简馈电网络<br>有源天线内部集成了LNA，接收并放大微弱的卫星信号，需要外部提供直流供电以驱动内部放大器。</p>
+<hr>
+<h2 id="射频前端架构：有源与无源天线的取舍"><a href="#射频前端架构：有源与无源天线的取舍" class="headerlink" title="射频前端架构：有源与无源天线的取舍"></a>射频前端架构：有源与无源天线的取舍</h2><h3 id="有源天线架构与极简馈电网络"><a href="#有源天线架构与极简馈电网络" class="headerlink" title="有源天线架构与极简馈电网络"></a>有源天线架构与极简馈电网络</h3><p>有源天线内部自带低噪声放大器（LNA），能够把微弱的卫星信号在天线端就地放大。因为里面有源器件在工作，所以需要我们通过射频同轴线向天线内部送直流电。</p>
 <ul>
-<li>电路拓扑：芯片的VCC_RF引脚输出3.3V直流电源，通过串联一颗47nH高频射频电感，叠加连接到RF_IN引脚的50欧姆走线上。直流电顺着同轴线缆输送给天线内部的LNA，放大的射频信号再沿同轴线反向传回RF_IN引脚</li>
-<li>隔离原理：47nH电感在此处作为射频扼流圈，允许3.3V直流电顺利通过，同时利用其在高频下的高阻抗特性，阻挡1.57GHz的微波信号倒灌进电源地</li>
-<li>保护机制：芯片内部已具备天线短路保护功能，短路时最大电流限制在50mA，正常工作电流约为15mA</li>
-<li>避坑指南：严禁在射频线路上并联低容值TVS管。因为射频线上带有3.3V直流电压，工作电压低于3.3V的TVS管会瞬间导通，导致电源对地短路。此外，TVS管的寄生电容会严重破坏50欧姆阻抗匹配，导致信号衰减</li>
-<li>避坑指南：不需要预留或添加PI型匹配网络。模块针对有源天线已有完善的内部处理，走线需保持极简纯净，仅需控制好走线的50欧姆单端阻抗即可</li>
+<li><strong>电路拓扑</strong>：芯片的 <code>VCC_RF</code> 引脚会输出 3.3V 直流电，我们通过串联一颗 47nH 高频电感，叠加连接到 <code>RF_IN</code> 的 50 欧姆微带线上。直流电顺着同轴线缆送上去喂饱天线内部的 LNA，而被 LNA 放大的射频信号再沿着同轴线反向传回模块的 <code>RF_IN</code> 引脚。</li>
+<li><strong>避坑点1</strong>：千万不要在有偏置供电的射频走线上并联普通的低压 TVS 管。因为射频线上带有 3.3V 直流偏置电压，工作电压低的 TVS 会导通，导致电源直接对地短路。同时，常规 TVS 的寄生电容太大（几十pF），会把50欧姆的阻抗匹配彻底破坏掉，导致搜不到星。</li>
+<li><strong>避坑点2</strong>：有源天线方案一般不需要我们在外部预留 π 型匹配网络。芯片内部针对有源天线已经做了很好的兼容，走线要保持干净纯正，只控好 50 欧姆阻抗就行。</li>
 </ul>
 <hr>
-<p>无源天线架构与外部放大器设计<br>无源天线内部仅有纯金属振子，没有放大电路。卫星微波信号到达地面时通常在-130dBm以下，极其微弱，且经过外接馈线会产生额外衰减，到达PCB时信号已经很难被芯片内部放大器直接处理，因此必须在主芯片外增加一级外部LNA。</p>
+<h3 id="无源天线架构与外部放大器设计"><a href="#无源天线架构与外部放大器设计" class="headerlink" title="无源天线架构与外部放大器设计"></a>无源天线架构与外部放大器设计</h3><p>无源天线内部仅仅是纯金属辐射体，没有任何放大电路。卫星信号到达 PCB 时通常在 -130dBm 以下，由于馈线本身的衰减，此时信号弱得可怜，芯片内部的 LNA 很难直接处理好。所以，如果用无源天线，我们必须在主板上加一级外部 LNA。</p>
 <ul>
-<li>核心改动点：必须彻底拆除有源方案中的47nH直流馈电电感，断开VCC_RF与RF_IN之间的直接连接。无源天线是纯金属导线，若保留此电感会导致3.3V直流电直接对地短路</li>
-<li>射频前端匹配与隔直：在天线接口进来的信号走线上，先串联一个隔直电容470pF，耐压50V，误差5%，封装C0402；接着串联一个输入阻抗匹配电感6.8nH，额定电流300mA，误差5%，高频叠层电感，封装L0402</li>
-<li>外部放大器连接：阻抗匹配电感的另一端连接至外部LNA的RFIN引脚。外部LNA的RFOUT引脚直接连接至主控芯片的RF_IN引脚</li>
-<li>供电与动态休眠控制：芯片的VCC_RF引脚连接至外部LNA的电源引脚VCC和使能引脚SHDN。当模块进入休眠状态时，会自动关断外部LNA以节省功耗</li>
-<li>滤波与接地要求：在紧靠外部LNA的VCC引脚处，对地并联一个去耦电容0.1uF，耐压50V，误差10%，X7R材质，封装C0402。外部LNA的GND引脚必须就近连接到系统GND，并打多个过孔下地以保证射频回流</li>
+<li><strong>核心改动点</strong>：必须彻底拿掉有源方案中的 47nH 直流偏置电感，切断 <code>VCC_RF</code> 与 <code>RF_IN</code> 之间的直流连接。因为无源天线在直流上相当于直接接地短路，如果不拿掉电感，3.3V 电源就直接短路烧掉了。</li>
+<li><strong>前端匹配与隔直</strong>：在天线接口进来的信号走线上，先串联一颗 470pF 的隔直电容（阻断直流，只放行微波信号）；接着串联一个输入匹配电感（通常为 6.8nH 左右高频叠层电感，调整阻抗）。</li>
+<li><strong>外部 LNA 连接</strong>：阻抗匹配电感的另一端接外部 LNA（如 AT2659）的 RFIN 端口。LNA 的 RFOUT 端口直接接主芯片的 <code>RF_IN</code>。</li>
+<li><strong>供电控制</strong>：把芯片的 <code>VCC_RF</code> 连到外部 LNA 的电源引脚（VCC 和使能端 SHDN）。这样当模块进入休眠时，外部 LNA 也会跟着关断，节省待机电流。</li>
 </ul>
-<hr>
-<p>外部放大器参考选型与参数配套</p>
 <table>
 <thead>
 <tr>
@@ -910,61 +906,42 @@ mjx-container[display="true"] + br {
 <td>滤除LNA电源端高频噪声干扰</td>
 </tr>
 </tbody></table>
-<h2 id="硬件接口与连接器选型体系"><a href="#硬件接口与连接器选型体系" class="headerlink" title="硬件接口与连接器选型体系"></a>硬件接口与连接器选型体系</h2><p>射频连接器特性大观</p>
-<ul>
-<li>IPEX 1代接口：微型贴片座子，尺寸极小（约3mm × 3mm），无螺纹，采用按扣式连接。适合板内走线空间受限的场景，必须配合软转接线使用。由于连接为软线过渡，抗震性极好，外部应力不会直接传导至PCB焊盘。</li>
-<li>SMA接口：体积较大（宽度近10mm），带有粗壮的螺纹结构，连接牢固。适合作为设备机壳的外部天线接口，可穿透金属机壳并通过螺母进行固定。</li>
-</ul>
 <hr>
-<p>金属外壳设备的法拉第笼效应与破局方案<br>金属外壳会形成法拉第笼，彻底屏蔽GPS卫星的微波信号。因此，任何放置在金属壳内部的天线（包括陶瓷贴片天线）均无法接收到卫星信号。必须采用将天线引出机壳外的方案。</p>
+<h2 id="硬件接口与连接器：实战选型权衡"><a href="#硬件接口与连接器：实战选型权衡" class="headerlink" title="硬件接口与连接器：实战选型权衡"></a>硬件接口与连接器：实战选型权衡</h2><ul>
+<li><strong>IPEX 1代座子</strong>：体积特别小，属于按扣式连接。适合板内空间紧张的场景。不过它只能接细同轴软线，抗震性不错，应力不会直接撕裂 PCB 焊盘。</li>
+<li><strong>SMA接口</strong>：块头大，带螺纹锁紧。适合装在机壳上，抗拉扯。</li>
+</ul>
+<h3 id="金属外壳的“法拉第笼”避坑方案"><a href="#金属外壳的“法拉第笼”避坑方案" class="headerlink" title="金属外壳的“法拉第笼”避坑方案"></a>金属外壳的“法拉第笼”避坑方案</h3><p>如果你们的设备用的是金属外壳，这会形成一个完美的法拉第笼，卫星微波信号根本穿透不进来。如果你用贴片陶瓷天线直接焊在金属壳内的主板上，那搜星信号绝对是零。</p>
 <ul>
-<li>错误方案（硬连接）：直接在PCB板端焊接SMA直插座子。此方案对整机结构装配公差要求极高，PCB边缘必须与机壳开孔严丝合缝。且在强震动环境下，外部长天线受到的杠杆力会直接传导至PCB，极易撕裂焊盘或损坏板边。</li>
-<li>标准破局方案（三步走软连接）：<ol>
-<li>板端座子：在PCB表层焊接微型IPEX 1代贴片射频座。</li>
-<li>过壳桥梁：使用IPEX 1代转SMA母头（外螺内孔）射频软转接线（长度根据结构定，通常为6cm至15cm）。IPEX端扣合在PCB上，SMA端穿透金属机壳，并在外部用自带螺母锁紧防水。</li>
-<li>外部天线：在机壳外部露出的SMA接口上，直接拧上成品GPS/北斗双模有源天线（SMA公头，内螺内针）。</li>
+<li><strong>错误做法</strong>：在 PCB 边缘直接焊接直插的 SMA 座子，指望它穿出外壳。这种设计装配公差非常难控制，稍微对不准外壳孔就会导致受力不均。如果外部天线被拉扯，杠杆力会直接撕裂 PCB 上的 SMA 焊盘。</li>
+<li><strong>标准的三步走软连接方案</strong>：<ol>
+<li><strong>板端</strong>：在 PCB 表层焊接微型的 IPEX 1代座。</li>
+<li><strong>过壳桥梁</strong>：用一根 IPEX 转 SMA 母头（带螺母、外螺内孔）的射频转接软线（长约6-15cm）。IPEX端扣在主板上，SMA端穿出金属壳，用螺母在外壳锁紧防水。</li>
+<li><strong>外置天线</strong>：在金属外壳露出的 SMA 口上，直接拧上外置的双模有源天线。</li>
 </ol>
 </li>
 </ul>
-<hr>
-<p>多频段天线选型：互斥与共存<br>虽然天线在外观上可能相同（如黑色的胶棒天线或蘑菇头天线），但由于工作频段差异，绝对不能混用。</p>
+<h3 id="天线别混用：4G-与-GPS-频率不匹配就是死路一条"><a href="#天线别混用：4G-与-GPS-频率不匹配就是死路一条" class="headerlink" title="天线别混用：4G 与 GPS 频率不匹配就是死路一条"></a>天线别混用：4G 与 GPS 频率不匹配就是死路一条</h3><p>很多天线虽然长得很像（都是黑色小胶棒或小吸盘），但千万不能混用。</p>
 <ul>
-<li>频率匹配与驻波比：天线严重依赖物理尺寸来产生特定频率的谐振。GPS/北斗天线的谐振点在1.57GHz和1.56GHz附近；而4G天线的谐振点通常在800MHz至900MHz和1.8GHz至2.6GHz。若将4G无源天线连接至GPS接口，频率严重不匹配会导致极高的驻波比，信号产生巨大反射，芯片将无法搜星。</li>
-<li>架构归一化建议：为了精简BOM种类并提升整机抗震可靠性，强烈建议4G模块侧也采用与GPS侧完全相同的机械结构方案。即：板端统一使用IPEX 1代座子（BOM数量为2），机壳穿孔统一使用IPEX转SMA母头软转接线（BOM数量为2），仅在机壳外部拧上各自对应频段的外部天线（一根4G天线，一根GPS天线）。</li>
-<li>空间隔离规范：4G模块在发射信号时，峰值功率可达2W（约33dBm）左右，而GPS模块接收的卫星信号极其微弱。在车顶安装这两个独立的外置天线时，其物理直线距离必须保持在至少20cm以上。若距离过近，4G发射的强功率微波会直接阻塞甚至击穿GPS天线内部的低噪声放大器。严禁在未经高规格射频隔离的情况下，让4G与GPS直接物理共用同一根天线或同一条射频走线。</li>
-</ul>
-<h2 id="ATGM336H芯片外围控制与电源域"><a href="#ATGM336H芯片外围控制与电源域" class="headerlink" title="ATGM336H芯片外围控制与电源域"></a>ATGM336H芯片外围控制与电源域</h2><p>主供电网络系统设计</p>
-<ul>
-<li>芯片主供电由VCC引脚接入，额定直流输入为3.3V，允许误差10%，极限耐压范围为-0.3V至3.6V</li>
-<li>模块连续运行典型功耗小于26mA，包含射频天线在内的峰值电流最大约为100mA</li>
-<li>去耦滤波网络配置：在靠近VCC引脚的位置，必须放置旁路去耦电容以滤除高频噪声并保证瞬态电流响应。工程经验参数推荐并联一个10uF主滤波电容（耐压10V，误差10%，X7R材质，C0603封装）和一个0.1uF高频去耦电容（耐压50V，误差10%，X7R材质，C0603封装），电容的另一端就近连接至系统GND网络</li>
+<li>GPS/北斗天线的谐振点在 1.57GHz/1.56GHz 附近。</li>
+<li>4G天线工作在 800MHz<del>900MHz 以及 1.8GHz</del>2.6GHz。</li>
+<li>如果你拿 4G 天线接到 GPS 接口上，因为阻抗完全不匹配，会产生巨大的驻波反射，根本搜不到星。</li>
+<li><strong>空间隔离要求</strong>：4G 模块发射信号时，功率能达到 2W（33dBm）左右，而 GPS 接收的信号只有 -130dBm。两根天线的直线距离在车顶或设备箱体上必须<strong>至少保持 20cm 以上</strong>。如果靠得太近，4G 发射的强信号会直接阻塞甚至烧毁 GPS 内部的 LNA。绝对不要让它们共用一根双工天线，除非你在射频前端加了高规格的双工滤波器。</li>
 </ul>
 <hr>
-<p>备份电源系统设计</p>
+<h2 id="ATGM336H-芯片外围与电源设计"><a href="#ATGM336H-芯片外围与电源设计" class="headerlink" title="ATGM336H 芯片外围与电源设计"></a>ATGM336H 芯片外围与电源设计</h2><h3 id="主供电网络"><a href="#主供电网络" class="headerlink" title="主供电网络"></a>主供电网络</h3><p>芯片的主供电 VCC 是 3.3V。在主板上，模块连续运行典型功耗在 26mA 左右，算上有源天线的偏置供电，峰值电流会达到 100mA 左右。我们在靠近 VCC 引脚的地方，必须并联一个 10uF（C0603，X7R）和一个 0.1uF（C0603，X7R）的去耦电容，电容的地一定要就近打孔直达主地层。</p>
+<h3 id="备份电源-VBAT"><a href="#备份电源-VBAT" class="headerlink" title="备份电源 VBAT"></a>备份电源 VBAT</h3><p>VBAT 是给芯片内部的 RTC 和 SRAM 供电的，功耗只有区区 8uA。</p>
 <ul>
-<li>芯片后备电源由VBAT引脚接入，主要为内部RTC和SRAM模块供电，典型消耗电流极低，仅为8uA。工作电压范围为1.5V至3.6V，极限耐压为-0.3V至3.6V</li>
-<li>热启动模式设计：若系统要求开机实现秒级热启动定位，需接入3V不可充电纽扣型锂电池（推荐选型CR1220或CR2032，配合标准纽扣电池座）。电池正极接VBAT引脚，负极接GND。因该引脚功耗极微，单颗不可充电电池即可维持数年使用寿命</li>
-<li>充放电安全警告：常规硬件设计默认使用不可充电电池，绝对禁止向其馈入充电电流以防发生漏液膨胀灾难。若需从3.3V主电源引出线路为后备电源充电，必须改用可充电电池或法拉电容，并在充电回路上增加串联二极管与限流电阻</li>
-<li>冷启动模式设计：若系统允许每次开机均执行冷启动寻星（耗时约30秒），且硬件结构不安装纽扣电池，必须将VBAT引脚直接连接至3.3V主电源网络</li>
-<li>悬空隐患与致命错误：绝对禁止将VBAT引脚作悬空处理。悬浮的内部电源域引脚极易引入空间电磁噪声，导致内部逻辑状态不确定，并可能增加无法控制的额外漏电流</li>
+<li><strong>热启动（秒定位）方案</strong>：接一颗 3V 的 CR1220 或 CR2032 纽扣电池。因为电流极小，纽扣电池可以维持好几年。</li>
+<li><strong>充电安全隐患</strong>：如果我们选用的纽扣电池是不可充电的锂电池，绝对不能让 3.3V 对它充电，否则有漏液或膨胀爆炸的风险。如果打算充电，必须选用可充锂电池或法拉电容，并串联限流电阻和二极管。</li>
+<li><strong>冷启动方案</strong>：如果硬件上不装电池，允许每次开机都从头搜星（需要30秒左右），那么<strong>必须把 VBAT 引脚直接连到 3.3V 主电源上</strong>。</li>
+<li><strong>避坑点</strong>：绝对不能把 VBAT 引脚悬空。悬浮的引脚会引入高频干扰，导致芯片工作异常并产生无法控制的漏电流。</li>
 </ul>
-<hr>
-<p>串行通信与动态控制接口设计</p>
-<ul>
-<li>UART通信链路：TXD引脚和RXD引脚用于导航数据输出与指令输入，数字引脚极限耐压为-0.3V至VCC电压加0.2V。设计时需与主控MCU的UART接口进行RX与TX的交叉连接</li>
-<li>信号完整性与限流保护：强烈建议在TXD和RXD两根信号线上分别串联阻抗匹配电阻，工程参数推荐使用33欧姆或100欧姆的贴片电阻（精度1%，R0603封装）。该匹配电阻可有效抑制走线较长或阻抗不匹配时产生的信号过冲与振铃反射，同时提供一定的限流保护以防止MCU与GPS芯片IO口损毁</li>
-<li>模块休眠控制：ON/OFF引脚为低电平有效逻辑。若需主控MCU控制模块进行动态休眠，可在该引脚外部连接一个2.2K欧姆（精度1%，R0603封装）的上拉电阻至3.3V电源网络。若系统无需动态休眠控制，直接将该引脚悬空即可，模块内部已集成上拉网络</li>
-<li>系统硬件复位：nRESET引脚为低电平有效逻辑。在常规车载与定位应用中无需外部硬件复位干预，严格遵照数据手册规范作悬空处理即可</li>
+<h3 id="串口控制与-1PPS"><a href="#串口控制与-1PPS" class="headerlink" title="串口控制与 1PPS"></a>串口控制与 1PPS</h3><ul>
+<li><strong>串口匹配</strong>：在 TXD 和 RXD 信号线上，我强烈建议串接 33 欧姆或 100 欧姆的限流匹配电阻。这可以有效抑制长走线引起的过冲和振铃反射，防止 MCU 或 GPS 芯片被静电击穿。</li>
+<li><strong>休眠控制</strong>：ON/OFF引脚低电平有效，如果不用 MCU 动态控制休眠，直接悬空（模块内部已集成了上拉）。</li>
+<li><strong>1PPS秒脉冲</strong>：1PPS 引脚可以输出纳秒级的秒脉冲信号，对齐到 UTC 整秒。主要用于给传感器数据打高精度时间戳，如果不需要高精度时钟同步，直接悬空处理。</li>
 </ul>
-<hr>
-<p>高精度秒脉冲输出设计</p>
-<ul>
-<li>1PPS引脚可输出极高精度的秒脉冲信号，其脉冲上升沿与UTC时间的整秒时刻实现绝对对齐，时间同步精度可达到纳秒级别</li>
-<li>典型应用场景：广泛应用于分布式系统（如多基站通讯、多车辆协同）中本地RTC时钟的高精度同步校准，或结合UART接口输出的NMEA报文，为瞬态传感器数据打上高精度时间戳</li>
-<li>悬空处理规范：对于仅需获取基础经纬度坐标进行定位的常规设备，由于不涉及纳秒级系统时钟同步需求，将1PPS引脚直接悬空是最标准且安全的设计方式</li>
-</ul>
-<hr>
-<p>非功能性与预留引脚处理规范</p>
 <table>
 <thead>
 <tr>
@@ -999,26 +976,17 @@ mjx-container[display="true"] + br {
 <td>在仅使用UART通信接口的系统中，必须全部悬空</td>
 </tr>
 </tbody></table>
-<h2 id="PCB-Layout-核心准则"><a href="#PCB-Layout-核心准则" class="headerlink" title="PCB Layout 核心准则"></a>PCB Layout 核心准则</h2><p>射频阻抗控制与走线规范<br>射频走线（从模块的RF_IN引脚到IPEX天线座子的连接线）承载着1.57GHz的高频微波信号，是整个Layout设计中最核心的部分，直接决定了最终的收星效果。</p>
-<ul>
-<li>50欧姆单端阻抗控制：该段射频走线必须严格进行50欧姆单端阻抗匹配。在设计时，需结合PCB的板材厚度、介电常数以及铜厚，计算出合适的线宽和距地间距。由于GPS信号频率固定，只要走线阻抗控制在50欧姆，就不需要添加额外的匹配网络补偿。</li>
-<li>表层走线原则：射频走线应尽可能在PCB表层完成（通常只有几毫米长），尽量避免打孔换层。因为过孔会引入额外的寄生电感和电容，破坏阻抗连续性。</li>
-<li>连接器接地处理：IPEX贴片射频座子的三个外壳屏蔽引脚（引脚1、2、3）必须全部就近连接到系统的GND网络。若悬空，天线的同轴线屏蔽层将处于悬浮状态，导致射频链路崩溃，模块将完全无法收到信号。</li>
-</ul>
 <hr>
-<p>地平面完整性与屏蔽隔离<br>高频射频信号的传输不仅依赖信号线本身，更依赖完整的接地回流路径。良好的接地设计能有效控制阻抗并屏蔽外部干扰。</p>
+<h2 id="GPS-射频-Layout-避坑铁律"><a href="#GPS-射频-Layout-避坑铁律" class="headerlink" title="GPS 射频 Layout 避坑铁律"></a>GPS 射频 Layout 避坑铁律</h2><p>从模块 <code>RF_IN</code> 到 IPEX 天线座子的这段射频走线，承载着 1.57GHz 的微波信号，是 Layout 中的重中之重。</p>
 <ul>
-<li>表层共面波导包地（CPWG）：射频走线的两侧必须被完整的GND铜皮包围。这种共面波导结构有助于收束电磁场，减少信号向外辐射和受外界干扰。</li>
-<li>屏蔽地孔（过孔）阵列：在包裹射频走线的表层地铜皮上，必须沿走线方向每隔约2mm放置一个屏蔽地孔（GND Via）。这些地孔能将表层地与内层/底层的主地平面紧密缝合，形成类似同轴电缆的立体屏蔽墙，防止微波信号泄露。</li>
-<li>参考地平面的连续性：射频走线的正下方（即相邻的第二层）必须是完整、连续的实体地平面，严禁有任何其他信号线跨越切割该区域，以保证信号回流路径的最短和阻抗的稳定。</li>
+<li><strong>50Ω单端阻抗控制</strong>：必须控阻抗。我们要根据板厂提供的叠层结构（板厚、介电常数、铜厚）算出 50 欧姆的微带线宽度。</li>
+<li><strong>表层走线，严禁打孔</strong>：射频信号线必须走在 Top 层（表面），通常只有几毫米到十几毫米长，绝对不要为了图方便打孔换层。因为每一个过孔都是一个不连续点，会带来额外的寄生电感和电容，把阻抗彻底搞砸。</li>
+<li><strong>IPEX座屏蔽壳接地</strong>：IPEX 射频座的三个屏蔽接地引脚必须直接打孔接主地，千万别悬空，否则天线的屏蔽层就会失效，信号直接归零。</li>
+<li><strong>共面波导包地（CPWG）</strong>：射频走线左右两侧大面积包地，并且沿着走线两侧每隔 2mm 就打一个 GND 过孔，把表层地和内层地“缝合”起来。这相当于给信号线做了一堵法拉第笼的屏蔽墙。</li>
+<li><strong>参考地完整性</strong>：射频走线正下方的第二层，必须是完整大面积的地铜皮，绝对不能在这个区域走任何信号线或者进行切割。</li>
+<li><strong>干扰源规避</strong>：射频部分要绝对远离 DCDC 的开关电感、CAN 收发器、主控的晶振等强干扰源。这些地方的高频谐波一旦耦合进射频线，搜星信噪比会降到冰点。</li>
 </ul>
-<hr>
-<p>强电与强电磁干扰规避<br>在车载协控制器等复杂的强电磁环境中，GPS射频链路这种极度敏感的微信号极易被强干扰淹没。</p>
-<ul>
-<li>物理空间隔离：GPS模块及其射频前端走线、天线接口必须在PCB布局上尽量远离系统中的强干扰源。</li>
-<li>重点规避对象：包括但不限于DC-DC电源模块的电感与开关节点、电机驱动模块的大电流回路与相线接口、高频翻转的CAN总线收发器以及主控MCU的外部晶振电路。这些节点产生的谐波噪声或高频大电流开关噪声一旦耦合进射频链路，将严重降低信噪比。</li>
-<li>独立铺铜区域：在条件允许的情况下，可以为GPS模块区域划分一块相对独立的铺铜地平面，仅通过单点或窄带与系统主地相连，以减少系统级地弹噪声的串扰。</li>
-</ul>
+<p>在拉板子时，能保持射频走线纯净，那么 GPS 的性能就成功了一大半。大家在画板时多注意这些细节，少走弯路。</p>
 
 		</div>
 
@@ -1033,7 +1001,7 @@ mjx-container[display="true"] + br {
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-06-28 15:08:01
+                    :</strong> 2026-06-28 15:12:14
             </li>
         
         <li>
@@ -1078,12 +1046,12 @@ mjx-container[display="true"] + br {
     <div class="recommended-article-group"><a class="recommended-article-item" href="/4-g-design/" title="4G设计" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="4G设计" class="!max-w-none">
   <span class="title">4G设计</span>
-</a><a class="recommended-article-item" href="/communication-datasheet-reading/" title="通信数据手册阅读" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="通信数据手册阅读" class="!max-w-none">
-  <span class="title">通信数据手册阅读</span>
-</a><a class="recommended-article-item" href="/power-datasheet-reading/" title="电源数据手册阅读" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="电源数据手册阅读" class="!max-w-none">
-  <span class="title">电源数据手册阅读</span>
+</a><a class="recommended-article-item" href="/emi-emc-test-supplier/" title="EMI、EMC测试设备供应商" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="EMI、EMC测试设备供应商" class="!max-w-none">
+  <span class="title">EMI、EMC测试设备供应商</span>
+</a><a class="recommended-article-item" href="/emc-fundamentals/" title="EMC基础" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="EMC基础" class="!max-w-none">
+  <span class="title">EMC基础</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
@@ -1093,9 +1061,9 @@ mjx-container[display="true"] + br {
    <div class="recommended-article-group"><a class="recommended-article-item" href="/4-g-design/" title="4G设计" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="4G设计" class="!max-w-none">
   <span class="title">4G设计</span>
-</a><a class="recommended-article-item" href="/communication-datasheet-reading/" title="通信数据手册阅读" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="通信数据手册阅读" class="!max-w-none">
-  <span class="title">通信数据手册阅读</span>
+</a><a class="recommended-article-item" href="/emi-emc-test-supplier/" title="EMI、EMC测试设备供应商" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="EMI、EMC测试设备供应商" class="!max-w-none">
+  <span class="title">EMI、EMC测试设备供应商</span>
 </a></div>
    </div>
   </div>
@@ -1141,7 +1109,7 @@ mjx-container[display="true"] + br {
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
 		<div class="page-title">GPS设计</div>
-		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E7%90%86%E8%AE%BA%EF%BC%9AGPS%E4%B8%8EGNSS%E5%B0%84%E9%A2%91%E5%9F%BA%E7%A1%80"><span class="nav-text">核心理论：GPS与GNSS射频基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%84%E9%A2%91%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%EF%BC%9A%E6%9C%89%E6%BA%90%E4%B8%8E%E6%97%A0%E6%BA%90"><span class="nav-text">射频前端架构：有源与无源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E6%8E%A5%E5%8F%A3%E4%B8%8E%E8%BF%9E%E6%8E%A5%E5%99%A8%E9%80%89%E5%9E%8B%E4%BD%93%E7%B3%BB"><span class="nav-text">硬件接口与连接器选型体系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ATGM336H%E8%8A%AF%E7%89%87%E5%A4%96%E5%9B%B4%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%94%B5%E6%BA%90%E5%9F%9F"><span class="nav-text">ATGM336H芯片外围控制与电源域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PCB-Layout-%E6%A0%B8%E5%BF%83%E5%87%86%E5%88%99"><span class="nav-text">PCB Layout 核心准则</span></a></li></ol>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#GPS-GNSS-%E5%B0%84%E9%A2%91%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%8D%AB%E6%98%9F%E5%BE%AE%E6%B3%A2%E4%BF%A1%E5%8F%B7%E9%82%A3%E7%82%B9%E4%BA%8B%E5%84%BF"><span class="nav-text">GPS&#x2F;GNSS 射频基础：卫星微波信号那点事儿</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%84%E9%A2%91%E6%89%BC%E6%B5%81%E5%9C%88%EF%BC%88RFC%EF%BC%89%E4%B8%8E%E8%87%AA%E8%B0%90%E6%8C%AF%E9%A2%91%E7%8E%87%EF%BC%88SRF%EF%BC%89%EF%BC%9A%E5%88%AB%E8%A2%AB%E5%B8%B8%E8%A7%84%E6%80%9D%E7%BB%B4%E6%A1%86%E6%AD%BB"><span class="nav-text">射频扼流圈（RFC）与自谐振频率（SRF）：别被常规思维框死</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E6%B5%81%E5%81%8F%E7%BD%AE%E6%95%88%E5%BA%94%EF%BC%9A%E5%A4%A7%E7%94%B5%E5%AE%B9%E4%B8%8D%E5%8F%AF%E5%BF%BD%E8%A7%86%E7%9A%84%E5%AE%B9%E9%87%8F%E8%A1%B0%E5%87%8F"><span class="nav-text">直流偏置效应：大电容不可忽视的容量衰减</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E5%B8%B8%E7%94%A8%E5%B0%84%E9%A2%91-BOM-%E9%80%89%E5%9E%8B%E6%B8%85%E5%8D%95"><span class="nav-text">我的常用射频 BOM 选型清单</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%84%E9%A2%91%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%EF%BC%9A%E6%9C%89%E6%BA%90%E4%B8%8E%E6%97%A0%E6%BA%90%E5%A4%A9%E7%BA%BF%E7%9A%84%E5%8F%96%E8%88%8D"><span class="nav-text">射频前端架构：有源与无源天线的取舍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E6%BA%90%E5%A4%A9%E7%BA%BF%E6%9E%B6%E6%9E%84%E4%B8%8E%E6%9E%81%E7%AE%80%E9%A6%88%E7%94%B5%E7%BD%91%E7%BB%9C"><span class="nav-text">有源天线架构与极简馈电网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E6%BA%90%E5%A4%A9%E7%BA%BF%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%A4%96%E9%83%A8%E6%94%BE%E5%A4%A7%E5%99%A8%E8%AE%BE%E8%AE%A1"><span class="nav-text">无源天线架构与外部放大器设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E6%8E%A5%E5%8F%A3%E4%B8%8E%E8%BF%9E%E6%8E%A5%E5%99%A8%EF%BC%9A%E5%AE%9E%E6%88%98%E9%80%89%E5%9E%8B%E6%9D%83%E8%A1%A1"><span class="nav-text">硬件接口与连接器：实战选型权衡</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%91%E5%B1%9E%E5%A4%96%E5%A3%B3%E7%9A%84%E2%80%9C%E6%B3%95%E6%8B%89%E7%AC%AC%E7%AC%BC%E2%80%9D%E9%81%BF%E5%9D%91%E6%96%B9%E6%A1%88"><span class="nav-text">金属外壳的“法拉第笼”避坑方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A9%E7%BA%BF%E5%88%AB%E6%B7%B7%E7%94%A8%EF%BC%9A4G-%E4%B8%8E-GPS-%E9%A2%91%E7%8E%87%E4%B8%8D%E5%8C%B9%E9%85%8D%E5%B0%B1%E6%98%AF%E6%AD%BB%E8%B7%AF%E4%B8%80%E6%9D%A1"><span class="nav-text">天线别混用：4G 与 GPS 频率不匹配就是死路一条</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ATGM336H-%E8%8A%AF%E7%89%87%E5%A4%96%E5%9B%B4%E4%B8%8E%E7%94%B5%E6%BA%90%E8%AE%BE%E8%AE%A1"><span class="nav-text">ATGM336H 芯片外围与电源设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E4%BE%9B%E7%94%B5%E7%BD%91%E7%BB%9C"><span class="nav-text">主供电网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%87%E4%BB%BD%E7%94%B5%E6%BA%90-VBAT"><span class="nav-text">备份电源 VBAT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%B2%E5%8F%A3%E6%8E%A7%E5%88%B6%E4%B8%8E-1PPS"><span class="nav-text">串口控制与 1PPS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GPS-%E5%B0%84%E9%A2%91-Layout-%E9%81%BF%E5%9D%91%E9%93%81%E5%BE%8B"><span class="nav-text">GPS 射频 Layout 避坑铁律</span></a></li></ol>
 
 	</div>
 </div>
