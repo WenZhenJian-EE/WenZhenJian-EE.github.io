@@ -11,7 +11,7 @@
   <rights>All rights reserved 2026, WenZhenJian-EE</rights>
   <subtitle>电力电子与硬件开发</subtitle>
   <title>WenZhenJian's Tech Blog</title>
-  <updated>2026-06-28T07:28:31.700Z</updated>
+  <updated>2026-06-28T07:32:15.512Z</updated>
   <entry>
     <author>
       <name>WenZhenJian-EE</name>
@@ -30,7 +30,7 @@
       <![CDATA[<h2 id="功率半导体栅极驱动与有源米勒钳位（Active-Miller-Clamp）调试笔记"><a href="#功率半导体栅极驱动与有源米勒钳位（Active-Miller-Clamp）调试笔记" class="headerlink"]]>
     </summary>
     <title>栅极驱动与有源米勒钳位调试笔记</title>
-    <updated>2026-06-28T07:28:31.700Z</updated>
+    <updated>2026-06-28T07:32:15.512Z</updated>
   </entry>
   <entry>
     <author>
@@ -50,7 +50,7 @@
       <![CDATA[<h2 id="硬件系统级接地与-ESD-瞬态电荷平衡的底层逻辑"><a href="#硬件系统级接地与-ESD-瞬态电荷平衡的底层逻辑" class="headerlink" title="硬件系统级接地与 ESD 瞬态电荷平衡的底层逻辑"></a>硬件系统级接地与 ESD]]>
     </summary>
     <title>硬件系统级接地与地线设计的几点感悟</title>
-    <updated>2026-06-28T07:28:31.705Z</updated>
+    <updated>2026-06-28T07:32:15.519Z</updated>
   </entry>
   <entry>
     <author>
@@ -70,7 +70,7 @@
       <![CDATA[<h2 id="大功率系统安规设计的底层逻辑与避坑笔记"><a href="#大功率系统安规设计的底层逻辑与避坑笔记" class="headerlink"]]>
     </summary>
     <title>聊聊高压系统安规设计与爬电距离校准</title>
-    <updated>2026-06-28T07:28:31.704Z</updated>
+    <updated>2026-06-28T07:32:15.518Z</updated>
   </entry>
   <entry>
     <author>
@@ -89,7 +89,7 @@
       <![CDATA[<h2 id="从实验室炸管到数模干扰：PCB-Layout-避坑手记"><a href="#从实验室炸管到数模干扰：PCB-Layout-避坑手记" class="headerlink" title="从实验室炸管到数模干扰：PCB Layout]]>
     </summary>
     <title>PCB Layout 避坑：大电流环路、驱动走线与数模地线设计</title>
-    <updated>2026-06-28T07:28:31.703Z</updated>
+    <updated>2026-06-28T07:32:15.516Z</updated>
   </entry>
   <entry>
     <author>
@@ -109,7 +109,7 @@
       <![CDATA[<h2 id="开关电源共模-差模-EMI-产生机理与-π-型滤波器整改实录"><a href="#开关电源共模-差模-EMI-产生机理与-π-型滤波器整改实录" class="headerlink" title="开关电源共模/差模 EMI 产生机理与 π]]>
     </summary>
     <title>EMC 调试避坑：开关电源共模/差模 EMI 产生机理与 π 滤波整改实录</title>
-    <updated>2026-06-28T07:28:31.700Z</updated>
+    <updated>2026-06-28T07:32:15.512Z</updated>
   </entry>
   <entry>
     <author>
@@ -129,7 +129,7 @@
       <![CDATA[<h2 id="开关电源控制建模与-Bode-图调试避坑笔记"><a href="#开关电源控制建模与-Bode-图调试避坑笔记" class="headerlink" title="开关电源控制建模与 Bode 图调试避坑笔记"></a>开关电源控制建模与 Bode]]>
     </summary>
     <title>环路控制避坑：零极点分析与 Bode 图扫频实战</title>
-    <updated>2026-06-28T07:28:31.703Z</updated>
+    <updated>2026-06-28T07:32:15.517Z</updated>
   </entry>
   <entry>
     <author>
@@ -149,7 +149,7 @@
       <![CDATA[<h2 id="从零极点到实战：Type-II-III-模拟补偿器设计与调试"><a href="#从零极点到实战：Type-II-III-模拟补偿器设计与调试" class="headerlink" title="从零极点到实战：Type II/III]]>
     </summary>
     <title>环路补偿调试：Type II/III 模拟补偿器设计与阻容计算</title>
-    <updated>2026-06-28T07:28:31.702Z</updated>
+    <updated>2026-06-28T07:32:15.515Z</updated>
   </entry>
   <entry>
     <author>
@@ -168,7 +168,7 @@
       <![CDATA[<h2 id="比较器硬件过流保护：迟滞窗口手算与-Layout-避坑手记"><a href="#比较器硬件过流保护：迟滞窗口手算与-Layout-避坑手记" class="headerlink" title="比较器硬件过流保护：迟滞窗口手算与 Layout]]>
     </summary>
     <title>比较器硬件保护电路：迟滞回差计算与 Layout 避坑</title>
-    <updated>2026-06-28T07:28:31.699Z</updated>
+    <updated>2026-06-28T07:32:15.511Z</updated>
   </entry>
   <entry>
     <author>
@@ -187,7 +187,7 @@
       <![CDATA[<h2 id="MLCC-陶瓷电容直流偏置效应翻车实录与避坑笔记"><a href="#MLCC-陶瓷电容直流偏置效应翻车实录与避坑笔记" class="headerlink" title="MLCC 陶瓷电容直流偏置效应翻车实录与避坑笔记"></a>MLCC]]>
     </summary>
     <title>MLCC 电容选型避坑：直流偏置效应、啸叫与反谐振陷阱</title>
-    <updated>2026-06-28T07:28:31.699Z</updated>
+    <updated>2026-06-28T07:32:15.510Z</updated>
   </entry>
   <entry>
     <author>
@@ -206,7 +206,7 @@
       <![CDATA[<h2 id="电阻选型避坑与失效分析：高压分压、大电流检流与抗冲击电阻设计"><a href="#电阻选型避坑与失效分析：高压分压、大电流检流与抗冲击电阻设计" class="headerlink"]]>
     </summary>
     <title>电阻选型与失效避坑：耐压、温漂、抗冲击与防浪涌设计</title>
-    <updated>2026-06-28T07:28:31.704Z</updated>
+    <updated>2026-06-28T07:32:15.518Z</updated>
   </entry>
   <entry>
     <author>
@@ -228,7 +228,7 @@
 <p>两者的核心差异就在于磁路结构和耦合程度：</p>]]>
     </summary>
     <title>无线充电</title>
-    <updated>2026-06-28T07:28:31.705Z</updated>
+    <updated>2026-06-28T07:32:15.520Z</updated>
   </entry>
   <entry>
     <author>
@@ -248,7 +248,7 @@
       <![CDATA[<h3 id="一、-磁性材料全局认知与拓扑映射"><a href="#一、-磁性材料全局认知与拓扑映射" class="headerlink" title="一、 磁性材料全局认知与拓扑映射"></a>一、]]>
     </summary>
     <title>变压器、磁性材料供应商</title>
-    <updated>2026-06-28T07:28:31.705Z</updated>
+    <updated>2026-06-28T07:32:15.519Z</updated>
   </entry>
   <entry>
     <author>
@@ -268,7 +268,7 @@
       <![CDATA[<h2 id="开关电源磁性元件设计：模型对比、AP法参数推导、磁集成与高频应力分析"><a href="#开关电源磁性元件设计：模型对比、AP法参数推导、磁集成与高频应力分析" class="headerlink"]]>
     </summary>
     <title>变压器与电感设计实战：AP法、磁集成与高频损耗分析</title>
-    <updated>2026-06-28T07:28:31.705Z</updated>
+    <updated>2026-06-28T07:32:15.519Z</updated>
   </entry>
   <entry>
     <author>
@@ -289,7 +289,7 @@
 <h2 id="热设计基本概念与关键物理量"><a href="#热设计基本概念与关键物理量" class="headerlink"]]>
     </summary>
     <title>热学基础</title>
-    <updated>2026-06-28T07:28:31.705Z</updated>
+    <updated>2026-06-28T07:32:15.519Z</updated>
   </entry>
   <entry>
     <author>
@@ -309,7 +309,7 @@
       <![CDATA[<p>在大功率电力电子设计中，开关管就是整个系统的“心脏”。不管是做高压DCDC、双向Buck-Boost还是相移全桥，只要开关管一掉链子，整个板子瞬间就可能烧得面目全非。我们在研发中，没少经历“一上电，啪的一声，瞬间炸管”的惨烈现场。今天，我们不妨剥开开关管的塑料或金属外壳，从]]>
     </summary>
     <title>开关管供应商</title>
-    <updated>2026-06-28T07:28:31.705Z</updated>
+    <updated>2026-06-28T07:32:15.519Z</updated>
   </entry>
   <entry>
     <author>
@@ -328,7 +328,7 @@
       <![CDATA[<h2 id="智能高低边开关、三极管饱和区计算、模拟复用器电荷共享、继电器驱动与状态检测防漏电"><a href="#智能高低边开关、三极管饱和区计算、模拟复用器电荷共享、继电器驱动与状态检测防漏电" class="headerlink"]]>
     </summary>
     <title>开关器件与继电器驱动设计选型调试实战</title>
-    <updated>2026-06-28T07:28:31.705Z</updated>
+    <updated>2026-06-28T07:32:15.519Z</updated>
   </entry>
   <entry>
     <author>
@@ -349,7 +349,7 @@
 <h2 id="1-功率继电器：容性负载浪涌与线圈驱动保护设计"><a href="#1-功率继电器：容性负载浪涌与线圈驱动保护设计" class="headerlink" title="1. 功率继电器：容性负载浪涌与线圈驱动保护设计"></a>1.]]>
     </summary>
     <title>开关与驱动数据手册阅读</title>
-    <updated>2026-06-28T07:28:31.705Z</updated>
+    <updated>2026-06-28T07:32:15.519Z</updated>
   </entry>
   <entry>
     <author>
@@ -370,7 +370,7 @@
 <h2 id="1-MOSFET基础：驱动电压与开启阈值的实战把控"><a href="#1-MOSFET基础：驱动电压与开启阈值的实战把控" class="headerlink" title="1. MOSFET基础：驱动电压与开启阈值的实战把控"></a>1.]]>
     </summary>
     <title>开关管、栅极驱动数据手册阅读</title>
-    <updated>2026-06-28T07:28:31.705Z</updated>
+    <updated>2026-06-28T07:32:15.519Z</updated>
   </entry>
   <entry>
     <author>
@@ -390,7 +390,7 @@
       <![CDATA[<h2 id="高增益驱动机制：达林顿输入输出特性、B-E并联泄放电阻、漏电流误导通防御与关断时序优化"><a href="#高增益驱动机制：达林顿输入输出特性、B-E并联泄放电阻、漏电流误导通防御与关断时序优化" class="headerlink"]]>
     </summary>
     <title>达林顿晶体管驱动电路设计与关断加速避坑</title>
-    <updated>2026-06-28T07:28:31.705Z</updated>
+    <updated>2026-06-28T07:32:15.519Z</updated>
   </entry>
   <entry>
     <author>
@@ -411,6 +411,6 @@
 <h3 id="飞跨电容多电平逆变器-FC-MLI"><a href="#飞跨电容多电平逆变器-FC-MLI" class="headerlink" title="飞跨电容多电平逆变器 FC-MLI"></a>飞跨电容多电平逆变器]]>
     </summary>
     <title>开关电容、飞跨电容变换器</title>
-    <updated>2026-06-28T07:28:31.705Z</updated>
+    <updated>2026-06-28T07:32:15.519Z</updated>
   </entry>
 </feed>
