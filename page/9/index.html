@@ -1132,20 +1132,14 @@ mjx-container[display="true"] + br {
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
                         <a href="/driver-analog-control/">
-                            驱动控制芯片内部、模拟控制相关理解
+                            通用模拟控制芯片工作机理与环路补偿设计
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            
-芯片内部框图通用模拟控制芯片内部标准逻辑单元解析
-针对UC2845及UCC28C45等通用模拟控制芯片，深入理解其内部框图中的标准逻辑单元对于硬件工程师至关重要。这有助于从芯片设计逻辑的角度排查电路故障，而不仅仅局限于应用电路层面。以下是对芯片内部核心逻辑单元的深度解析与图例总结。
-
-核心控制逻辑单元
-RS触发器
-在芯片内部框图中，RS触发器通常表现为标有S（置位）、R（复位）、Q及的长方...
+                            驱动与模拟控制：UC2845内部逻辑、斜坡补偿三极管隔离、假负载阻值计算、OTA与运放Type II网络及2P2Z离散映射在电力电子的拓扑设计之外，控制芯片（如 UC2845、UCC28C45 等经典 PWM 控制器）的内部微观逻辑、局部补偿运放的设计意图，是决定电源产品动态指标和稳定性的核心基础。为什么误差放大器的输出端被设计为“弱电流源”高阻态？轻载下的“打嗝模式（Burst Mode）...
                         
                     </div>
 
@@ -1205,7 +1199,7 @@ RS触发器
         
     </div>
 
-    <a href="/driver-analog-control/">阅读全文<span class="seo-reader-text">驱动控制芯片内部、模拟控制相关理解</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/driver-analog-control/">阅读全文<span class="seo-reader-text">通用模拟控制芯片工作机理与环路补偿设计</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1300,17 +1294,14 @@ RS触发器
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
                         <a href="/design-cases/">
-                            信号处理与采集设计案例
+                            大功率隔离采样与电流调理电路设计避坑手记
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            
-隔离采样架构基础与 Σ-Δ 调制原理数字隔离器主要用于解决发波驱动问题，擅长跨越隔离栅传输纯数字信号。但在采样环节，采样电阻上获取的通常为连续模拟信号，纯数字隔离器无法直接处理。Σ-Δ 调制器等效于极简版 ADC，通过 PDM 将模拟量转化为 1-bit 高速比特流，依靠高低电平出现的密度表达模拟电压大小。
-
-当输入正满量程电压时，输出高密度 1，偶尔穿插 0，例如 11111011111...
+                            高精信号链路：Σ-Δ调制与SDFM双通道滤波、隔离运放差分匹配、三电平主电感采样点抉择及断线故障零点偏置诊断在高压大功率电力电子系统（如三相逆变器、大功率 DCDC、伺服驱动器）中，电流和电压的高精度、低延迟隔离采样是整个闭环控制的生命线。面对高达数百伏的共模跳变、dv/dt 辐射干扰，如何选择合适的隔离方案？为什么传统的隔离运放正在被 Σ-Δ 调制器替代？三电平 Buck 拓扑中采样点为什...
                         
                     </div>
 
@@ -1365,7 +1356,7 @@ RS触发器
         
     </div>
 
-    <a href="/design-cases/">阅读全文<span class="seo-reader-text">信号处理与采集设计案例</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/design-cases/">阅读全文<span class="seo-reader-text">大功率隔离采样与电流调理电路设计避坑手记</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
