@@ -1232,6 +1232,44 @@
   });
 })();
 </script>
+
+<!-- Visitor Offset Script -->
+<script>
+(function() {
+  function applyOffset(pvOffset, uvOffset) {
+    const uvEl = document.getElementById("busuanzi_value_site_uv") || document.getElementById("vercount_value_site_uv");
+    const pvEl = document.getElementById("busuanzi_value_site_pv") || document.getElementById("vercount_value_site_pv");
+    if (uvEl && uvEl.textContent && !uvEl.getAttribute("data-offset-applied")) {
+      const currentUv = parseInt(uvEl.textContent, 10);
+      if (!isNaN(currentUv)) {
+        uvEl.textContent = currentUv + uvOffset;
+        uvEl.setAttribute("data-offset-applied", "true");
+      }
+    }
+    if (pvEl && pvEl.textContent && !pvEl.getAttribute("data-offset-applied")) {
+      const currentPv = parseInt(pvEl.textContent, 10);
+      if (!isNaN(currentPv)) {
+        pvEl.textContent = currentPv + pvOffset;
+        pvEl.setAttribute("data-offset-applied", "true");
+      }
+    }
+  }
+  fetch("/visitor_stats.json")
+    .then(res => res.json())
+    .then(data => {
+      const pvOffset = data.pv_offset || 0;
+      const uvOffset = data.uv_offset || 0;
+      
+      // Monitor changes to elements (they load asynchronously)
+      const observer = new MutationObserver(() => applyOffset(pvOffset, uvOffset));
+      observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+      
+      // Fallback polling
+      setInterval(() => applyOffset(pvOffset, uvOffset), 500);
+    })
+    .catch(err => console.error("Failed to load visitor stats:", err));
+})();
+</script>
 </body>
 
 </html>

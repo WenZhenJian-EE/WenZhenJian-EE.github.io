@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
 <meta property="article:published_time" content="2026-06-18T21:00:00.000Z">
-<meta property="article:modified_time" content="2026-07-04T11:39:57.371Z">
+<meta property="article:modified_time" content="2026-08-02T15:03:18.240Z">
 <meta property="article:author" content="WenZhenJian-EE">
 <meta property="article:tag" content="电源设计, 硬件工程师, PCS, SiC, Hexo">
 <meta name="twitter:card" content="summary">
@@ -1310,6 +1310,44 @@
     // Re-verify DOM links just in case
     initMosfetEgg();
   });
+})();
+</script>
+
+<!-- Visitor Offset Script -->
+<script>
+(function() {
+  function applyOffset(pvOffset, uvOffset) {
+    const uvEl = document.getElementById("busuanzi_value_site_uv") || document.getElementById("vercount_value_site_uv");
+    const pvEl = document.getElementById("busuanzi_value_site_pv") || document.getElementById("vercount_value_site_pv");
+    if (uvEl && uvEl.textContent && !uvEl.getAttribute("data-offset-applied")) {
+      const currentUv = parseInt(uvEl.textContent, 10);
+      if (!isNaN(currentUv)) {
+        uvEl.textContent = currentUv + uvOffset;
+        uvEl.setAttribute("data-offset-applied", "true");
+      }
+    }
+    if (pvEl && pvEl.textContent && !pvEl.getAttribute("data-offset-applied")) {
+      const currentPv = parseInt(pvEl.textContent, 10);
+      if (!isNaN(currentPv)) {
+        pvEl.textContent = currentPv + pvOffset;
+        pvEl.setAttribute("data-offset-applied", "true");
+      }
+    }
+  }
+  fetch("/visitor_stats.json")
+    .then(res => res.json())
+    .then(data => {
+      const pvOffset = data.pv_offset || 0;
+      const uvOffset = data.uv_offset || 0;
+      
+      // Monitor changes to elements (they load asynchronously)
+      const observer = new MutationObserver(() => applyOffset(pvOffset, uvOffset));
+      observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+      
+      // Fallback polling
+      setInterval(() => applyOffset(pvOffset, uvOffset), 500);
+    })
+    .catch(err => console.error("Failed to load visitor stats:", err));
 })();
 </script>
 </body>
