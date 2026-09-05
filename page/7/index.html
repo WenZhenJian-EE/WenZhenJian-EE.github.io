@@ -1,0 +1,2318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="电源设计, 硬件工程师, PCS, SiC, Hexo">
+    
+    
+    <meta name="author" content="WenZhenJian-EE">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes ASAP (before DOMContentLoaded)
+            (function() {
+                const addBodyClass = () => {
+                    const b = document.body;
+                    if (!b) return false;
+                    b.classList.add(theme + "-mode");
+                    return true;
+                };
+
+                // Try immediately
+                if (addBodyClass()) return;
+
+                // Observe until body exists
+                const mo = new MutationObserver(() => {
+                    if (addBodyClass()) mo.disconnect();
+                });
+                mo.observe(document.documentElement, { childList: true, subtree: true });
+            })();
+        })();
+    </script>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://WenZhenJian-EE.github.io/page/7/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+        
+        <meta name="description" content="WenZhenJian&#39;s Tech Blog - 电力电子与硬件开发">
+<meta property="og:type" content="website">
+<meta property="og:title" content="WenZhenJian&#39;s Tech Blog">
+<meta property="og:url" content="https://wenzhenjian-ee.github.io/page/7/index.html">
+<meta property="og:site_name" content="WenZhenJian&#39;s Tech Blog">
+<meta property="og:description" content="WenZhenJian&#39;s Tech Blog - 电力电子与硬件开发">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
+<meta property="article:author" content="WenZhenJian-EE">
+<meta property="article:tag" content="电源设计, 硬件工程师, PCS, SiC, Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            WenZhenJian&#39;s Tech Blog - 电力电子与硬件开发
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+        
+            
+    
+            
+    
+            
+                
+                    <link rel="stylesheet" href="/css/custom-typography.css">
+                
+    
+            
+                
+                    <link rel="stylesheet" href="/css/custom-print.css" media="print">
+                
+    
+            
+                
+                    <link rel="manifest" href="/manifest.json">
+                
+    
+            
+                
+                    <meta name="theme-color" content="#2563eb">
+                
+    
+            
+                
+                    <script data-swup-reload-script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("/sw.js").then(reg=>{reg.onupdatefound=()=>{const w=reg.installing;w.onstatechange=()=>{if(w.state==="activated")window.location.reload();};};});let r=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(!r){r=true;window.location.reload();}});});}</script>
+                
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"wenzhenjian-ee.github.io","root":"/","language":"zh-CN","path":"search.json"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.6,"image_border_radius":"12px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#2563eb","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"WenZhenJian's Tech Blog - 电力电子与硬件开发"},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"WenZhenJian's Tech Blog","subtitle":{"text":["电力电子与电源设计","硬件工程师的日常研发实录"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":[{"icon":"fa-brands fa-github","url":"https://github.com/WenZhenJian-EE"},{"icon":"fa-solid fa-at","url":"wenzhenjian-ee@outlook.com"},{"icon":"fa-brands fa-rss","url":"/atom.xml"},{"icon":"fa-brands fa-telegram","url":null},{"icon":"/images/custom-icon.svg","url":null}],"qrs":[{"icon":"fa-brands fa-weixin","qr":null},{"icon":"/images/custom-icon.svg","qr":null}]}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":true,"version":"11.4.1","theme":{"light":"default","dark":"dark"}}},"version":"2.9.0","navbar":{"auto_hide":false,"color":{"left":"#12151c","right":"#161b26","transparency":55},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"关于我":{"path":"/about","icon":"fa-regular fa-user"},"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"分类":{"path":"/categories","icon":"fa-regular fa-folder"},"标签":{"path":"/tags","icon":"fa-regular fa-tags"},"项目":{"path":"/projects/","icon":"fa-regular fa-code"},"工具":{"path":"/tools/","icon":"fa-regular fa-calculator"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur","masonry":{"batch_size":12,"initial_batch_size":24}},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":"📢 个人独立开发的<b>Hardware Engineering Toolbox Desktop（硬件工程计算套件）</b>与<b>Serial-CAN-Debugger V3.0（支持串口、CAN 与实时示波器调试的上位机）</b>已在 GitHub 全面开源并提供独立 EXE 程序下载，欢迎点击上方导航栏 <b>项目</b> 栏目查看！","show_on_mobile":true,"links":{"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"分类":{"path":"/categories","icon":"fa-regular fa-folder"},"标签":{"path":"/tags","icon":"fa-regular fa-tags"},"项目":{"path":"/projects/","icon":"fa-regular fa-code"}}},"article_date_format":"YYYY-MM-DD","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footer":{"runtime":true,"icon":"<i class=\"fa-solid fa-heart fa-beat\" style=\"--fa-animation-duration: 0.5s; color: #f54545\"></i>","start":"2026/05/10 18:15:00","statistics":true,"customize":null,"icp":{"enable":false,"number":null,"url":null}},"footerStart":"2026/05/10 18:15:00","mermaid":{"style":{"light":"default","dark":"dark"}}};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.i18n = {"search":"站内搜索您需要的内容...","toc":"目录","prev":"上一页","next":"下一页","prev_posts":"上一篇","next_posts":"下一篇","page":"第 %d 页","recent_posts":"最新文章","share":"分享","powered_by":"由 %s 驱动","theme":"主题","rss_feed":"RSS Feed","category":"分类","categories":"分类","tag":"标签","tags":"标签","post":"文章","posts":"文章","tagcloud":"标签云","comment":"评论","comments":"评论","top":"置顶","sticky":"置顶","go-back-home":"回到首页","masonry_loading":"照片加载中...","image_viewer":"图片查看器","close":"关闭","exif":{"title":"EXIF","cards":{"camera":"相机","lens":"镜头","exposure":"曝光","other":"其他"},"fields":{"make":"品牌","model":"机型","date_taken":"拍摄时间","lens_model":"镜头","focal_length":"焦距","focus_mode":"对焦模式","shutter":"快门","aperture":"光圈","iso":"感光度","exposure_program":"曝光程序","exposure_compensation":"曝光补偿","metering_mode":"测光模式","flash":"闪光灯","white_balance":"白平衡","latitude":"纬度","longitude":"经度","altitude":"海拔"},"status":{"loading":"加载中...","no_exif":"无 EXIF 信息","library_missing":"EXIF 库未加载","image_source_missing":"图片地址不可用","unavailable":"EXIF 不可用（可能被 CORS 阻止或缺少元数据）","flag_unavailable":"EXIF 不可用"}},"home":"首页","archive":"归档","archives":"归档","about":"关于","links":"链接","link":"链接","friends":"友情链接","friend":"友情链接","timeline":"时间轴","shuoshuo":"说说","bookmarks":"书签","site_uv":"访问人数","site_pv":"总访问量","read_more":"阅读全文","wordcount":"字","min2read":"分钟","changelog":"更新日志","status":"状态","runtime":"博客已运行","days":"天","hours":"小时","minutes":"分钟","seconds":"秒","optimized_by":"并由 Evan 进行优化","rights":"版权所有","site_posts":"共撰写了 %s 篇文章","site_wordcount":"共 %s 字","copyright":{"title":"标题","author":"作者","link":"链接","create_time":"创建于","update_time":"更新于","license_title":"版权声明","license_content":"本文章采用 %s 进行许可。","all_rights_reserved":"版权所有 &#169 %s，禁止转载。","public_domain":"本文为公有领域作品，可自由转载、引用。"},"ago":{"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"},"create_time":"创建","update_time":"更新","expired":"这篇文章最后更新于 %s 天前，内容可能已经过时。"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="WenZhenJian's Tech Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+	<div class="progress-bar-container">
+	
+	<span class="scroll-progress-bar"></span>
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+	<style>
+    .home-article-item,
+    .sidebar-links,
+    .sidebar-content,
+    a.page-number,
+    a.extend,
+    .sidebar-links .links:hover,
+    .right-bottom-tools,
+    footer.footer {
+        background-color: var(--background-color-transparent-80) !important;
+    }
+    .right-bottom-tools:hover,
+    a.page-number:hover,
+    a.extend:hover {
+        background-color: var(--primary-color) !important;
+    }
+    .site-info,
+    .home-article-sticky-label {
+        background-color: var(--background-color-transparent-15) !important;
+    }
+    .home-article-sticky-label {
+        backdrop-filter: none !important;
+    }
+    .home-banner-background {
+        filter: blur(15px);
+    }
+</style>
+
+<div class="home-banner-background transition-fade fixed top-0 left-0 w-screen h-screen scale-125 sm:scale-110 box-border will-change-transform bg-cover">
+    <img src="/images/wallhaven-wqery6-light.webp" alt="home-banner-background" class="w-full h-full object-cover dark:hidden">
+    <img src="/images/wallhaven-wqery6-dark.webp" alt="home-banner-background" class="w-full h-full object-cover hidden dark:block">
+</div>
+
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                <h1>
+                WenZhenJian&#39;s Tech Blog
+                </h1>
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="active"
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/about"
+                                        >
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    关于我
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories"
+                                        >
+                                    <i class="fa-regular fa-folder fa-fw"></i>
+                                    分类
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags"
+                                        >
+                                    <i class="fa-regular fa-tags fa-fw"></i>
+                                    标签
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/projects/"
+                                        >
+                                    <i class="fa-regular fa-code fa-fw"></i>
+                                    项目
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tools/"
+                                        >
+                                    <i class="fa-regular fa-calculator fa-fw"></i>
+                                    工具
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/about"
+                        >
+                            <span>
+                                关于我
+                            </span>
+                            
+                                <i class="fa-regular fa-user fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories"
+                        >
+                            <span>
+                                分类
+                            </span>
+                            
+                                <i class="fa-regular fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags"
+                        >
+                            <span>
+                                标签
+                            </span>
+                            
+                                <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/projects/"
+                        >
+                            <span>
+                                项目
+                            </span>
+                            
+                                <i class="fa-regular fa-code fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tools/"
+                        >
+                            <span>
+                                工具
+                            </span>
+                            
+                                <i class="fa-regular fa-calculator fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+                    
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">357</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">81</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">110</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+			<div class="home-sidebar-container">
+    <div class="sticky-container sticky">
+        
+        
+            <div class="sidebar-content">
+                <div class="avatar flex justify-center">
+    <img src="/images/avatar.png">
+</div>
+                <div class="author flex flex-col justify-center my-2.5 mx-0">
+    <div class="name">WenZhenJian-EE</div>
+    
+</div>
+                <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">357</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">81</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">110</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+            </div>
+            
+                <div class="sidebar-links"   marginTop >
+                    <div class="site-info">
+                        <div class="site-name">WenZhenJian&#39;s Tech Blog</div>
+                        
+                            <div class="announcement">
+                                📢 个人独立开发的<b>Hardware Engineering Toolbox Desktop（硬件工程计算套件）</b>与<b>Serial-CAN-Debugger V3.0（支持串口、CAN 与实时示波器调试的上位机）</b>已在 GitHub 全面开源并提供独立 EXE 程序下载，欢迎点击上方导航栏 <b>项目</b> 栏目查看！
+                            </div>
+                        
+                    </div>
+                    
+                        
+                            
+                                <a class="links" href="/archives">
+                                    
+                                        <i class="fa-regular fa-archive icon-space"></i>
+                                    
+                                    <span class="link-name">归档</span>
+                                </a>
+                            
+                        
+                            
+                                <a class="links" href="/categories">
+                                    
+                                        <i class="fa-regular fa-folder icon-space"></i>
+                                    
+                                    <span class="link-name">分类</span>
+                                </a>
+                            
+                        
+                            
+                                <a class="links" href="/tags">
+                                    
+                                        <i class="fa-regular fa-tags icon-space"></i>
+                                    
+                                    <span class="link-name">标签</span>
+                                </a>
+                            
+                        
+                            
+                                <a class="links" href="/projects/">
+                                    
+                                        <i class="fa-regular fa-code icon-space"></i>
+                                    
+                                    <span class="link-name">项目</span>
+                                </a>
+                            
+                        
+                    
+                </div>
+            
+        
+
+    </div>
+</div>
+
+			
+
+			<div class="main-content">
+				<div class="home-content-container">
+    <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/magnetic-reluctance/">
+                            三柱磁芯与交错并联集成磁件磁阻网络建模分析
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            三柱磁芯与交错并联集成磁件磁阻网络建模分析磁阻网络分析法（MRN）降维建模原理在多相交错并联变换器（交错 Buck、交错 Boost、三相 PFC）中，采用集成三柱磁芯耦合电感可大幅减小磁件体积并改善动态瞬态响应。
+磁阻网络法（MRN）将复杂的三维有限元电磁场降维为集总参数电路网络：
+
+基尔霍夫磁通定律 (KFL)：任意闭合磁路节点磁通代数和恒等于零（，源于麦克斯韦方程组高斯磁定律 ）；
+基...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Wed Nov 26 2025 22:20:44 GMT+0800">
+                
+                    2025-11-26
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E5%B7%A5%E7%A8%8B%E7%89%A9%E7%90%86%E4%B8%93%E9%A1%B9/">工程物理专项</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E5%B7%A5%E7%A8%8B%E7%89%A9%E7%90%86%E4%B8%93%E9%A1%B9/%E7%A3%81%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%8F%98%E5%8E%8B%E5%99%A8/">磁设计与变压器</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E7%A3%81%E8%AE%BE%E8%AE%A1/">磁设计</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%A3%81%E9%98%BB%E7%BD%91%E7%BB%9C/">磁阻网络</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E8%80%A6%E5%90%88%E7%94%B5%E6%84%9F/">耦合电感</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/magnetic-reluctance/">阅读全文<span class="seo-reader-text">三柱磁芯与交错并联集成磁件磁阻网络建模分析</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/m-c-u-design-cases/">
+                            DSP/MCU 硬件看门狗、Brown-out 欠压复位与抗扰自愈设计
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            DSP/MCU 硬件看门狗、Brown-out 欠压复位与抗扰自愈设计电力电子数字主控三大平台特性与分工定位在工业变频器、储能 PCS、数字电源及新能源汽车三电系统中，主控架构呈现三足鼎立格局：
+
+
+
+控制平台架构
+硬件计算与总线特征
+核心实时外设与协处理器
+工业工程推荐场景
+
+
+
+TI C2000 (C28x DSP)
+独立哈佛总线，单周期硬件乘累加（MAC）与单周期 TMU 三角函数单元...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Sat Nov 22 2025 13:25:32 GMT+0800">
+                
+                    2025-11-22
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E6%95%B0%E5%AD%97%E6%8E%A7%E5%88%B6/">数字控制</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E6%95%B0%E5%AD%97%E6%8E%A7%E5%88%B6/%E5%BE%AE%E6%8E%A7%E5%88%B6%E5%99%A8%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">微控制器系统设计</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/DSP/">DSP</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/MCU/">MCU</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%AC%A0%E5%8E%8B%E5%A4%8D%E4%BD%8D/">欠压复位</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/m-c-u-design-cases/">阅读全文<span class="seo-reader-text">DSP/MCU 硬件看门狗、Brown-out 欠压复位与抗扰自愈设计</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/m-c-u-datasheet-reading/">
+                            微控制器（MCU）与硬件看门狗复位芯片数据手册精读指南
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            
+1. MCU 电源架构与内部监控系统（POR / PDR / BOR / BOD）在嵌入式与功率电子硬件设计中，微控制器（MCU）的供电稳定性直接决定了整机的可靠性。数据手册中的电气特性章节详细规定了微控制器的多个独立电源域以及内部电源监控器的动作边界。
+多电源域拓扑与去耦设计现代高性能 MCU（如 STM32、TI C2000 系列）通常包含多个物理隔离的供电域：
+
+（主数字供电域）：负...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Tue Nov 18 2025 05:40:59 GMT+0800">
+                
+                    2025-11-18
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/">芯片数据手册</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/%E5%BE%AE%E6%8E%A7%E5%88%B6%E5%99%A8%E4%B8%8E%E6%95%B0%E5%AD%97IC/">微控制器与数字IC</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/ADC%E9%87%87%E6%A0%B7/">ADC采样</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/MCU/">MCU</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%9C%8B%E9%97%A8%E7%8B%97/">看门狗</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/m-c-u-datasheet-reading/">阅读全文<span class="seo-reader-text">微控制器（MCU）与硬件看门狗复位芯片数据手册精读指南</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/m-c-u-comparison-resources/">
+                            工业与车载主控芯片选型与外设架构实战：C2000、STM32、AURIX与FPGA协同控制
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            工业与车载主控芯片选型与外设架构实战：C2000、STM32、AURIX与FPGA协同控制在电力电子与大功率运动控制系统（数字电源、伺服驱动器、车载逆变器、光伏储能 PCS）中，主控微处理器的选型直接决定了闭环控制带宽、PWM 占空比分辨率、中断确定性延时以及功能安全等级。面对高频宽禁带半导体（SiC/GaN）对微秒级甚至纳秒级响应的严苛要求，深入理解 TI C2000、ST STM32G4...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Nov 13 2025 21:59:04 GMT+0800">
+                
+                    2025-11-13
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%A1%AC%E4%BB%B6/">嵌入式硬件</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%A1%AC%E4%BB%B6/MCU%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">MCU系统设计</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/C2000/">C2000</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/FPGA/">FPGA</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/MCU%E9%80%89%E5%9E%8B/">MCU选型</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/m-c-u-comparison-resources/">阅读全文<span class="seo-reader-text">工业与车载主控芯片选型与外设架构实战：C2000、STM32、AURIX与FPGA协同控制</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/isolation-design-cases/">
+                            高压系统隔离传感器与数字隔离器设计实战
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            在 1000V 直流母线系统、光伏逆变器、大功率储能 PCS 以及 SiC/IGBT 变流器硬件开发中，电气隔离是阻隔高压直击、消除地环路干扰以及抑制超高  共模冲击的生命屏障。为什么在高压浮地系统中，试图用普通运算放大器配合差分分压电阻跨接采样会瞬间炸裂烧板？开环微功率隔离电源（如定压输入、非稳压输出模块）在轻载/空载时为什么会发生输出电压翻倍飙升，应当如何严密计算假负载阻值与封装功率？
+...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Oct 27 2025 10:04:43 GMT+0800">
+                
+                    2025-10-27
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/">电路开发</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%94%B5%E8%B7%AF%E5%BC%80%E5%8F%91/%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">电路设计案例</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1/">硬件设计</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%95%B0%E5%AD%97%E9%9A%94%E7%A6%BB%E5%99%A8/">数字隔离器</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E9%9A%94%E7%A6%BB%E8%AE%BE%E8%AE%A1/">隔离设计</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/isolation-design-cases/">阅读全文<span class="seo-reader-text">高压系统隔离传感器与数字隔离器设计实战</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/isolation-datasheet-reading/">
+                            隔离器件数据手册解读与工程选型实战
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            
+1. 光耦非对称传输延迟与单路PWM占空比失真机理在电机控制、风扇调速以及隔离反馈回路中，使用通用光耦（如 PC817、EL357 等光电三极管输出型光耦）传递 PWM 控制信号是极其常见的架构。然而，在实际工程调试中，工程师经常发现单片机输出的占空比与末端功率级测得的实际占空比存在显著偏差。在低占空比工况下可能导致电机无法启动，在高占空比工况下则提前达到 100% 导通。
+物理机理：少数...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Wed Oct 22 2025 23:46:51 GMT+0800">
+                
+                    2025-10-22
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/">芯片数据手册</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/%E9%9A%94%E7%A6%BB%E5%99%A8%E4%BB%B6%E4%B8%8E%E9%A9%B1%E5%8A%A8/">隔离器件与驱动</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/">数据手册</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%A0%85%E6%9E%81%E9%A9%B1%E5%8A%A8/">栅极驱动</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E9%9A%94%E7%A6%BB%E5%99%A8%E4%BB%B6/">隔离器件</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/isolation-datasheet-reading/">阅读全文<span class="seo-reader-text">隔离器件数据手册解读与工程选型实战</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/isolation-c-a-n-transceiver-peripheral-circuit-design/">
+                            工业与车规隔离 CAN/CAN-FD 收发器外围接口与物理层防护设计
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            工业与车规隔离 CAN/CAN-FD 收发器外围接口与物理层防护设计CAN / CAN-FD 物理层差分传输机制与逻辑电平在新能源汽车（BMS / OBC / 逆变器）及大功率储能系统中，CAN / CAN-FD 是主控与电池簇、配电单元通信的核心总线：
+1. 物理层显性与隐性差分定义（ISO 11898-2）
+隐性状态（Recessive, 逻辑 1）：CANH = 2.5V, CANL ...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Sat Oct 18 2025 18:30:54 GMT+0800">
+                
+                    2025-10-18
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1/">硬件设计</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1/%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%E8%AE%BE%E8%AE%A1/">接口与通信设计</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1/">硬件设计</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/CAN%E6%80%BB%E7%BA%BF/">CAN总线</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E9%9A%94%E7%A6%BB%E9%80%9A%E4%BF%A1/">隔离通信</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/isolation-c-a-n-transceiver-peripheral-circuit-design/">阅读全文<span class="seo-reader-text">工业与车规隔离 CAN/CAN-FD 收发器外围接口与物理层防护设计</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/inductor-design-cases/">
+                            功率电感与滤波磁件设计选型与介质损耗精算
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            功率电感与滤波磁件设计选型与介质损耗精算软饱和材料与硬饱和材料物理博弈在开关电源与储能逆变器中，功率电感的磁化行为由磁芯微观结构决定：
+1. 分布式微气隙软饱和材料（金属磁粉芯）
+微观图景：合金金属微颗粒（粒径 ）表面均匀包覆纳米级绝缘膜后经超高压压铸成型。数以亿计的微观绝缘膜在空间中构成天然的“分布式微气隙”，磁通完全闭合在磁芯内部，彻底消除集中气隙的近场边缘漏磁。
+物理表现：承受直流大电...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Oct 09 2025 21:17:34 GMT+0800">
+                
+                    2025-10-09
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1/">硬件设计</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1/%E6%97%A0%E6%BA%90%E5%99%A8%E4%BB%B6%E7%BD%91%E7%BB%9C/">无源器件网络</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%8A%9F%E7%8E%87%E7%94%B5%E6%84%9F/">功率电感</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%A3%81%E6%80%A7%E5%85%83%E4%BB%B6/">磁性元件</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%8D%9F%E8%80%97%E8%AE%A1%E7%AE%97/">损耗计算</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/inductor-design-cases/">阅读全文<span class="seo-reader-text">功率电感与滤波磁件设计选型与介质损耗精算</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/high-frequency-circuit/">
+                            高频磁件集肤效应、邻近效应与 Dowell 交流铜损模型深度解析
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            高频磁件集肤效应、邻近效应与 Dowell 交流铜损模型深度解析集总参数与分布参数传输线物理边界在电力电子与高频电路中，集总参数模型（欧姆定律/基尔霍夫定律）与分布参数模型的物理分界线，由信号波长  与电路几何尺寸  唯一定义：
+
+集总参数成立准则：物理尺寸 （导体各处电压与电流瞬时相等，忽略空间传播延时）；
+分布参数传输线准则：物理尺寸 （寄生电抗激增，必须考虑特征阻抗 、信号反射与驻波）...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Sun Oct 05 2025 14:40:57 GMT+0800">
+                
+                    2025-10-05
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E5%B7%A5%E7%A8%8B%E7%89%A9%E7%90%86%E4%B8%93%E9%A1%B9%E8%AE%BE%E8%AE%A1/">工程物理专项设计</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E5%B7%A5%E7%A8%8B%E7%89%A9%E7%90%86%E4%B8%93%E9%A1%B9%E8%AE%BE%E8%AE%A1/%E7%A3%81%E8%AE%BE%E8%AE%A1/">磁设计</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E9%9B%86%E8%82%A4%E6%95%88%E5%BA%94/">集肤效应</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E9%82%BB%E8%BF%91%E6%95%88%E5%BA%94/">邻近效应</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/Dowell%E6%A8%A1%E5%9E%8B/">Dowell模型</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/high-frequency-circuit/">阅读全文<span class="seo-reader-text">高频磁件集肤效应、邻近效应与 Dowell 交流铜损模型深度解析</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/heatsink-supplier/">
+                            大功率硬件热设计实战：风冷与液冷架构、热阻模型与导热材料选型
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            在百千瓦级电力电子系统（如 150kW 储能 PCS、30kW~60kW 直流快充模块、高压光伏逆变器）中，功率半导体（SiC MOSFET / IGBT 模块）与磁性元件的损耗发热极度集中。系统热管理设计不仅决定了设备能否持续满载输出，更直接制约半导体结温 、热应力疲劳寿命及长期运行可靠性。
+本文从流固耦合传热学与界面物理机制出发，系统对比风冷与液冷散热架构的物理极限，推导液冷板流阻压降与...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Wed Oct 01 2025 04:04:42 GMT+0800">
+                
+                    2025-10-01
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1/">硬件设计</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1/%E7%BB%93%E6%9E%84%E4%B8%8E%E7%83%AD%E8%AE%BE%E8%AE%A1/">结构与热设计</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E7%83%AD%E8%AE%BE%E8%AE%A1/">热设计</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%95%A3%E7%83%AD%E5%99%A8/">散热器</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%B6%B2%E5%86%B7/">液冷</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/heatsink-supplier/">阅读全文<span class="seo-reader-text">大功率硬件热设计实战：风冷与液冷架构、热阻模型与导热材料选型</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+    </ul>
+
+    <div class="home-paginator px-7 py-5">
+        <div class="paginator">
+	<a class="extend prev" rel="prev" href="/page/6/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/8/"><i class="fa-regular fa-angle-right"></i></a>
+</div>
+  
+    </div>
+</div>
+
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2026</span>
+              -
+            
+            2026&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">WenZhenJian-EE</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 110 篇文章
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.9.0</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+            
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container" role="dialog" aria-modal="true" aria-label="图片查看器">
+	<button class="image-viewer-close" type="button" aria-label="关闭">
+		<i class="fa-solid fa-xmark"></i>
+	</button>
+	<button class="image-viewer-prev" type="button" aria-label="上一页">
+		<i class="fa-solid fa-chevron-left"></i>
+	</button>
+	<div class="image-viewer-frame">
+		<img src="" alt="">
+	</div>
+	<div class="image-viewer-exif-panel hidden absolute left-1/2 bottom-20 -translate-x-1/2 w-[min(92vw,420px)] max-h-[60vh] overflow-hidden rounded-2xl bg-background-color-transparent-80 p-4 text-left shadow-redefine-flat backdrop-blur-md" role="dialog" aria-label="EXIF" aria-hidden="true">
+		<div class="flex items-center justify-between mb-3">
+			<span class="text-sm font-semibold text-first-text-color">EXIF</span>
+			<button class="image-viewer-exif-close flex h-8 w-8 items-center justify-center rounded-full bg-background-color-transparent-80 text-first-text-color transition hover:bg-background-color-transparent-40" type="button" aria-label="关闭">
+				<i class="fa-solid fa-xmark text-[0.65rem]"></i>
+			</button>
+		</div>
+		<div class="image-viewer-exif-cards grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto pr-1 scrollbar-hide"></div>
+		<template class="image-viewer-exif-card-template">
+			<div class="rounded-lg bg-background-color-transparent-40 px-3 py-2">
+				<div class="image-viewer-exif-card-header flex items-center gap-2 mb-1">
+					<i class="image-viewer-exif-card-icon fa-solid fa-circle-info text-xs text-third-text-color"></i>
+					<div class="image-viewer-exif-card-title text-xs font-semibold text-first-text-color"></div>
+				</div>
+				<div class="image-viewer-exif-card-items flex flex-col gap-1"></div>
+			</div>
+		</template>
+	</div>
+	<button class="image-viewer-exif-toggle flex items-center gap-2 hidden absolute left-1/2 bottom-6 -translate-x-1/2 rounded-full border border-border-color bg-background-color-transparent-80 px-4 py-2 text-first-text-color backdrop-blur-md transition hover:bg-background-color-transparent-40" type="button" aria-label="EXIF" aria-expanded="false">
+		<i class="fa-solid fa-circle-info text-xs"></i>
+		<span class="text-xs font-semibold uppercase tracking-wider">EXIF</span>
+	</button>
+	<button class="image-viewer-next" type="button" aria-label="下一页">
+		<i class="fa-solid fa-chevron-right"></i>
+	</button>
+</div>
+
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    window.swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+
+    window.dispatchEvent(
+        new CustomEvent("redefine:swup:ready", {
+            detail: {
+                swup: window.swup,
+            },
+        }),
+    );
+</script>
+
+
+
+
+	
+<script src="/js/build/main.js" type="module"></script>
+
+
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+
+
+
+    
+        
+<script src="/js/build/libs/mermaid.min.js"></script>
+
+    
+
+
+
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+
+	
+
+<!-- MOSFET Easter Egg -->
+<div id="mosfet-egg-container" class="no-print" title="TO-247 MOSFET (点击进行过载测试)">
+  <div id="mosfet-floating-label"></div>
+  <svg viewBox="0 0 100 100" class="mosfet-svg">
+    <!-- Metal Tab -->
+    <rect class="mosfet-tab" x="35" y="10" width="30" height="20" rx="3" fill="#999" />
+    <circle cx="50" cy="18" r="4" fill="#eaeaea" />
+    <!-- Plastic Body -->
+    <rect class="mosfet-body" x="25" y="25" width="50" height="45" rx="4" fill="#222" stroke="#444" stroke-width="2" />
+    <!-- Gate/Drain/Source Pins -->
+    <rect class="mosfet-pin" x="33" y="70" width="4" height="25" fill="#bbb" />
+    <rect class="mosfet-pin" x="48" y="70" width="4" height="25" fill="#bbb" />
+    <rect class="mosfet-pin" x="63" y="70" width="4" height="25" fill="#bbb" />
+    <!-- Text markings -->
+    <text class="mosfet-text" x="50" y="42" font-size="8" fill="#fff" text-anchor="middle" font-family="monospace">SiC-2026</text>
+    <text class="mosfet-text sub" x="50" y="52" font-size="7" fill="#888" text-anchor="middle" font-family="monospace">800V 50A</text>
+  </svg>
+  <div class="spark-flash"></div>
+</div>
+
+<style>
+#mosfet-egg-container {
+  position: fixed;
+  bottom: calc(5% + 88px);
+  right: 25px;
+  width: 50px;
+  height: 50px;
+  z-index: 9999;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  user-select: none;
+}
+@media (max-width: 768px) {
+  #mosfet-egg-container {
+    bottom: calc(5% + 88px);
+    right: 7px;
+  }
+}
+#mosfet-egg-container:hover {
+  transform: scale(1.1);
+}
+.mosfet-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+  transition: filter 0.5s ease;
+}
+/* Shaking animation on click */
+@keyframes mosfet-shake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(-3px, 1px) rotate(-3deg); }
+  40% { transform: translate(2px, -1px) rotate(3deg); }
+  60% { transform: translate(-2px, -2px) rotate(-1deg); }
+  80% { transform: translate(3px, 2px) rotate(2deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+.mosfet-shaking {
+  animation: mosfet-shake 0.3s ease-in-out;
+}
+/* Sparks */
+.spark-flash {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, rgba(255,240,150,1) 0%, rgba(255,100,0,0.8) 50%, rgba(255,0,0,0) 70%);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.5);
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+.spark-active {
+  opacity: 1;
+  transform: scale(1.5);
+}
+/* Floating text labels */
+#mosfet-floating-label {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: bold;
+  color: #ef4444;
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(0,0,0,0.85);
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #ff4500;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+@keyframes label-float-up {
+  0% { opacity: 0; transform: translate(-50%, 0); }
+  15% { opacity: 1; transform: translate(-50%, -10px); }
+  80% { opacity: 1; transform: translate(-50%, -20px); }
+  100% { opacity: 0; transform: translate(-50%, -35px); }
+}
+.label-active {
+  animation: label-float-up 2s forwards ease-out;
+}
+/* Smoke particle */
+.smoke-particle {
+  position: absolute;
+  background: rgba(220, 220, 220, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(3px);
+  z-index: 9998;
+}
+@keyframes smoke-float {
+  0% { transform: translateY(0) scale(0.8); opacity: 0.5; }
+  50% { opacity: 0.7; }
+  100% { transform: translateY(-100px) scale(2.8); opacity: 0; }
+}
+
+/* Print override */
+@media print {
+  #mosfet-egg-container {
+    display: none !important;
+  }
+}
+</style>
+
+<script>
+(function() {
+  let clickCount = 0;
+  let eggContainer = null;
+  
+  function initMosfetEgg() {
+    const container = document.getElementById('mosfet-egg-container');
+    if (!container) return;
+    eggContainer = container;
+    
+    const label = document.getElementById('mosfet-floating-label');
+    const spark = container.querySelector('.spark-flash');
+    const svg = container.querySelector('.mosfet-svg');
+    const body = container.querySelector('.mosfet-body');
+    const tab = container.querySelector('.mosfet-tab');
+    
+    const failureModes = [
+      { text: "Vgs 过压! (>20V)", color: "#facc15", charred: false, smokeRate: 6 },
+      { text: "Drain 过流! (>50A)", color: "#f97316", charred: "partial", smokeRate: 18 },
+      { text: "雪崩热失控! (>150°C)", color: "#ef4444", charred: "heavy", smokeRate: 40 },
+      { text: "直通短路炸管! (0Ω)", color: "#b91c1c", charred: "destroyed", smokeRate: 85 }
+    ];
+
+    container.addEventListener('click', () => {
+      // Shake SVG
+      svg.classList.remove('mosfet-shaking');
+      void svg.offsetWidth; // Trigger reflow
+      svg.classList.add('mosfet-shaking');
+
+      // Trigger spark flash
+      spark.classList.add('spark-active');
+      setTimeout(() => spark.classList.remove('spark-active'), 120);
+
+      const mode = failureModes[Math.min(clickCount, failureModes.length - 1)];
+      clickCount++;
+
+      // Floating text label
+      label.innerText = mode.text;
+      label.style.borderColor = mode.color;
+      label.style.color = mode.color;
+      label.classList.remove('label-active');
+      void label.offsetWidth; // Trigger reflow
+      label.classList.add('label-active');
+
+      // Charring progression
+      if (mode.charred === "partial") {
+        body.setAttribute('fill', '#111');
+        tab.setAttribute('fill', '#666');
+      } else if (mode.charred === "heavy") {
+        body.setAttribute('fill', '#080808');
+        tab.setAttribute('fill', '#333');
+        svg.style.filter = "grayscale(80%) sepia(20%) drop-shadow(0 4px 6px rgba(0,0,0,0.3))";
+      } else if (mode.charred === "destroyed") {
+        body.setAttribute('fill', '#000');
+        tab.setAttribute('fill', '#111');
+        svg.style.filter = "grayscale(100%) brightness(40%) drop-shadow(0 4px 6px rgba(0,0,0,0.5))";
+      }
+
+      // Release smoke particles
+      createSmoke(mode.smokeRate);
+      
+      // Console output for fellow developers
+      console.warn(`[MOSFET OVERLOAD] Mode: ${mode.text}. Junction temp rising.`);
+    });
+  }
+
+  function createSmoke(rate) {
+    if (!eggContainer) return;
+    const containerRect = eggContainer.getBoundingClientRect();
+    const startX = containerRect.left + containerRect.width / 2;
+    const startY = containerRect.top + window.scrollY + 15; // Account for scroll offset
+
+    for (let i = 0; i < rate; i++) {
+      setTimeout(() => {
+        const p = document.createElement('div');
+        p.className = 'smoke-particle';
+        
+        const size = Math.random() * 8 + 6;
+        const offsetX = (Math.random() - 0.5) * 16;
+        const duration = Math.random() * 1.5 + 1.0;
+        
+        p.style.width = `${size}px`;
+        p.style.height = `${size}px`;
+        p.style.left = `${startX + offsetX}px`;
+        p.style.top = `${startY}px`;
+        p.style.animation = `smoke-float ${duration}s forwards ease-out`;
+        
+        document.body.appendChild(p);
+        
+        setTimeout(() => p.remove(), duration * 1000);
+      }, i * 35);
+    }
+  }
+
+  // Load handler
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMosfetEgg);
+  } else {
+    initMosfetEgg();
+  }
+
+  // PJAX support (re-init listener for Swup if needed, though container is in body outside swup)
+  document.addEventListener('swup:contentReplaced', () => {
+    // Re-verify DOM links just in case
+    initMosfetEgg();
+  });
+})();
+</script>
+
+<!-- Visitor Offset & Resilient Display Script -->
+<script>
+(function() {
+  let statsData = null;
+
+  function applyOffset() {
+    if (!statsData) return;
+    const pvOffset = statsData.pv_offset || 0;
+    const uvOffset = statsData.uv_offset || 0;
+
+    const uvEl = document.getElementById("busuanzi_value_site_uv") || document.getElementById("vercount_value_site_uv");
+    const pvEl = document.getElementById("busuanzi_value_site_pv") || document.getElementById("vercount_value_site_pv");
+    const uvContainer = document.getElementById("busuanzi_container_site_uv") || document.getElementById("vercount_container_site_uv");
+    const pvContainer = document.getElementById("busuanzi_container_site_pv") || document.getElementById("vercount_container_site_pv");
+
+    if (uvEl) {
+      const text = uvEl.textContent.trim();
+      if (text !== "" && text !== uvEl.dataset.appliedVal) {
+        const parsed = parseInt(text, 10);
+        if (!isNaN(parsed)) {
+          const finalVal = parsed + uvOffset;
+          uvEl.dataset.appliedVal = String(finalVal);
+          uvEl.textContent = finalVal;
+          if (uvContainer && uvContainer.style.display === "none") {
+            uvContainer.style.display = "inline";
+          }
+        }
+      }
+    }
+
+    if (pvEl) {
+      const text = pvEl.textContent.trim();
+      if (text !== "" && text !== pvEl.dataset.appliedVal) {
+        const parsed = parseInt(text, 10);
+        if (!isNaN(parsed)) {
+          const finalVal = parsed + pvOffset;
+          pvEl.dataset.appliedVal = String(finalVal);
+          pvEl.textContent = finalVal;
+          if (pvContainer && pvContainer.style.display === "none") {
+            pvContainer.style.display = "inline";
+          }
+        }
+      }
+    }
+  }
+
+  function fallbackIfEmpty() {
+    if (!statsData) return;
+    const uvEl = document.getElementById("busuanzi_value_site_uv") || document.getElementById("vercount_value_site_uv");
+    const pvEl = document.getElementById("busuanzi_value_site_pv") || document.getElementById("vercount_value_site_pv");
+    const uvContainer = document.getElementById("busuanzi_container_site_uv") || document.getElementById("vercount_container_site_uv");
+    const pvContainer = document.getElementById("busuanzi_container_site_pv") || document.getElementById("vercount_container_site_pv");
+
+    const fallbackUv = (statsData.uv_offset || 0) + (statsData.last_uv || 1);
+    const fallbackPv = (statsData.pv_offset || 0) + (statsData.last_pv || 1);
+
+    if (uvEl && (uvEl.textContent.trim() === "" || uvEl.textContent.trim() === "0")) {
+      uvEl.dataset.appliedVal = String(fallbackUv);
+      uvEl.textContent = fallbackUv;
+      if (uvContainer) uvContainer.style.display = "inline";
+    }
+
+    if (pvEl && (pvEl.textContent.trim() === "" || pvEl.textContent.trim() === "0")) {
+      pvEl.dataset.appliedVal = String(fallbackPv);
+      pvEl.textContent = fallbackPv;
+      if (pvContainer) pvContainer.style.display = "inline";
+    }
+  }
+
+  fetch("/visitor_stats.json")
+    .then(res => res.json())
+    .then(data => {
+      statsData = data;
+      applyOffset();
+
+      // Observe DOM mutations when Vercount script asynchronously injects numbers
+      const observer = new MutationObserver(() => applyOffset());
+      observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+
+      // Fallback timer for ad-blockers / slow networks
+      setTimeout(fallbackIfEmpty, 2500);
+
+      // Support Redefine Swup single page transitions
+      document.addEventListener("swup:page:view", () => {
+        applyOffset();
+        setTimeout(fallbackIfEmpty, 1500);
+      });
+    })
+    .catch(err => {
+      console.warn("Failed to load visitor stats configuration:", err);
+    });
+})();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "WenZhenJian's Tech Blog",
+  "short_name": "WZJ Blog",
+  "icons": [
+    {
+      "src": "/images/redefine-favicon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": "/",
+  "theme_color": "#2563eb",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

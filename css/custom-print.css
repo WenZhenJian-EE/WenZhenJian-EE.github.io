@@ -1,0 +1,137 @@
+/* Custom CSS for Print and PDF Export */
+@media print {
+  /* Hide unnecessary UI elements */
+  .navbar-container,
+  .navbar,
+  .sidebar-container,
+  .sidebar,
+  .footer,
+  .footer-container,
+  .side-tools-container,
+  .side-tools,
+  .post-toc-wrap,
+  .post-donate,
+  .post-nav,
+  .prev-next-post,
+  .comment-wrapper,
+  .comment-container,
+  .copyright-box,
+  .post-copyright,
+  .article-meta-info,
+  .tag-wrap,
+  .article-tags,
+  .back-to-top,
+  .rss-link {
+    display: none !important;
+  }
+
+  /* Reset layout structure for full-width printing */
+  html, body, #layout, .main-content-container, .main-content, .main, article, .page-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+  }
+
+  /* Page margins and layout */
+  @page {
+    size: A4;
+    margin: 1.5cm 1.5cm 1.5cm 1.5cm;
+  }
+
+  /* Typography optimization for reading on paper */
+  body {
+    font-family: Georgia, Garamond, "Times New Roman", serif;
+    font-size: 11pt;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000000 !important;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  h1 {
+    font-size: 18pt;
+    margin-top: 0;
+    margin-bottom: 15pt;
+  }
+
+  h2 {
+    font-size: 14pt;
+    margin-top: 20pt;
+    margin-bottom: 10pt;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 3pt;
+  }
+
+  h3 {
+    font-size: 12pt;
+    margin-top: 15pt;
+    margin-bottom: 8pt;
+  }
+
+  /* Keep content blocks together, avoid splitting photos or code mid-page */
+  img, pre, code, blockquote, table, tr {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Format blockquotes */
+  blockquote {
+    border-left: 3px solid #666 !important;
+    background: #f9f9f9 !important;
+    color: #333 !important;
+    padding: 8pt 12pt !important;
+    margin: 10pt 0 !important;
+  }
+
+  /* Format tables */
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    margin: 15pt 0 !important;
+  }
+
+  th, td {
+    border: 1px solid #999 !important;
+    padding: 6pt 8pt !important;
+    text-align: left !important;
+    font-size: 9.5pt !important;
+  }
+
+  th {
+    background-color: #f2f2f2 !important;
+    font-weight: bold !important;
+  }
+
+  /* Format code blocks for ink-saving and readability */
+  pre, code {
+    font-family: Consolas, Monaco, "Andale Mono", monospace !important;
+    font-size: 9.5pt !important;
+  }
+
+  pre {
+    background: #f7f7f7 !important;
+    color: #000000 !important;
+    border: 1px solid #ddd !important;
+    padding: 10pt !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+  }
+
+  /* Display links cleanly without color clutter */
+  a {
+    color: #000000 !important;
+    text-decoration: underline !important;
+  }
+}

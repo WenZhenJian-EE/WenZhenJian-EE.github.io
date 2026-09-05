@@ -1,0 +1,3340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="电源设计, 硬件工程师, PCS, SiC, Hexo">
+    
+    
+    <meta name="author" content="WenZhenJian-EE">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes ASAP (before DOMContentLoaded)
+            (function() {
+                const addBodyClass = () => {
+                    const b = document.body;
+                    if (!b) return false;
+                    b.classList.add(theme + "-mode");
+                    return true;
+                };
+
+                // Try immediately
+                if (addBodyClass()) return;
+
+                // Observe until body exists
+                const mo = new MutationObserver(() => {
+                    if (addBodyClass()) mo.disconnect();
+                });
+                mo.observe(document.documentElement, { childList: true, subtree: true });
+            })();
+        })();
+    </script>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://WenZhenJian-EE.github.io/tags/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+        
+        <meta name="description" content="WenZhenJian&#39;s Tech Blog - 电力电子与硬件开发">
+<meta property="og:type" content="website">
+<meta property="og:title" content="标签">
+<meta property="og:url" content="https://wenzhenjian-ee.github.io/tags/index.html">
+<meta property="og:site_name" content="WenZhenJian&#39;s Tech Blog">
+<meta property="og:description" content="WenZhenJian&#39;s Tech Blog - 电力电子与硬件开发">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
+<meta property="article:published_time" content="2026-09-05T18:38:08.074Z">
+<meta property="article:modified_time" content="2026-09-05T18:38:08.074Z">
+<meta property="article:author" content="WenZhenJian-EE">
+<meta property="article:tag" content="电源设计, 硬件工程师, PCS, SiC, Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wenzhenjian-ee.github.io/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            标签 | WenZhenJian&#39;s Tech Blog
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+        
+            
+    
+            
+    
+            
+                
+                    <link rel="stylesheet" href="/css/custom-typography.css">
+                
+    
+            
+                
+                    <link rel="stylesheet" href="/css/custom-print.css" media="print">
+                
+    
+            
+                
+                    <link rel="manifest" href="/manifest.json">
+                
+    
+            
+                
+                    <meta name="theme-color" content="#2563eb">
+                
+    
+            
+                
+                    <script data-swup-reload-script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("/sw.js").then(reg=>{reg.onupdatefound=()=>{const w=reg.installing;w.onstatechange=()=>{if(w.state==="activated")window.location.reload();};};});let r=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(!r){r=true;window.location.reload();}});});}</script>
+                
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"wenzhenjian-ee.github.io","root":"/","language":"zh-CN","path":"search.json"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.6,"image_border_radius":"12px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#2563eb","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"WenZhenJian's Tech Blog - 电力电子与硬件开发"},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"WenZhenJian's Tech Blog","subtitle":{"text":["电力电子与电源设计","硬件工程师的日常研发实录"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":[{"icon":"fa-brands fa-github","url":"https://github.com/WenZhenJian-EE"},{"icon":"fa-solid fa-at","url":"wenzhenjian-ee@outlook.com"},{"icon":"fa-brands fa-rss","url":"/atom.xml"},{"icon":"fa-brands fa-telegram","url":null},{"icon":"/images/custom-icon.svg","url":null}],"qrs":[{"icon":"fa-brands fa-weixin","qr":null},{"icon":"/images/custom-icon.svg","qr":null}]}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":true,"version":"11.4.1","theme":{"light":"default","dark":"dark"}}},"version":"2.9.0","navbar":{"auto_hide":false,"color":{"left":"#12151c","right":"#161b26","transparency":55},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"关于我":{"path":"/about","icon":"fa-regular fa-user"},"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"分类":{"path":"/categories","icon":"fa-regular fa-folder"},"标签":{"path":"/tags","icon":"fa-regular fa-tags"},"项目":{"path":"/projects/","icon":"fa-regular fa-code"},"工具":{"path":"/tools/","icon":"fa-regular fa-calculator"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur","masonry":{"batch_size":12,"initial_batch_size":24}},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":"📢 个人独立开发的<b>Hardware Engineering Toolbox Desktop（硬件工程计算套件）</b>与<b>Serial-CAN-Debugger V3.0（支持串口、CAN 与实时示波器调试的上位机）</b>已在 GitHub 全面开源并提供独立 EXE 程序下载，欢迎点击上方导航栏 <b>项目</b> 栏目查看！","show_on_mobile":true,"links":{"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"分类":{"path":"/categories","icon":"fa-regular fa-folder"},"标签":{"path":"/tags","icon":"fa-regular fa-tags"},"项目":{"path":"/projects/","icon":"fa-regular fa-code"}}},"article_date_format":"YYYY-MM-DD","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footer":{"runtime":true,"icon":"<i class=\"fa-solid fa-heart fa-beat\" style=\"--fa-animation-duration: 0.5s; color: #f54545\"></i>","start":"2026/05/10 18:15:00","statistics":true,"customize":null,"icp":{"enable":false,"number":null,"url":null}},"footerStart":"2026/05/10 18:15:00","mermaid":{"style":{"light":"default","dark":"dark"}}};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.i18n = {"search":"站内搜索您需要的内容...","toc":"目录","prev":"上一页","next":"下一页","prev_posts":"上一篇","next_posts":"下一篇","page":"第 %d 页","recent_posts":"最新文章","share":"分享","powered_by":"由 %s 驱动","theme":"主题","rss_feed":"RSS Feed","category":"分类","categories":"分类","tag":"标签","tags":"标签","post":"文章","posts":"文章","tagcloud":"标签云","comment":"评论","comments":"评论","top":"置顶","sticky":"置顶","go-back-home":"回到首页","masonry_loading":"照片加载中...","image_viewer":"图片查看器","close":"关闭","exif":{"title":"EXIF","cards":{"camera":"相机","lens":"镜头","exposure":"曝光","other":"其他"},"fields":{"make":"品牌","model":"机型","date_taken":"拍摄时间","lens_model":"镜头","focal_length":"焦距","focus_mode":"对焦模式","shutter":"快门","aperture":"光圈","iso":"感光度","exposure_program":"曝光程序","exposure_compensation":"曝光补偿","metering_mode":"测光模式","flash":"闪光灯","white_balance":"白平衡","latitude":"纬度","longitude":"经度","altitude":"海拔"},"status":{"loading":"加载中...","no_exif":"无 EXIF 信息","library_missing":"EXIF 库未加载","image_source_missing":"图片地址不可用","unavailable":"EXIF 不可用（可能被 CORS 阻止或缺少元数据）","flag_unavailable":"EXIF 不可用"}},"home":"首页","archive":"归档","archives":"归档","about":"关于","links":"链接","link":"链接","friends":"友情链接","friend":"友情链接","timeline":"时间轴","shuoshuo":"说说","bookmarks":"书签","site_uv":"访问人数","site_pv":"总访问量","read_more":"阅读全文","wordcount":"字","min2read":"分钟","changelog":"更新日志","status":"状态","runtime":"博客已运行","days":"天","hours":"小时","minutes":"分钟","seconds":"秒","optimized_by":"并由 Evan 进行优化","rights":"版权所有","site_posts":"共撰写了 %s 篇文章","site_wordcount":"共 %s 字","copyright":{"title":"标题","author":"作者","link":"链接","create_time":"创建于","update_time":"更新于","license_title":"版权声明","license_content":"本文章采用 %s 进行许可。","all_rights_reserved":"版权所有 &#169 %s，禁止转载。","public_domain":"本文为公有领域作品，可自由转载、引用。"},"ago":{"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"},"create_time":"创建","update_time":"更新","expired":"这篇文章最后更新于 %s 天前，内容可能已经过时。"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="WenZhenJian's Tech Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+	<div class="progress-bar-container">
+	
+	<span class="scroll-progress-bar"></span>
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                WenZhenJian&#39;s Tech Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/about"
+                                        >
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    关于我
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories"
+                                        >
+                                    <i class="fa-regular fa-folder fa-fw"></i>
+                                    分类
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="active"
+                                   href="/tags"
+                                        >
+                                    <i class="fa-regular fa-tags fa-fw"></i>
+                                    标签
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/projects/"
+                                        >
+                                    <i class="fa-regular fa-code fa-fw"></i>
+                                    项目
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tools/"
+                                        >
+                                    <i class="fa-regular fa-calculator fa-fw"></i>
+                                    工具
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/about"
+                        >
+                            <span>
+                                关于我
+                            </span>
+                            
+                                <i class="fa-regular fa-user fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories"
+                        >
+                            <span>
+                                分类
+                            </span>
+                            
+                                <i class="fa-regular fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tags"
+                        >
+                            <span>
+                                标签
+                            </span>
+                            
+                                <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/projects/"
+                        >
+                            <span>
+                                项目
+                            </span>
+                            
+                                <i class="fa-regular fa-code fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tools/"
+                        >
+                            <span>
+                                工具
+                            </span>
+                            
+                                <i class="fa-regular fa-calculator fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+                    
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">357</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">81</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">110</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="page-template-container">
+	
+
+	
+	
+	<h1 class="page-title-header">
+		标签
+	</h1>
+
+	
+	<div class="tagcloud-content">
+		<ul class="tag-list" data-show-value="true">
+			
+				<li>
+					<a data-weight="1" href="/tags/4G%E9%80%9A%E4%BF%A1/">
+						<i class="fa-solid fa-hashtag"></i>4G通信
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%A1%AC%E4%BB%B6%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>硬件接口设计
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%B0%84%E9%A2%91%E9%98%BB%E6%8A%97%E5%8C%B9%E9%85%8D/">
+						<i class="fa-solid fa-hashtag"></i>射频阻抗匹配
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="3" href="/tags/ESD%E9%98%B2%E6%8A%A4/">
+						<i class="fa-solid fa-hashtag"></i>ESD防护
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="3" href="/tags/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/">
+						<i class="fa-solid fa-hashtag"></i>硬件开发
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/ADC%E9%87%87%E6%A0%B7/">
+						<i class="fa-solid fa-hashtag"></i>ADC采样
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="5" href="/tags/%E4%BF%A1%E5%8F%B7%E8%B0%83%E7%90%86/">
+						<i class="fa-solid fa-hashtag"></i>信号调理
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%94%B5%E8%8D%B7%E5%8F%8D%E5%86%B2/">
+						<i class="fa-solid fa-hashtag"></i>电荷反冲
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="13" href="/tags/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>硬件设计
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/ARM/">
+						<i class="fa-solid fa-hashtag"></i>ARM
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/Cortex-M/">
+						<i class="fa-solid fa-hashtag"></i>Cortex-M
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="3" href="/tags/%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F/">
+						<i class="fa-solid fa-hashtag"></i>最小系统
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%A8%A1%E6%8B%9F%E7%94%B5%E6%BA%90/">
+						<i class="fa-solid fa-hashtag"></i>模拟电源
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/UCC28C4x/">
+						<i class="fa-solid fa-hashtag"></i>UCC28C4x
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/SN6505/">
+						<i class="fa-solid fa-hashtag"></i>SN6505
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/TL494/">
+						<i class="fa-solid fa-hashtag"></i>TL494
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="5" href="/tags/%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8C/">
+						<i class="fa-solid fa-hashtag"></i>数据手册
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%BC%80%E5%85%B3%E7%94%B5%E6%BA%90/">
+						<i class="fa-solid fa-hashtag"></i>开关电源
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="7" href="/tags/%E6%A8%A1%E6%8B%9F%E6%8E%A7%E5%88%B6/">
+						<i class="fa-solid fa-hashtag"></i>模拟控制
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E7%8E%AF%E8%B7%AF%E8%A1%A5%E5%81%BF/">
+						<i class="fa-solid fa-hashtag"></i>环路补偿
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E5%B3%B0%E5%80%BC%E7%94%B5%E6%B5%81%E6%A8%A1%E5%BC%8F/">
+						<i class="fa-solid fa-hashtag"></i>峰值电流模式
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/PWM%E6%8E%A7%E5%88%B6%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>PWM控制器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%96%9C%E5%9D%A1%E8%A1%A5%E5%81%BF/">
+						<i class="fa-solid fa-hashtag"></i>斜坡补偿
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E7%94%B5%E6%BA%90%E6%8B%93%E6%89%91/">
+						<i class="fa-solid fa-hashtag"></i>电源拓扑
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/DCDC/">
+						<i class="fa-solid fa-hashtag"></i>DCDC
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%BE%85%E5%8A%A9%E7%94%B5%E6%BA%90/">
+						<i class="fa-solid fa-hashtag"></i>辅助电源
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%8F%8D%E6%BF%80%E6%8B%93%E6%89%91/">
+						<i class="fa-solid fa-hashtag"></i>反激拓扑
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%AD%A3%E6%BF%80%E6%8B%93%E6%89%91/">
+						<i class="fa-solid fa-hashtag"></i>正激拓扑
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%9C%89%E6%BA%90%E9%92%B3%E4%BD%8D/">
+						<i class="fa-solid fa-hashtag"></i>有源钳位
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/DSP/">
+						<i class="fa-solid fa-hashtag"></i>DSP
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/C2000/">
+						<i class="fa-solid fa-hashtag"></i>C2000
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/ePWM/">
+						<i class="fa-solid fa-hashtag"></i>ePWM
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/CPLD/">
+						<i class="fa-solid fa-hashtag"></i>CPLD
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/FPGA/">
+						<i class="fa-solid fa-hashtag"></i>FPGA
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%A1%AC%E4%BB%B6%E4%BA%92%E9%94%81/">
+						<i class="fa-solid fa-hashtag"></i>硬件互锁
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%94%B5%E5%AE%B9%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>电容器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%97%A0%E6%BA%90%E5%99%A8%E4%BB%B6/">
+						<i class="fa-solid fa-hashtag"></i>无源器件
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%9B%B4%E6%B5%81%E5%81%8F%E7%BD%AE/">
+						<i class="fa-solid fa-hashtag"></i>直流偏置
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%96%84%E8%86%9C%E7%94%B5%E5%AE%B9/">
+						<i class="fa-solid fa-hashtag"></i>薄膜电容
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="4" href="/tags/%E7%94%B5%E8%B7%AF%E5%88%86%E6%9E%90/">
+						<i class="fa-solid fa-hashtag"></i>电路分析
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="4" href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">
+						<i class="fa-solid fa-hashtag"></i>底层原理
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%B5%8B%E8%AF%95/">
+						<i class="fa-solid fa-hashtag"></i>电力电子测试
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%B7%AE%E5%88%86%E6%8E%A2%E5%A4%B4/">
+						<i class="fa-solid fa-hashtag"></i>差分探头
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%8E%A5%E5%9C%B0%E5%BC%B9%E7%B0%A7/">
+						<i class="fa-solid fa-hashtag"></i>接地弹簧
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/ZVS%E6%B3%A2%E5%BD%A2/">
+						<i class="fa-solid fa-hashtag"></i>ZVS波形
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%8F%8C%E8%84%89%E5%86%B2%E6%B5%8B%E8%AF%95/">
+						<i class="fa-solid fa-hashtag"></i>双脉冲测试
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/DPT/">
+						<i class="fa-solid fa-hashtag"></i>DPT
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%BC%80%E5%85%B3%E6%8D%9F%E8%80%97/">
+						<i class="fa-solid fa-hashtag"></i>开关损耗
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%83%8C%E9%9D%A0%E8%83%8C%E5%AF%B9%E6%8B%96/">
+						<i class="fa-solid fa-hashtag"></i>背靠背对拖
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E4%BA%A4%E9%94%99%E5%B9%B6%E8%81%94/">
+						<i class="fa-solid fa-hashtag"></i>交错并联
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%A4%9A%E7%9B%B8Buck/">
+						<i class="fa-solid fa-hashtag"></i>多相Buck
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%BA%B9%E6%B3%A2%E5%AF%B9%E6%B6%88/">
+						<i class="fa-solid fa-hashtag"></i>纹波对消
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%9D%87%E6%B5%81%E6%8E%A7%E5%88%B6/">
+						<i class="fa-solid fa-hashtag"></i>均流控制
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%94%B5%E6%B5%81%E4%BA%92%E6%84%9F%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>电流互感器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%BF%9F%E6%BB%9E%E6%AF%94%E8%BE%83%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>迟滞比较器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%B7%AE%E5%88%86%E8%BF%90%E6%94%BE/">
+						<i class="fa-solid fa-hashtag"></i>差分运放
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/CAN%E6%80%BB%E7%BA%BF/">
+						<i class="fa-solid fa-hashtag"></i>CAN总线
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/RS485/">
+						<i class="fa-solid fa-hashtag"></i>RS485
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E7%A1%AC%E4%BB%B6%E9%98%B2%E6%8A%A4/">
+						<i class="fa-solid fa-hashtag"></i>硬件防护
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="4" href="/tags/%E4%BF%A1%E5%8F%B7%E5%AE%8C%E6%95%B4%E6%80%A7/">
+						<i class="fa-solid fa-hashtag"></i>信号完整性
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/">
+						<i class="fa-solid fa-hashtag"></i>故障排查
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E9%9A%94%E7%A6%BB%E9%80%9A%E4%BF%A1/">
+						<i class="fa-solid fa-hashtag"></i>隔离通信
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/ISO1042/">
+						<i class="fa-solid fa-hashtag"></i>ISO1042
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/TCAN1043/">
+						<i class="fa-solid fa-hashtag"></i>TCAN1043
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/RS-485/">
+						<i class="fa-solid fa-hashtag"></i>RS-485
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%94%B5%E5%B9%B3%E8%BD%AC%E6%8D%A2/">
+						<i class="fa-solid fa-hashtag"></i>电平转换
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%AF%94%E8%BE%83%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>比较器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%BF%9F%E6%BB%9E%E5%9B%9E%E5%B7%AE/">
+						<i class="fa-solid fa-hashtag"></i>迟滞回差
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E7%A1%AC%E4%BB%B6%E4%BF%9D%E6%8A%A4/">
+						<i class="fa-solid fa-hashtag"></i>硬件保护
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%A8%A1%E6%8B%9F%E7%94%B5%E8%B7%AF/">
+						<i class="fa-solid fa-hashtag"></i>模拟电路
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="5" href="/tags/%E7%83%AD%E8%AE%BE%E8%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>热设计
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E6%95%A3%E7%83%AD%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>散热器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%B5%81%E4%BD%93%E4%BB%BF%E7%9C%9F/">
+						<i class="fa-solid fa-hashtag"></i>流体仿真
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E7%94%B5%E8%B7%AF%E6%8B%93%E6%89%91/">
+						<i class="fa-solid fa-hashtag"></i>电路拓扑
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%8B%93%E6%89%91/">
+						<i class="fa-solid fa-hashtag"></i>拓扑
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/DAB/">
+						<i class="fa-solid fa-hashtag"></i>DAB
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/CLLC/">
+						<i class="fa-solid fa-hashtag"></i>CLLC
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="3" href="/tags/%E8%BF%90%E6%94%BE/">
+						<i class="fa-solid fa-hashtag"></i>运放
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%89%A9%E6%96%99%E5%91%BD%E5%90%8D/">
+						<i class="fa-solid fa-hashtag"></i>物料命名
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%B0%81%E8%A3%85%E6%A0%87%E5%87%86/">
+						<i class="fa-solid fa-hashtag"></i>封装标准
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%BD%A6%E8%A7%84%E8%AE%A4%E8%AF%81/">
+						<i class="fa-solid fa-hashtag"></i>车规认证
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%8B%93%E6%89%91%E6%9E%B6%E6%9E%84/">
+						<i class="fa-solid fa-hashtag"></i>拓扑架构
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%94%9F%E4%BA%A7%E5%88%B6%E9%80%A0/">
+						<i class="fa-solid fa-hashtag"></i>生产制造
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E4%BE%9B%E5%BA%94%E9%93%BE/">
+						<i class="fa-solid fa-hashtag"></i>供应链
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%88%90%E6%9C%AC%E6%A0%B8%E7%AE%97/">
+						<i class="fa-solid fa-hashtag"></i>成本核算
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84/">
+						<i class="fa-solid fa-hashtag"></i>硬件架构
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E9%9A%94%E7%A6%BB%E6%94%BE%E5%A4%A7%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>隔离放大器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%BF%90%E6%94%BE%E4%B8%8E%E6%AF%94%E8%BE%83%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>运放与比较器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%8A%9F%E7%8E%87%E4%BA%8C%E6%9E%81%E7%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>功率二极管
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%82%96%E7%89%B9%E5%9F%BA/">
+						<i class="fa-solid fa-hashtag"></i>肖特基
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%A2%B3%E5%8C%96%E7%A1%85%E4%BA%8C%E6%9E%81%E7%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>碳化硅二极管
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%8F%8D%E5%90%91%E6%81%A2%E5%A4%8D/">
+						<i class="fa-solid fa-hashtag"></i>反向恢复
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%9A%94%E7%A6%BB%E9%87%87%E6%A0%B7/">
+						<i class="fa-solid fa-hashtag"></i>隔离采样
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/SDFM/">
+						<i class="fa-solid fa-hashtag"></i>SDFM
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%B7%AE%E5%88%86%E4%BF%A1%E5%8F%B7/">
+						<i class="fa-solid fa-hashtag"></i>差分信号
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%A1%AC%E4%BB%B6%E8%B0%83%E7%90%86/">
+						<i class="fa-solid fa-hashtag"></i>硬件调理
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>电路设计
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/COT%E6%8E%A7%E5%88%B6/">
+						<i class="fa-solid fa-hashtag"></i>COT控制
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E7%BA%B9%E6%B3%A2%E6%B3%A8%E5%85%A5/">
+						<i class="fa-solid fa-hashtag"></i>纹波注入
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%94%B5%E6%BA%90%E6%9E%B6%E6%9E%84/">
+						<i class="fa-solid fa-hashtag"></i>电源架构
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="7" href="/tags/%E6%A0%85%E6%9E%81%E9%A9%B1%E5%8A%A8/">
+						<i class="fa-solid fa-hashtag"></i>栅极驱动
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E7%B1%B3%E5%8B%92%E6%95%88%E5%BA%94/">
+						<i class="fa-solid fa-hashtag"></i>米勒效应
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E5%AF%84%E7%94%9F%E7%94%B5%E6%84%9F/">
+						<i class="fa-solid fa-hashtag"></i>寄生电感
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%BC%80%E5%B0%94%E6%96%87%E6%BA%90%E6%9E%81/">
+						<i class="fa-solid fa-hashtag"></i>开尔文源极
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/Desat%E4%BF%9D%E6%8A%A4/">
+						<i class="fa-solid fa-hashtag"></i>Desat保护
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%87%AA%E4%B8%BE%E4%BE%9B%E7%94%B5/">
+						<i class="fa-solid fa-hashtag"></i>自举供电
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%9C%89%E6%BA%90%E7%B1%B3%E5%8B%92%E9%92%B3%E4%BD%8D/">
+						<i class="fa-solid fa-hashtag"></i>有源米勒钳位
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%95%B0%E5%AD%97%E9%9A%94%E7%A6%BB/">
+						<i class="fa-solid fa-hashtag"></i>数字隔离
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%8F%A0%E5%B1%82%E6%AF%8D%E6%8E%92/">
+						<i class="fa-solid fa-hashtag"></i>叠层母排
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%9C%BA%E7%94%B5%E7%BB%93%E6%9E%84/">
+						<i class="fa-solid fa-hashtag"></i>机电结构
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/EMC%E8%AE%BE%E8%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>EMC设计
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%85%B1%E6%A8%A1%E6%BB%A4%E6%B3%A2%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>共模滤波器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%A3%81%E7%8F%A0%E9%80%89%E5%9E%8B/">
+						<i class="fa-solid fa-hashtag"></i>磁珠选型
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/EMI%E6%BB%A4%E6%B3%A2%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>EMI滤波器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/Middlebrook%E5%88%A4%E6%8D%AE/">
+						<i class="fa-solid fa-hashtag"></i>Middlebrook判据
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%85%B1%E6%A8%A1%E7%94%B5%E6%84%9F/">
+						<i class="fa-solid fa-hashtag"></i>共模电感
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/PCB%E7%A9%BA%E9%97%B4%E5%B8%83%E5%B1%80/">
+						<i class="fa-solid fa-hashtag"></i>PCB空间布局
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/EMC%E6%95%B4%E6%94%B9/">
+						<i class="fa-solid fa-hashtag"></i>EMC整改
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E4%BC%A0%E5%AF%BC%E9%AA%9A%E6%89%B0/">
+						<i class="fa-solid fa-hashtag"></i>传导骚扰
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%BE%90%E5%B0%84%E5%8F%91%E5%B0%84/">
+						<i class="fa-solid fa-hashtag"></i>辐射发射
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%CF%80%E5%9E%8B%E6%BB%A4%E6%B3%A2%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>π型滤波器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="3" href="/tags/EMC/">
+						<i class="fa-solid fa-hashtag"></i>EMC
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/EMI/">
+						<i class="fa-solid fa-hashtag"></i>EMI
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%BB%A4%E6%B3%A2%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>滤波器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%91%B8%E5%BA%95%E6%B5%8B%E8%AF%95/">
+						<i class="fa-solid fa-hashtag"></i>摸底测试
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E4%BC%A0%E5%AF%BC%E8%BE%90%E5%B0%84/">
+						<i class="fa-solid fa-hashtag"></i>传导辐射
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E8%AE%BE%E5%A4%87/">
+						<i class="fa-solid fa-hashtag"></i>实验室设备
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%8E%A5%E6%94%B6%E6%9C%BA%E4%B8%8ELISN/">
+						<i class="fa-solid fa-hashtag"></i>接收机与LISN
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%94%B5%E7%A3%81%E5%85%BC%E5%AE%B9/">
+						<i class="fa-solid fa-hashtag"></i>电磁兼容
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E4%BC%A0%E5%AF%BC%E6%B5%8B%E8%AF%95/">
+						<i class="fa-solid fa-hashtag"></i>传导测试
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/LISN/">
+						<i class="fa-solid fa-hashtag"></i>LISN
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%BB%A4%E6%B3%A2%E5%99%A8%E8%AE%BE%E8%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>滤波器设计
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/LC%E6%BB%A4%E6%B3%A2%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>LC滤波器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/LCL%E6%BB%A4%E6%B3%A2/">
+						<i class="fa-solid fa-hashtag"></i>LCL滤波
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%89%B9%E5%BE%81%E9%98%BB%E6%8A%97/">
+						<i class="fa-solid fa-hashtag"></i>特征阻抗
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%B0%90%E6%8C%AF%E9%98%BB%E5%B0%BC/">
+						<i class="fa-solid fa-hashtag"></i>谐振阻尼
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%A8%A1%E6%8B%9F%E6%BB%A4%E6%B3%A2/">
+						<i class="fa-solid fa-hashtag"></i>模拟滤波
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E4%BC%A0%E9%80%92%E5%87%BD%E6%95%B0/">
+						<i class="fa-solid fa-hashtag"></i>传递函数
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%A4%B1%E6%95%88%E5%88%86%E6%9E%90/">
+						<i class="fa-solid fa-hashtag"></i>失效分析
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%8D%95%E7%82%B9%E6%95%85%E9%9A%9C/">
+						<i class="fa-solid fa-hashtag"></i>单点故障
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%85%B1%E5%9B%A0%E5%A4%B1%E6%95%88/">
+						<i class="fa-solid fa-hashtag"></i>共因失效
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%99%8D%E9%A2%9D%E8%AE%BE%E8%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>降额设计
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%94%B5%E8%B7%AF%E8%AE%A1%E7%AE%97/">
+						<i class="fa-solid fa-hashtag"></i>电路计算
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%94%B5%E7%BD%91%E7%BB%9C%E7%90%86%E8%AE%BA/">
+						<i class="fa-solid fa-hashtag"></i>电网络理论
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%AF%86%E5%B0%94%E6%9B%BC%E5%AE%9A%E7%90%86/">
+						<i class="fa-solid fa-hashtag"></i>密尔曼定理
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%88%B4%E7%BB%B4%E5%8D%97%E7%AD%89%E6%95%88/">
+						<i class="fa-solid fa-hashtag"></i>戴维南等效
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%A4%A7%E7%BA%B2/">
+						<i class="fa-solid fa-hashtag"></i>大纲
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/GPS/">
+						<i class="fa-solid fa-hashtag"></i>GPS
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/GNSS/">
+						<i class="fa-solid fa-hashtag"></i>GNSS
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%B0%84%E9%A2%91%E5%89%8D%E7%AB%AF/">
+						<i class="fa-solid fa-hashtag"></i>射频前端
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%8B%93%E6%89%91%E6%8B%BC%E6%8E%A5/">
+						<i class="fa-solid fa-hashtag"></i>拓扑拼接
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%8A%A8%E6%80%81%E9%98%BB%E6%8A%97/">
+						<i class="fa-solid fa-hashtag"></i>动态阻抗
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/CCM%E4%B8%8EDCM/">
+						<i class="fa-solid fa-hashtag"></i>CCM与DCM
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%8E%A5%E5%9C%B0%E6%9E%B6%E6%9E%84/">
+						<i class="fa-solid fa-hashtag"></i>接地架构
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E7%94%B5%E4%BD%8D%E5%88%86%E5%8C%BA/">
+						<i class="fa-solid fa-hashtag"></i>电位分区
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%9A%94%E7%A6%BB%E6%8A%80%E6%9C%AF/">
+						<i class="fa-solid fa-hashtag"></i>隔离技术
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%9C%B0%E7%8E%AF%E8%B7%AF/">
+						<i class="fa-solid fa-hashtag"></i>地环路
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%9C%B0/">
+						<i class="fa-solid fa-hashtag"></i>系统接地
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E4%BF%9D%E6%8A%A4%E5%9C%B0PE/">
+						<i class="fa-solid fa-hashtag"></i>保护地PE
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%85%B1%E9%98%BB%E6%8A%97%E8%80%A6%E5%90%88/">
+						<i class="fa-solid fa-hashtag"></i>共阻抗耦合
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%B6%B2%E5%86%B7/">
+						<i class="fa-solid fa-hashtag"></i>液冷
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%AF%BC%E7%83%AD%E6%9D%90%E6%96%99/">
+						<i class="fa-solid fa-hashtag"></i>导热材料
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%83%AD%E9%98%BB%E8%AE%A1%E7%AE%97/">
+						<i class="fa-solid fa-hashtag"></i>热阻计算
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>结构设计
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%80%BB%E7%9B%AE%E5%BD%95/">
+						<i class="fa-solid fa-hashtag"></i>总目录
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%AF%BC%E8%88%AA%E9%A1%B5/">
+						<i class="fa-solid fa-hashtag"></i>导航页
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/">
+						<i class="fa-solid fa-hashtag"></i>知识体系
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%9B%86%E8%82%A4%E6%95%88%E5%BA%94/">
+						<i class="fa-solid fa-hashtag"></i>集肤效应
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%82%BB%E8%BF%91%E6%95%88%E5%BA%94/">
+						<i class="fa-solid fa-hashtag"></i>邻近效应
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/Dowell%E6%A8%A1%E5%9E%8B/">
+						<i class="fa-solid fa-hashtag"></i>Dowell模型
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%AB%98%E9%A2%91%E7%A3%81%E4%BB%B6/">
+						<i class="fa-solid fa-hashtag"></i>高频磁件
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%80%86%E5%8F%98%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>逆变器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E4%B8%89%E7%94%B5%E5%B9%B3/">
+						<i class="fa-solid fa-hashtag"></i>三电平
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/SVPWM/">
+						<i class="fa-solid fa-hashtag"></i>SVPWM
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%8A%9F%E7%8E%87%E7%94%B5%E6%84%9F/">
+						<i class="fa-solid fa-hashtag"></i>功率电感
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%A3%81%E6%80%A7%E5%85%83%E4%BB%B6/">
+						<i class="fa-solid fa-hashtag"></i>磁性元件
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%8D%9F%E8%80%97%E8%AE%A1%E7%AE%97/">
+						<i class="fa-solid fa-hashtag"></i>损耗计算
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E7%A3%81%E9%A5%B1%E5%92%8C/">
+						<i class="fa-solid fa-hashtag"></i>磁饱和
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/CAN-FD/">
+						<i class="fa-solid fa-hashtag"></i>CAN-FD
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%9A%94%E7%A6%BB%E5%99%A8%E4%BB%B6/">
+						<i class="fa-solid fa-hashtag"></i>隔离器件
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%85%89%E8%80%A6/">
+						<i class="fa-solid fa-hashtag"></i>光耦
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E6%95%B0%E5%AD%97%E9%9A%94%E7%A6%BB%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>数字隔离器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%9A%94%E7%A6%BB%E8%AE%BE%E8%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>隔离设计
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%9A%94%E7%A6%BB%E8%BF%90%E6%94%BE/">
+						<i class="fa-solid fa-hashtag"></i>隔离运放
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%AB%98%E5%8E%8B%E5%AE%89%E5%85%A8/">
+						<i class="fa-solid fa-hashtag"></i>高压安全
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="3" href="/tags/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90/">
+						<i class="fa-solid fa-hashtag"></i>电力电子
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%8B%93%E6%89%91%E8%AE%BE%E8%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>拓扑设计
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/LLC/">
+						<i class="fa-solid fa-hashtag"></i>LLC
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%B0%8F%E4%BF%A1%E5%8F%B7%E5%BB%BA%E6%A8%A1/">
+						<i class="fa-solid fa-hashtag"></i>小信号建模
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%A3%81%E6%8D%9F%E8%80%97/">
+						<i class="fa-solid fa-hashtag"></i>磁损耗
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%96%AF%E5%9D%A6%E9%BA%A6%E8%8C%A8%E5%85%AC%E5%BC%8F/">
+						<i class="fa-solid fa-hashtag"></i>斯坦麦茨公式
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%BD%AF%E7%A3%81%E6%9D%90%E6%96%99/">
+						<i class="fa-solid fa-hashtag"></i>软磁材料
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%A3%81%E4%BB%B6%E6%B5%8B%E8%AF%95/">
+						<i class="fa-solid fa-hashtag"></i>磁件测试
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/MCU%E9%80%89%E5%9E%8B/">
+						<i class="fa-solid fa-hashtag"></i>MCU选型
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/STM32/">
+						<i class="fa-solid fa-hashtag"></i>STM32
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/AURIX/">
+						<i class="fa-solid fa-hashtag"></i>AURIX
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%A1%AC%E4%BB%B6/">
+						<i class="fa-solid fa-hashtag"></i>嵌入式硬件
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/MCU/">
+						<i class="fa-solid fa-hashtag"></i>MCU
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%9C%8B%E9%97%A8%E7%8B%97/">
+						<i class="fa-solid fa-hashtag"></i>看门狗
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%A4%8D%E4%BD%8D%E8%8A%AF%E7%89%87/">
+						<i class="fa-solid fa-hashtag"></i>复位芯片
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="6" href="/tags/Datasheet%E9%98%85%E8%AF%BB/">
+						<i class="fa-solid fa-hashtag"></i>Datasheet阅读
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%99%B6%E6%8C%AF%E7%94%B5%E8%B7%AF/">
+						<i class="fa-solid fa-hashtag"></i>晶振电路
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="4" href="/tags/%E7%A3%81%E8%AE%BE%E8%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>磁设计
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%A3%81%E9%98%BB%E7%BD%91%E7%BB%9C/">
+						<i class="fa-solid fa-hashtag"></i>磁阻网络
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%80%A6%E5%90%88%E7%94%B5%E6%84%9F/">
+						<i class="fa-solid fa-hashtag"></i>耦合电感
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%9B%86%E6%88%90%E7%A3%81%E4%BB%B6/">
+						<i class="fa-solid fa-hashtag"></i>集成磁件
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%AC%A0%E5%8E%8B%E5%A4%8D%E4%BD%8D/">
+						<i class="fa-solid fa-hashtag"></i>欠压复位
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%A1%AC%E4%BB%B6%E7%9C%8B%E9%97%A8%E7%8B%97/">
+						<i class="fa-solid fa-hashtag"></i>硬件看门狗
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%A3%81%E8%B7%AF%E6%A8%A1%E5%9E%8B/">
+						<i class="fa-solid fa-hashtag"></i>磁路模型
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%8F%98%E5%8E%8B%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>变压器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%B0%94%E9%9A%99/">
+						<i class="fa-solid fa-hashtag"></i>气隙
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%BC%8F%E6%84%9F/">
+						<i class="fa-solid fa-hashtag"></i>漏感
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%BA%A6%E5%85%8B%E6%96%AF%E9%9F%A6%E6%96%B9%E7%A8%8B/">
+						<i class="fa-solid fa-hashtag"></i>麦克斯韦方程
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E4%BD%8D%E7%A7%BB%E7%94%B5%E6%B5%81/">
+						<i class="fa-solid fa-hashtag"></i>位移电流
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%8F%98%E5%8E%8B%E5%99%A8%E6%A8%A1%E5%9E%8B/">
+						<i class="fa-solid fa-hashtag"></i>变压器模型
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/T%E5%9E%8B%E7%AD%89%E6%95%88%E7%94%B5%E8%B7%AF/">
+						<i class="fa-solid fa-hashtag"></i>T型等效电路
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%9C%BA%E6%A2%B0%E8%AE%BE%E8%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>机械设计
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%85%AC%E5%B7%AE%E9%85%8D%E5%90%88/">
+						<i class="fa-solid fa-hashtag"></i>公差配合
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%A1%A8%E9%9D%A2%E5%A4%84%E7%90%86/">
+						<i class="fa-solid fa-hashtag"></i>表面处理
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%8A%9F%E7%8E%87%E5%BC%80%E5%85%B3%E7%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>功率开关管
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%AF%84%E7%94%9F%E7%94%B5%E5%AE%B9/">
+						<i class="fa-solid fa-hashtag"></i>寄生电容
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%A4%9A%E7%AE%A1%E5%B9%B6%E8%81%94/">
+						<i class="fa-solid fa-hashtag"></i>多管并联
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%90%8D%E8%AF%8D%E8%A7%A3%E6%9E%90/">
+						<i class="fa-solid fa-hashtag"></i>名词解析
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/BMS/">
+						<i class="fa-solid fa-hashtag"></i>BMS
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/PCS/">
+						<i class="fa-solid fa-hashtag"></i>PCS
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%9E%84%E7%BD%91%E5%9E%8B%E6%8E%A7%E5%88%B6/">
+						<i class="fa-solid fa-hashtag"></i>构网型控制
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%94%B5%E5%AD%90%E7%94%B5%E6%B0%94%E6%9E%B6%E6%9E%84/">
+						<i class="fa-solid fa-hashtag"></i>电子电气架构
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/PCB-Layout/">
+						<i class="fa-solid fa-hashtag"></i>PCB Layout
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/SI-PI/">
+						<i class="fa-solid fa-hashtag"></i>SI/PI
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%A8%A1%E6%8B%9F%E4%BF%A1%E5%8F%B7%E9%93%BE/">
+						<i class="fa-solid fa-hashtag"></i>模拟信号链
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%BC%80%E5%B0%94%E6%96%87%E9%87%87%E6%A0%B7/">
+						<i class="fa-solid fa-hashtag"></i>开尔文采样
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%BF%90%E6%94%BE%E8%AF%AF%E5%B7%AE%E6%A8%A1%E5%9E%8B/">
+						<i class="fa-solid fa-hashtag"></i>运放误差模型
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/CMRR%E7%B2%BE%E7%AE%97/">
+						<i class="fa-solid fa-hashtag"></i>CMRR精算
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/PCB%E5%88%B6%E9%80%A0/">
+						<i class="fa-solid fa-hashtag"></i>PCB制造
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/PCBA/">
+						<i class="fa-solid fa-hashtag"></i>PCBA
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/SMT%E8%B4%B4%E7%89%87/">
+						<i class="fa-solid fa-hashtag"></i>SMT贴片
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/DFM%E8%AE%BE%E8%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>DFM设计
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%B3%A2%E5%B3%B0%E7%84%8A%E9%80%8F%E9%94%A1/">
+						<i class="fa-solid fa-hashtag"></i>波峰焊透锡
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/IPC-A-610/">
+						<i class="fa-solid fa-hashtag"></i>IPC-A-610
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E4%B8%AA%E4%BA%BA%E4%B8%BB%E9%A1%B5/">
+						<i class="fa-solid fa-hashtag"></i>个人主页
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/">
+						<i class="fa-solid fa-hashtag"></i>开源项目
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%8A%80%E8%83%BD%E5%A4%A7%E7%BA%B2/">
+						<i class="fa-solid fa-hashtag"></i>技能大纲
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/PFC/">
+						<i class="fa-solid fa-hashtag"></i>PFC
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%B7%A5%E7%A8%8B%E7%89%A9%E7%90%86/">
+						<i class="fa-solid fa-hashtag"></i>工程物理
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E7%A3%81%E6%80%A7%E6%9D%90%E6%96%99/">
+						<i class="fa-solid fa-hashtag"></i>磁性材料
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%93%B6%E7%83%A7%E7%BB%93/">
+						<i class="fa-solid fa-hashtag"></i>银烧结
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%83%AD%E5%8A%9B%E5%AD%A6%E5%87%9D%E9%9C%B2/">
+						<i class="fa-solid fa-hashtag"></i>热力学凝露
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%9B%B6%E6%9E%81%E7%82%B9/">
+						<i class="fa-solid fa-hashtag"></i>零极点
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/">
+						<i class="fa-solid fa-hashtag"></i>控制理论
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/RHPZ/">
+						<i class="fa-solid fa-hashtag"></i>RHPZ
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90/">
+						<i class="fa-solid fa-hashtag"></i>频域分析
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%8A%9F%E7%8E%87%E5%9B%9E%E8%B7%AF/">
+						<i class="fa-solid fa-hashtag"></i>功率回路
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/DC-Link/">
+						<i class="fa-solid fa-hashtag"></i>DC-Link
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%B1%82%E5%8F%A0%E6%AF%8D%E6%8E%92/">
+						<i class="fa-solid fa-hashtag"></i>层叠母排
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%94%B5%E6%BA%90IC/">
+						<i class="fa-solid fa-hashtag"></i>电源IC
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/LDO/">
+						<i class="fa-solid fa-hashtag"></i>LDO
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%99%8D%E5%8E%8B%E8%BD%AC%E6%8D%A2%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>降压转换器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%8E%AF%E8%B7%AF%E7%A8%B3%E5%AE%9A%E6%80%A7/">
+						<i class="fa-solid fa-hashtag"></i>环路稳定性
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%94%B5%E6%BA%90%E8%AE%BE%E8%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>电源设计
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%90%86%E6%83%B3%E4%BA%8C%E6%9E%81%E7%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>理想二极管
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/PDN%E8%AE%BE%E8%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>PDN设计
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%95%85%E9%9A%9C%E5%88%86%E6%9E%90/">
+						<i class="fa-solid fa-hashtag"></i>故障分析
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%82%B8%E6%9C%BA%E6%8E%92%E6%9F%A5/">
+						<i class="fa-solid fa-hashtag"></i>炸机排查
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%A0%B9%E6%9C%AC%E5%8E%9F%E5%9B%A0/">
+						<i class="fa-solid fa-hashtag"></i>根本原因
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%8F%AF%E9%9D%A0%E6%80%A7/">
+						<i class="fa-solid fa-hashtag"></i>可靠性
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%A0%B7%E6%9C%BA%E8%B0%83%E8%AF%95/">
+						<i class="fa-solid fa-hashtag"></i>样机调试
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%A4%BA%E6%B3%A2%E5%99%A8%E4%BD%BF%E7%94%A8/">
+						<i class="fa-solid fa-hashtag"></i>示波器使用
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%A0%94%E5%8F%91%E5%AE%9E%E6%88%98/">
+						<i class="fa-solid fa-hashtag"></i>研发实战
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/">
+						<i class="fa-solid fa-hashtag"></i>经验总结
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%9F%AD%E8%B7%AF%E4%BF%9D%E6%8A%A4/">
+						<i class="fa-solid fa-hashtag"></i>短路保护
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%BB%B6%E6%97%B6%E9%A2%84%E7%AE%97/">
+						<i class="fa-solid fa-hashtag"></i>延时预算
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E4%BF%9D%E9%99%A9%E4%B8%9D%E9%80%89%E5%9E%8B/">
+						<i class="fa-solid fa-hashtag"></i>保险丝选型
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%A1%AC%E4%BB%B6%E8%BF%87%E6%B5%81/">
+						<i class="fa-solid fa-hashtag"></i>硬件过流
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%BB%A7%E7%94%B5%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>继电器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/PMOS%E9%98%B2%E5%8F%8D%E6%8E%A5/">
+						<i class="fa-solid fa-hashtag"></i>PMOS防反接
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/TVS/">
+						<i class="fa-solid fa-hashtag"></i>TVS
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/TVS%E4%BA%8C%E6%9E%81%E7%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>TVS二极管
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%8E%8B%E6%95%8F%E7%94%B5%E9%98%BB/">
+						<i class="fa-solid fa-hashtag"></i>压敏电阻
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%87%AA%E6%81%A2%E5%A4%8D%E4%BF%9D%E9%99%A9%E4%B8%9D/">
+						<i class="fa-solid fa-hashtag"></i>自恢复保险丝
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/PPTC/">
+						<i class="fa-solid fa-hashtag"></i>PPTC
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%B5%AA%E6%B6%8C%E9%98%B2%E6%8A%A4/">
+						<i class="fa-solid fa-hashtag"></i>浪涌防护
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/RLCD%E7%94%B5%E8%B7%AF/">
+						<i class="fa-solid fa-hashtag"></i>RLCD电路
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%97%A0%E6%BA%90%E7%BD%91%E7%BB%9C/">
+						<i class="fa-solid fa-hashtag"></i>无源网络
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%A2%84%E5%85%85%E7%94%B5/">
+						<i class="fa-solid fa-hashtag"></i>预充电
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%9D%87%E5%8E%8B%E8%AE%BE%E8%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>均压设计
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%94%B5%E9%98%BB/">
+						<i class="fa-solid fa-hashtag"></i>电阻
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%94%B5%E5%AE%B9/">
+						<i class="fa-solid fa-hashtag"></i>电容
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%94%B5%E6%84%9F/">
+						<i class="fa-solid fa-hashtag"></i>电感
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E4%BA%8C%E6%9E%81%E7%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>二极管
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E5%88%86%E6%B5%81%E7%94%B5%E9%98%BB/">
+						<i class="fa-solid fa-hashtag"></i>分流电阻
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%BC%80%E5%B0%94%E6%96%87%E5%9B%9B%E7%BA%BF%E5%88%B6/">
+						<i class="fa-solid fa-hashtag"></i>开尔文四线制
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%B8%A9%E6%BC%82TCR/">
+						<i class="fa-solid fa-hashtag"></i>温漂TCR
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E5%AE%89%E8%A7%84%E8%AE%BE%E8%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>安规设计
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E7%94%B5%E6%B0%94%E9%97%B4%E9%9A%99/">
+						<i class="fa-solid fa-hashtag"></i>电气间隙
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E7%88%AC%E7%94%B5%E8%B7%9D%E7%A6%BB/">
+						<i class="fa-solid fa-hashtag"></i>爬电距离
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="3" href="/tags/%E7%BB%9D%E7%BC%98%E9%85%8D%E5%90%88/">
+						<i class="fa-solid fa-hashtag"></i>绝缘配合
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%BC%93%E5%86%B2%E5%90%B8%E6%94%B6/">
+						<i class="fa-solid fa-hashtag"></i>缓冲吸收
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/RC-Snubber/">
+						<i class="fa-solid fa-hashtag"></i>RC Snubber
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/RCD%E9%92%B3%E4%BD%8D/">
+						<i class="fa-solid fa-hashtag"></i>RCD钳位
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%97%A0%E6%8D%9F%E5%90%B8%E6%94%B6/">
+						<i class="fa-solid fa-hashtag"></i>无损吸收
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%BB%9D%E7%BC%98%E8%80%90%E5%8E%8B/">
+						<i class="fa-solid fa-hashtag"></i>绝缘耐压
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%80%90%E5%8E%8B%E6%B5%8B%E8%AF%95/">
+						<i class="fa-solid fa-hashtag"></i>耐压测试
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/Hipot/">
+						<i class="fa-solid fa-hashtag"></i>Hipot
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%AD%89%E7%94%B5%E4%BD%8D%E7%9F%AD%E6%8E%A5/">
+						<i class="fa-solid fa-hashtag"></i>等电位短接
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%8E%A5%E5%9C%B0%E8%BF%9E%E7%BB%AD%E6%80%A7/">
+						<i class="fa-solid fa-hashtag"></i>接地连续性
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%AE%89%E8%A7%84%E6%A0%87%E5%87%86/">
+						<i class="fa-solid fa-hashtag"></i>安规标准
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/HBSE/">
+						<i class="fa-solid fa-hashtag"></i>HBSE
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%BC%8F%E7%94%B5%E6%B5%81%E5%8D%9A%E5%BC%88/">
+						<i class="fa-solid fa-hashtag"></i>漏电流博弈
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%94%B5%E6%B5%81%E9%87%87%E6%A0%B7/">
+						<i class="fa-solid fa-hashtag"></i>电流采样
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%94%B5%E5%8E%8B%E9%87%87%E6%A0%B7/">
+						<i class="fa-solid fa-hashtag"></i>电压采样
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%BC%80%E5%B0%94%E6%96%87%E6%8E%A5%E6%B3%95/">
+						<i class="fa-solid fa-hashtag"></i>开尔文接法
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/">
+						<i class="fa-solid fa-hashtag"></i>设计规范
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%A1%8C%E4%B8%9A%E6%A0%87%E5%87%86/">
+						<i class="fa-solid fa-hashtag"></i>行业标准
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/AEC-Q100/">
+						<i class="fa-solid fa-hashtag"></i>AEC-Q100
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/ISO26262/">
+						<i class="fa-solid fa-hashtag"></i>ISO26262
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E4%BE%9B%E5%BA%94%E9%93%BE%E5%90%88%E8%A7%84/">
+						<i class="fa-solid fa-hashtag"></i>供应链合规
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%AB%98%E9%A2%91%E5%8F%98%E5%8E%8B%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>高频变压器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%A0%B7%E5%93%81%E6%89%93%E6%A0%B7/">
+						<i class="fa-solid fa-hashtag"></i>样品打样
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%A3%81%E8%8A%AF%E9%80%89%E5%9E%8B/">
+						<i class="fa-solid fa-hashtag"></i>磁芯选型
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%B7%A5%E7%A8%8B%E8%90%BD%E5%9C%B0/">
+						<i class="fa-solid fa-hashtag"></i>工程落地
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%BF%9E%E6%8E%A5%E5%99%A8/">
+						<i class="fa-solid fa-hashtag"></i>连接器
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%8E%A5%E8%A7%A6%E7%94%B5%E9%98%BB/">
+						<i class="fa-solid fa-hashtag"></i>接触电阻
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%AB%98%E5%8E%8B%E5%A4%A7%E7%94%B5%E6%B5%81/">
+						<i class="fa-solid fa-hashtag"></i>高压大电流
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E5%99%A8%E4%BB%B6%E9%80%89%E5%9E%8B/">
+						<i class="fa-solid fa-hashtag"></i>器件选型
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%9C%BA%E7%94%B5%E5%B7%A5%E7%A8%8B/">
+						<i class="fa-solid fa-hashtag"></i>机电工程
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%BC%80%E5%85%B3%E7%94%B5%E5%AE%B9/">
+						<i class="fa-solid fa-hashtag"></i>开关电容
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%A3%9E%E8%B7%A8%E7%94%B5%E5%AE%B9/">
+						<i class="fa-solid fa-hashtag"></i>飞跨电容
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%A4%9A%E7%94%B5%E5%B9%B3%E6%8B%93%E6%89%91/">
+						<i class="fa-solid fa-hashtag"></i>多电平拓扑
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%9D%87%E5%8E%8B%E6%8E%A7%E5%88%B6/">
+						<i class="fa-solid fa-hashtag"></i>均压控制
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%87%AA%E4%B8%BE%E7%94%B5%E8%B7%AF/">
+						<i class="fa-solid fa-hashtag"></i>自举电路
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%9A%94%E7%A6%BB%E4%BF%9D%E6%8A%A4/">
+						<i class="fa-solid fa-hashtag"></i>隔离保护
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/MOSFET/">
+						<i class="fa-solid fa-hashtag"></i>MOSFET
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%9A%94%E7%A6%BB%E9%A9%B1%E5%8A%A8/">
+						<i class="fa-solid fa-hashtag"></i>隔离驱动
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">
+						<i class="fa-solid fa-hashtag"></i>设计案例
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%A8%A1%E6%8B%9F%E5%BC%80%E5%85%B3/">
+						<i class="fa-solid fa-hashtag"></i>模拟开关
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%AB%98%E8%BE%B9%E9%A9%B1%E5%8A%A8/">
+						<i class="fa-solid fa-hashtag"></i>高边驱动
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E4%BD%8E%E8%BE%B9%E9%A9%B1%E5%8A%A8/">
+						<i class="fa-solid fa-hashtag"></i>低边驱动
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%9A%94%E7%A6%BB/">
+						<i class="fa-solid fa-hashtag"></i>隔离
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%8E%A5%E5%9C%B0/">
+						<i class="fa-solid fa-hashtag"></i>接地
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%9E%AC%E6%80%81%E5%B9%B2%E6%89%B0/">
+						<i class="fa-solid fa-hashtag"></i>瞬态干扰
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/">
+						<i class="fa-solid fa-hashtag"></i>系统架构
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/SiC/">
+						<i class="fa-solid fa-hashtag"></i>SiC
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/IGBT/">
+						<i class="fa-solid fa-hashtag"></i>IGBT
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%8A%9F%E7%8E%87%E5%8D%8A%E5%AF%BC%E4%BD%93/">
+						<i class="fa-solid fa-hashtag"></i>功率半导体
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E4%BC%A0%E7%83%AD%E5%AD%A6/">
+						<i class="fa-solid fa-hashtag"></i>传热学
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E5%82%85%E9%87%8C%E5%8F%B6%E5%AF%BC%E7%83%AD/">
+						<i class="fa-solid fa-hashtag"></i>傅里叶导热
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%BB%93%E6%B8%A9%E8%AE%A1%E7%AE%97/">
+						<i class="fa-solid fa-hashtag"></i>结温计算
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="2" href="/tags/%E5%8F%98%E5%8E%8B%E5%99%A8%E8%AE%BE%E8%AE%A1/">
+						<i class="fa-solid fa-hashtag"></i>变压器设计
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/AP%E6%B3%95/">
+						<i class="fa-solid fa-hashtag"></i>AP法
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%B0%94%E9%9A%99%E8%AE%A1%E7%AE%97/">
+						<i class="fa-solid fa-hashtag"></i>气隙计算
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E6%97%A0%E7%BA%BF%E7%94%B5%E8%83%BD%E4%BC%A0%E8%BE%93/">
+						<i class="fa-solid fa-hashtag"></i>无线电能传输
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/WPT/">
+						<i class="fa-solid fa-hashtag"></i>WPT
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%A3%81%E5%85%B1%E6%8C%AF/">
+						<i class="fa-solid fa-hashtag"></i>磁共振
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E4%BA%92%E6%84%9F%E6%A8%A1%E5%9E%8B/">
+						<i class="fa-solid fa-hashtag"></i>互感模型
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E9%93%81%E6%B0%A7%E4%BD%93/">
+						<i class="fa-solid fa-hashtag"></i>铁氧体
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%A3%81%E7%B2%89%E8%8A%AF/">
+						<i class="fa-solid fa-hashtag"></i>磁粉芯
+					</a>
+				</li>
+			
+				<li>
+					<a data-weight="1" href="/tags/%E7%A3%81%E8%8A%AF%E6%8D%9F%E8%80%97/">
+						<i class="fa-solid fa-hashtag"></i>磁芯损耗
+					</a>
+				</li>
+			
+		</ul>
+	</div>
+	
+
+
+	
+
+	<div class="page-template-content markdown-body">
+		
+
+		
+	</div>
+
+	<div class="page-template-comments">
+		
+	</div>
+</div>
+
+<div class="paginator">
+	
+</div>
+  
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2026</span>
+              -
+            
+            2026&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">WenZhenJian-EE</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 110 篇文章
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.9.0</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+            
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container" role="dialog" aria-modal="true" aria-label="图片查看器">
+	<button class="image-viewer-close" type="button" aria-label="关闭">
+		<i class="fa-solid fa-xmark"></i>
+	</button>
+	<button class="image-viewer-prev" type="button" aria-label="上一页">
+		<i class="fa-solid fa-chevron-left"></i>
+	</button>
+	<div class="image-viewer-frame">
+		<img src="" alt="">
+	</div>
+	<div class="image-viewer-exif-panel hidden absolute left-1/2 bottom-20 -translate-x-1/2 w-[min(92vw,420px)] max-h-[60vh] overflow-hidden rounded-2xl bg-background-color-transparent-80 p-4 text-left shadow-redefine-flat backdrop-blur-md" role="dialog" aria-label="EXIF" aria-hidden="true">
+		<div class="flex items-center justify-between mb-3">
+			<span class="text-sm font-semibold text-first-text-color">EXIF</span>
+			<button class="image-viewer-exif-close flex h-8 w-8 items-center justify-center rounded-full bg-background-color-transparent-80 text-first-text-color transition hover:bg-background-color-transparent-40" type="button" aria-label="关闭">
+				<i class="fa-solid fa-xmark text-[0.65rem]"></i>
+			</button>
+		</div>
+		<div class="image-viewer-exif-cards grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto pr-1 scrollbar-hide"></div>
+		<template class="image-viewer-exif-card-template">
+			<div class="rounded-lg bg-background-color-transparent-40 px-3 py-2">
+				<div class="image-viewer-exif-card-header flex items-center gap-2 mb-1">
+					<i class="image-viewer-exif-card-icon fa-solid fa-circle-info text-xs text-third-text-color"></i>
+					<div class="image-viewer-exif-card-title text-xs font-semibold text-first-text-color"></div>
+				</div>
+				<div class="image-viewer-exif-card-items flex flex-col gap-1"></div>
+			</div>
+		</template>
+	</div>
+	<button class="image-viewer-exif-toggle flex items-center gap-2 hidden absolute left-1/2 bottom-6 -translate-x-1/2 rounded-full border border-border-color bg-background-color-transparent-80 px-4 py-2 text-first-text-color backdrop-blur-md transition hover:bg-background-color-transparent-40" type="button" aria-label="EXIF" aria-expanded="false">
+		<i class="fa-solid fa-circle-info text-xs"></i>
+		<span class="text-xs font-semibold uppercase tracking-wider">EXIF</span>
+	</button>
+	<button class="image-viewer-next" type="button" aria-label="下一页">
+		<i class="fa-solid fa-chevron-right"></i>
+	</button>
+</div>
+
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    window.swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+
+    window.dispatchEvent(
+        new CustomEvent("redefine:swup:ready", {
+            detail: {
+                swup: window.swup,
+            },
+        }),
+    );
+</script>
+
+
+
+	
+<script src="/js/build/main.js" type="module"></script>
+
+
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+
+
+
+    
+        
+<script src="/js/build/libs/mermaid.min.js"></script>
+
+    
+
+
+
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+
+	
+
+<!-- MOSFET Easter Egg -->
+<div id="mosfet-egg-container" class="no-print" title="TO-247 MOSFET (点击进行过载测试)">
+  <div id="mosfet-floating-label"></div>
+  <svg viewBox="0 0 100 100" class="mosfet-svg">
+    <!-- Metal Tab -->
+    <rect class="mosfet-tab" x="35" y="10" width="30" height="20" rx="3" fill="#999" />
+    <circle cx="50" cy="18" r="4" fill="#eaeaea" />
+    <!-- Plastic Body -->
+    <rect class="mosfet-body" x="25" y="25" width="50" height="45" rx="4" fill="#222" stroke="#444" stroke-width="2" />
+    <!-- Gate/Drain/Source Pins -->
+    <rect class="mosfet-pin" x="33" y="70" width="4" height="25" fill="#bbb" />
+    <rect class="mosfet-pin" x="48" y="70" width="4" height="25" fill="#bbb" />
+    <rect class="mosfet-pin" x="63" y="70" width="4" height="25" fill="#bbb" />
+    <!-- Text markings -->
+    <text class="mosfet-text" x="50" y="42" font-size="8" fill="#fff" text-anchor="middle" font-family="monospace">SiC-2026</text>
+    <text class="mosfet-text sub" x="50" y="52" font-size="7" fill="#888" text-anchor="middle" font-family="monospace">800V 50A</text>
+  </svg>
+  <div class="spark-flash"></div>
+</div>
+
+<style>
+#mosfet-egg-container {
+  position: fixed;
+  bottom: calc(5% + 88px);
+  right: 25px;
+  width: 50px;
+  height: 50px;
+  z-index: 9999;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  user-select: none;
+}
+@media (max-width: 768px) {
+  #mosfet-egg-container {
+    bottom: calc(5% + 88px);
+    right: 7px;
+  }
+}
+#mosfet-egg-container:hover {
+  transform: scale(1.1);
+}
+.mosfet-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+  transition: filter 0.5s ease;
+}
+/* Shaking animation on click */
+@keyframes mosfet-shake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(-3px, 1px) rotate(-3deg); }
+  40% { transform: translate(2px, -1px) rotate(3deg); }
+  60% { transform: translate(-2px, -2px) rotate(-1deg); }
+  80% { transform: translate(3px, 2px) rotate(2deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+.mosfet-shaking {
+  animation: mosfet-shake 0.3s ease-in-out;
+}
+/* Sparks */
+.spark-flash {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, rgba(255,240,150,1) 0%, rgba(255,100,0,0.8) 50%, rgba(255,0,0,0) 70%);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.5);
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+.spark-active {
+  opacity: 1;
+  transform: scale(1.5);
+}
+/* Floating text labels */
+#mosfet-floating-label {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: bold;
+  color: #ef4444;
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(0,0,0,0.85);
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #ff4500;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+@keyframes label-float-up {
+  0% { opacity: 0; transform: translate(-50%, 0); }
+  15% { opacity: 1; transform: translate(-50%, -10px); }
+  80% { opacity: 1; transform: translate(-50%, -20px); }
+  100% { opacity: 0; transform: translate(-50%, -35px); }
+}
+.label-active {
+  animation: label-float-up 2s forwards ease-out;
+}
+/* Smoke particle */
+.smoke-particle {
+  position: absolute;
+  background: rgba(220, 220, 220, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(3px);
+  z-index: 9998;
+}
+@keyframes smoke-float {
+  0% { transform: translateY(0) scale(0.8); opacity: 0.5; }
+  50% { opacity: 0.7; }
+  100% { transform: translateY(-100px) scale(2.8); opacity: 0; }
+}
+
+/* Print override */
+@media print {
+  #mosfet-egg-container {
+    display: none !important;
+  }
+}
+</style>
+
+<script>
+(function() {
+  let clickCount = 0;
+  let eggContainer = null;
+  
+  function initMosfetEgg() {
+    const container = document.getElementById('mosfet-egg-container');
+    if (!container) return;
+    eggContainer = container;
+    
+    const label = document.getElementById('mosfet-floating-label');
+    const spark = container.querySelector('.spark-flash');
+    const svg = container.querySelector('.mosfet-svg');
+    const body = container.querySelector('.mosfet-body');
+    const tab = container.querySelector('.mosfet-tab');
+    
+    const failureModes = [
+      { text: "Vgs 过压! (>20V)", color: "#facc15", charred: false, smokeRate: 6 },
+      { text: "Drain 过流! (>50A)", color: "#f97316", charred: "partial", smokeRate: 18 },
+      { text: "雪崩热失控! (>150°C)", color: "#ef4444", charred: "heavy", smokeRate: 40 },
+      { text: "直通短路炸管! (0Ω)", color: "#b91c1c", charred: "destroyed", smokeRate: 85 }
+    ];
+
+    container.addEventListener('click', () => {
+      // Shake SVG
+      svg.classList.remove('mosfet-shaking');
+      void svg.offsetWidth; // Trigger reflow
+      svg.classList.add('mosfet-shaking');
+
+      // Trigger spark flash
+      spark.classList.add('spark-active');
+      setTimeout(() => spark.classList.remove('spark-active'), 120);
+
+      const mode = failureModes[Math.min(clickCount, failureModes.length - 1)];
+      clickCount++;
+
+      // Floating text label
+      label.innerText = mode.text;
+      label.style.borderColor = mode.color;
+      label.style.color = mode.color;
+      label.classList.remove('label-active');
+      void label.offsetWidth; // Trigger reflow
+      label.classList.add('label-active');
+
+      // Charring progression
+      if (mode.charred === "partial") {
+        body.setAttribute('fill', '#111');
+        tab.setAttribute('fill', '#666');
+      } else if (mode.charred === "heavy") {
+        body.setAttribute('fill', '#080808');
+        tab.setAttribute('fill', '#333');
+        svg.style.filter = "grayscale(80%) sepia(20%) drop-shadow(0 4px 6px rgba(0,0,0,0.3))";
+      } else if (mode.charred === "destroyed") {
+        body.setAttribute('fill', '#000');
+        tab.setAttribute('fill', '#111');
+        svg.style.filter = "grayscale(100%) brightness(40%) drop-shadow(0 4px 6px rgba(0,0,0,0.5))";
+      }
+
+      // Release smoke particles
+      createSmoke(mode.smokeRate);
+      
+      // Console output for fellow developers
+      console.warn(`[MOSFET OVERLOAD] Mode: ${mode.text}. Junction temp rising.`);
+    });
+  }
+
+  function createSmoke(rate) {
+    if (!eggContainer) return;
+    const containerRect = eggContainer.getBoundingClientRect();
+    const startX = containerRect.left + containerRect.width / 2;
+    const startY = containerRect.top + window.scrollY + 15; // Account for scroll offset
+
+    for (let i = 0; i < rate; i++) {
+      setTimeout(() => {
+        const p = document.createElement('div');
+        p.className = 'smoke-particle';
+        
+        const size = Math.random() * 8 + 6;
+        const offsetX = (Math.random() - 0.5) * 16;
+        const duration = Math.random() * 1.5 + 1.0;
+        
+        p.style.width = `${size}px`;
+        p.style.height = `${size}px`;
+        p.style.left = `${startX + offsetX}px`;
+        p.style.top = `${startY}px`;
+        p.style.animation = `smoke-float ${duration}s forwards ease-out`;
+        
+        document.body.appendChild(p);
+        
+        setTimeout(() => p.remove(), duration * 1000);
+      }, i * 35);
+    }
+  }
+
+  // Load handler
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMosfetEgg);
+  } else {
+    initMosfetEgg();
+  }
+
+  // PJAX support (re-init listener for Swup if needed, though container is in body outside swup)
+  document.addEventListener('swup:contentReplaced', () => {
+    // Re-verify DOM links just in case
+    initMosfetEgg();
+  });
+})();
+</script>
+
+<!-- Visitor Offset & Resilient Display Script -->
+<script>
+(function() {
+  let statsData = null;
+
+  function applyOffset() {
+    if (!statsData) return;
+    const pvOffset = statsData.pv_offset || 0;
+    const uvOffset = statsData.uv_offset || 0;
+
+    const uvEl = document.getElementById("busuanzi_value_site_uv") || document.getElementById("vercount_value_site_uv");
+    const pvEl = document.getElementById("busuanzi_value_site_pv") || document.getElementById("vercount_value_site_pv");
+    const uvContainer = document.getElementById("busuanzi_container_site_uv") || document.getElementById("vercount_container_site_uv");
+    const pvContainer = document.getElementById("busuanzi_container_site_pv") || document.getElementById("vercount_container_site_pv");
+
+    if (uvEl) {
+      const text = uvEl.textContent.trim();
+      if (text !== "" && text !== uvEl.dataset.appliedVal) {
+        const parsed = parseInt(text, 10);
+        if (!isNaN(parsed)) {
+          const finalVal = parsed + uvOffset;
+          uvEl.dataset.appliedVal = String(finalVal);
+          uvEl.textContent = finalVal;
+          if (uvContainer && uvContainer.style.display === "none") {
+            uvContainer.style.display = "inline";
+          }
+        }
+      }
+    }
+
+    if (pvEl) {
+      const text = pvEl.textContent.trim();
+      if (text !== "" && text !== pvEl.dataset.appliedVal) {
+        const parsed = parseInt(text, 10);
+        if (!isNaN(parsed)) {
+          const finalVal = parsed + pvOffset;
+          pvEl.dataset.appliedVal = String(finalVal);
+          pvEl.textContent = finalVal;
+          if (pvContainer && pvContainer.style.display === "none") {
+            pvContainer.style.display = "inline";
+          }
+        }
+      }
+    }
+  }
+
+  function fallbackIfEmpty() {
+    if (!statsData) return;
+    const uvEl = document.getElementById("busuanzi_value_site_uv") || document.getElementById("vercount_value_site_uv");
+    const pvEl = document.getElementById("busuanzi_value_site_pv") || document.getElementById("vercount_value_site_pv");
+    const uvContainer = document.getElementById("busuanzi_container_site_uv") || document.getElementById("vercount_container_site_uv");
+    const pvContainer = document.getElementById("busuanzi_container_site_pv") || document.getElementById("vercount_container_site_pv");
+
+    const fallbackUv = (statsData.uv_offset || 0) + (statsData.last_uv || 1);
+    const fallbackPv = (statsData.pv_offset || 0) + (statsData.last_pv || 1);
+
+    if (uvEl && (uvEl.textContent.trim() === "" || uvEl.textContent.trim() === "0")) {
+      uvEl.dataset.appliedVal = String(fallbackUv);
+      uvEl.textContent = fallbackUv;
+      if (uvContainer) uvContainer.style.display = "inline";
+    }
+
+    if (pvEl && (pvEl.textContent.trim() === "" || pvEl.textContent.trim() === "0")) {
+      pvEl.dataset.appliedVal = String(fallbackPv);
+      pvEl.textContent = fallbackPv;
+      if (pvContainer) pvContainer.style.display = "inline";
+    }
+  }
+
+  fetch("/visitor_stats.json")
+    .then(res => res.json())
+    .then(data => {
+      statsData = data;
+      applyOffset();
+
+      // Observe DOM mutations when Vercount script asynchronously injects numbers
+      const observer = new MutationObserver(() => applyOffset());
+      observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+
+      // Fallback timer for ad-blockers / slow networks
+      setTimeout(fallbackIfEmpty, 2500);
+
+      // Support Redefine Swup single page transitions
+      document.addEventListener("swup:page:view", () => {
+        applyOffset();
+        setTimeout(fallbackIfEmpty, 1500);
+      });
+    })
+    .catch(err => {
+      console.warn("Failed to load visitor stats configuration:", err);
+    });
+})();
+</script>
+</body>
+
+</html>

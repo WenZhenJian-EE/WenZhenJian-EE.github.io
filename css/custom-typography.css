@@ -1,0 +1,332 @@
+/* ==========================================================================
+   文振键博客全站排版规范：黄金字阶体系与视觉降噪 (custom-typography.css)
+   ========================================================================== */
+
+/* 1. 文章主标题调优（从粗暴的 60px 降至雅致紧凑的 28~30px，消除突兀压迫感） */
+.article-title-regular,
+.article-title {
+  font-size: 1.85rem !important;
+  line-height: 1.35 !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.85rem !important;
+  letter-spacing: -0.015em;
+}
+
+@media (max-width: 768px) {
+  .article-title-regular,
+  .article-title {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* 2. 消除正文首行与文章标题重复的冗余 H1（杜绝正文双标题现象） */
+.article-content.markdown-body > h1:first-child {
+  display: none !important;
+}
+
+/* 3. 正文各级标题字号收敛与自然层级过渡（形成 1.55rem -> 1.35rem -> 1.18rem -> 1.05rem 的黄金阶梯） */
+.markdown-body h1 {
+  font-size: 1.55rem !important;
+  line-height: 1.35 !important;
+  font-weight: 700 !important;
+  margin-top: 2.2rem !important;
+  margin-bottom: 0.85rem !important;
+  padding-bottom: 0.4rem !important;
+  border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.1)) !important;
+}
+
+.markdown-body h2 {
+  font-size: 1.35rem !important;
+  line-height: 1.35 !important;
+  font-weight: 650 !important;
+  margin-top: 1.85rem !important;
+  margin-bottom: 0.75rem !important;
+  padding-bottom: 0.35rem !important;
+  border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.08)) !important;
+}
+
+.markdown-body h3 {
+  font-size: 1.18rem !important;
+  line-height: 1.4 !important;
+  font-weight: 600 !important;
+  margin-top: 1.45rem !important;
+  margin-bottom: 0.6rem !important;
+}
+
+.markdown-body h4 {
+  font-size: 1.05rem !important;
+  line-height: 1.45 !important;
+  font-weight: 600 !important;
+  margin-top: 1.25rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.markdown-body h5,
+.markdown-body h6 {
+  font-size: 0.96rem !important;
+  line-height: 1.45 !important;
+  font-weight: 600 !important;
+  margin-top: 1rem !important;
+  margin-bottom: 0.4rem !important;
+}
+
+/* 4. 正文段落与列表呼吸感与可读性优化（1.75 舒适工程行高） */
+.markdown-body p,
+.markdown-body li {
+  font-size: 1rem !important;
+  line-height: 1.75 !important;
+  margin-bottom: 0.95rem;
+}
+
+/* 5. 右侧大纲（TOC）视觉降噪与层级提纯 */
+/* 隐藏 TOC 顶部粗大冗余的整篇重复文章标题 */
+.post-toc-wrap .post-toc .page-title {
+  display: none !important;
+}
+
+/* TOC 小标题精致化与下划细线分割 */
+.post-toc-wrap .post-toc .toc-title {
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--third-text-color, #94a3b8) !important;
+  margin-bottom: 0.75rem !important;
+  padding-bottom: 0.4rem !important;
+  border-bottom: 1px solid var(--shadow-color-1, rgba(255, 255, 255, 0.08));
+}
+
+/* 当 TOC 顶层只有唯一一个重复的文章标题节点时，隐去该节点链接并将子目录自然提升 */
+.post-toc-wrap .nav > .nav-item.nav-level-1:only-child > .nav-link {
+  display: none !important;
+}
+.post-toc-wrap .nav > .nav-item.nav-level-1:only-child > .nav-child {
+  display: block !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  border-left: none !important;
+}
+
+/* 调谐 TOC 导航项字号与舒适间距 */
+.post-toc-wrap .nav-item {
+  font-size: 0.82rem !important;
+  line-height: 1.85 !important;
+}
+
+.post-toc-wrap .nav-link {
+  color: var(--third-text-color, #64748b) !important;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.post-toc-wrap .nav-link:hover,
+.post-toc-wrap .nav-link.active {
+  color: var(--primary-color, #2563eb) !important;
+}
+
+/* ==========================================================================
+   6. 顶栏导航系统（Navbar）高级深色毛玻璃与悬浮胶囊交互重构
+   ========================================================================== */
+
+/* 顶栏基础与静止态（未滚动/全屏Hero区）：通透深色毛玻璃，告别生硬纯蓝底色 */
+.navbar-container {
+  background: rgba(18, 21, 28, 0.42) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+  transition: background 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              height 0.2s ease !important;
+}
+
+/* 页面向下滚动时（.navbar-shrink）：自适应加深毛玻璃并强化底边微光与阴影 */
+.navbar-shrink .navbar-container,
+body.navbar-shrink .navbar-container {
+  background: rgba(18, 21, 28, 0.85) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* 浅色模式（Light Mode）兼容兜底 */
+.light .navbar-container,
+body.light-mode .navbar-container {
+  background: rgba(255, 255, 255, 0.65) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+.light .navbar-shrink .navbar-container,
+body.light-mode.navbar-shrink .navbar-container {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* 导航栏内容布局与防折行约束 */
+.navbar-container .navbar-content {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 20px !important;
+}
+
+/* Logo 标题质感升级 */
+.navbar-container .left {
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}
+.navbar-container .logo-title,
+.navbar-container .logo-title h1 {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-size: 1.35rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.6px !important;
+  white-space: nowrap !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45) !important;
+  transition: all 0.3s ease !important;
+  margin: 0 !important;
+}
+.navbar-container .logo-title:hover,
+.navbar-container .logo-title:hover h1 {
+  color: #ffffff !important;
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.6) !important;
+}
+.light .navbar-container .logo-title,
+.light .navbar-container .logo-title h1 {
+  color: rgba(15, 23, 42, 0.9) !important;
+  text-shadow: none !important;
+}
+
+/* 右侧菜单列表布局 */
+.navbar-container .right {
+  flex-shrink: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+.navbar-container .navbar-list {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+.navbar-container .navbar-item {
+  position: relative !important;
+  white-space: nowrap !important;
+}
+
+/* 导航项悬浮胶囊样式 (Frosted Capsule) */
+.navbar-container .navbar-item a {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 6px 12px !important;
+  font-size: 0.88rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.4px !important;
+  color: rgba(255, 255, 255, 0.78) !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  border-radius: 18px !important;
+  border: 1px solid transparent !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* 彻底移除原生主题粗蓝下划线 */
+.navbar-container .navbar-item a::after,
+.navbar-container .navbar-item .active::after {
+  display: none !important;
+}
+
+/* 导航项悬停态 (Hover) */
+.navbar-container .navbar-item a:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* 导航项当前激活态 (Active) */
+.navbar-container .navbar-item a.active {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(255, 255, 255, 0.32) !important;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+}
+
+/* 浅色模式导航项色彩适配 */
+.light .navbar-container .navbar-list .navbar-item a {
+  color: rgba(30, 41, 59, 0.78) !important;
+  text-shadow: none !important;
+}
+.light .navbar-container .navbar-list .navbar-item a:hover {
+  color: #0f172a !important;
+  background: rgba(0, 0, 0, 0.06) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+.light .navbar-container .navbar-item a.active {
+  color: #0f172a !important;
+  background: rgba(0, 0, 0, 0.08) !important;
+  border-color: rgba(0, 0, 0, 0.14) !important;
+}
+
+/* 搜索触发按钮精致化 */
+.navbar-container .navbar-item.search a,
+.navbar-container .navbar-item.search {
+  margin-left: 4px !important;
+}
+.navbar-container .navbar-item.search i {
+  font-size: 0.95rem !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+  transition: transform 0.25s ease, color 0.25s ease !important;
+}
+.navbar-container .navbar-item.search:hover i {
+  color: #ffffff !important;
+  transform: scale(1.15) !important;
+}
+.light .navbar-container .navbar-item.search i {
+  color: rgba(30, 41, 59, 0.78) !important;
+}
+
+/* 移动端汉堡菜单与抽屉（Drawer）材质统一 */
+.navbar-bar .navbar-bar-middle,
+.navbar-bar .navbar-bar-middle::before,
+.navbar-bar .navbar-bar-middle::after {
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+.light .navbar-bar .navbar-bar-middle,
+.light .navbar-bar .navbar-bar-middle::before,
+.light .navbar-bar .navbar-bar-middle::after {
+  background: rgba(30, 41, 59, 0.9) !important;
+}
+.navbar-drawer {
+  background: rgba(18, 21, 28, 0.95) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  backdrop-filter: blur(24px) !important;
+}
+
+/* ==========================================================================
+   7. 关于我（About Me）专属暗夜毛玻璃背景与排版系统
+   ========================================================================== */
+
+/* 当页面渲染关于我时，将所有父级模板容器置为透明并消除外层投影，透出全屏背景壁纸 */
+body:has(.about-container) .page-container,
+body:has(.about-container) .main-content-body,
+body:has(.about-container) .page-template-container,
+body:has(.about-container) .main-content,
+body:has(.about-container) .page-template-content {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* 消除模板自动生成的冗余 H1 标题与贯穿割裂线 */
+body:has(.about-container) .page-template-content > h1:first-child {
+  display: none !important;
+}
