@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 360" width="860" height="360" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif">
+  <rect width="860" height="360" fill="#ffffff"/>
+  <rect x="1" y="1" width="858" height="358" rx="8" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Left Panel: T-Type 3-Level Leg -->
+  <text x="24" y="30" font-size="14" font-weight="700" fill="#0f172a">(a) T 型三电平 (T-Type) 单相桥臂拓扑</text>
+  <line x1="420" y1="20" x2="420" y2="340" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- DC Bus Rails -->
+  <line x1="55" y1="72" x2="310" y2="72" stroke="#dc2626" stroke-width="2.2"/>
+  <text x="48" y="76" text-anchor="end" font-size="11.5" font-weight="700" fill="#dc2626">+Vdc/2</text>
+
+  <line x1="55" y1="288" x2="310" y2="288" stroke="#2563eb" stroke-width="2.2"/>
+  <text x="48" y="292" text-anchor="end" font-size="11.5" font-weight="700" fill="#2563eb">-Vdc/2</text>
+
+  <!-- Split DC Capacitors C1, C2 -->
+  <line x1="92" y1="72" x2="92" y2="122" stroke="#0f172a" stroke-width="2"/>
+  <line x1="76" y1="122" x2="108" y2="122" stroke="#0f172a" stroke-width="2.5"/>
+  <line x1="76" y1="132" x2="108" y2="132" stroke="#0f172a" stroke-width="2.5"/>
+  <line x1="92" y1="132" x2="92" y2="228" stroke="#0f172a" stroke-width="2"/>
+  <line x1="76" y1="228" x2="108" y2="228" stroke="#0f172a" stroke-width="2.5"/>
+  <line x1="76" y1="238" x2="108" y2="238" stroke="#0f172a" stroke-width="2.5"/>
+  <line x1="92" y1="238" x2="92" y2="288" stroke="#0f172a" stroke-width="2"/>
+  <text x="66" y="131" text-anchor="end" font-size="12" font-weight="700" fill="#334155">C1</text>
+  <text x="66" y="237" text-anchor="end" font-size="12" font-weight="700" fill="#334155">C2</text>
+
+  <!-- Neutral Point N -->
+  <circle cx="92" cy="180" r="4" fill="#d97706"/>
+  <text x="74" y="184" text-anchor="end" font-size="12.5" font-weight="700" fill="#d97706">N (0V)</text>
+  <line x1="92" y1="180" x2="152" y2="180" stroke="#d97706" stroke-width="2.2"/>
+  <!-- i_NP arrow -->
+  <polygon points="140,180 131,176 131,184" fill="#d97706"/>
+  <text x="122" y="170" text-anchor="middle" font-size="11" font-weight="700" fill="#d97706">i_NP</text>
+
+  <!-- Bidirectional Neutral Switches S2, S3 -->
+  <rect x="152" y="164" width="54" height="32" rx="5" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+  <text x="179" y="184" text-anchor="middle" font-size="11.5" font-weight="700" fill="#b45309">S2</text>
+  <line x1="206" y1="180" x2="218" y2="180" stroke="#d97706" stroke-width="2"/>
+  <rect x="218" y="164" width="54" height="32" rx="5" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+  <text x="245" y="184" text-anchor="middle" font-size="11.5" font-weight="700" fill="#b45309">S3</text>
+  <line x1="272" y1="180" x2="310" y2="180" stroke="#0f172a" stroke-width="2.2"/>
+  <text x="212" y="213" text-anchor="middle" font-size="10.5" fill="#92400e">耐压 Vdc/2 (低导通损耗)</text>
+
+  <!-- Outer Main Switches S1, S4 -->
+  <line x1="310" y1="72" x2="310" y2="100" stroke="#0f172a" stroke-width="2"/>
+  <rect x="284" y="100" width="52" height="44" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="310" y="126" text-anchor="middle" font-size="12" font-weight="700" fill="#1d4ed8">S1</text>
+  <text x="344" y="126" font-size="10.5" fill="#334155">耐压 Vdc</text>
+
+  <line x1="310" y1="144" x2="310" y2="216" stroke="#0f172a" stroke-width="2"/>
+  <rect x="284" y="216" width="52" height="44" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="310" y="242" text-anchor="middle" font-size="12" font-weight="700" fill="#1d4ed8">S4</text>
+  <text x="344" y="242" font-size="10.5" fill="#334155">耐压 Vdc</text>
+  <line x1="310" y1="260" x2="310" y2="288" stroke="#0f172a" stroke-width="2"/>
+
+  <!-- AC Output Node -->
+  <circle cx="310" cy="180" r="4.5" fill="#0f172a"/>
+  <line x1="310" y1="180" x2="388" y2="180" stroke="#059669" stroke-width="2.4"/>
+  <polygon points="392,180 383,176 383,184" fill="#059669"/>
+  <text x="366" y="170" text-anchor="middle" font-size="12" font-weight="700" fill="#059669">v_AO / i_A</text>
+
+  <!-- Summary note -->
+  <rect x="34" y="308" width="364" height="34" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="216" y="329" text-anchor="middle" font-size="11" fill="#334155">电平跳变减半 (Vdc/2) · 相同 fsw 下最大电感纹波降至两电平的 1/2</text>
+
+  <!-- Right Panel: 3-Level SVPWM Hexagon -->
+  <text x="442" y="30" font-size="14" font-weight="700" fill="#0f172a">(b) 三电平 SVPWM 空间矢量六边形 (27 状态)</text>
+
+  <!-- Center = (640, 190), R_large = 115, R_small = 57.5 -->
+  <!-- Alpha/Beta Axes -->
+  <line x1="490" y1="190" x2="795" y2="190" stroke="#cbd5e1" stroke-width="1.2"/>
+  <line x1="640" y1="58" x2="640" y2="322" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="802" y="194" font-size="12" font-weight="700" fill="#475569">α</text>
+  <text x="646" y="64" font-size="12" font-weight="700" fill="#475569">β</text>
+
+  <!-- Outer Hexagon (Large Vectors) -->
+  <!-- Vertices: (755,190), (697.5,90.4), (582.5,90.4), (525,190), (582.5,289.6), (697.5,289.6) -->
+  <polygon points="755,190 697.5,90.4 582.5,90.4 525,190 582.5,289.6 697.5,289.6" fill="#eff6ff" fill-opacity="0.35" stroke="#2563eb" stroke-width="2"/>
+
+  <!-- Inner Hexagon (Small Vectors) -->
+  <!-- Vertices: (697.5,190), (668.8,140.2), (611.2,140.2), (582.5,190), (611.2,239.8), (668.8,239.8) -->
+  <polygon points="697.5,190 668.8,140.2 611.2,140.2 582.5,190 611.2,239.8 668.8,239.8" fill="#fef3c7" fill-opacity="0.4" stroke="#d97706" stroke-width="1.8"/>
+
+  <!-- Sector Spokes -->
+  <g stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="640" y1="190" x2="755" y2="190"/>
+    <line x1="640" y1="190" x2="697.5" y2="90.4"/>
+    <line x1="640" y1="190" x2="582.5" y2="90.4"/>
+    <line x1="640" y1="190" x2="525" y2="190"/>
+    <line x1="640" y1="190" x2="582.5" y2="289.6"/>
+    <line x1="640" y1="190" x2="697.5" y2="289.6"/>
+  </g>
+
+  <!-- Large Vector Nodes (Blue) -->
+  <g fill="#2563eb">
+    <circle cx="755" cy="190" r="4.5"/>
+    <circle cx="697.5" cy="90.4" r="4.5"/>
+    <circle cx="582.5" cy="90.4" r="4.5"/>
+    <circle cx="525" cy="190" r="4.5"/>
+    <circle cx="582.5" cy="289.6" r="4.5"/>
+    <circle cx="697.5" cy="289.6" r="4.5"/>
+  </g>
+  <text x="763" y="185" font-size="10.5" font-weight="700" fill="#1d4ed8">[PNN]</text>
+  <text x="702" y="84" font-size="10.5" font-weight="700" fill="#1d4ed8">[PPN]</text>
+  <text x="545" y="84" font-size="10.5" font-weight="700" fill="#1d4ed8">[NPN]</text>
+  <text x="485" y="185" font-size="10.5" font-weight="700" fill="#1d4ed8">[NPP]</text>
+  <text x="545" y="305" font-size="10.5" font-weight="700" fill="#1d4ed8">[NNP]</text>
+  <text x="702" y="305" font-size="10.5" font-weight="700" fill="#1d4ed8">[PNP]</text>
+
+  <!-- Medium Vector Nodes (Red - Midpoints of outer edges) -->
+  <g fill="#dc2626">
+    <circle cx="726.2" cy="140.2" r="4"/>
+    <circle cx="640" cy="90.4" r="4"/>
+    <circle cx="553.8" cy="140.2" r="4"/>
+    <circle cx="553.8" cy="239.8" r="4"/>
+    <circle cx="640" cy="289.6" r="4"/>
+    <circle cx="726.2" cy="239.8" r="4"/>
+  </g>
+  <text x="734" y="139" font-size="10" font-weight="700" fill="#dc2626">[PON]</text>
+
+  <!-- Small Vector Nodes (Amber - Redundant Pairs) -->
+  <g fill="#d97706">
+    <circle cx="697.5" cy="190" r="4.5"/>
+    <circle cx="668.8" cy="140.2" r="4"/>
+    <circle cx="611.2" cy="140.2" r="4"/>
+    <circle cx="582.5" cy="190" r="4"/>
+    <circle cx="611.2" cy="239.8" r="4"/>
+    <circle cx="668.8" cy="239.8" r="4"/>
+  </g>
+  <text x="698" y="206" text-anchor="middle" font-size="9.5" font-weight="700" fill="#b45309">[POO]/[ONN]</text>
+
+  <!-- Zero Vector -->
+  <circle cx="640" cy="190" r="4.5" fill="#0f172a"/>
+
+  <!-- Legend -->
+  <rect x="438" y="316" width="402" height="28" rx="5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+  <circle cx="456" cy="330" r="4" fill="#2563eb"/>
+  <text x="466" y="334" font-size="10.5" fill="#334155">大矢量 (i_NP=0)</text>
+  <circle cx="566" cy="330" r="4" fill="#dc2626"/>
+  <text x="576" y="334" font-size="10.5" fill="#334155">中矢量 (扰动中点)</text>
+  <circle cx="688" cy="330" r="4" fill="#d97706"/>
+  <text x="698" y="334" font-size="10.5" fill="#334155">小矢量对 (正负对偶平衡)</text>
+</svg>

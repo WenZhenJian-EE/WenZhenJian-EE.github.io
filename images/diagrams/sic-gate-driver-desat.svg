@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 360" width="860" height="360" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif">
+  <rect width="860" height="360" fill="#ffffff"/>
+  <rect x="1" y="1" width="858" height="358" rx="8" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Left Panel: Isolated SiC Gate Driver + DESAT + Miller Clamp -->
+  <text x="24" y="30" font-size="14" font-weight="700" fill="#0f172a">(a) 隔离型 SiC 栅极驱动、米勒钳位与 DESAT 保护电路</text>
+  <line x1="468" y1="20" x2="468" y2="340" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- Isolated Driver IC Box -->
+  <rect x="30" y="76" width="150" height="196" rx="8" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+  <!-- Isolation Barrier inside IC -->
+  <line x1="92" y1="82" x2="92" y2="266" stroke="#2563eb" stroke-width="2" stroke-dasharray="5 3"/>
+  <line x1="98" y1="82" x2="98" y2="266" stroke="#2563eb" stroke-width="2" stroke-dasharray="5 3"/>
+  <text x="60" y="114" text-anchor="middle" font-size="11" font-weight="700" fill="#334155">PWM</text>
+  <text x="60" y="130" text-anchor="middle" font-size="10" fill="#64748b">原边 SELV</text>
+  <text x="60" y="232" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">FLT 故障</text>
+
+  <text x="140" y="96" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1d4ed8">+18V / -4V</text>
+  <text x="140" y="128" text-anchor="middle" font-size="10.5" font-weight="600" fill="#059669">OUT_H</text>
+  <text x="140" y="168" text-anchor="middle" font-size="10.5" font-weight="600" fill="#d97706">OUT_L</text>
+  <text x="140" y="206" text-anchor="middle" font-size="10.5" font-weight="600" fill="#2563eb">CLAMP</text>
+  <text x="140" y="246" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">DESAT</text>
+  <text x="116" y="288" text-anchor="middle" font-size="10.2" font-weight="700" fill="#2563eb">SiO2 隔离栅 (CMTI ≥ 150kV/μs)</text>
+
+  <!-- Asymmetric Gate Resistors Rg_on & Rg_off -->
+  <line x1="180" y1="124" x2="212" y2="124" stroke="#0f172a" stroke-width="1.8"/>
+  <rect x="212" y="114" width="52" height="20" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+  <text x="238" y="128" text-anchor="middle" font-size="10" font-weight="700" fill="#065f46">Rg_on</text>
+  <line x1="264" y1="124" x2="310" y2="124" stroke="#0f172a" stroke-width="1.8"/>
+
+  <line x1="180" y1="164" x2="212" y2="164" stroke="#0f172a" stroke-width="1.8"/>
+  <rect x="212" y="154" width="52" height="20" rx="3" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+  <text x="238" y="168" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">Rg_off</text>
+  <line x1="264" y1="164" x2="310" y2="164" stroke="#0f172a" stroke-width="1.8"/>
+
+  <!-- Miller Clamp Direct Path -->
+  <line x1="180" y1="202" x2="310" y2="202" stroke="#2563eb" stroke-width="1.8" stroke-dasharray="4 2"/>
+  <text x="245" y="196" text-anchor="middle" font-size="9.5" font-weight="600" fill="#2563eb">有源米勒低阻钳位</text>
+
+  <!-- Gate Bus joining to SiC MOSFET -->
+  <line x1="310" y1="124" x2="310" y2="202" stroke="#0f172a" stroke-width="2"/>
+  <circle cx="310" cy="164" r="3.5" fill="#0f172a"/>
+  <line x1="310" y1="164" x2="352" y2="164" stroke="#0f172a" stroke-width="2"/>
+
+  <!-- SiC MOSFET Block -->
+  <rect x="352" y="128" width="84" height="72" rx="7" fill="#eff6ff" stroke="#1e40af" stroke-width="2.2"/>
+  <text x="394" y="158" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">SiC</text>
+  <text x="394" y="176" text-anchor="middle" font-size="11" font-weight="600" fill="#3b82f6">MOSFET</text>
+  <line x1="394" y1="74" x2="394" y2="128" stroke="#dc2626" stroke-width="2.2"/>
+  <text x="394" y="66" text-anchor="middle" font-size="11" font-weight="700" fill="#dc2626">D (+800V)</text>
+  <line x1="394" y1="200" x2="394" y2="296" stroke="#0f172a" stroke-width="2.2"/>
+  <text x="394" y="309" text-anchor="middle" font-size="10.5" font-weight="700" fill="#334155">S (Kelvin)</text>
+
+  <!-- DESAT Path: DESAT pin -> Cblank -> R -> High-V Diode -> Drain -->
+  <line x1="180" y1="242" x2="338" y2="242" stroke="#dc2626" stroke-width="1.8"/>
+  <!-- C_blank to Source -->
+  <circle cx="222" cy="242" r="3" fill="#dc2626"/>
+  <line x1="222" y1="242" x2="222" y2="262" stroke="#dc2626" stroke-width="1.6"/>
+  <line x1="210" y1="262" x2="234" y2="262" stroke="#dc2626" stroke-width="2.2"/>
+  <line x1="210" y1="269" x2="234" y2="269" stroke="#dc2626" stroke-width="2.2"/>
+  <line x1="222" y1="269" x2="222" y2="296" stroke="#0f172a" stroke-width="1.6"/>
+  <line x1="222" y1="296" x2="394" y2="296" stroke="#0f172a" stroke-width="1.6"/>
+  <text x="242" y="274" font-size="10" font-weight="700" fill="#dc2626">C_blank</text>
+
+  <!-- High-V DESAT Diode -->
+  <polygon points="282,232 282,252 302,242" fill="#fef2f2" stroke="#dc2626" stroke-width="1.8"/>
+  <line x1="302" y1="232" x2="302" y2="252" stroke="#dc2626" stroke-width="2"/>
+  <text x="292" y="226" text-anchor="middle" font-size="10" font-weight="700" fill="#dc2626">D_desat (1200V)</text>
+  <line x1="338" y1="242" x2="338" y2="104" stroke="#dc2626" stroke-width="1.8"/>
+  <line x1="338" y1="104" x2="394" y2="104" stroke="#dc2626" stroke-width="1.8"/>
+  <circle cx="394" cy="104" r="3.5" fill="#dc2626"/>
+
+  <!-- Bottom note -->
+  <rect x="26" y="314" width="424" height="30" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="238" y="333" text-anchor="middle" font-size="10.8" fill="#334155">负压关断 (-4V) + 有源米勒钳位防直通；DESAT 消隐时间 t_blank ≈ 1.0~1.5μs</text>
+
+  <!-- Right Panel: Two-Stage Soft Turn-Off (2SSTO) Waveform -->
+  <text x="488" y="30" font-size="14" font-weight="700" fill="#0f172a">(b) 短路去饱和检测与两段式软关断 (2SSTO)</text>
+
+  <!-- Vertical Guides: SC start=550, DESAT trip=614, Stage1 end=680, Stage2 end=784 -->
+  <g stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="550" y1="54" x2="550" y2="316"/>
+    <line x1="614" y1="54" x2="614" y2="316"/>
+    <line x1="680" y1="54" x2="680" y2="316"/>
+    <line x1="784" y1="54" x2="784" y2="316"/>
+  </g>
+
+  <!-- Track 1: Vgs (2SSTO) -->
+  <text x="478" y="102" font-size="11.5" font-weight="700" fill="#2563eb">Vgs</text>
+  <line x1="538" y1="120" x2="836" y2="120" stroke="#94a3b8" stroke-width="1"/>
+  <text x="533" y="72" text-anchor="end" font-size="9.5" fill="#2563eb">+18V</text>
+  <text x="533" y="101" text-anchor="end" font-size="9.5" fill="#d97706">+8V</text>
+  <text x="533" y="133" text-anchor="end" font-size="9.5" fill="#475569">-4V</text>
+
+  <polyline points="538,70 614,70 632,98 680,98 784,130 834,130" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="656" y="90" text-anchor="middle" font-size="9.5" font-weight="700" fill="#d97706">一级钳位平台</text>
+  <text x="742" y="108" text-anchor="middle" font-size="9.5" font-weight="700" fill="#2563eb">二级高阻缓降</text>
+
+  <!-- Track 2: Short-Circuit Current Id -->
+  <text x="478" y="196" font-size="11.5" font-weight="700" fill="#d97706">Id</text>
+  <line x1="538" y1="226" x2="836" y2="226" stroke="#94a3b8" stroke-width="1"/>
+  <text x="533" y="229" text-anchor="end" font-size="9.5" fill="#64748b">0</text>
+  <polyline points="538,214 550,214 568,154 614,154 634,188 680,188 784,226 834,226" fill="none" stroke="#d97706" stroke-width="2.4"/>
+  <text x="588" y="146" text-anchor="middle" font-size="10" font-weight="700" fill="#dc2626">I_sc (饱和限流)</text>
+  <text x="657" y="182" text-anchor="middle" font-size="9.5" fill="#b45309">降流 60%~75%</text>
+
+  <!-- Track 3: Vds Comparison (Hard vs 2SSTO) -->
+  <text x="478" y="294" font-size="11.5" font-weight="700" fill="#dc2626">Vds</text>
+  <line x1="538" y1="308" x2="836" y2="308" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="538" y1="274" x2="836" y2="274" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="533" y="278" text-anchor="end" font-size="9.5" fill="#475569">Vbus</text>
+
+  <!-- Dashed Hard Turn-off Spike (Dangerous) -->
+  <polyline points="614,274 624,238 636,282 648,274" fill="none" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="4 2"/>
+  <text x="652" y="246" font-size="9.5" font-weight="700" fill="#dc2626">硬关断过冲 (击穿风险)</text>
+
+  <!-- Solid 2SSTO Smooth Vds -->
+  <polyline points="538,308 550,308 568,274 680,274 784,268 802,274 834,274" fill="none" stroke="#059669" stroke-width="2.4"/>
+  <text x="758" y="262" text-anchor="middle" font-size="10" font-weight="700" fill="#059669">2SSTO 过冲受控</text>
+
+  <!-- Bottom Timeline Labels -->
+  <text x="582" y="335" text-anchor="middle" font-size="10.5" font-weight="600" fill="#dc2626">t_blank</text>
+  <text x="647" y="335" text-anchor="middle" font-size="10.5" fill="#334155">Stage 1</text>
+  <text x="732" y="335" text-anchor="middle" font-size="10.5" fill="#334155">Stage 2 (软关断)</text>
+</svg>

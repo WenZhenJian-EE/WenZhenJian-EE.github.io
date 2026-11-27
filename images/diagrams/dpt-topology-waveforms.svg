@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 360" width="860" height="360" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif">
+  <rect width="860" height="360" fill="#ffffff"/>
+  <rect x="1" y="1" width="858" height="358" rx="8" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Left Panel: DPT Half-Bridge Schematic -->
+  <text x="24" y="30" font-size="14" font-weight="700" fill="#0f172a">(a) 标准半桥双脉冲测试 (DPT) 平台架构</text>
+  <line x1="418" y1="20" x2="418" y2="340" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- DC Link Supply & Low-ESL Cap -->
+  <line x1="65" y1="72" x2="295" y2="72" stroke="#dc2626" stroke-width="2.2"/>
+  <text x="58" y="76" text-anchor="end" font-size="11.5" font-weight="700" fill="#dc2626">+Vdc</text>
+  <line x1="65" y1="298" x2="295" y2="298" stroke="#0f172a" stroke-width="2.2"/>
+  <text x="58" y="302" text-anchor="end" font-size="11.5" font-weight="700" fill="#334155">PGND</text>
+
+  <!-- Bus Cap C_bus -->
+  <line x1="88" y1="72" x2="88" y2="176" stroke="#0f172a" stroke-width="2"/>
+  <line x1="72" y1="176" x2="104" y2="176" stroke="#0f172a" stroke-width="2.5"/>
+  <line x1="72" y1="186" x2="104" y2="186" stroke="#0f172a" stroke-width="2.5"/>
+  <line x1="88" y1="186" x2="88" y2="298" stroke="#0f172a" stroke-width="2"/>
+  <text x="64" y="185" text-anchor="end" font-size="11" font-weight="700" fill="#334155">C_bus</text>
+
+  <!-- Stray Inductance L_sigma on DC bus -->
+  <path d="M 148 72 C 148 60 160 60 160 72 C 160 60 172 60 172 72 C 172 60 184 60 184 72" fill="none" stroke="#dc2626" stroke-width="2.2"/>
+  <text x="166" y="55" text-anchor="middle" font-size="11" font-weight="700" fill="#dc2626">Lσ (杂散电感)</text>
+
+  <!-- Upper Freewheeling Diode + Load Inductor in Parallel -->
+  <line x1="255" y1="72" x2="255" y2="175" stroke="#0f172a" stroke-width="2"/>
+  <!-- Upper Diode -->
+  <polygon points="244,132 266,132 255,112" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <line x1="244" y1="112" x2="266" y2="112" stroke="#2563eb" stroke-width="2.2"/>
+  <text x="234" y="126" text-anchor="end" font-size="11" font-weight="700" fill="#2563eb">上桥续流管</text>
+
+  <!-- Parallel Load Inductor L_load -->
+  <line x1="255" y1="86" x2="330" y2="86" stroke="#0f172a" stroke-width="1.8"/>
+  <line x1="330" y1="86" x2="330" y2="104" stroke="#0f172a" stroke-width="1.8"/>
+  <path d="M 330 104 C 344 104 344 117 330 117 C 344 117 344 130 330 130 C 344 130 344 143 330 143 C 344 143 344 156 330 156" fill="none" stroke="#d97706" stroke-width="2.4"/>
+  <line x1="330" y1="156" x2="330" y2="175" stroke="#0f172a" stroke-width="1.8"/>
+  <line x1="330" y1="175" x2="255" y2="175" stroke="#0f172a" stroke-width="1.8"/>
+  <text x="352" y="132" font-size="11.5" font-weight="700" fill="#d97706">L_load</text>
+  <text x="352" y="147" font-size="10" fill="#92400e">(空心/高饱和)</text>
+
+  <!-- Switch Node -->
+  <circle cx="255" cy="175" r="4" fill="#0f172a"/>
+
+  <!-- Lower DUT Box -->
+  <line x1="255" y1="175" x2="255" y2="195" stroke="#0f172a" stroke-width="2"/>
+  <rect x="225" y="195" width="60" height="46" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="2.2"/>
+  <text x="255" y="216" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">DUT</text>
+  <text x="255" y="232" text-anchor="middle" font-size="10" fill="#059669">被测下管</text>
+
+  <!-- Gate Drive Input -->
+  <line x1="168" y1="218" x2="225" y2="218" stroke="#059669" stroke-width="2"/>
+  <rect x="115" y="204" width="53" height="28" rx="4" fill="#f8fafc" stroke="#059669" stroke-width="1.6"/>
+  <text x="141.5" y="222" text-anchor="middle" font-size="10.5" font-weight="700" fill="#065f46">双脉冲</text>
+
+  <!-- Coaxial Shunt Resistor in Source -->
+  <line x1="255" y1="241" x2="255" y2="256" stroke="#0f172a" stroke-width="2"/>
+  <rect x="242" y="256" width="26" height="26" rx="3" fill="#fef2f2" stroke="#dc2626" stroke-width="1.8"/>
+  <text x="255" y="273" text-anchor="middle" font-size="9.5" font-weight="700" fill="#b91c1c">Rsh</text>
+  <line x1="255" y1="282" x2="255" y2="298" stroke="#0f172a" stroke-width="2"/>
+  <text x="276" y="273" font-size="10.5" font-weight="600" fill="#dc2626">同轴分流器 (≥2GHz)</text>
+
+  <!-- Vds Probe Callout -->
+  <line x1="285" y1="199" x2="314" y2="199" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <text x="318" y="203" font-size="10.2" font-weight="600" fill="#2563eb">Vds 接地弹簧探头</text>
+
+  <rect x="26" y="314" width="372" height="30" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="212" y="333" text-anchor="middle" font-size="11" fill="#334155">第一脉冲定电流 Itarget = Vdc·t1/L，t1 测 Eoff，t2 测 Eon 与 Qrr</text>
+
+  <!-- Right Panel: DPT Timing Waveforms -->
+  <text x="440" y="30" font-size="14" font-weight="700" fill="#0f172a">(b) 双脉冲四阶段时序波形与关键捕获点</text>
+
+  <!-- Time guides: t0=475, t1=645, t2=725, t3=795 -->
+  <g stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="475" y1="54" x2="475" y2="318"/>
+    <line x1="645" y1="54" x2="645" y2="318"/>
+    <line x1="725" y1="54" x2="725" y2="318"/>
+    <line x1="795" y1="54" x2="795" y2="318"/>
+  </g>
+
+  <!-- Track 1: Vgs -->
+  <text x="466" y="88" text-anchor="end" font-size="11.5" font-weight="700" fill="#059669">Vgs</text>
+  <polyline points="455,104 475,104 475,64 645,64 645,104 725,104 725,64 795,64 795,104 832,104" fill="none" stroke="#059669" stroke-width="2.2"/>
+  <text x="560" y="88" text-anchor="middle" font-size="10.5" fill="#065f46">第一脉冲 (充磁 t1)</text>
+  <text x="685" y="88" text-anchor="middle" font-size="10" fill="#475569">死区续流</text>
+  <text x="760" y="88" text-anchor="middle" font-size="10.5" fill="#065f46">第二脉冲</text>
+
+  <!-- Track 2: Inductor Current IL & DUT Id -->
+  <text x="466" y="164" text-anchor="end" font-size="11.5" font-weight="700" fill="#d97706">IL / Id</text>
+  <line x1="455" y1="194" x2="835" y2="194" stroke="#94a3b8" stroke-width="1"/>
+  <!-- IL dashed envelope -->
+  <polyline points="475,194 645,140 725,142 795,120 832,126" fill="none" stroke="#d97706" stroke-width="1.8" stroke-dasharray="5 3"/>
+  <!-- DUT Id solid with Irr spike at t2 -->
+  <polyline points="455,194 475,194 645,140 649,194 725,194 728,114 738,142 795,120 799,194 832,194" fill="none" stroke="#2563eb" stroke-width="2.4"/>
+  <text x="742" y="116" font-size="10.5" font-weight="700" fill="#dc2626">Irr 尖峰 (Qrr)</text>
+  <text x="615" y="138" text-anchor="end" font-size="10.5" font-weight="600" fill="#b45309">Itarget</text>
+
+  <!-- Track 3: Vds with Turn-off Overshoot & Ringing at t1 -->
+  <text x="466" y="280" text-anchor="end" font-size="11.5" font-weight="700" fill="#dc2626">Vds</text>
+  <line x1="455" y1="306" x2="835" y2="306" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="455" y1="258" x2="835" y2="258" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="453" y="261" text-anchor="end" font-size="9.5" fill="#64748b">Vdc</text>
+
+  <polyline points="455,258 475,258 477,306 645,306 649,232 654,270 659,248 664,262 670,258 725,258 729,306 795,306 799,236 805,264 812,258 832,258" fill="none" stroke="#dc2626" stroke-width="2.2"/>
+
+  <!-- Callout Circles for Capture Points -->
+  <circle cx="648" cy="234" r="13" fill="none" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="3 2"/>
+  <text x="648" y="216" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">捕 Eoff &amp; Vspike</text>
+
+  <circle cx="728" cy="142" r="13" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="3 2"/>
+  <text x="765" y="170" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1d4ed8">捕 Eon</text>
+
+  <!-- Time Axis Labels -->
+  <text x="475" y="335" text-anchor="middle" font-size="11" fill="#334155">t0</text>
+  <text x="645" y="335" text-anchor="middle" font-size="11" font-weight="700" fill="#dc2626">t1 (关断)</text>
+  <text x="725" y="335" text-anchor="middle" font-size="11" font-weight="700" fill="#2563eb">t2 (开通)</text>
+  <text x="795" y="335" text-anchor="middle" font-size="11" fill="#334155">t3</text>
+</svg>

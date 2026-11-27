@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 360" width="860" height="360" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif">
+  <rect width="860" height="360" fill="#ffffff"/>
+  <rect x="1" y="1" width="858" height="358" rx="8" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Left Panel: P-S vs Sandwich P1-S-P2 MMF Distribution -->
+  <text x="24" y="30" font-size="14" font-weight="700" fill="#0f172a">(a) 传统绕法 (P-S) 与三明治交错绕法 (P1-S-P2) 磁动势对比</text>
+  <line x1="470" y1="20" x2="470" y2="340" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- Top half: Non-interleaved P-S -->
+  <text x="34" y="58" font-size="12" font-weight="700" fill="#475569">1. 传统绕法 (P - S)：峰值磁动势 = Np·Ip</text>
+  <!-- Winding blocks -->
+  <rect x="52" y="68" width="120" height="34" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+  <text x="112" y="89" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1d4ed8">原边 P (4 层)</text>
+  <rect x="172" y="68" width="12" height="34" fill="#fef3c7" stroke="#d97706" stroke-width="1"/>
+  <rect x="184" y="68" width="120" height="34" rx="4" fill="#d1fae5" stroke="#059669" stroke-width="1.6"/>
+  <text x="244" y="89" text-anchor="middle" font-size="11.5" font-weight="700" fill="#065f46">副边 S</text>
+
+  <!-- MMF Triangle (Full Height = 58px) -->
+  <line x1="42" y1="176" x2="322" y2="176" stroke="#64748b" stroke-width="1.4"/>
+  <polygon points="52,176 172,116 184,116 304,176" fill="#fecaca" fill-opacity="0.65" stroke="#dc2626" stroke-width="2.2"/>
+  <text x="178" y="111" text-anchor="middle" font-size="11" font-weight="700" fill="#dc2626">F_max = Np·Ip</text>
+  <text x="332" y="140" font-size="11" font-weight="700" fill="#dc2626">漏感 ∝ ∫H²dx</text>
+  <text x="332" y="158" font-size="10.5" fill="#991b1b">基准漏感 L_leak = 100%</text>
+  <text x="332" y="174" font-size="10.5" fill="#991b1b">邻近层数 m = 4</text>
+
+  <!-- Bottom half: Interleaved P1-S-P2 -->
+  <text x="34" y="202" font-size="12" font-weight="700" fill="#0f172a">2. 三明治绕法 (P1 - S - P2)：峰值磁动势减半 = 0.5·Np·Ip</text>
+  <rect x="52" y="212" width="60" height="34" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+  <text x="82" y="233" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">P1 (2层)</text>
+  <rect x="112" y="212" width="8" height="34" fill="#fef3c7" stroke="#d97706" stroke-width="1"/>
+  <rect x="120" y="212" width="116" height="34" rx="4" fill="#d1fae5" stroke="#059669" stroke-width="1.6"/>
+  <text x="178" y="233" text-anchor="middle" font-size="11.5" font-weight="700" fill="#065f46">副边 S</text>
+  <rect x="236" y="212" width="8" height="34" fill="#fef3c7" stroke="#d97706" stroke-width="1"/>
+  <rect x="244" y="212" width="60" height="34" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+  <text x="274" y="233" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">P2 (2层)</text>
+
+  <!-- MMF Double Half-Triangles (Height = 28px) -->
+  <line x1="42" y1="298" x2="322" y2="298" stroke="#64748b" stroke-width="1.4"/>
+  <polygon points="52,298 112,270 120,270 178,298" fill="#bbf7d0" fill-opacity="0.75" stroke="#059669" stroke-width="2.2"/>
+  <polygon points="178,298 236,326 244,326 304,298" fill="#bbf7d0" fill-opacity="0.75" stroke="#059669" stroke-width="2.2"/>
+  <text x="116" y="264" text-anchor="middle" font-size="10.5" font-weight="700" fill="#059669">+0.5 Np·Ip</text>
+  <text x="240" y="341" text-anchor="middle" font-size="10.5" font-weight="700" fill="#059669">-0.5 Np·Ip</text>
+  <text x="332" y="278" font-size="11" font-weight="700" fill="#059669">漏感降至 25% (1/4)</text>
+  <text x="332" y="296" font-size="10.5" fill="#047857">等效层数减半 m = 2</text>
+  <text x="332" y="312" font-size="10.5" fill="#047857">Dowell 邻近损耗大降</text>
+
+  <!-- Right Panel: Core Air-Gap Fringing Flux & Keep-out -->
+  <text x="492" y="30" font-size="14" font-weight="700" fill="#0f172a">(b) 磁芯中心柱气隙边缘扩散场与避让区</text>
+
+  <!-- Upper Ferrite Center Leg -->
+  <rect x="550" y="64" width="110" height="82" rx="3" fill="#475569" stroke="#1e293b" stroke-width="2"/>
+  <text x="605" y="108" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">铁氧体中心柱</text>
+  <text x="605" y="126" text-anchor="middle" font-size="10.5" fill="#cbd5e1">(μr ≈ 2500)</text>
+
+  <!-- Lower Ferrite Center Leg -->
+  <rect x="550" y="182" width="110" height="82" rx="3" fill="#475569" stroke="#1e293b" stroke-width="2"/>
+  <text x="605" y="228" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">铁氧体中心柱</text>
+
+  <!-- Air Gap Label lg -->
+  <line x1="534" y1="146" x2="534" y2="182" stroke="#dc2626" stroke-width="1.8"/>
+  <polygon points="534,146 530,153 538,153" fill="#dc2626"/>
+  <polygon points="534,182 530,175 538,175" fill="#dc2626"/>
+  <text x="525" y="168" text-anchor="end" font-size="12" font-weight="700" fill="#dc2626">lg</text>
+
+  <!-- Magnetic Flux Lines: Straight inside + Bulging Fringing outside -->
+  <g stroke="#2563eb" stroke-width="1.8" fill="none">
+    <line x1="575" y1="146" x2="575" y2="182"/>
+    <line x1="605" y1="146" x2="605" y2="182"/>
+    <line x1="635" y1="146" x2="635" y2="182"/>
+    <!-- Left fringing arcs -->
+    <path d="M 556 146 Q 536 164 556 182" stroke="#dc2626" stroke-dasharray="3 2"/>
+    <!-- Right fringing arcs -->
+    <path d="M 654 146 Q 674 164 654 182" stroke="#dc2626" stroke-dasharray="3 2"/>
+    <path d="M 660 132 Q 702 164 660 196" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="4 2"/>
+  </g>
+
+  <!-- Keep-out zone & Winding Coil -->
+  <rect x="662" y="128" width="54" height="72" fill="#fef2f2" fill-opacity="0.75" stroke="#fca5a5" stroke-width="1.2" stroke-dasharray="4 2"/>
+  <text x="689" y="160" text-anchor="middle" font-size="10.5" font-weight="700" fill="#b91c1c">避让区</text>
+  <text x="689" y="176" text-anchor="middle" font-size="10.5" font-weight="700" fill="#b91c1c">≥ 3·lg</text>
+
+  <!-- Copper Winding Cross Sections (outside keep-out) -->
+  <g fill="#fbbf24" stroke="#b45309" stroke-width="1.4">
+    <circle cx="740" cy="96" r="11"/>
+    <circle cx="740" cy="122" r="11"/>
+    <circle cx="740" cy="148" r="11"/>
+    <circle cx="740" cy="174" r="11"/>
+    <circle cx="740" cy="200" r="11"/>
+    <circle cx="740" cy="226" r="11"/>
+    <circle cx="768" cy="96" r="11"/>
+    <circle cx="768" cy="122" r="11"/>
+    <circle cx="768" cy="148" r="11"/>
+    <circle cx="768" cy="174" r="11"/>
+    <circle cx="768" cy="200" r="11"/>
+    <circle cx="768" cy="226" r="11"/>
+  </g>
+  <text x="754" y="74" text-anchor="middle" font-size="11.5" font-weight="700" fill="#b45309">铜绕组</text>
+
+  <!-- Summary Box -->
+  <rect x="492" y="282" width="342" height="58" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="506" y="304" font-size="11" font-weight="600" fill="#0f172a">边缘扩散因数：F = 1 + (lg / √Ae) · ln(2G / lg)</text>
+  <text x="506" y="325" font-size="10.8" fill="#475569">工程约束：绕组距气隙 ≥ 3·lg，防止边缘交变磁通引发局部涡流热点</text>
+</svg>

@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 360" width="860" height="360" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif">
+  <rect width="860" height="360" fill="#ffffff"/>
+  <rect x="1" y="1" width="858" height="358" rx="8" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Left Panel: Two-Stage EMI Filter & CM/DM Paths -->
+  <text x="24" y="30" font-size="14" font-weight="700" fill="#0f172a">(a) 两级 EMI 滤波器与差模/共模噪声回路</text>
+  <line x1="446" y1="20" x2="446" y2="340" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- LISN Box -->
+  <rect x="24" y="88" width="58" height="148" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1.8"/>
+  <text x="53" y="156" text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a">LISN</text>
+  <text x="53" y="174" text-anchor="middle" font-size="10" fill="#64748b">50Ω/50μH</text>
+
+  <!-- Power Stage Box -->
+  <rect x="372" y="88" width="60" height="148" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+  <text x="402" y="154" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1d4ed8">PFC /</text>
+  <text x="402" y="172" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1d4ed8">变换器</text>
+
+  <!-- Line L (top) and N (bottom) -->
+  <line x1="82" y1="112" x2="372" y2="112" stroke="#0f172a" stroke-width="2"/>
+  <line x1="82" y1="208" x2="372" y2="208" stroke="#0f172a" stroke-width="2"/>
+  <text x="90" y="104" font-size="10.5" font-weight="700" fill="#dc2626">L</text>
+  <text x="90" y="224" font-size="10.5" font-weight="700" fill="#2563eb">N</text>
+
+  <!-- CX1 -->
+  <line x1="112" y1="112" x2="112" y2="154" stroke="#059669" stroke-width="1.8"/>
+  <line x1="102" y1="154" x2="122" y2="154" stroke="#059669" stroke-width="2.4"/>
+  <line x1="102" y1="162" x2="122" y2="162" stroke="#059669" stroke-width="2.4"/>
+  <line x1="112" y1="162" x2="112" y2="208" stroke="#059669" stroke-width="1.8"/>
+  <text x="112" y="102" text-anchor="middle" font-size="10" font-weight="700" fill="#059669">CX1</text>
+
+  <!-- Lcm1 Block -->
+  <rect x="142" y="96" width="54" height="128" rx="5" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+  <text x="169" y="156" text-anchor="middle" font-size="11" font-weight="700" fill="#b45309">Lcm1</text>
+  <text x="169" y="172" text-anchor="middle" font-size="9.5" fill="#92400e">纳米晶</text>
+
+  <!-- CX2 + CY1/CY2 -->
+  <line x1="226" y1="112" x2="226" y2="132" stroke="#2563eb" stroke-width="1.6"/>
+  <line x1="218" y1="132" x2="234" y2="132" stroke="#2563eb" stroke-width="2.2"/>
+  <line x1="218" y1="138" x2="234" y2="138" stroke="#2563eb" stroke-width="2.2"/>
+  <line x1="226" y1="138" x2="226" y2="180" stroke="#2563eb" stroke-width="1.6"/>
+  <line x1="218" y1="180" x2="234" y2="180" stroke="#2563eb" stroke-width="2.2"/>
+  <line x1="218" y1="186" x2="234" y2="186" stroke="#2563eb" stroke-width="2.2"/>
+  <line x1="226" y1="186" x2="226" y2="208" stroke="#2563eb" stroke-width="1.6"/>
+  <circle cx="226" cy="160" r="3.5" fill="#dc2626"/>
+  <text x="248" y="138" font-size="9.5" font-weight="700" fill="#2563eb">CY</text>
+  <text x="248" y="187" font-size="9.5" font-weight="700" fill="#2563eb">CY</text>
+
+  <!-- Lcm2 Block -->
+  <rect x="276" y="96" width="54" height="128" rx="5" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+  <text x="303" y="156" text-anchor="middle" font-size="11" font-weight="700" fill="#b45309">Lcm2</text>
+  <text x="303" y="172" text-anchor="middle" font-size="9.5" fill="#92400e">铁氧体</text>
+
+  <!-- CX3 -->
+  <line x1="352" y1="112" x2="352" y2="154" stroke="#059669" stroke-width="1.8"/>
+  <line x1="342" y1="154" x2="362" y2="154" stroke="#059669" stroke-width="2.4"/>
+  <line x1="342" y1="162" x2="362" y2="162" stroke="#059669" stroke-width="2.4"/>
+  <line x1="352" y1="162" x2="352" y2="208" stroke="#059669" stroke-width="1.8"/>
+  <text x="352" y="102" text-anchor="middle" font-size="10" font-weight="700" fill="#059669">CX2</text>
+
+  <!-- PE Chassis Ground Rail -->
+  <line x1="53" y1="236" x2="53" y2="278" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="4 3"/>
+  <line x1="226" y1="160" x2="226" y2="278" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="4 3"/>
+  <line x1="402" y1="236" x2="402" y2="278" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="4 3"/>
+  <line x1="53" y1="278" x2="402" y2="278" stroke="#dc2626" stroke-width="2"/>
+  <text x="396" y="260" text-anchor="end" font-size="10" font-weight="700" fill="#dc2626">Cp (对散热器/大地)</text>
+  <text x="226" y="294" text-anchor="middle" font-size="11" font-weight="700" fill="#dc2626">机壳参考地 / PE (共模回流路径 i_cm)</text>
+
+  <!-- Bottom note -->
+  <rect x="24" y="310" width="408" height="32" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="228" y="330" text-anchor="middle" font-size="10.8" fill="#334155">差模 (i_dm) 闭合于 L-N；共模 (i_cm) 经 Cp 注入 PE 并经 CY 旁路回流</text>
+
+  <!-- Right Panel: Trapezoidal Spectrum Double-Corner Envelope -->
+  <text x="466" y="30" font-size="14" font-weight="700" fill="#0f172a">(b) 梯形开关脉冲双拐点频谱包络 (Si vs GaN/SiC)</text>
+
+  <!-- Axes -->
+  <line x1="504" y1="286" x2="834" y2="286" stroke="#0f172a" stroke-width="1.8"/>
+  <line x1="504" y1="286" x2="504" y2="58" stroke="#0f172a" stroke-width="1.8"/>
+  <polygon points="834,286 826,282 826,290" fill="#0f172a"/>
+  <polygon points="504,58 500,66 508,66" fill="#0f172a"/>
+  <text x="476" y="172" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a" transform="rotate(-90 476 172)">谐波包络 (dBμV)</text>
+
+  <!-- Vertical Corner Frequency Guides: f1=572, f2_Si=654, f2_GaN=754 -->
+  <g stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="572" y1="68" x2="572" y2="286"/>
+    <line x1="654" y1="68" x2="654" y2="286"/>
+    <line x1="754" y1="68" x2="754" y2="286"/>
+  </g>
+
+  <!-- Shaded +30~40dB HF Delta between GaN and Si -->
+  <polygon points="654,132 754,182 820,248 730,248" fill="#fef2f2" opacity="0.9"/>
+
+  <!-- Si IGBT Envelope (tr = 100ns -> f2 = 3.18MHz) -->
+  <polyline points="508,92 572,92 654,132 746,274" fill="none" stroke="#059669" stroke-width="2.5"/>
+  <!-- GaN/SiC Envelope (tr = 3ns -> f2 = 106MHz) -->
+  <polyline points="508,92 572,92 754,182 822,272" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+
+  <!-- Corner Dots -->
+  <circle cx="572" cy="92" r="4" fill="#0f172a"/>
+  <circle cx="654" cy="132" r="4" fill="#059669"/>
+  <circle cx="754" cy="182" r="4" fill="#dc2626"/>
+
+  <!-- Slope Labels -->
+  <text x="538" y="84" text-anchor="middle" font-size="10.5" font-weight="600" fill="#334155">0 dB/dec</text>
+  <text x="698" y="138" text-anchor="middle" font-size="10.5" font-weight="600" fill="#dc2626">-20 dB/dec</text>
+  <text x="684" y="226" text-anchor="middle" font-size="10.5" font-weight="600" fill="#059669">-40 dB/dec</text>
+  <text x="796" y="218" text-anchor="middle" font-size="10.5" font-weight="600" fill="#dc2626">-40 dB/dec</text>
+
+  <!-- Difference Callout -->
+  <line x1="726" y1="170" x2="726" y2="240" stroke="#dc2626" stroke-width="1.6"/>
+  <polygon points="726,168 722,175 730,175" fill="#dc2626"/>
+  <polygon points="726,242 722,235 730,235" fill="#dc2626"/>
+  <rect x="692" y="194" width="68" height="17" rx="3" fill="#ffffff" stroke="#fca5a5" stroke-width="1"/>
+  <text x="726" y="206" text-anchor="middle" font-size="9.8" font-weight="700" fill="#b91c1c">≈ +30.5dB</text>
+
+  <!-- Legend -->
+  <rect x="682" y="64" width="144" height="44" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="690" y1="78" x2="710" y2="78" stroke="#059669" stroke-width="2.4"/>
+  <text x="716" y="82" font-size="10.5" fill="#334155">Si IGBT (tr≈100ns)</text>
+  <line x1="690" y1="96" x2="710" y2="96" stroke="#dc2626" stroke-width="2.4"/>
+  <text x="716" y="100" font-size="10.5" fill="#334155">GaN/SiC (tr≈3ns)</text>
+
+  <!-- Frequency Axis Labels -->
+  <text x="572" y="304" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">f1 = 1/(πτ)</text>
+  <text x="654" y="304" text-anchor="middle" font-size="10.5" font-weight="700" fill="#059669">f2(Si)</text>
+  <text x="754" y="304" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">f2(GaN)</text>
+  <text x="668" y="332" text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a">对数频率 log f</text>
+</svg>

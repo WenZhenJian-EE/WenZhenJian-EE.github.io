@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 360" width="860" height="360" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif">
+  <rect width="860" height="360" fill="#ffffff"/>
+  <rect x="1" y="1" width="858" height="358" rx="8" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Left Panel: DAB Equivalent Model -->
+  <text x="24" y="30" font-size="14" font-weight="700" fill="#0f172a">(a) 双有源桥 (DAB) 折算等效拓扑</text>
+  <line x1="410" y1="20" x2="410" y2="340" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- Primary Full Bridge Block -->
+  <rect x="34" y="96" width="90" height="128" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="79" y="148" text-anchor="middle" font-size="13" font-weight="700" fill="#1e40af">原边全桥</text>
+  <text x="79" y="168" text-anchor="middle" font-size="11.5" fill="#3b82f6">S1 ~ S4</text>
+  <text x="79" y="188" text-anchor="middle" font-size="11.5" fill="#334155">母线 V1</text>
+
+  <!-- Secondary Full Bridge Block -->
+  <rect x="292" y="96" width="90" height="128" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+  <text x="337" y="148" text-anchor="middle" font-size="13" font-weight="700" fill="#065f46">副边全桥</text>
+  <text x="337" y="168" text-anchor="middle" font-size="11.5" fill="#059669">S5 ~ S8</text>
+  <text x="337" y="188" text-anchor="middle" font-size="11.5" fill="#334155">母线 V2</text>
+
+  <!-- Series Inductor Lk -->
+  <line x1="124" y1="132" x2="148" y2="132" stroke="#0f172a" stroke-width="2"/>
+  <path d="M 148 132 C 148 117 161 117 161 132 C 161 117 174 117 174 132 C 174 117 187 117 187 132 C 187 117 200 117 200 132" fill="none" stroke="#d97706" stroke-width="2.4"/>
+  <text x="174" y="110" text-anchor="middle" font-size="13" font-weight="700" fill="#d97706">Lk</text>
+
+  <!-- Current Arrow iL -->
+  <line x1="152" y1="150" x2="195" y2="150" stroke="#dc2626" stroke-width="1.6"/>
+  <polygon points="198,150 190,146 190,154" fill="#dc2626"/>
+  <text x="174" y="166" text-anchor="middle" font-size="11.5" font-weight="700" fill="#dc2626">iL(t)</text>
+
+  <!-- Ideal Transformer n:1 -->
+  <line x1="200" y1="132" x2="225" y2="132" stroke="#0f172a" stroke-width="2"/>
+  <path d="M 225 132 C 237 132 237 146 225 146 C 237 146 237 160 225 160 C 237 160 237 174 225 174 C 237 174 237 188 225 188" fill="none" stroke="#0f172a" stroke-width="2"/>
+  <line x1="225" y1="188" x2="124" y2="188" stroke="#0f172a" stroke-width="2"/>
+
+  <line x1="242" y1="128" x2="242" y2="192" stroke="#64748b" stroke-width="2"/>
+  <line x1="248" y1="128" x2="248" y2="192" stroke="#64748b" stroke-width="2"/>
+
+  <path d="M 265 132 C 253 132 253 146 265 146 C 253 146 253 160 265 160 C 253 160 253 174 265 174 C 253 174 253 188 265 188" fill="none" stroke="#0f172a" stroke-width="2"/>
+  <line x1="265" y1="132" x2="292" y2="132" stroke="#0f172a" stroke-width="2"/>
+  <line x1="265" y1="188" x2="292" y2="188" stroke="#0f172a" stroke-width="2"/>
+  <text x="245" y="114" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">n : 1</text>
+
+  <!-- Port Voltage Labels -->
+  <text x="136" y="122" font-size="11" fill="#2563eb" font-weight="600">v_pri</text>
+  <text x="276" y="122" font-size="11" fill="#059669" font-weight="600">v_sec</text>
+
+  <!-- Formula Summary Box -->
+  <rect x="28" y="252" width="358" height="84" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="42" y="274" font-size="11.5" font-weight="600" fill="#0f172a">SPS 传输功率：P = [n·V1·V2 / (2·fsw·Lk)] · D(1 - D)</text>
+  <text x="42" y="296" font-size="11.5" fill="#dc2626">回流功率：P_back = [n·V1·V2 / (16·fsw·Lk)] · (k+2D-1)² / (1+k)</text>
+  <text x="42" y="318" font-size="11" fill="#475569">其中电压比 k = V1 / (n·V2)，移相比 D = φ / π ∈ [-0.5, 0.5]</text>
+
+  <!-- Right Panel: SPS Waveforms & Backflow Power -->
+  <text x="434" y="30" font-size="14" font-weight="700" fill="#0f172a">(b) 单移相 (SPS) 关键波形与回流功率区间</text>
+
+  <!-- Vertical timing guides -->
+  <!-- t=0: x=492, t0: x=526, DTs/2: x=566, Ts/2: x=662, (1+D)Ts/2: x=736, Ts: x=832 -->
+  <g stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="492" y1="54" x2="492" y2="315"/>
+    <line x1="526" y1="190" x2="526" y2="315"/>
+    <line x1="566" y1="54" x2="566" y2="315"/>
+    <line x1="662" y1="54" x2="662" y2="315"/>
+    <line x1="736" y1="54" x2="736" y2="315"/>
+    <line x1="832" y1="54" x2="832" y2="315"/>
+  </g>
+
+  <!-- Track 1: v_pri(t) -->
+  <line x1="484" y1="92" x2="842" y2="92" stroke="#94a3b8" stroke-width="1"/>
+  <polyline points="492,92 492,66 662,66 662,118 832,118 832,92" fill="none" stroke="#2563eb" stroke-width="2.2"/>
+  <text x="480" y="72" text-anchor="end" font-size="10" fill="#2563eb" font-weight="600">+V1</text>
+  <text x="480" y="121" text-anchor="end" font-size="10" fill="#2563eb" font-weight="600">-V1</text>
+  <text x="422" y="96" font-size="11.5" font-weight="700" fill="#0f172a">v_pri</text>
+
+  <!-- Track 2: n*v_sec(t) shifted by DTs/2 -->
+  <line x1="484" y1="164" x2="842" y2="164" stroke="#94a3b8" stroke-width="1"/>
+  <polyline points="492,188 566,188 566,140 736,140 736,188 832,188" fill="none" stroke="#059669" stroke-width="2.2"/>
+  <text x="480" y="145" text-anchor="end" font-size="9.5" fill="#059669" font-weight="600">+nV2</text>
+  <text x="480" y="191" text-anchor="end" font-size="9.5" fill="#059669" font-weight="600">-nV2</text>
+  <text x="422" y="168" font-size="11.5" font-weight="700" fill="#0f172a">v_sec'</text>
+
+  <!-- Phase shift arrow DTs/2 -->
+  <line x1="494" y1="128" x2="564" y2="128" stroke="#475569" stroke-width="1.2"/>
+  <polygon points="492,128 499,125 499,131" fill="#475569"/>
+  <polygon points="566,128 559,125 559,131" fill="#475569"/>
+  <text x="529" y="124" text-anchor="middle" font-size="10.5" fill="#334155" font-weight="600">D·Ts/2</text>
+
+  <!-- Track 3: iL(t) with Backflow Shaded Triangle -->
+  <line x1="484" y1="256" x2="842" y2="256" stroke="#94a3b8" stroke-width="1"/>
+  <!-- Shaded backflow region [0, t0] where v_pri > 0 and iL < 0 -->
+  <polygon points="492,256 492,292 526,256" fill="#fecaca" opacity="0.9"/>
+  <!-- Shaded second half backflow [Ts/2, Ts/2+t0] where v_pri < 0 and iL > 0 -->
+  <polygon points="662,256 662,220 696,256" fill="#fecaca" opacity="0.9"/>
+
+  <polyline points="492,292 566,212 662,220 736,300 832,292" fill="none" stroke="#d97706" stroke-width="2.5"/>
+  <circle cx="492" cy="292" r="3.5" fill="#dc2626"/>
+  <circle cx="566" cy="212" r="3.5" fill="#059669"/>
+  <circle cx="526" cy="256" r="3" fill="#dc2626"/>
+
+  <text x="480" y="259" text-anchor="end" font-size="10.5" fill="#475569">0</text>
+  <text x="422" y="260" font-size="11.5" font-weight="700" fill="#0f172a">iL(t)</text>
+
+  <!-- Annotations on iL -->
+  <text x="496" y="306" font-size="10.5" font-weight="600" fill="#dc2626">iL(0) &lt; 0</text>
+  <text x="572" y="208" font-size="10.5" font-weight="600" fill="#059669">iL(DTs/2) &gt; 0</text>
+  <rect x="702" y="206" width="126" height="36" rx="5" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
+  <text x="765" y="221" text-anchor="middle" font-size="10.5" font-weight="700" fill="#b91c1c">红色阴影：回流区间</text>
+  <text x="765" y="236" text-anchor="middle" font-size="10" fill="#991b1b">v_pri · iL &lt; 0 (0 → t0)</text>
+
+  <!-- Time Axis Labels -->
+  <text x="492" y="334" text-anchor="middle" font-size="11" fill="#334155">0</text>
+  <text x="526" y="334" text-anchor="middle" font-size="11" font-weight="700" fill="#dc2626">t0</text>
+  <text x="566" y="334" text-anchor="middle" font-size="11" fill="#334155">DTs/2</text>
+  <text x="662" y="334" text-anchor="middle" font-size="11" fill="#334155">Ts/2</text>
+  <text x="832" y="334" text-anchor="middle" font-size="11" fill="#334155">Ts</text>
+</svg>

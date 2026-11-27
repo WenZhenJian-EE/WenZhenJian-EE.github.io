@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 360" width="860" height="360" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif">
+  <rect width="860" height="360" fill="#ffffff"/>
+  <rect x="1" y="1" width="858" height="358" rx="8" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Left Panel: FHA Equivalent Circuit -->
+  <text x="24" y="30" font-size="14" font-weight="700" fill="#0f172a">(a) LLC 基波等效电路 (FHA Equivalent Circuit)</text>
+  <line x1="420" y1="20" x2="420" y2="340" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- Voltage Source Vsq1 -->
+  <circle cx="65" cy="185" r="24" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+  <path d="M 54 185 Q 59.5 173 65 185 T 76 185" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <text x="65" y="226" text-anchor="middle" font-size="12" fill="#334155" font-weight="600">V_in,1(jω)</text>
+
+  <!-- Top Rail: Source -> Lr -> Cr -> Node A -->
+  <line x1="65" y1="161" x2="65" y2="115" stroke="#0f172a" stroke-width="2"/>
+  <line x1="65" y1="115" x2="108" y2="115" stroke="#0f172a" stroke-width="2"/>
+
+  <!-- Inductor Lr (4 humps) -->
+  <path d="M 108 115 C 108 100 123 100 123 115 C 123 100 138 100 138 115 C 138 100 153 100 153 115 C 153 100 168 100 168 115" fill="none" stroke="#2563eb" stroke-width="2.2"/>
+  <text x="138" y="95" text-anchor="middle" font-size="13" font-weight="700" fill="#2563eb">Lr</text>
+
+  <!-- Wire Lr -> Cr -->
+  <line x1="168" y1="115" x2="198" y2="115" stroke="#0f172a" stroke-width="2"/>
+
+  <!-- Capacitor Cr -->
+  <line x1="198" y1="98" x2="198" y2="132" stroke="#059669" stroke-width="2.5"/>
+  <line x1="208" y1="98" x2="208" y2="132" stroke="#059669" stroke-width="2.5"/>
+  <text x="203" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="#059669">Cr</text>
+
+  <!-- Wire Cr -> Lm node -> Re node -->
+  <line x1="208" y1="115" x2="352" y2="115" stroke="#0f172a" stroke-width="2"/>
+  <circle cx="272" cy="115" r="3.5" fill="#0f172a"/>
+
+  <!-- Parallel Branch 1: Lm -->
+  <line x1="272" y1="115" x2="272" y2="148" stroke="#0f172a" stroke-width="2"/>
+  <path d="M 272 148 C 287 148 287 163 272 163 C 287 163 287 178 272 178 C 287 178 287 193 272 193 C 287 193 287 208 272 208" fill="none" stroke="#d97706" stroke-width="2.2"/>
+  <line x1="272" y1="208" x2="272" y2="255" stroke="#0f172a" stroke-width="2"/>
+  <text x="252" y="183" text-anchor="end" font-size="13" font-weight="700" fill="#d97706">Lm</text>
+
+  <!-- Parallel Branch 2: Re -->
+  <line x1="352" y1="115" x2="352" y2="152" stroke="#0f172a" stroke-width="2"/>
+  <rect x="340" y="152" width="24" height="62" rx="3" fill="#eff6ff" stroke="#0f172a" stroke-width="2"/>
+  <text x="352" y="187" text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a">Re</text>
+  <line x1="352" y1="214" x2="352" y2="255" stroke="#0f172a" stroke-width="2"/>
+
+  <!-- Bottom Return Rail -->
+  <line x1="65" y1="209" x2="65" y2="255" stroke="#0f172a" stroke-width="2"/>
+  <line x1="65" y1="255" x2="352" y2="255" stroke="#0f172a" stroke-width="2"/>
+  <circle cx="272" cy="255" r="3.5" fill="#0f172a"/>
+
+  <!-- Formula Summary Box -->
+  <rect x="28" y="276" width="368" height="62" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="42" y="298" font-size="11.5" fill="#334155">Re = (8n² / π²) · Ro    |    k = Lm / Lr    |    Q = √(Lr/Cr) / Re</text>
+  <text x="42" y="320" font-size="11.5" fill="#475569">fr = 1 / (2π√(LrCr))    |    fm = fr / √(1 + k)</text>
+
+  <!-- Right Panel: Gain Curve M(fn) -->
+  <text x="442" y="30" font-size="14" font-weight="700" fill="#0f172a">(b) 归一化直流电压增益曲线 M(fn) (k = 5)</text>
+
+  <!-- Shaded Regions -->
+  <!-- Capacitive Zone (left of peak locus) -->
+  <path d="M 480 295 L 480 65 L 570 65 C 578 135 592 175 612 200 C 625 215 636 235 645 295 Z" fill="#fef2f2" opacity="0.85"/>
+  <!-- Inductive Zone (right) -->
+  <path d="M 570 65 L 820 65 L 820 295 L 645 295 C 636 235 625 215 612 200 C 592 175 578 135 570 65 Z" fill="#f0fdf4" opacity="0.65"/>
+
+  <!-- Grid Lines -->
+  <g stroke="#e2e8f0" stroke-width="1">
+    <line x1="480" y1="238" x2="820" y2="238"/>
+    <line x1="480" y1="180" x2="820" y2="180"/>
+    <line x1="480" y1="122" x2="820" y2="122"/>
+    <line x1="480" y1="65" x2="820" y2="65"/>
+    <line x1="565" y1="65" x2="565" y2="295"/>
+    <line x1="650" y1="65" x2="650" y2="295"/>
+    <line x1="735" y1="65" x2="735" y2="295"/>
+  </g>
+
+  <!-- Axes -->
+  <line x1="480" y1="295" x2="828" y2="295" stroke="#0f172a" stroke-width="1.8"/>
+  <line x1="480" y1="295" x2="480" y2="55" stroke="#0f172a" stroke-width="1.8"/>
+  <polygon points="828,295 820,291 820,299" fill="#0f172a"/>
+  <polygon points="480,55 476,63 484,63" fill="#0f172a"/>
+
+  <!-- Dashed fn = 1 & M = 1 reference -->
+  <line x1="650" y1="65" x2="650" y2="295" stroke="#64748b" stroke-width="1.2" stroke-dasharray="5 4"/>
+  <line x1="480" y1="180" x2="820" y2="180" stroke="#64748b" stroke-width="1.2" stroke-dasharray="5 4"/>
+
+  <!-- ZVS / Capacitive Boundary Curve (Peak Gain Locus) -->
+  <path d="M 564 78 Q 586 168 642 260" fill="none" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="4 3"/>
+
+  <!-- Gain Curve Q = 0.2 (high peak) -->
+  <path d="M 505 288 C 528 265 548 195 568 104 C 577 65 595 108 625 152 C 638 170 645 176 650 180 C 680 198 730 206 815 212" fill="none" stroke="#2563eb" stroke-width="2.4"/>
+
+  <!-- Gain Curve Q = 0.4 (medium peak) -->
+  <path d="M 505 290 C 535 276 565 210 595 148 C 608 128 626 155 650 180 C 685 207 740 225 815 236" fill="none" stroke="#059669" stroke-width="2.4"/>
+
+  <!-- Gain Curve Q = 0.8 (heavy load) -->
+  <path d="M 505 292 C 545 284 585 245 622 192 C 634 176 643 177 650 180 C 690 218 745 248 815 262" fill="none" stroke="#d97706" stroke-width="2.4"/>
+
+  <!-- Resonance Point Dot (fn=1, M=1) -->
+  <circle cx="650" cy="180" r="4.5" fill="#0f172a"/>
+  <text x="656" y="174" font-size="11.5" font-weight="700" fill="#0f172a">(fn=1, M=1)</text>
+
+  <!-- Region Labels -->
+  <text x="492" y="88" font-size="11.5" font-weight="700" fill="#dc2626">容性区 (ZCS)</text>
+  <text x="492" y="104" font-size="10.5" fill="#b91c1c">体二极管硬反向恢复</text>
+  <text x="716" y="78" font-size="11.5" font-weight="700" fill="#059669">感性区 (ZVS)</text>
+  <text x="716" y="93" font-size="10.5" fill="#047857">原边零电压开通</text>
+
+  <!-- Curve Legend -->
+  <rect x="708" y="102" width="106" height="54" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="716" y1="115" x2="736" y2="115" stroke="#2563eb" stroke-width="2.4"/>
+  <text x="742" y="119" font-size="11" fill="#334155">Q = 0.2 (轻载)</text>
+  <line x1="716" y1="131" x2="736" y2="131" stroke="#059669" stroke-width="2.4"/>
+  <text x="742" y="135" font-size="11" fill="#334155">Q = 0.4 (额定)</text>
+  <line x1="716" y1="147" x2="736" y2="147" stroke="#d97706" stroke-width="2.4"/>
+  <text x="742" y="151" font-size="11" fill="#334155">Q = 0.8 (重载)</text>
+
+  <!-- Axis Ticks & Labels -->
+  <text x="472" y="299" text-anchor="end" font-size="11" fill="#475569">0</text>
+  <text x="472" y="242" text-anchor="end" font-size="11" fill="#475569">0.5</text>
+  <text x="472" y="184" text-anchor="end" font-size="11" fill="#475569">1.0</text>
+  <text x="472" y="126" text-anchor="end" font-size="11" fill="#475569">1.5</text>
+  <text x="472" y="69" text-anchor="end" font-size="11" fill="#475569">2.0</text>
+  <text x="450" y="180" text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a" transform="rotate(-90 450 180)">增益 M</text>
+
+  <text x="565" y="313" text-anchor="middle" font-size="11" fill="#475569">0.5</text>
+  <text x="650" y="313" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">1.0 (fr)</text>
+  <text x="735" y="313" text-anchor="middle" font-size="11" fill="#475569">1.5</text>
+  <text x="815" y="313" text-anchor="middle" font-size="11" fill="#475569">2.0</text>
+  <text x="650" y="338" text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a">归一化频率 fn = fsw / fr</text>
+</svg>
